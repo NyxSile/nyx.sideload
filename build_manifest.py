@@ -1,11 +1,20 @@
 import os
-import glob
 import zipfile
 import plistlib
 import json
 
-# 1. Find all IPA files
-ipa_files = glob.glob('*.ipa')
+# 1. Find all IPA files recursively inside 'ipas' directory
+ipa_files = []
+if os.path.exists('ipas'):
+    for root, dirs, files in os.walk('ipas'):
+        for file in files:
+            if file.endswith('.ipa'):
+                ipa_files.append(os.path.join(root, file).replace('\\', '/'))
+else:
+    # Fallback to current directory
+    import glob
+    ipa_files = glob.glob('*.ipa')
+
 if not ipa_files:
     print("No .ipa files found!")
     exit(1)
@@ -67,13 +76,14 @@ for ipa in ipa_files:
         app_name = plist.get('CFBundleDisplayName') or plist.get('CFBundleName', 'App')
 
         # Override metadata for tool stubs to ensure correct display during installation
-        if ipa.startswith('esign'):
+        filename = os.path.basename(ipa)
+        if filename.startswith('esign'):
             app_name = config.get("ESIGN_NAME", "ESign")
             bundle_id = config.get("ESIGN_BUNDLE", "p3.xyz.yyyue.esign")
-        elif ipa.startswith('ksign'):
+        elif filename.startswith('ksign'):
             app_name = config.get("KSIGN_NAME", "KSign")
             bundle_id = config.get("KSIGN_BUNDLE", "nya.asami.ksign")
-        elif ipa.startswith('nsign'):
+        elif filename.startswith('nsign'):
             app_name = config.get("NSIGN_NAME", "N.Sign")
             bundle_id = config.get("NSIGN_BUNDLE", "nya.asami.nsign")
             version = "1.0.0"  # Force N.Sign version
@@ -88,7 +98,7 @@ for ipa in ipa_files:
                                    .replace("__VERSION__", version)\
                                    .replace("__APP_NAME__", app_name)
 
-        ipa_name_no_ext = os.path.splitext(ipa)[0]
+        ipa_name_no_ext = os.path.splitext(os.path.basename(ipa))[0]
         out_manifest_name = f"manifest-{ipa_name_no_ext}.plist"
         with open(out_manifest_name, "w", encoding="utf-8") as f:
             f.write(manifest_content)
