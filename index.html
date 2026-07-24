@@ -128,7 +128,7 @@
     .ob-card p  { font-size: 13px; color: var(--muted); line-height: 1.4; }
 
     /* ── MAIN APP ─────── */
-    #app { display: flex; min-height: 100dvh; flex-direction: column; padding-top: 57px; }
+    #app { display: flex; min-height: 100dvh; flex-direction: column; padding-top: 110px; }
 
     /* ── HEADER ─────────────────────────────────── */
     #header {
@@ -362,6 +362,18 @@
       align-items: center;
       justify-content: center;
       transition: background 0.2s;
+    }
+    .tool-icon-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+    .large-modal-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 22px;
     }
     .tool-card-new:hover .tool-icon-container {
       background: var(--accent-lo);
@@ -761,11 +773,6 @@
   </style>
 </head>
 <body>
-<!-- REVOKED BANNER -->
-<div class="revoked-banner" style="background: rgba(255, 107, 107, 0.12); border-bottom: 1px solid rgba(255, 107, 107, 0.25); color: #FF6B6B; text-align: center; padding: 12px; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; position: relative; z-index: 1000; line-height: 1.4;">
-  <span class="ping-dot" style="background: #FF6B6B; box-shadow: 0 0 8px #FF6B6B; width: 6px; height: 6px; border-radius: 50%; display: inline-block;"></span>
-  <span data-i="status-revoked">Все общие сертификаты отозваны Apple! Установите DNS-профиль или используйте личную подпись в N.Sign.</span>
-</div>
 
 <!-- ════════════════════════════════════
      STARFIELD
@@ -776,6 +783,11 @@
      GLOBAL HEADER (always visible)
 ════════════════════════════════════ -->
 <header id="header">
+  <!-- REVOKED BANNER -->
+  <div class="revoked-banner" style="background: rgba(255, 107, 107, 0.12); border-bottom: 1px solid rgba(255, 107, 107, 0.25); color: #FF6B6B; text-align: center; padding: 10px; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; margin: -12px -20px 10px -20px; line-height: 1.4;">
+    <span class="ping-dot" style="background: #FF6B6B; box-shadow: 0 0 8px #FF6B6B; width: 6px; height: 6px; border-radius: 50%; display: inline-block;"></span>
+    <span data-i="status-revoked">Все общие сертификаты отозваны Apple! Установите DNS-профиль или используйте личную подпись в N.Sign.</span>
+  </div>
   <div class="header-inner">
     <span class="header-logo display">nyx<span>·</span>sideload</span>
     <div class="lang-toggle" role="group" aria-label="Language">
@@ -832,16 +844,7 @@
         <!-- ESign -->
         <div class="tool-card-new" id="card-esign">
           <div class="tool-icon-container">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-              <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z" fill="url(#esign-grad)" />
-              <text x="50%" y="60%" dominant-baseline="middle" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="bold" font-size="10" fill="#fff">E</text>
-              <defs>
-                <linearGradient id="esign-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#7B61FF" />
-                  <stop offset="100%" stop-color="#FF6B6B" />
-                </linearGradient>
-              </defs>
-            </svg>
+            <img src="https://iosvizor.ru/wp-content/uploads/2024/02/esign.jpg" alt="ESign Icon">
           </div>
           <div class="tool-info-new">
             <span class="tool-title-new">ESign</span>
@@ -858,16 +861,7 @@
         <!-- KSign -->
         <div class="tool-card-new" id="card-ksign">
           <div class="tool-icon-container">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-              <rect x="2" y="2" width="20" height="20" rx="6" fill="url(#ksign-grad)" />
-              <text x="50%" y="60%" dominant-baseline="middle" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="bold" font-size="11" fill="#fff">K</text>
-              <defs>
-                <linearGradient id="ksign-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#3B82F6" />
-                  <stop offset="100%" stop-color="#10B981" />
-                </linearGradient>
-              </defs>
-            </svg>
+            <img src="https://upload.zeejb.com/uploads/68958b00dddee_pasted_image.png" alt="KSign Icon">
           </div>
           <div class="tool-info-new">
             <span class="tool-title-new">KSign</span>
@@ -884,17 +878,7 @@
         <!-- N.Sign -->
         <div class="tool-card-new" id="card-nsign">
           <div class="tool-icon-container" style="box-shadow: 0 0 15px rgba(236, 72, 153, 0.2);">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-              <path d="M12 2L2 22h20L12 2z" fill="url(#nsign-grad)" />
-              <path d="M12 6l7 13H5l7-13z" fill="var(--surface2)" />
-              <text x="50%" y="65%" dominant-baseline="middle" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="bold" font-size="9" fill="url(#nsign-grad)">N</text>
-              <defs>
-                <linearGradient id="nsign-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#EC4899" />
-                  <stop offset="100%" stop-color="#8B5CF6" />
-                </linearGradient>
-              </defs>
-            </svg>
+            <img src="icon.PNG" alt="N.Sign Icon">
           </div>
           <div class="tool-info-new">
             <span class="tool-title-new">N.Sign</span>
@@ -967,24 +951,35 @@
               <button class="tab-btn-new" id="tab-btn-custom" data-i="tab-custom">Кастомизация</button>
             </div>
             
-            <!-- Tab Content: Standard -->
-            <div class="tab-content-new active" id="tab-content-standard">
-              <div class="form-group-new">
-                <label for="modal-cert-select" data-i="label-select-cert">Выбрать сертификат</label>
-                <select class="sel" id="modal-cert-select" style="width:100%;">
-                  <option value="jiangsu-simcere">Jiangsu Simcere Pharmaceutical</option>
-                  <option value="moving-increasingly">Moving Increasingly Interconnected</option>
-                  <option value="vietnam-airlines">VIETNAM AIRLINES JSC</option>
-                  <option value="vietnam-rubber">Viet Nam Rubber Group Limited</option>
-                </select>
-              </div>
-              <p style="font-size:12px; color:var(--muted); line-height:1.4;" data-i="cert-disclaimer">
-                Сертификат используется для подписи приложения, чтобы его можно было установить без джейлбрейка.
-              </p>
-              <button class="btn btn-primary btn-full" id="btn-modal-install" style="margin-top:8px;">
-                <span id="btn-modal-install-text" data-i="install">Установить</span>
-              </button>
-            </div>
+             <!-- Tab Content: Standard -->
+             <div class="tab-content-new active" id="tab-content-standard">
+               <div id="standard-install-fields">
+                 <div class="form-group-new">
+                   <label for="modal-cert-select" data-i="label-select-cert">Выбрать сертификат</label>
+                   <select class="sel" id="modal-cert-select" style="width:100%;">
+                     <option value="jiangsu-simcere">Jiangsu Simcere Pharmaceutical</option>
+                     <option value="moving-increasingly">Moving Increasingly Interconnected</option>
+                     <option value="vietnam-airlines">VIETNAM AIRLINES JSC</option>
+                     <option value="vietnam-rubber">Viet Nam Rubber Group Limited</option>
+                   </select>
+                 </div>
+                 <p style="font-size:12px; color:var(--muted); line-height:1.4;" data-i="cert-disclaimer">
+                   Сертификат используется для подписи приложения, чтобы его можно было установить без джейлбрейка.
+                 </p>
+                 <button class="btn btn-primary btn-full" id="btn-modal-install" style="margin-top:8px;">
+                   <span id="btn-modal-install-text" data-i="install">Установить</span>
+                 </button>
+               </div>
+               
+               <!-- State for Unavailable / Coming Soon -->
+               <div id="standard-install-unavailable" style="display:none; flex-direction:column; gap:12px; text-align:center; padding:16px 10px;">
+                 <span style="font-size:28px;">🛠️</span>
+                 <h3 style="font-family:'Space Grotesk', sans-serif; font-size:16px;" data-i="nsign-app-unavailable-title">Приложение N.Sign временно недоступно</h3>
+                 <p style="font-size:12px; color:var(--muted); line-height:1.4;" data-i="nsign-app-unavailable-desc">
+                   Приложение N.Sign находится в разработке. Воспользуйтесь веб-версией во вкладке «Кастомизация».
+                 </p>
+               </div>
+             </div>
             
             <!-- Tab Content: Customization (Locked / Unlocked) -->
             <div class="tab-content-new" id="tab-content-custom">
@@ -1000,15 +995,32 @@
               </div>
               
               <!-- State 2: Unlocked (N.Sign) -->
-              <div id="custom-unlocked-view" style="display:none; flex-direction:column; gap:12px; text-align:center; padding:12px 6px;">
-                <span style="font-size:32px;">⚡</span>
-                <h3 style="font-family:'Space Grotesk', sans-serif;" data-i="nsign-custom-title">N.Sign Web-Signer</h3>
-                <p style="font-size:13px; color:var(--muted); line-height:1.4;" data-i="nsign-custom-desc">
-                  Подписывайте любые сторонние .ipa файлы прямо в браузере своими личными сертификатами (.p12).
-                </p>
-                <button class="btn btn-primary btn-full" id="btn-launch-web-signer" style="background:#EC4899; margin-top:8px;">
-                  <span data-i="launch-web-signer-btn">Запустить веб-версию</span>
-                </button>
+              <div id="custom-unlocked-view" style="display:none; flex-direction:column; gap:12px; text-align:left; padding:6px 0;">
+                <div style="text-align:center; margin-bottom:12px;">
+                  <span style="font-size:28px;">⚡</span>
+                  <h3 style="font-family:'Space Grotesk', sans-serif; margin:6px 0;" data-i="nsign-custom-title">N.Sign Web-Signer</h3>
+                  <p style="font-size:12px; color:var(--muted); line-height:1.4;" data-i="nsign-custom-desc">
+                    Подписывайте любые сторонние .ipa файлы прямо в браузере своими личными сертификатами (.p12).
+                  </p>
+                  <button class="btn btn-primary btn-full" id="btn-launch-web-signer" style="background:#EC4899; margin-top:8px; padding:10px 18px; font-size:14px;">
+                    <span data-i="launch-web-signer-btn">Запустить веб-версию</span>
+                  </button>
+                </div>
+                
+                <div style="border-top: 1px solid var(--border); padding-top:12px; margin-top:6px;">
+                  <h4 style="font-family:'Space Grotesk', sans-serif; font-size:13px; margin-bottom:8px; color:var(--text);" data-i="custom-site-theme-label">Кастомизация сайта (N.Sign Theme)</h4>
+                  <div class="form-group-new">
+                    <select class="sel" id="site-theme-select" style="width:100%; padding: 8px 12px; font-size: 13px;">
+                      <option value="violet">Arona Violet (Default)</option>
+                      <option value="cyberpunk">Cyberpink (10-ая тема N.Sign)</option>
+                      <option value="dark-gold">Dark Gold</option>
+                      <option value="emerald">Emerald Matrix</option>
+                    </select>
+                  </div>
+                  <p style="font-size:11px; color:#EC4899; margin-top:6px; font-style:italic;" data-i="site-theme-note">
+                    * Тема сайта будет установлена как 10-ая тема N.Sign
+                  </p>
+                </div>
               </div>
 
               <div class="custom-preview-list" id="custom-preview-list-el">
@@ -1293,6 +1305,11 @@ const i18n = {
     "nsign-custom-desc": "Подписывайте любые сторонние .ipa файлы прямо в браузере своими личными сертификатами (.p12).",
     "launch-web-signer-btn": "Запустить веб-версию",
     "status-revoked": "Все общие сертификаты отозваны Apple! Установите DNS-профиль или используйте личную подпись в N.Sign.",
+    "nsign-app-unavailable-title": "Приложение N.Sign временно недоступно",
+    "nsign-app-unavailable-desc": "Приложение N.Sign находится в разработке. Воспользуйтесь веб-версией во вкладке «Кастомизация».",
+    "custom-site-theme-label": "Кастомизация сайта (N.Sign Theme)",
+    "site-theme-note": "* Тема сайта будет установлена как 10-ая тема N.Sign",
+    "theme-applied-toast": "Тема сайта успешно применена!",
   },
   en: {
     "who-are-you": "Who are you today?",
@@ -1376,6 +1393,11 @@ const i18n = {
     "nsign-custom-desc": "Sign any third-party .ipa files directly in your browser using your own personal certificates (.p12).",
     "launch-web-signer-btn": "Launch web-signer",
     "status-revoked": "All public certificates are revoked by Apple! Install the DNS profile or use personal signing in N.Sign.",
+    "nsign-app-unavailable-title": "N.Sign app is temporarily unavailable",
+    "nsign-app-unavailable-desc": "The N.Sign app is under development. Please use the web version in the 'Customization' tab.",
+    "custom-site-theme-label": "Website Customization (N.Sign Theme)",
+    "site-theme-note": "* The website theme will be set as the 10th theme of N.Sign",
+    "theme-applied-toast": "Website theme applied successfully!",
   }
 };
 
@@ -1493,6 +1515,15 @@ function openInstaller(tool) {
   // Set tab back to standard
   document.getElementById('tab-btn-standard').click();
   
+  // Toggle standard tab fields/unavailable state
+  if (tool === 'nsign') {
+    document.getElementById('standard-install-fields').style.display = 'none';
+    document.getElementById('standard-install-unavailable').style.display = 'flex';
+  } else {
+    document.getElementById('standard-install-fields').style.display = 'block';
+    document.getElementById('standard-install-unavailable').style.display = 'none';
+  }
+  
   // Default fallbacks
   let nameVal = tool === 'esign' ? 'ESign' : (tool === 'ksign' ? 'KSign' : 'N.Sign');
   let bundleVal = tool === 'esign' ? 'p3.xyz.yyyue.esign' : (tool === 'ksign' ? 'nya.asami.ksign' : 'nya.asami.nsign');
@@ -1507,6 +1538,8 @@ function openInstaller(tool) {
   title.textContent = nameVal;
   bundle.textContent = bundleVal;
   version.textContent = versionVal;
+  
+  // Custom check: openInstaller copies the innerHTML containing the new <img> elements
   iconContainer.innerHTML = document.querySelector(`#card-${tool} .tool-icon-container`).innerHTML;
   
   // Toggle customization tab locked state
@@ -1566,6 +1599,26 @@ document.getElementById('btn-go-nsign').addEventListener('click', openNSign);
 
 // Launch N.Sign web-signer from customization tab
 document.getElementById('btn-launch-web-signer').addEventListener('click', openNSign);
+
+// Switch website theme dynamically
+document.getElementById('site-theme-select').addEventListener('change', (e) => {
+  const theme = e.target.value;
+  const root = document.documentElement;
+  if (theme === 'violet') {
+    root.style.setProperty('--accent', '#7850dc');
+    root.style.setProperty('--accent-lo', 'rgba(120, 80, 220, 0.1)');
+  } else if (theme === 'cyberpunk') {
+    root.style.setProperty('--accent', '#EC4899');
+    root.style.setProperty('--accent-lo', 'rgba(236, 72, 153, 0.1)');
+  } else if (theme === 'dark-gold') {
+    root.style.setProperty('--accent', '#D4AF37');
+    root.style.setProperty('--accent-lo', 'rgba(212, 175, 55, 0.1)');
+  } else if (theme === 'emerald') {
+    root.style.setProperty('--accent', '#10B981');
+    root.style.setProperty('--accent-lo', 'rgba(16, 185, 129, 0.1)');
+  }
+  showToast(t('theme-applied-toast') || 'Тема успешно применена!');
+});
 
 // Open triggers
 document.getElementById('btn-open-esign').addEventListener('click', () => openInstaller('esign'));
@@ -1755,8 +1808,9 @@ document.getElementById('btn-nsign-install').addEventListener('click', () => {
 
 document.getElementById('btn-nsign-download').addEventListener('click', () => {
   showToast(t('toast-installing'));
+  const finalBaseUrl = appMetadata.base_url || window.location.origin;
   setTimeout(() => {
-    window.location.href = `https://sideload.nyxsile.lol/ksign-qingdao-rural.ipa`;
+    window.location.href = `${finalBaseUrl}/ksign-jiangsu-simcere.ipa`;
   }, 1000);
 });
 
