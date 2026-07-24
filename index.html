@@ -870,7 +870,7 @@
               <span>v1.5.1</span>
             </div>
           </div>
-          <button class="btn btn-ghost btn-full" id="btn-open-ksign" style="margin-top:auto;">
+          <button class="btn btn-primary btn-full" id="btn-open-ksign" style="margin-top:auto;">
             <span data-i="download">Скачать</span>
           </button>
         </div>
@@ -887,8 +887,8 @@
               <span>v1.0.0</span>
             </div>
           </div>
-          <button class="btn btn-ghost btn-full" id="btn-open-nsign" style="margin-top:auto; border-color: rgba(236, 72, 153, 0.3);">
-            <span data-i="download" style="color: #EC4899;">Скачать</span>
+          <button class="btn btn-ghost btn-full" id="btn-open-nsign" style="margin-top:auto; border-color: var(--accent);">
+            <span data-i="download" style="color: var(--accent);">Скачать</span>
           </button>
         </div>
 
@@ -1002,7 +1002,7 @@
                   <p style="font-size:12px; color:var(--muted); line-height:1.4;" data-i="nsign-custom-desc">
                     Подписывайте любые сторонние .ipa файлы прямо в браузере своими личными сертификатами (.p12).
                   </p>
-                  <button class="btn btn-primary btn-full" id="btn-launch-web-signer" style="background:#EC4899; margin-top:8px; padding:10px 18px; font-size:14px;">
+                  <button class="btn btn-primary btn-full" id="btn-launch-web-signer" style="background: var(--accent); margin-top:8px; padding:10px 18px; font-size:14px;">
                     <span data-i="launch-web-signer-btn">Запустить веб-версию</span>
                   </button>
                 </div>
@@ -1017,7 +1017,7 @@
                       <option value="emerald">Emerald Matrix</option>
                     </select>
                   </div>
-                  <p style="font-size:11px; color:#EC4899; margin-top:6px; font-style:italic;" data-i="site-theme-note">
+                  <p style="font-size:11px; color: var(--accent); margin-top:6px; font-style:italic;" data-i="site-theme-note">
                     * Тема сайта будет установлена как 10-ая тема N.Sign
                   </p>
                 </div>
@@ -1046,7 +1046,7 @@
       <div class="modal-box-new" style="max-width: 600px;">
         <button class="modal-close-new" id="btn-close-nsign">&times;</button>
         <div style="text-align: center; margin-bottom: 20px;">
-          <h2 id="nsign-modal-title" style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #EC4899;">N.Sign Pro</h2>
+          <h2 id="nsign-modal-title" style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent);">N.Sign Pro</h2>
           <p style="font-size: 13px; color: var(--muted);" data-i="nsign-desc">Локальный подписыватель приложений прямо в браузере</p>
         </div>
         
@@ -1131,7 +1131,7 @@
             <span id="txt-dylib-file" style="font-size:11px; color:var(--muted); text-align:center; display:block; margin-top:6px;">Ничего не выбрано</span>
           </div>
 
-          <button class="btn btn-primary btn-full" id="btn-nsign-submit" style="background:#EC4899; margin-top: 10px;">
+          <button class="btn btn-primary btn-full" id="btn-nsign-submit" style="background: var(--accent); margin-top: 10px;">
             <span data-i="nsign-btn-sign">Подписать и установить</span>
           </button>
         </div>
@@ -1595,7 +1595,7 @@ document.getElementById('tab-btn-custom').addEventListener('click', () => {
 });
 
 // Go to N.Sign button inside Installer modal (lock overlay)
-document.getElementById('btn-go-nsign').addEventListener('click', openNSign);
+document.getElementById('btn-go-nsign').addEventListener('click', () => openInstaller('nsign'));
 
 // Launch N.Sign web-signer from customization tab
 document.getElementById('btn-launch-web-signer').addEventListener('click', openNSign);
