@@ -1,0 +1,105 @@
+{
+  "esign-jiangsu-simcere": {
+    "version": "5.0.2",
+    "app": "ESign",
+    "bundle": "p3.xyz.yyyue.esign",
+    "ipa": "esign-jiangsu-simcere.ipa"
+  },
+  "esign-moving-increasingly": {
+    "version": "5.0.2",
+    "app": "ESign",
+    "bundle": "p3.xyz.yyyue.esign",
+    "ipa": "esign-moving-increasingly.ipa"
+  },
+  "esign-vietnam-airlines": {
+    "version": "5.0.2",
+    "app": "ESign",
+    "bundle": "p3.xyz.yyyue.esign",
+    "ipa": "esign-vietnam-airlines.ipa"
+  },
+  "esign-vietnam-rubber": {
+    "version": "5.0.2",
+    "app": "ESign",
+    "bundle": "p3.xyz.yyyue.esign",
+    "ipa": "esign-vietnam-rubber.ipa"
+  },
+  "esign": {
+    "version": "5.0.2",
+    "app": "ESign",
+    "bundle": "p3.xyz.yyyue.esign",
+    "ipa": "esign.ipa"
+  },
+  "esign_unsigned": {
+    "version": "5.0.2",
+    "app": "ESign",
+    "bundle": "p3.xyz.yyyue.esign",
+    "ipa": "esign_unsigned.ipa"
+  },
+  "ksign-jiangsu-simcere": {
+    "version": "1.5.1",
+    "app": "KSign",
+    "bundle": "nya.asami.ksign",
+    "ipa": "ksign-jiangsu-simcere.ipa"
+  },
+  "ksign-moving-increasingly": {
+    "version": "1.5.1",
+    "app": "KSign",
+    "bundle": "nya.asami.ksign",
+    "ipa": "ksign-moving-increasingly.ipa"
+  },
+  "ksign-vietnam-airlines": {
+    "version": "1.5.1",
+    "app": "KSign",
+    "bundle": "nya.asami.ksign",
+    "ipa": "ksign-vietnam-airlines.ipa"
+  },
+  "ksign-vietnam-rubber": {
+    "version": "1.5.1",
+    "app": "KSign",
+    "bundle": "nya.asami.ksign",
+    "ipa": "ksign-vietnam-rubber.ipa"
+  },
+  "ksign": {
+    "version": "1.5.1",
+    "app": "KSign",
+    "bundle": "nya.asami.ksign",
+    "ipa": "ksign.ipa"
+  },
+  "nsign-jiangsu-simcere": {
+    "version": "1.0.0",
+    "app": "N.Sign",
+    "bundle": "nya.asami.nsign",
+    "ipa": "nsign-jiangsu-simcere.ipa"
+  },
+  "nsign-moving-increasingly": {
+    "version": "1.0.0",
+    "app": "N.Sign",
+    "bundle": "nya.asami.nsign",
+    "ipa": "nsign-moving-increasingly.ipa"
+  },
+  "nsign-vietnam-airlines": {
+    "version": "1.0.0",
+    "app": "N.Sign",
+    "bundle": "nya.asami.nsign",
+    "ipa": "nsign-vietnam-airlines.ipa"
+  },
+  "nsign-vietnam-rubber": {
+    "version": "1.0.0",
+    "app": "N.Sign",
+    "bundle": "nya.asami.nsign",
+    "ipa": "nsign-vietnam-rubber.ipa"
+  },
+  "nsign": {
+    "version": "1.0.0",
+    "app": "N.Sign",
+    "bundle": "nya.asami.nsign",
+    "ipa": "nsign.ipa"
+  },
+  "base_url": "https://sideload.nyxsile.lol",
+  "latest": {
+    "version": "5.0.2",
+    "app": "ESign",
+    "bundle": "p3.xyz.yyyue.esign",
+    "ipa": "esign_unsigned.ipa"
+  }
+}

@@ -1,0 +1,30 @@
+name: build-manifest
+
+on:
+  push:
+    paths:
+      - "*.ipa"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Собрать manifest.plist и version.json из метаданных IPA
+        id: build_manifest
+        run: |
+          python build_manifest.py
+
+      - name: закоммитить
+        run: |
+          git config user.name "ota-bot"
+          git config user.email "ota-bot@users.noreply.github.com"
+          git add manifest.plist manifest-*.plist version.json
+          git commit -m "auto: rebuild manifest for ${{ steps.build_manifest.outputs.app_name }} v${{ steps.build_manifest.outputs.version }}" || echo "нечего коммитить"
+          git push
