@@ -99,7 +99,9 @@ for ipa in ipa_files:
                                    .replace("__APP_NAME__", app_name)
 
         ipa_name_no_ext = os.path.splitext(os.path.basename(ipa))[0]
-        out_manifest_name = f"manifest-{ipa_name_no_ext}.plist"
+        if not os.path.exists("plists"):
+            os.makedirs("plists")
+        out_manifest_name = f"plists/manifest-{ipa_name_no_ext}.plist"
         with open(out_manifest_name, "w", encoding="utf-8") as f:
             f.write(manifest_content)
         print(f"  Wrote manifest to: {out_manifest_name}")
