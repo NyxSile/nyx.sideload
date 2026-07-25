@@ -97,9 +97,9 @@
   },
   "base_url": "https://sideload.nyxsile.lol",
   "latest": {
-    "version": "5.0.2",
-    "app": "ESign",
-    "bundle": "p3.xyz.yyyue.esign",
-    "ipa": "ipas/esign/esign_unsigned.ipa"
+    "version": "1.5.1",
+    "app": "KSign",
+    "bundle": "nya.asami.ksign",
+    "ipa": "ipas/ksign/ksign-vietnam-rubber.ipa"
   }
 }
