@@ -17,7 +17,7 @@
             <key>metadata</key>
             <dict>
                 <key>bundle-identifier</key>
-                <string>nya.asami.nsign</string>
+                <string>nyx.sideload.nsign</string>
                 <key>bundle-version</key>
                 <string>1.0.0</string>
                 <key>kind</key>

@@ -68,31 +68,31 @@
   "nsign-jiangsu-simcere": {
     "version": "1.0.0",
     "app": "N.Sign",
-    "bundle": "nya.asami.nsign",
+    "bundle": "nyx.sideload.nsign",
     "ipa": "ipas/nsign/nsign-jiangsu-simcere.ipa"
   },
   "nsign-moving-increasingly": {
     "version": "1.0.0",
     "app": "N.Sign",
-    "bundle": "nya.asami.nsign",
+    "bundle": "nyx.sideload.nsign",
     "ipa": "ipas/nsign/nsign-moving-increasingly.ipa"
   },
   "nsign-vietnam-airlines": {
     "version": "1.0.0",
     "app": "N.Sign",
-    "bundle": "nya.asami.nsign",
+    "bundle": "nyx.sideload.nsign",
     "ipa": "ipas/nsign/nsign-vietnam-airlines.ipa"
   },
   "nsign-vietnam-rubber": {
     "version": "1.0.0",
     "app": "N.Sign",
-    "bundle": "nya.asami.nsign",
+    "bundle": "nyx.sideload.nsign",
     "ipa": "ipas/nsign/nsign-vietnam-rubber.ipa"
   },
   "nsign": {
     "version": "1.0.0",
     "app": "N.Sign",
-    "bundle": "nya.asami.nsign",
+    "bundle": "nyx.sideload.nsign",
     "ipa": "ipas/nsign/nsign.ipa"
   },
   "base_url": "https://sideload.nyxsile.lol",
