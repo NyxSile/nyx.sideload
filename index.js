@@ -976,6 +976,7 @@ function startInstall() {
 
   let lastW = window.innerWidth;
   let lastH = window.innerHeight;
+  const isStatic = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function init() {
     resize();
@@ -1012,24 +1013,25 @@ function startInstall() {
 
   window.addEventListener('resize', () => {
     if (window.innerWidth === lastW && window.innerHeight === lastH) return;
-    if (window.innerWidth !== lastW) {
+    
+    // Force redistribution if stars were initialized while viewport W or H was 0 (laggy load)
+    const forceRegen = (W < 100 || H < 100);
+    
+    if (window.innerWidth !== lastW || forceRegen) {
       lastW = window.innerWidth;
       lastH = window.innerHeight;
       resize();
       stars = Array.from({ length: COUNT }, mkStar);
+      if (isStatic) draw(false);
     } else {
       lastH = window.innerHeight;
       resize();
+      if (isStatic) draw(false);
     }
   });
 
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    init();
-    draw(false);
-  } else {
-    init();
-    draw(true);
-  }
+  init();
+  draw(!isStatic);
 })();
 
 /* ════════════════════════════════════
