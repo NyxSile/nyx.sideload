@@ -971,32 +971,39 @@ function startInstall() {
     };
   }
 
+  let lastW = window.innerWidth;
+
   function init() {
     resize();
     stars = Array.from({ length: COUNT }, mkStar);
   }
 
   let raf;
-  function draw(ts) {
+  function draw() {
     ctx.clearRect(0, 0, W, H);
-    const t = ts * 0.001;
     for (const s of stars) {
+      s.phase += s.speed;
       // sinusoidal twinkle between minA and maxA
-      const alpha = s.minA + (s.maxA - s.minA) * (0.5 + 0.5 * Math.sin(t * s.speed * 60 + s.phase));
+      const alpha = s.minA + (s.maxA - s.minA) * (0.5 + 0.5 * Math.sin(s.phase));
       ctx.beginPath();
       ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = s.color + alpha.toFixed(3) + ')';
+      ctx.fillStyle = s.color + alpha.toFixed(2) + ')';
       ctx.fill();
     }
     raf = requestAnimationFrame(draw);
   }
 
-  window.addEventListener('resize', () => { resize(); stars = Array.from({ length: COUNT }, mkStar); });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth === lastW) return;
+    lastW = window.innerWidth;
+    resize();
+    stars = Array.from({ length: COUNT }, mkStar);
+  });
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     // static, no animation
     init();
-    draw(0);
+    draw();
     cancelAnimationFrame(raf);
   } else {
     init();
