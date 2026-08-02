@@ -273,41 +273,23 @@ const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
               (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 let appMetadata = {};
 
-function setCardDate(tool, isoDate) {
-  const el = document.querySelector(`#card-${tool} [data-build-date]`);
-  if (!el || !isoDate) return;
-  const date = new Date(isoDate);
-  el.textContent = Number.isNaN(date.getTime()) ? "—" : date.toLocaleDateString(undefined, { day: "2-digit", month: "short", year: "numeric" });
-  el.title = isoDate;
-}
-
 async function loadMetadata() {
   try {
     const res = await fetch('version.json?v=' + Date.now());
     appMetadata = await res.json();
     
     // Update versions in the main UI cards dynamically
-    const buildDate = document.getElementById("site-build-date");
-    if (buildDate && appMetadata.generated_at) {
-      const date = new Date(appMetadata.generated_at);
-      buildDate.textContent = Number.isNaN(date.getTime()) ? "—" : date.toLocaleDateString(undefined, { day: "2-digit", month: "short", year: "numeric" });
-      buildDate.dateTime = appMetadata.generated_at;
-    }
-
     if (appMetadata['esign']) {
       const el = document.querySelector('#card-esign .tool-meta-new span:nth-child(2)');
       if (el) el.textContent = 'v' + appMetadata['esign'].version;
-      setCardDate('esign', appMetadata['esign'].updated);
     }
     if (appMetadata['ksign']) {
       const el = document.querySelector('#card-ksign .tool-meta-new span:nth-child(2)');
       if (el) el.textContent = 'v' + appMetadata['ksign'].version;
-      setCardDate('ksign', appMetadata['ksign'].updated);
     }
     if (appMetadata['nsign']) {
       const el = document.querySelector('#card-nsign .tool-meta-new span:nth-child(2)');
       if (el) el.textContent = 'v' + appMetadata['nsign'].version;
-      setCardDate('nsign', appMetadata['nsign'].updated);
     }
   } catch (e) {
     console.error("Failed to load version.json metadata:", e);
