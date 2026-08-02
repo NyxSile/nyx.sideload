@@ -94,6 +94,9 @@ const i18n = {
     "cl-date-5": "3 авг",
     "cl-5": "Подпись приложений, Сайдлоуд с ПК, сохранение темы и фиксы верстки",
     "toast-404": "Страница не найдена! Вы перенаправлены на главную.",
+    "title-404": "Страница не найдена!",
+    "desc-404": "Ой! Запрашиваемый адрес не существует, но мы перенесли вас на главную страницу.",
+    "btn-404-ok": "Понятно",
   },
   en: {
     "who-are-you": "Who are you today?",
@@ -187,6 +190,9 @@ const i18n = {
     "cl-date-5": "3 Aug",
     "cl-5": "App signing, PC Sideload, theme saving & layout fixes",
     "toast-404": "Page not found! Redirected to home page.",
+    "title-404": "Page not found!",
+    "desc-404": "Oops! The requested address doesn't exist, but we moved you to the home page.",
+    "btn-404-ok": "Got it",
   }
 };
 
@@ -1043,6 +1049,22 @@ document.getElementById('btn-promo-go-nsign').addEventListener('click', () => {
   openInstaller('nsign');
 });
 
+// 404 Modal bindings
+document.getElementById('btn-close-404').addEventListener('click', () => {
+  document.getElementById('modal-404').classList.remove('active');
+  document.body.style.overflow = '';
+});
+document.getElementById('btn-404-ok').addEventListener('click', () => {
+  document.getElementById('modal-404').classList.remove('active');
+  document.body.style.overflow = '';
+});
+document.getElementById('modal-404').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('modal-404')) {
+    document.getElementById('modal-404').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+
 (function init() {
   // Set correct lang btn state
   document.querySelectorAll('.lang-btn').forEach(b => {
@@ -1061,7 +1083,8 @@ document.getElementById('btn-promo-go-nsign').addEventListener('click', () => {
   if (window.location.search.includes('404') || window.location.hash.includes('404')) {
     window.history.replaceState(null, '', window.location.pathname);
     setTimeout(() => {
-      showToast(t('toast-404'));
-    }, 800);
+      document.getElementById('modal-404').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }, 600);
   }
 })();
