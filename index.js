@@ -1034,36 +1034,7 @@ function startInstall() {
   draw(!isStatic);
 })();
 
-/* ════════════════════════════════════
-   SCROLL-HIDE HEADER
-════════════════════════════════════ */
-(function initScrollHeader() {
-  const hdr = document.getElementById('header');
-  let lastY = 0;
-  let ticking = false;
 
-  window.addEventListener('scroll', () => {
-    // Disable scroll animations on desktop (screens >= 768px wide)
-    if (window.innerWidth >= 768) {
-      hdr.classList.remove('hidden-up');
-      return;
-    }
-    
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        const y = window.scrollY;
-        if (y > lastY && y > 60) {
-          hdr.classList.add('hidden-up');
-        } else {
-          hdr.classList.remove('hidden-up');
-        }
-        lastY = y;
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }, { passive: true });
-})();
 
 /* ════════════════════════════════════
    INIT
