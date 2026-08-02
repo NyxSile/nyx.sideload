@@ -1069,4 +1069,7 @@ document.getElementById('btn-promo-go-nsign').addEventListener('click', () => {
   // Load and apply saved theme
   const savedTheme = localStorage.getItem('nyx-theme') || 'violet';
   applyTheme(savedTheme, false);
+  
+  // Fetch and update version and size metadata dynamically
+  loadMetadata();
 })();
