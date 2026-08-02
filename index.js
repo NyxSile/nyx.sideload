@@ -963,6 +963,9 @@ function startInstall() {
       y: Math.random() * H,
       r: Math.random() * 1.4 + 0.3,
       color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      // slow movement drift
+      vx: (Math.random() - 0.5) * 0.08,
+      vy: -0.05 - Math.random() * 0.08, // Slow upward drift
       // twinkle params
       phase:  Math.random() * Math.PI * 2,
       speed:  0.004 + Math.random() * 0.012,
@@ -985,6 +988,14 @@ function startInstall() {
     for (const s of stars) {
       if (shouldAnimate) {
         s.phase += s.speed;
+        s.x += s.vx;
+        s.y += s.vy;
+        
+        // Wrap around boundaries
+        if (s.x < -10) s.x = W + 10;
+        if (s.x > W + 10) s.x = -10;
+        if (s.y < -10) s.y = H + 10;
+        if (s.y > H + 10) s.y = -10;
       }
       const alpha = s.minA + (s.maxA - s.minA) * (0.5 + 0.5 * Math.sin(s.phase));
       ctx.globalAlpha = alpha;
@@ -1030,6 +1041,12 @@ function startInstall() {
   let ticking = false;
 
   window.addEventListener('scroll', () => {
+    // Disable scroll animations on desktop (screens >= 768px wide)
+    if (window.innerWidth >= 768) {
+      hdr.classList.remove('hidden-up');
+      return;
+    }
+    
     if (!ticking) {
       requestAnimationFrame(() => {
         const y = window.scrollY;
