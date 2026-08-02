@@ -1684,6 +1684,21 @@
       </div>
     </div>
 
+    <!-- N.SIGN PROMO MODAL -->
+    <div id="nsign-promo-modal" class="modal-overlay-new" role="dialog" aria-modal="true" aria-labelledby="promo-modal-title">
+      <div class="modal-box-new" style="max-width: 380px; padding: 32px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px;">
+        <button class="modal-close-new" id="btn-close-promo" style="top: 15px; right: 15px;">&times;</button>
+        <span style="font-size: 48px;">⚡</span>
+        <h3 id="promo-modal-title" style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px;">Заинтересованы?</h3>
+        <p style="font-size: 13.5px; color: var(--muted); line-height: 1.5;">
+          Тогда добро пожаловать в <strong>N.Sign</strong>! Полная свобода подписи и кастомизации прямо на вашем устройстве.
+        </p>
+        <button class="btn btn-primary btn-full" id="btn-promo-go-nsign" style="margin-top: 8px;">
+          Перейти к N.Sign
+        </button>
+      </div>
+    </div>
+
   </main>
 
   <!-- FOOTER -->
@@ -2450,10 +2465,15 @@ let selectedMethod = null;
 let deviceFound = false;
 
 function openPcSideloadModal(preselect) {
+  if (preselect === 'combo') {
+    document.getElementById('nsign-promo-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    return;
+  }
   const modal = document.getElementById('pc-sideload-modal');
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
-  if (preselect && ['livecontainer','sidestore','combo'].includes(preselect)) {
+  if (preselect && ['livecontainer','sidestore'].includes(preselect)) {
     if (currentStep === 3) {
       selectInstallMethod(preselect);
     } else {
@@ -2611,12 +2631,17 @@ function simulateDeviceSearch() {
 }
 
 function selectInstallMethod(method) {
+  if (method === 'combo') {
+    closePcSideloadModal();
+    document.getElementById('nsign-promo-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    return;
+  }
   selectedMethod = method;
   document.querySelectorAll('.install-method-card').forEach(el => el.classList.remove('selected'));
   const map = {
     livecontainer: 'imc-livecontainer',
-    sidestore:     'imc-sidestore',
-    combo:         'imc-combo'
+    sidestore:     'imc-sidestore'
   };
   const card = document.getElementById(map[method]);
   if (card) card.classList.add('selected');
@@ -2768,6 +2793,23 @@ function startInstall() {
 /* ════════════════════════════════════
    INIT
 ════════════════════════════════════ */
+// N.Sign Promo Modal bindings
+document.getElementById('btn-close-promo').addEventListener('click', () => {
+  document.getElementById('nsign-promo-modal').classList.remove('active');
+  document.body.style.overflow = '';
+});
+document.getElementById('nsign-promo-modal').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('nsign-promo-modal')) {
+    document.getElementById('nsign-promo-modal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+document.getElementById('btn-promo-go-nsign').addEventListener('click', () => {
+  document.getElementById('nsign-promo-modal').classList.remove('active');
+  document.body.style.overflow = '';
+  openInstaller('nsign');
+});
+
 (function init() {
   // Set correct lang btn state
   document.querySelectorAll('.lang-btn').forEach(b => {
