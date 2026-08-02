@@ -1996,8 +1996,14 @@ document.getElementById('btn-report-cancel').addEventListener('click', () => {
 document.getElementById('btn-report-send').addEventListener('click', () => {
   const text = document.getElementById('report-text').value.trim();
   if (!text) return;
+
+  const issueTitle = encodeURIComponent('Broken link report');
+  const issueBody = encodeURIComponent(`Page: ${window.location.href}` + String.fromCharCode(10) + String.fromCharCode(10) + text);
+  const issueUrl = `https://github.com/NyxSile/nyx.sideload/issues/new?title=${issueTitle}&body=${issueBody}&labels=broken-link`;
+
   document.getElementById('report-modal').classList.add('hidden');
   document.getElementById('report-text').value = '';
+  window.open(issueUrl, '_blank', 'noopener,noreferrer');
   showToast(t('toast-reported'));
 });
 document.getElementById('report-modal').addEventListener('click', (e) => {
