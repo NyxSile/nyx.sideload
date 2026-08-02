@@ -835,7 +835,7 @@
       display: flex; gap: 10px; flex-wrap: wrap;
     }
     .mobile-wall {
-      display: none;
+      display: none !important;
       flex-direction: column;
       align-items: center;
       text-align: center;
@@ -856,7 +856,7 @@
       max-width: 260px;
     }
     @media (max-width: 767px) {
-      .mobile-wall { display: flex; }
+      .mobile-wall { display: flex !important; }
       .pc-sideload-cta { display: none; }
       .method-grid { display: none; }
       .pc-sideload-title-block p { display: none; }
@@ -1683,6 +1683,10 @@
         <p class="section-label" data-i="changelog-label">Обновления</p>
         <div class="changelog" id="changelog">
           <div class="changelog-item">
+            <span class="cl-date mono" data-i="cl-date-5">3 авг</span>
+            <span data-i="cl-5">Подпись приложений, Сайдлоуд с ПК, сохранение темы и фиксы верстки</span>
+          </div>
+          <div class="changelog-item">
             <span class="cl-date mono" data-i="cl-date-4">24 июл</span>
             <span data-i="cl-4">Кастомизация сайта, плисты в plists/, иконки и фикс установки</span>
           </div>
@@ -1827,6 +1831,8 @@ const i18n = {
     "theme-applied-toast": "Тема сайта успешно применена!",
     "cl-date-4": "24 июл",
     "cl-4": "Кастомизация сайта, плисты в plists/, иконки и фикс установки",
+    "cl-date-5": "3 авг",
+    "cl-5": "Подпись приложений, Сайдлоуд с ПК, сохранение темы и фиксы верстки",
   },
   en: {
     "who-are-you": "Who are you today?",
@@ -1917,6 +1923,8 @@ const i18n = {
     "theme-applied-toast": "Website theme applied successfully!",
     "cl-date-4": "24 Jul",
     "cl-4": "Theme customizer, plists in plists/, real icons & install fixes",
+    "cl-date-5": "3 Aug",
+    "cl-5": "App signing, PC Sideload, theme saving & layout fixes",
   }
 };
 
@@ -2120,7 +2128,7 @@ document.getElementById('btn-go-nsign').addEventListener('click', () => openInst
 document.getElementById('btn-launch-web-signer').addEventListener('click', openNSign);
 
 // Synchronize and apply theme
-function applyTheme(theme) {
+function applyTheme(theme, showNotification = true) {
   const root = document.documentElement;
   if (theme === 'violet') {
     root.style.setProperty('--accent', '#7850dc');
@@ -2136,17 +2144,21 @@ function applyTheme(theme) {
     root.style.setProperty('--accent-lo', 'rgba(16, 185, 129, 0.1)');
   }
   
+  localStorage.setItem('nyx-theme', theme);
+  
   // Synchronize values of both theme selectors
   const siteSel = document.getElementById('site-theme-select');
   const headerSel = document.getElementById('header-theme-select');
   if (siteSel) siteSel.value = theme;
   if (headerSel) headerSel.value = theme;
   
-  showToast(t('theme-applied-toast') || 'Тема успешно применена!');
+  if (showNotification) {
+    showToast(t('theme-applied-toast') || 'Тема успешно применена!');
+  }
 }
 
-document.getElementById('site-theme-select').addEventListener('change', (e) => applyTheme(e.target.value));
-document.getElementById('header-theme-select').addEventListener('change', (e) => applyTheme(e.target.value));
+document.getElementById('site-theme-select').addEventListener('change', (e) => applyTheme(e.target.value, true));
+document.getElementById('header-theme-select').addEventListener('change', (e) => applyTheme(e.target.value, true));
 
 // Theme customizer modal bindings
 document.getElementById('btn-header-theme').addEventListener('click', () => {
@@ -2728,6 +2740,10 @@ function startInstall() {
     b.classList.toggle('active', b.dataset.lang === currentLang);
   });
   applyLang();
+  
+  // Load and apply saved theme
+  const savedTheme = localStorage.getItem('nyx-theme') || 'violet';
+  applyTheme(savedTheme, false);
 })();
 </script>
 </body>
