@@ -48,43 +48,43 @@
     "updated": "2026-07-24T05:33:24+05:00"
   },
   "ksign-jiangsu-simcere": {
-    "version": "1.5.1",
+    "version": "1.6",
     "app": "KSign",
     "bundle": "nya.asami.ksign",
     "ipa": "ipas/ksign/ksign-jiangsu-simcere.ipa",
-    "size": "26.0 MB",
+    "size": "30.9 MB",
     "updated": "2026-07-25T15:49:20+05:00"
   },
   "ksign-moving-increasingly": {
-    "version": "1.5.1",
+    "version": "1.6",
     "app": "KSign",
     "bundle": "nya.asami.ksign",
     "ipa": "ipas/ksign/ksign-moving-increasingly.ipa",
-    "size": "26.0 MB",
+    "size": "30.9 MB",
     "updated": "2026-07-25T15:49:20+05:00"
   },
   "ksign-vietnam-airlines": {
-    "version": "1.5.1",
+    "version": "1.6",
     "app": "KSign",
     "bundle": "nya.asami.ksign",
     "ipa": "ipas/ksign/ksign-vietnam-airlines.ipa",
-    "size": "26.0 MB",
+    "size": "30.9 MB",
     "updated": "2026-07-25T15:49:20+05:00"
   },
   "ksign-vietnam-rubber": {
-    "version": "1.5.1",
+    "version": "1.6",
     "app": "KSign",
     "bundle": "nya.asami.ksign",
     "ipa": "ipas/ksign/ksign-vietnam-rubber.ipa",
-    "size": "26.0 MB",
+    "size": "30.9 MB",
     "updated": "2026-07-25T15:49:20+05:00"
   },
   "ksign": {
-    "version": "1.5.1",
+    "version": "1.6",
     "app": "KSign",
     "bundle": "nya.asami.ksign",
     "ipa": "ipas/ksign/ksign.ipa",
-    "size": "14.3 MB",
+    "size": "15.6 MB",
     "updated": "2026-07-24T05:33:24+05:00"
   },
   "nsign-jiangsu-simcere": {
@@ -128,13 +128,13 @@
     "updated": "2026-07-24T05:33:24+05:00"
   },
   "base_url": "https://sideload.nyxsile.lol",
-  "generated_at": "2026-08-02T22:01:20.343859+00:00",
+  "generated_at": "2026-08-02T22:11:22.086526+00:00",
   "latest": {
-    "version": "1.5.1",
+    "version": "1.6",
     "app": "KSign",
     "bundle": "nya.asami.ksign",
     "ipa": "ipas/ksign/ksign-vietnam-rubber.ipa",
-    "size": "26.0 MB",
+    "size": "30.9 MB",
     "updated": "2026-07-25T15:49:20+05:00"
   }
 }
