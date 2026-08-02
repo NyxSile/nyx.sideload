@@ -3,13 +3,6 @@
 ════════════════════════════════════ */
 const i18n = {
   ru: {
-    "who-are-you": "Кто ты сегодня?",
-    "newbie-title": "Новичок",
-    "newbie-desc": "Объясни мне всё по шагам",
-    "pro-title": "Профи",
-    "pro-desc": "Дай быстрый доступ",
-    "mode-tutorial": "Режим: Гид Бриз",
-    "mode-pro": "Режим: Быстрый доступ",
     "hero-title-1": "iOS",
     "hero-title-2": "без ограничений",
     "hero-title-3": "на своих условиях",
@@ -99,13 +92,6 @@ const i18n = {
     "btn-404-ok": "Понятно",
   },
   en: {
-    "who-are-you": "Who are you today?",
-    "newbie-title": "Newbie",
-    "newbie-desc": "Walk me through step by step",
-    "pro-title": "Pro",
-    "pro-desc": "Give me fast access",
-    "mode-tutorial": "Mode: Breeze Guide",
-    "mode-pro": "Mode: Fast Access",
     "hero-title-1": "iOS",
     "hero-title-2": "without limits",
     "hero-title-3": "on your terms",

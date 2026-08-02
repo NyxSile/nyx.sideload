@@ -40,9 +40,8 @@
       transform: translate3d(0, 0, 0);
     }
     /* Everything sits above the canvas */
-    #header, #onboarding, #app, #arona-layer, #toast, #report-modal { position: relative; z-index: 1; }
+    #header, #app, #toast, #report-modal { position: relative; z-index: 1; }
     #header { z-index: 150; }
-    #arona-layer { z-index: 200; }
     #toast      { z-index: 300; }
     #report-modal { z-index: 500; }
 
@@ -86,37 +85,6 @@
     }
     .btn-ghost:hover { background: var(--surface2); }
     .btn-full { width: 100%; }
-
-    /* ── ONBOARDING SCREEN ──────────────────────── */
-    #onboarding {
-      position: fixed; inset: 0; z-index: 100;
-      background: var(--bg);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 32px 20px;
-      gap: 48px;
-    }
-    .ob-logo { display: flex; flex-direction: column; align-items: center; gap: 8px; }
-    .ob-logo-mark {
-      width: 64px; height: 64px; border-radius: 18px;
-      background: var(--accent-lo); border: 1.5px solid var(--accent);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .ob-logo-mark svg { width: 32px; height: 32px; }
-    .ob-logo h1 { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; }
-    .ob-logo p  { color: var(--muted); font-size: 14px; }
-
-    .ob-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; max-width: 420px; }
-    .ob-card {
-      background: var(--surface); border: 1.5px solid var(--border);
-      border-radius: var(--r); padding: 20px 16px;
-      display: flex; flex-direction: column; gap: 8px;
-      cursor: pointer; transition: border-color .2s, background .2s;
-    }
-    .ob-card:hover { border-color: var(--accent); background: var(--accent-lo); }
-    .ob-card .ob-icon { font-size: 28px; }
-    .ob-card h2 { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600; }
-    .ob-card p  { font-size: 13px; color: var(--muted); line-height: 1.4; }
 
     /* ── MAIN APP ─────── */
     #app { display: flex; min-height: 100dvh; flex-direction: column; padding-top: 110px; }
