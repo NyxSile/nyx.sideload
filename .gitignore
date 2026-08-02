@@ -1,3 +1,10 @@
 # rcodesign build tools
 apple-codesign.zip
 apple-codesign-extracted/
+
+# Developer tools & certificates
+certificates/
+sign_apps.py
+build_manifest.py
+template.plist
+config.env
