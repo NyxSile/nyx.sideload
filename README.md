@@ -10,7 +10,7 @@ A sleek, static web portal for OTA (Over-the-Air) iOS sideloading. Instantly ins
 
 - **OTA Sideloading** – Install ESign, KSign, and N.Sign directly to your iOS device.
 - **Anti-Revoke DNS** – Features an optimized DNS profile configuration (`dns.mobileconfig`) to block Apple's revocation servers.
-- **Arona Guide** – Built-in step-by-step sideloading guide in `/tutorial`.
+- **Breeze Guide** – Built-in step-by-step sideloading guide in `/tutorial`.
 - **N.Sign Promo** – Promotion overlay encouraging sideloading exploration.
 - **Buttery-Smooth UI** – Responsive glassmorphic layout, customizable themes, and GPU-accelerated backdrop animations.
 
