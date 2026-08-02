@@ -831,7 +831,8 @@
       background: var(--accent-lo);
       transform: translateY(-2px);
     }
-    .method-icon { font-size: 24px; }
+    .method-icon { width:40px; height:40px; object-fit:contain; border-radius:10px; }
+    .imc-icon img { width:42px; height:42px; object-fit:contain; border-radius:10px; }
     .method-name {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 600; font-size: 13px; line-height: 1.3;
@@ -1220,12 +1221,12 @@
       <!-- Карточки методов -->
       <div class="method-grid">
         <div class="method-card" onclick="openPcSideloadModal('livecontainer')">
-          <span class="method-icon">📦</span>
+          <img class="method-icon" src="icons/lc-icon.png" alt="LiveContainer">
           <span class="method-name">LiveContainer</span>
           <span class="method-desc">Запуск IPA без лимита</span>
         </div>
         <div class="method-card" onclick="openPcSideloadModal('sidestore')">
-          <span class="method-icon">🏪</span>
+          <img class="method-icon" src="icons/ss-icon.png" alt="Sidestore">
           <span class="method-name">Sidestore</span>
           <span class="method-desc">Магазин с автообновлением</span>
         </div>
@@ -1328,7 +1329,7 @@
                
                <!-- State for Unavailable / Coming Soon -->
                <div id="standard-install-unavailable" style="display:none; flex-direction:column; align-items:center; gap:12px; text-align:center; padding:16px 10px;">
-                  <img src="https://cdn.discordapp.com/attachments/1449983410717065290/1530600991890735174/IMG_4690.jpg?ex=6a662ac1&is=6a64d941&hm=6ac20a4448c0676d21d4df5ea1e572239992828d7e1cdddc5cf9ff045dcd5b27&" alt="On gas station" style="width:72px; height:72px; border-radius:50%; object-fit:cover;">
+                  <img src="icons/on-station.png" alt="N.Sign is getting ready" style="width:72px; height:72px; border-radius:50%; object-fit:cover;">
                   <h3 style="font-family:'Space Grotesk', sans-serif; font-size:16px;" data-i="nsign-app-unavailable-title">Приложение N.Sign временно недоступно</h3>
                   <p style="font-size:12px; color:var(--muted); line-height:1.4;" data-i="nsign-app-unavailable-desc">
                     Приложение N.Sign находится в разработке. Воспользуйтесь веб-версией во вкладке «Кастомизация».
@@ -1634,7 +1635,7 @@
           <div class="install-method-grid">
             <div class="install-method-card" id="imc-livecontainer" onclick="selectInstallMethod('livecontainer')">
               <div class="imc-radio"></div>
-              <div class="imc-icon">📦</div>
+              <div class="imc-icon"><img src="icons/lc-icon.png" alt="LiveContainer"></div>
               <div class="imc-body">
                 <h4>LiveContainer</h4>
                 <p>Запуск IPA-файлов внутри контейнера без ограничений по количеству установленных приложений.</p>
@@ -1643,7 +1644,7 @@
             </div>
             <div class="install-method-card" id="imc-sidestore" onclick="selectInstallMethod('sidestore')">
               <div class="imc-radio"></div>
-              <div class="imc-icon">🏪</div>
+              <div class="imc-icon"><img src="icons/ss-icon.png" alt="Sidestore"></div>
               <div class="imc-body">
                 <h4>Sidestore</h4>
                 <p>Магазин приложений с автоматическим перезапуском сертификата каждые 7 дней.</p>
