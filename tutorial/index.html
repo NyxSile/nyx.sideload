@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Инструкция: Сайдлоуд с ПК — nyx-sideload</title>
+  <title>Инструкция: Сайдлоуд с ПК — nyx.sideload</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
@@ -67,6 +67,9 @@
       border-color: var(--accent);
     }
     
+    .lang-toggle { display:flex; background:var(--surface); border:1px solid var(--border); border-radius:var(--r-sm); overflow:hidden; }
+    .lang-btn { border:0; background:transparent; color:var(--muted); padding:6px 10px; font-size:12px; cursor:pointer; }
+    .lang-btn.active { background:var(--accent); color:#fff; }
     /* Title Block */
     .title-block {
       margin-bottom: 40px;
@@ -233,7 +236,10 @@
         </svg>
         На главную
       </a>
-      <span style="font-size: 13px; color: var(--muted);" class="display">nyx-sideload</span>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span style="font-size: 13px; color: var(--muted);" class="display">nyx-sideload</span>
+        <div class="lang-toggle" role="group" aria-label="Language"><button class="lang-btn" data-lang="ru">RU</button><button class="lang-btn" data-lang="en">EN</button></div>
+      </div>
     </header>
     
     <!-- Title -->
@@ -319,22 +325,22 @@
         <div class="step-item">
           <div class="step-num">2</div>
           <div class="step-body">
-            <h4>Установите WireGuard VPN</h4>
-            <p>Скачайте официальное приложение <strong>WireGuard</strong> из App Store. Оно необходимо для имитации подключения к ПК прямо внутри устройства для автопродления сертификатов.</p>
+            <h4>Установите LocalDevVpn</h4>
+            <p>Скачайте официальное приложение <strong>LocalDevVpn</strong> из App Store. Оно необходимо для имитации подключения к ПК прямо внутри устройства для автопродления сертификатов.</p>
           </div>
         </div>
         <div class="step-item">
           <div class="step-num">3</div>
           <div class="step-body">
             <h4>Импортируйте конфигурацию</h4>
-            <p>Скачайте файл конфигурации WireGuard (доступен при установке) и импортируйте его в приложение WireGuard. Включите этот VPN-туннель.</p>
+            <p>Скачайте файл конфигурации LocalDevVpn (доступен при установке) и импортируйте его в приложение LocalDevVpn. Включите этот VPN-туннель.</p>
           </div>
         </div>
         <div class="step-item">
           <div class="step-num">4</div>
           <div class="step-body">
             <h4>Подписывайте приложения на ходу</h4>
-            <p>С включенным WireGuard откройте SideStore. Теперь вы можете устанавливать сторонние IPA прямо со своего телефона без использования компьютера!</p>
+            <p>С включенным LocalDevVpn откройте SideStore. Теперь вы можете устанавливать сторонние IPA прямо со своего телефона без использования компьютера!</p>
           </div>
         </div>
       </div>
@@ -372,10 +378,54 @@
 
     <!-- Footer -->
     <footer class="footer-credits">
-      <p>nyx-sideload © 2025 · Все права защищены</p>
+      <p>nyx-sideload © 2026 · Все права защищены</p>
     </footer>
 
   </div>
 
+<script>
+  const tutorialTranslations = {
+    "На главную": "Back to home",
+    "Инструкция по установке с ПК": "PC Sideloading Guide",
+    "Как установить сторонние приложения без лимитов и Enterprise-сертификатов": "How to install third-party apps without limits or enterprise certificates",
+    "Почему ПК-сайдлоуд надежнее?": "Why is PC sideloading more reliable?",
+    "Использование компьютера позволяет вам создать свой собственный личный сертификат разработчика (используя ваш личный Apple ID). В отличие от бесплатных общих сертификатов на сайте, этот сертификат невозможно отозвать со стороны Apple, и он работает на 100% стабильно.": "Using a computer lets you create your own personal developer certificate with your Apple ID. Unlike free shared certificates, Apple cannot revoke this certificate and it remains stable.",
+    "Метод 1: LiveContainer": "Method 1: LiveContainer",
+    "Запуск неограниченного числа IPA без реальной установки": "Run unlimited IPA files without installing them individually",
+    "Метод 2: SideStore": "Method 2: SideStore",
+    "Полноценный магазин приложений с обновлением по Wi-Fi": "A full app store with Wi-Fi refreshing",
+    "Метод 3: All-in-One (Рекомендуемый)": "Method 3: All-in-One (Recommended)",
+    "Комбинация лучших решений для максимального удобства": "The best solutions combined for maximum convenience",
+    "Подключите устройство": "Connect your device",
+    "Запустите мастер установки": "Start the installation wizard",
+    "Доверьте сертификат": "Trust the certificate",
+    "Пользуйтесь приложениями": "Use your apps",
+    "Установите SideStore": "Install SideStore",
+    "Установите LocalDevVpn": "Install LocalDevVpn",
+    "Импортируйте конфигурацию": "Import the configuration",
+    "Подписывайте приложения на ходу": "Sign apps on the go",
+    "Идеальное комбо": "The perfect combo",
+    "Как это работает?": "How does it work?",
+    "Все права защищены": "All rights reserved",
+    "Всё в одном": "All-in-One"
+  };
+  const tutorialReverse = Object.fromEntries(Object.entries(tutorialTranslations).map(([ru, en]) => [en, ru]));
+  function applyTutorialLanguage(lang) {
+    const map = lang === 'en' ? tutorialTranslations : tutorialReverse;
+    document.documentElement.lang = lang;
+    document.title = lang === 'en' ? 'PC Sideloading Guide — nyx.sideload' : 'Инструкция: Сайдлоуд с ПК — nyx.sideload';
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node => {
+      const key = node.nodeValue.trim();
+      if (map[key]) node.nodeValue = node.nodeValue.replace(key, map[key]);
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
+    localStorage.setItem('nyx-lang', lang);
+  }
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => applyTutorialLanguage(btn.dataset.lang)));
+  applyTutorialLanguage(localStorage.getItem('nyx-lang') || 'ru');
+</script>
 </body>
 </html>
