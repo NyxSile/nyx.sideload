@@ -928,6 +928,10 @@
     .pc-step-indicator.done .step-dot-label { color: var(--text); }
 
     .pc-step-content { display: none; flex-direction: column; gap: 16px; }
+    .pc-step-content#pc-step-1 { position:relative; }
+    .pc-dev-overlay { position:absolute; inset:0; z-index:3; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding:28px; text-align:center; background:rgba(18,18,26,.94); border:1px solid var(--border); border-radius:var(--r); }
+    .pc-dev-overlay strong { color:var(--accent); font-size:18px; }
+    .pc-dev-overlay span { color:var(--muted); font-size:13px; }
     .pc-step-content.active { display: flex; }
 
     .apple-id-wrap { position: relative; }
@@ -1232,19 +1236,12 @@
         </div>
         <div class="method-card" onclick="openPcSideloadModal('combo')">
           <span class="method-icon">⚡</span>
-          <span class="method-name">All-in-One</span>
-          <span class="method-desc">LC + Sidestore + Repo</span>
+          <span class="method-name">Всё в одном</span>
+          <span class="method-desc">LC + Sidestore + репозиторий</span>
         </div>
       </div>
       <!-- Кнопки -->
       <div class="pc-sideload-cta">
-        <button class="btn btn-primary" onclick="openPcSideloadModal('livecontainer')">
-          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <rect x="2" y="3" width="20" height="13" rx="2"/>
-            <path d="M8 21h8M12 17v4" stroke-linecap="round"/>
-          </svg>
-          Начать установку
-        </button>
         <button class="btn btn-ghost" onclick="window.location.href='./tutorial/'">
           Инструкция
         </button>
@@ -1572,6 +1569,7 @@
         </div>
         <!-- Шаг 1 -->
         <div class="pc-step-content active" id="pc-step-1">
+          <div class="pc-dev-overlay"><strong>Пока в разработке</strong><span>Установка с ПК скоро будет доступна.</span></div>
           <div class="form-group-new">
             <label>Apple ID (e-mail)</label>
             <div class="apple-id-wrap">
@@ -1658,7 +1656,7 @@
                 <h4>LiveContainer + Sidestore</h4>
                 <p>Полный пакет: LC, Sidestore и репозиторий со всеми подписанными приложениями.</p>
               </div>
-              <span class="imc-badge badge-combo">All-in-One</span>
+              <span class="imc-badge badge-combo">Всё в одном</span>
             </div>
           </div>
           <div class="install-log-wrap" id="pc-install-log-wrap">
@@ -2519,10 +2517,15 @@ function updateStepUI() {
   const backBtn = document.getElementById('btn-pc-back');
   backBtn.style.display = currentStep > 1 ? 'inline-flex' : 'none';
   const nextBtn = document.getElementById('btn-pc-next');
-  if (currentStep === TOTAL_STEPS) {
+  if (currentStep === 1) {
+    nextBtn.innerHTML = 'Пока в разработке';
+    nextBtn.disabled = true;
+  } else if (currentStep === TOTAL_STEPS) {
     nextBtn.innerHTML = '⚡ Установить';
+    nextBtn.disabled = false;
   } else {
     nextBtn.innerHTML = 'Далее →';
+    nextBtn.disabled = false;
   }
   const navEl = document.getElementById('pc-modal-nav');
   const successVisible = document.getElementById('pc-success').classList.contains('active');
@@ -2663,7 +2666,7 @@ function startInstall() {
   const methodNames = {
     livecontainer: 'LiveContainer',
     sidestore: 'Sidestore',
-    combo: 'LiveContainer + Sidestore + Repo'
+    combo: 'LiveContainer + Sidestore + Репозиторий'
   };
   const appleId = document.getElementById('pc-apple-id').value.trim();
   const aniServer = document.getElementById('pc-anisette-server').value;
