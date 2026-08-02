@@ -36,6 +36,8 @@
       position: fixed; inset: 0; z-index: 0;
       pointer-events: none;
       width: 100%; height: 100%;
+      will-change: transform;
+      transform: translate3d(0, 0, 0);
     }
     /* Everything sits above the canvas */
     #header, #onboarding, #app, #arona-layer, #toast, #report-modal { position: relative; z-index: 1; }
