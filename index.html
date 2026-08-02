@@ -389,6 +389,7 @@
       font-weight: 700;
       font-size: 18px;
     }
+    .tool-updated { font-size: 10px; opacity: .8; }
     .tool-meta-new {
       font-size: 12px;
       color: var(--muted);
@@ -1143,6 +1144,7 @@
             <div class="tool-meta-new">
               <span class="tool-tag" style="background:var(--accent-lo); color:var(--accent);" data-i="tag-recommended">Рекомендован</span>
               <span>v1.5.1</span>
+              <span class="tool-updated" data-build-date>—</span>
             </div>
           </div>
           <button class="btn btn-primary btn-full" id="btn-open-esign" style="margin-top:auto;">
@@ -1160,6 +1162,7 @@
             <div class="tool-meta-new">
               <span class="tool-tag" data-i="tag-alt">Альтернатива</span>
               <span>v1.5.1</span>
+              <span class="tool-updated" data-build-date>—</span>
             </div>
           </div>
           <button class="btn btn-primary btn-full" id="btn-open-ksign" style="margin-top:auto;">
@@ -1177,6 +1180,7 @@
             <div class="tool-meta-new">
               <span class="tool-tag" style="background:rgba(236, 72, 153, 0.1); color:#EC4899;" data-i="tag-new">Новый</span>
               <span>v1.0.0</span>
+              <span class="tool-updated" data-build-date>—</span>
             </div>
           </div>
           <button class="btn btn-ghost btn-full" id="btn-open-nsign" style="margin-top:auto; border-color: var(--accent);">
@@ -2007,23 +2011,41 @@ const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
               (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 let appMetadata = {};
 
+function setCardDate(tool, isoDate) {
+  const el = document.querySelector(`#card-${tool} [data-build-date]`);
+  if (!el || !isoDate) return;
+  const date = new Date(isoDate);
+  el.textContent = Number.isNaN(date.getTime()) ? "—" : date.toLocaleDateString(undefined, { day: "2-digit", month: "short", year: "numeric" });
+  el.title = isoDate;
+}
+
 async function loadMetadata() {
   try {
     const res = await fetch('version.json?v=' + Date.now());
     appMetadata = await res.json();
     
     // Update versions in the main UI cards dynamically
+    const buildDate = document.getElementById("site-build-date");
+    if (buildDate && appMetadata.generated_at) {
+      const date = new Date(appMetadata.generated_at);
+      buildDate.textContent = Number.isNaN(date.getTime()) ? "—" : date.toLocaleDateString(undefined, { day: "2-digit", month: "short", year: "numeric" });
+      buildDate.dateTime = appMetadata.generated_at;
+    }
+
     if (appMetadata['esign']) {
       const el = document.querySelector('#card-esign .tool-meta-new span:nth-child(2)');
       if (el) el.textContent = 'v' + appMetadata['esign'].version;
+      setCardDate('esign', appMetadata['esign'].updated);
     }
     if (appMetadata['ksign']) {
       const el = document.querySelector('#card-ksign .tool-meta-new span:nth-child(2)');
       if (el) el.textContent = 'v' + appMetadata['ksign'].version;
+      setCardDate('ksign', appMetadata['ksign'].updated);
     }
     if (appMetadata['nsign']) {
       const el = document.querySelector('#card-nsign .tool-meta-new span:nth-child(2)');
       if (el) el.textContent = 'v' + appMetadata['nsign'].version;
+      setCardDate('nsign', appMetadata['nsign'].updated);
     }
   } catch (e) {
     console.error("Failed to load version.json metadata:", e);

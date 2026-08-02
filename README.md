@@ -2,7 +2,9 @@
 
 > A clean, static iOS sideloading portal for ESign, KSign and N.Sign.
 
-[![Deploy](https://github.com/nyx-sideload/nyx.sideload/actions/workflows/build.yml/badge.svg)](https://github.com/nyx-sideload/nyx.sideload/actions/workflows/build.yml)
+[Русская версия](README.ru.md)
+
+[![Deploy](https://github.com/NyxSile/nyx.sideload/actions/workflows/build.yml/badge.svg)](https://github.com/NyxSile/nyx.sideload/actions/workflows/build.yml)
 
 nyx.sideload is a lightweight web portal for distributing signed iOS applications. It provides OTA installation manifests, direct IPA downloads, a DNS profile shortcut and a browser-based N.Sign tutorial/simulator.
 
@@ -73,3 +75,5 @@ Edit [`config.env`](config.env) to change the public URL or app identifiers. `ve
 ## License
 
 See [`LICENSE`](LICENSE).
+
+

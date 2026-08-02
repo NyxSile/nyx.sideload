@@ -2,6 +2,8 @@ import os
 import zipfile
 import plistlib
 import json
+import subprocess
+from datetime import datetime, timezone
 
 # 1. Find all IPA files recursively inside 'ipas' directory
 ipa_files = []
@@ -33,7 +35,7 @@ config = {
     "ESIGN_NAME": "ESign",
     "ESIGN_BUNDLE": "p3.xyz.yyyue.esign",
     "NSIGN_NAME": "N.Sign",
-    "NSIGN_BUNDLE": "nya.asami.nsign"
+    "NSIGN_BUNDLE": "nyx.sideload.nsign"
 }
 
 if os.path.exists("config.env"):
@@ -48,6 +50,21 @@ if os.path.exists("config.env"):
 
 base_url = config.get("BASE_URL")
 print(f"Loaded config: {config}")
+
+def get_updated_at(path):
+    """Return the last Git commit date for a file, with a filesystem fallback."""
+    try:
+        result = subprocess.run(
+            ["git", "log", "-1", "--format=%cI", "--", path],
+            capture_output=True, text=True, check=False
+        )
+        if result.stdout.strip():
+            return result.stdout.strip()
+    except OSError:
+        pass
+    return datetime.fromtimestamp(os.path.getmtime(path), timezone.utc).isoformat()
+
+site_generated_at = datetime.now(timezone.utc).isoformat()
 
 if not os.path.exists("template.plist"):
     print("template.plist not found!")
@@ -111,7 +128,8 @@ for ipa in ipa_files:
             "version": version,
             "app": app_name,
             "bundle": bundle_id,
-            "ipa": ipa
+            "ipa": ipa,
+            "updated": get_updated_at(ipa)
         }
         version_data[ipa_name_no_ext] = app_meta
 
@@ -128,6 +146,7 @@ for ipa in ipa_files:
 
 # Include global configurations in version data
 version_data["base_url"] = base_url
+version_data["generated_at"] = site_generated_at
 version_data["latest"] = latest_metadata
 
 # Write version.json

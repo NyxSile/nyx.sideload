@@ -3,7 +3,7 @@ name: build-manifest
 on:
   push:
     paths:
-      - "*.ipa"
+      - "ipas/**/*.ipa"
 
 permissions:
   contents: write
@@ -25,6 +25,6 @@ jobs:
         run: |
           git config user.name "ota-bot"
           git config user.email "ota-bot@users.noreply.github.com"
-          git add manifest.plist manifest-*.plist version.json
+          git add manifest.plist plists/*.plist version.json
           git commit -m "auto: rebuild manifest for ${{ steps.build_manifest.outputs.app_name }} v${{ steps.build_manifest.outputs.version }}" || echo "нечего коммитить"
           git push
