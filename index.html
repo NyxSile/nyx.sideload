@@ -4,8 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>nyx.sideload</title>
-  <link rel="icon" type="image/png" href="icon.PNG" />
-  <link rel="apple-touch-icon" href="icon.PNG" />
+  <meta property="og:title" content="nyx.sideload" />
+  <meta property="og:description" content="iOS sideloading portal for ESign, KSign and N.Sign." />
+  <meta property="og:image" content="icons/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/png" href="icons/favicon.png" />
+  <link rel="apple-touch-icon" href="icons/icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
   <style>
@@ -165,6 +169,7 @@
 
     /* ── HERO ───────────────────────────────────── */
     #hero { padding: 48px 20px 32px; }
+    .hero-art { display:block; width:100%; max-height:180px; object-fit:cover; object-position:center top; margin-bottom:20px; border:1px solid var(--border); border-radius:var(--r); opacity:.92; }
     .hero-inner { max-width: 640px; margin: 0 auto; }
     .hero-inner h1 {
       font-family: 'Space Grotesk', sans-serif;
@@ -1098,6 +1103,7 @@
   <!-- HERO -->
   <section id="hero">
     <div class="hero-inner fade-up">
+      <img class="hero-art" src="icons/hero.png" alt="nyx.sideload">
       <h1 class="display">
         <span data-i="hero-title-1">iOS</span> <em data-i="hero-title-2">без ограничений</em><br/>
         <span data-i="hero-title-3">на своих условиях</span>
@@ -1173,7 +1179,7 @@
         <!-- N.Sign -->
         <div class="tool-card-new" id="card-nsign">
           <div class="tool-icon-container" style="box-shadow: 0 0 15px rgba(236, 72, 153, 0.2);">
-            <img src="icon.PNG" alt="N.Sign Icon">
+            <img src="icons/icon.png" alt="N.Sign Icon">
           </div>
           <div class="tool-info-new">
             <span class="tool-title-new">N.Sign</span>
