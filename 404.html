@@ -4,8 +4,14 @@
   <meta charset="utf-8">
   <title>Redirecting...</title>
   <script>
-    // Perform instant client-side redirect to the home page with a 404 flag
-    window.location.replace("/?404");
+    // Dynamic redirect supporting both custom domains and GitHub Pages subfolders
+    var path = window.location.pathname;
+    var segments = path.split('/');
+    var repoPath = "";
+    if (window.location.hostname.indexOf("github.io") !== -1 && segments.length > 1) {
+      repoPath = "/" + segments[1];
+    }
+    window.location.replace(window.location.origin + repoPath + "/?404");
   </script>
 </head>
 <body>
