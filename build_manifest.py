@@ -123,12 +123,17 @@ for ipa in ipa_files:
             f.write(manifest_content)
         print(f"  Wrote manifest to: {out_manifest_name}")
 
+        # Calculate file size in MB
+        file_size_bytes = os.path.getsize(ipa)
+        file_size_mb = f"{file_size_bytes / (1024 * 1024):.1f} MB"
+
         # Store metadata
         app_meta = {
             "version": version,
             "app": app_name,
             "bundle": bundle_id,
             "ipa": ipa,
+            "size": file_size_mb,
             "updated": get_updated_at(ipa)
         }
         version_data[ipa_name_no_ext] = app_meta

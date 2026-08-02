@@ -4,6 +4,7 @@
     "app": "ESign",
     "bundle": "p3.xyz.yyyue.esign",
     "ipa": "ipas/esign/esign-jiangsu-simcere.ipa",
+    "size": "18.0 MB",
     "updated": "2026-07-25T15:49:20+05:00"
   },
   "esign-moving-increasingly": {
@@ -11,6 +12,7 @@
     "app": "ESign",
     "bundle": "p3.xyz.yyyue.esign",
     "ipa": "ipas/esign/esign-moving-increasingly.ipa",
+    "size": "18.0 MB",
     "updated": "2026-07-25T15:49:20+05:00"
   },
   "esign-vietnam-airlines": {
@@ -18,6 +20,7 @@
     "app": "ESign",
     "bundle": "p3.xyz.yyyue.esign",
     "ipa": "ipas/esign/esign-vietnam-airlines.ipa",
+    "size": "18.0 MB",
     "updated": "2026-07-25T15:49:20+05:00"
   },
   "esign-vietnam-rubber": {
@@ -25,6 +28,7 @@
     "app": "ESign",
     "bundle": "p3.xyz.yyyue.esign",
     "ipa": "ipas/esign/esign-vietnam-rubber.ipa",
+    "size": "18.0 MB",
     "updated": "2026-07-25T15:49:20+05:00"
   },
   "esign": {
@@ -32,6 +36,7 @@
     "app": "ESign",
     "bundle": "p3.xyz.yyyue.esign",
     "ipa": "ipas/esign/esign.ipa",
+    "size": "7.2 MB",
     "updated": "2026-07-24T05:33:24+05:00"
   },
   "esign_unsigned": {
@@ -39,6 +44,7 @@
     "app": "ESign",
     "bundle": "p3.xyz.yyyue.esign",
     "ipa": "ipas/esign/esign_unsigned.ipa",
+    "size": "7.2 MB",
     "updated": "2026-07-24T05:33:24+05:00"
   },
   "ksign-jiangsu-simcere": {
@@ -46,6 +52,7 @@
     "app": "KSign",
     "bundle": "nya.asami.ksign",
     "ipa": "ipas/ksign/ksign-jiangsu-simcere.ipa",
+    "size": "26.0 MB",
     "updated": "2026-07-25T15:49:20+05:00"
   },
   "ksign-moving-increasingly": {
@@ -53,6 +60,7 @@
     "app": "KSign",
     "bundle": "nya.asami.ksign",
     "ipa": "ipas/ksign/ksign-moving-increasingly.ipa",
+    "size": "26.0 MB",
     "updated": "2026-07-25T15:49:20+05:00"
   },
   "ksign-vietnam-airlines": {
@@ -60,6 +68,7 @@
     "app": "KSign",
     "bundle": "nya.asami.ksign",
     "ipa": "ipas/ksign/ksign-vietnam-airlines.ipa",
+    "size": "26.0 MB",
     "updated": "2026-07-25T15:49:20+05:00"
   },
   "ksign-vietnam-rubber": {
@@ -67,6 +76,7 @@
     "app": "KSign",
     "bundle": "nya.asami.ksign",
     "ipa": "ipas/ksign/ksign-vietnam-rubber.ipa",
+    "size": "26.0 MB",
     "updated": "2026-07-25T15:49:20+05:00"
   },
   "ksign": {
@@ -74,6 +84,7 @@
     "app": "KSign",
     "bundle": "nya.asami.ksign",
     "ipa": "ipas/ksign/ksign.ipa",
+    "size": "14.3 MB",
     "updated": "2026-07-24T05:33:24+05:00"
   },
   "nsign-jiangsu-simcere": {
@@ -81,6 +92,7 @@
     "app": "N.Sign",
     "bundle": "nyx.sideload.nsign",
     "ipa": "ipas/nsign/nsign-jiangsu-simcere.ipa",
+    "size": "14.3 MB",
     "updated": "2026-07-24T05:33:24+05:00"
   },
   "nsign-moving-increasingly": {
@@ -88,6 +100,7 @@
     "app": "N.Sign",
     "bundle": "nyx.sideload.nsign",
     "ipa": "ipas/nsign/nsign-moving-increasingly.ipa",
+    "size": "14.3 MB",
     "updated": "2026-07-24T05:33:24+05:00"
   },
   "nsign-vietnam-airlines": {
@@ -95,6 +108,7 @@
     "app": "N.Sign",
     "bundle": "nyx.sideload.nsign",
     "ipa": "ipas/nsign/nsign-vietnam-airlines.ipa",
+    "size": "14.3 MB",
     "updated": "2026-07-24T05:33:24+05:00"
   },
   "nsign-vietnam-rubber": {
@@ -102,6 +116,7 @@
     "app": "N.Sign",
     "bundle": "nyx.sideload.nsign",
     "ipa": "ipas/nsign/nsign-vietnam-rubber.ipa",
+    "size": "14.3 MB",
     "updated": "2026-07-24T05:33:24+05:00"
   },
   "nsign": {
@@ -109,15 +124,17 @@
     "app": "N.Sign",
     "bundle": "nyx.sideload.nsign",
     "ipa": "ipas/nsign/nsign.ipa",
+    "size": "14.3 MB",
     "updated": "2026-07-24T05:33:24+05:00"
   },
   "base_url": "https://sideload.nyxsile.lol",
-  "generated_at": "2026-08-02T21:41:26.498880+00:00",
+  "generated_at": "2026-08-02T22:01:20.343859+00:00",
   "latest": {
     "version": "1.5.1",
     "app": "KSign",
     "bundle": "nya.asami.ksign",
     "ipa": "ipas/ksign/ksign-vietnam-rubber.ipa",
+    "size": "26.0 MB",
     "updated": "2026-07-25T15:49:20+05:00"
   }
 }

@@ -314,12 +314,25 @@ async function loadMetadata() {
   }
 }
 
+function updateModalMetadata() {
+  const certSelect = document.getElementById('modal-cert-select');
+  const cert = certSelect ? certSelect.value : '';
+  const key = `${activeTool}-${cert}`;
+  const meta = appMetadata[key] || appMetadata[activeTool] || {};
+  
+  const version = document.getElementById('modal-app-version');
+  const size = document.getElementById('modal-app-size');
+  const bundle = document.getElementById('modal-app-bundle');
+  
+  if (version) version.textContent = meta.version || (activeTool === 'nsign' ? '1.0.0' : '1.5.1');
+  if (size) size.textContent = meta.size || '14.9 MB';
+  if (bundle) bundle.textContent = meta.bundle || (activeTool === 'esign' ? 'p3.xyz.yyyue.esign' : (activeTool === 'ksign' ? 'nya.asami.ksign' : 'nyx.sideload.nsign'));
+}
+
 function openInstaller(tool) {
   activeTool = tool;
   const modal = document.getElementById('installer-modal');
   const title = document.getElementById('inst-modal-title');
-  const bundle = document.getElementById('modal-app-bundle');
-  const version = document.getElementById('modal-app-version');
   const iconContainer = document.getElementById('modal-app-icon');
   const installText = document.getElementById('btn-modal-install-text');
   
@@ -335,20 +348,15 @@ function openInstaller(tool) {
     document.getElementById('standard-install-unavailable').style.display = 'none';
   }
   
-  // Default fallbacks
-  let nameVal = tool === 'esign' ? 'ESign' : (tool === 'ksign' ? 'KSign' : 'N.Sign');
-  let bundleVal = tool === 'esign' ? 'p3.xyz.yyyue.esign' : (tool === 'ksign' ? 'nya.asami.ksign' : 'nyx.sideload.nsign');
-  let versionVal = tool === 'nsign' ? '1.0.0' : '1.5.1';
+  // Update version, bundle, size dynamically
+  updateModalMetadata();
   
+  // Default name fallback
+  let nameVal = tool === 'esign' ? 'ESign' : (tool === 'ksign' ? 'KSign' : 'N.Sign');
   if (appMetadata[tool]) {
     nameVal = appMetadata[tool].app || nameVal;
-    bundleVal = appMetadata[tool].bundle || bundleVal;
-    versionVal = appMetadata[tool].version || versionVal;
   }
-  
   title.textContent = nameVal;
-  bundle.textContent = bundleVal;
-  version.textContent = versionVal;
   
   // Custom check: openInstaller copies the innerHTML containing the new <img> elements
   iconContainer.innerHTML = document.querySelector(`#card-${tool} .tool-icon-container`).innerHTML;
@@ -461,6 +469,7 @@ document.getElementById('theme-modal').addEventListener('click', (e) => {
 document.getElementById('btn-open-esign').addEventListener('click', () => openInstaller('esign'));
 document.getElementById('btn-open-ksign').addEventListener('click', () => openInstaller('ksign'));
 document.getElementById('btn-open-nsign').addEventListener('click', () => openInstaller('nsign'));
+document.getElementById('modal-cert-select').addEventListener('change', updateModalMetadata);
 
 // Close triggers
 document.getElementById('btn-close-installer').addEventListener('click', closeInstaller);
