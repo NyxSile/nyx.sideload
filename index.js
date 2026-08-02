@@ -972,6 +972,7 @@ function startInstall() {
   }
 
   let lastW = window.innerWidth;
+  let lastH = window.innerHeight;
 
   function init() {
     resize();
@@ -999,10 +1000,16 @@ function startInstall() {
   }
 
   window.addEventListener('resize', () => {
-    if (window.innerWidth === lastW) return;
-    lastW = window.innerWidth;
-    resize();
-    stars = Array.from({ length: COUNT }, mkStar);
+    if (window.innerWidth === lastW && window.innerHeight === lastH) return;
+    if (window.innerWidth !== lastW) {
+      lastW = window.innerWidth;
+      lastH = window.innerHeight;
+      resize();
+      stars = Array.from({ length: COUNT }, mkStar);
+    } else {
+      lastH = window.innerHeight;
+      resize();
+    }
   });
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
