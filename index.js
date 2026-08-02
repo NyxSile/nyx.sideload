@@ -93,6 +93,7 @@ const i18n = {
     "cl-4": "Кастомизация сайта, плисты в plists/, иконки и фикс установки",
     "cl-date-5": "3 авг",
     "cl-5": "Подпись приложений, Сайдлоуд с ПК, сохранение темы и фиксы верстки",
+    "toast-404": "Страница не найдена! Вы перенаправлены на главную.",
   },
   en: {
     "who-are-you": "Who are you today?",
@@ -185,6 +186,7 @@ const i18n = {
     "cl-4": "Theme customizer, plists in plists/, real icons & install fixes",
     "cl-date-5": "3 Aug",
     "cl-5": "App signing, PC Sideload, theme saving & layout fixes",
+    "toast-404": "Page not found! Redirected to home page.",
   }
 };
 
@@ -1054,4 +1056,12 @@ document.getElementById('btn-promo-go-nsign').addEventListener('click', () => {
   
   // Fetch and update version and size metadata dynamically
   loadMetadata();
+  
+  // Handle 404 redirect check
+  if (window.location.search.includes('404') || window.location.hash.includes('404')) {
+    window.history.replaceState(null, '', window.location.pathname);
+    setTimeout(() => {
+      showToast(t('toast-404'));
+    }, 800);
+  }
 })();
