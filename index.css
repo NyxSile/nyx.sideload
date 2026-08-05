@@ -561,24 +561,7 @@
       text-decoration: underline;
     }
     
-    /* interactive custom options preview */
-    .custom-preview-list {
-      opacity: 0.3;
-      pointer-events: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .custom-preview-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      padding: 8px 12px;
-      border-radius: var(--r-sm);
-      font-size: 13px;
-    }
+
 
     /* ── N.SIGN BROWSER SIGNER MODAL ─────────────── */
     .signer-form-new {

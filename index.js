@@ -396,11 +396,9 @@ function openInstaller(tool) {
   if (tool === 'nsign') {
     document.getElementById('custom-locked-view').style.display = 'none';
     document.getElementById('custom-unlocked-view').style.display = 'flex';
-    document.getElementById('custom-preview-list-el').style.opacity = '1';
   } else {
     document.getElementById('custom-locked-view').style.display = 'flex';
     document.getElementById('custom-unlocked-view').style.display = 'none';
-    document.getElementById('custom-preview-list-el').style.opacity = '0.3';
   }
   
   // Update button text based on platform
