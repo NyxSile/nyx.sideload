@@ -231,6 +231,9 @@ const i18n = {
 };
 
 let currentLang = localStorage.getItem('nyx-lang') || 'ru';
+if (!i18n[currentLang]) {
+  currentLang = 'ru';
+}
 
 function t(key) { return (i18n[currentLang] && i18n[currentLang][key]) || key; }
 
