@@ -73,9 +73,11 @@ const i18n = {
     "sign-another": "Подписать другое приложение",
     "toast-nsign-missing": "Пожалуйста, выберите IPA, сертификат (.p12) и профиль.",
     "download-ipa": "Скачать .ipa",
-    "nsign-custom-title": "N.Sign Web-Signer",
+    "nsign-custom-title": "N.Sign Web",
     "nsign-custom-desc": "Подписывайте любые сторонние .ipa файлы прямо в браузере своими личными сертификатами (.p12).",
     "launch-web-signer-btn": "Запустить веб-версию",
+    "nsign-web-unavailable-title": "N.Sign Web в разработке",
+    "nsign-web-unavailable-desc": "Онлайн-подпись через браузер скоро будет доступна.",
     "status-revoked": "Все общие сертификаты отозваны Apple! Установите DNS-профиль или используйте личную подпись в N.Sign.",
     "nsign-app-unavailable-title": "Приложение N.Sign пока заправляется!",
     "nsign-app-unavailable-desc": "Приложение N.Sign находится в разработке. Подождите, либо воспользуйтесь веб-версией во вкладке «Кастомизация».",
@@ -184,9 +186,11 @@ const i18n = {
     "sign-another": "Sign another app",
     "toast-nsign-missing": "Please select IPA, certificate (.p12), and profile.",
     "download-ipa": "Download .ipa",
-    "nsign-custom-title": "N.Sign Web-Signer",
+    "nsign-custom-title": "N.Sign Web",
     "nsign-custom-desc": "Sign any third-party .ipa files directly in your browser using your own personal certificates (.p12).",
-    "launch-web-signer-btn": "Launch web-signer",
+    "launch-web-signer-btn": "Launch web version",
+    "nsign-web-unavailable-title": "N.Sign Web in development",
+    "nsign-web-unavailable-desc": "Online signing through the browser will be available soon.",
     "status-revoked": "All public certificates are revoked by Apple! Install the DNS profile or use personal signing in N.Sign.",
     "nsign-app-unavailable-title": "N.Sign app is temporarily unavailable",
     "nsign-app-unavailable-desc": "The N.Sign app is under development. Please use the web version in the 'Customization' tab.",
@@ -443,7 +447,7 @@ document.getElementById('tab-btn-custom').addEventListener('click', () => {
 // Go to N.Sign button inside Installer modal (lock overlay)
 document.getElementById('btn-go-nsign').addEventListener('click', () => openInstaller('nsign'));
 
-// Launch N.Sign web-signer from customization tab
+// Launch N.Sign Web from customization tab
 document.getElementById('btn-launch-web-signer').addEventListener('click', openNSign);
 
 // Synchronize and apply theme
