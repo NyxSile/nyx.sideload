@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Инструкция: Сайдлоуд с ПК — nyx-sideload</title>
+  <title>Hướng dẫn: Sideload qua máy tính — nyx-sideload</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
@@ -263,8 +263,8 @@
     <div class="alert-box">
       <span class="alert-icon">💡</span>
       <div class="alert-text">
-        <h3 data-i="alert-title">Почему ПК-сайдлоуд надежнее?</h3>
-        <p data-i="alert-desc">Использование компьютера позволяет вам создать свой собственный личный сертификат разработчика (используя ваш личный Apple ID). В отличие от бесплатных общих сертификатов на сайте, этот сертификат невозможно отозвать со стороны Apple, и он работает на 100% стабильно.</p>
+        <h3 data-i="alert-title">Why is PC sideloading more reliable?</h3>
+        <p data-i="alert-desc">Using a computer allows you to create your own personal developer certificate (using your personal Apple ID). Unlike free public certificates on the web, this certificate cannot be revoked by Apple and works with 100% stability.</p>
       </div>
     </div>
 
@@ -295,8 +295,8 @@
         <div class="step-item">
           <div class="step-num">2</div>
           <div class="step-body">
-            <h4 data-i="lc-step-2-title">Запустите мастер установки</h4>
-            <p data-i="lc-step-2-desc">Откройте модальное окно «Сайдлоуд с ПК» на главной странице нашего сайта. Введите ваш Apple ID и пароль (они используются локально в браузере для генерации профиля) и выберите LiveContainer.</p>
+            <h4 data-i="lc-step-2-title">Установите через iLoader</h4>
+            <p data-i="lc-step-2-desc">Скачайте и запустите программу iLoader на компьютере (доступна в окне «Сайдлоуд с ПК» на главной). Выберите LiveContainer и нажмите Install.</p>
           </div>
         </div>
         <div class="step-item">
@@ -330,7 +330,7 @@
           <div class="step-num">1</div>
           <div class="step-body">
             <h4 data-i="ss-step-1-title">Установите SideStore</h4>
-            <p data-i="ss-step-1-desc">Используйте мастер установки на главной странице, выбрав в качестве цели SideStore. Процедура установки аналогична первому методу.</p>
+            <p data-i="ss-step-1-desc">Скачайте и запустите iLoader на компьютере, выберите в качестве цели SideStore и нажмите Install. Процедура установки аналогична первому методу.</p>
           </div>
         </div>
         <div class="step-item">
@@ -468,10 +468,10 @@
         "nav-back": "← Trang chủ",
         "page-title": "Hướng dẫn Sideload qua máy tính",
         "page-sub": "Cách cài đặt ứng dụng bên thứ ba không giới hạn và không cần chứng chỉ Enterprise",
-        "alert-title": "Tại sao sideload bằng máy tính lại an toàn hơn?",
-        "alert-desc": "Sử dụng máy tính cho phép bạn tạo chứng chỉ nhà phát triển cá nhân của riêng mình (sử dụng Apple ID của bạn). Khác với chứng chỉ công cộng miễn phí trên web, chứng chỉ này không thể bị Apple thu hồi và hoạt động ổn định 100%.",
+        "alert-title": "Tại sao Sideload qua PC ổn định hơn?",
+        "alert-desc": "Sử dụng máy tính cho phép bạn tạo chứng chỉ nhà phát triển cá nhân của riêng mình (sử dụng Apple ID cá nhân). Khác với chứng chỉ doanh nghiệp công cộng miễn phí trên web, chứng chỉ này không thể bị Apple thu hồi và hoạt động ổn định 100%.",
         "lc-title": "Phương pháp 1: LiveContainer",
-        "lc-sub": "Chạy không giới hạn số lượng file IPA không cần cài đặt thực tế",
+        "lc-sub": "Chạy không giới hạn file IPA không cần cài đặt thực tế",
         "lc-step-1-title": "Kết nối thiết bị",
         "lc-step-1-desc": "Kết nối iPhone hoặc iPad của bạn với máy tính bằng cáp USB. Mở khóa màn hình và nhấn 'Tin cậy máy tính này' nếu được yêu cầu.",
         "lc-step-2-title": "Cài đặt qua iLoader",
@@ -500,7 +500,7 @@
       }
     };
 
-    let currentLang = localStorage.getItem('nyx-lang') || 'ru';
+    let currentLang = localStorage.getItem('nyx-lang') || 'vi';
 
     function t(key) {
       return (i18n[currentLang] && i18n[currentLang][key]) || key;
