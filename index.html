@@ -146,7 +146,7 @@
 
     <!-- ── PC SIDELOAD ── -->
     <section class="pc-sideload-card fade-up" id="sec-pc-sideload">
-      <p class="section-label">Сайдлоуд с ПК</p>
+      <p class="section-label" data-i="sec-pc-label">Сайдлоуд с ПК</p>
       <div class="pc-sideload-header">
         <div class="pc-sideload-icon">
           <svg width="26" height="26" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" stroke-width="1.8">
@@ -155,38 +155,38 @@
           </svg>
         </div>
         <div class="pc-sideload-title-block">
-          <h2 class="display">Сайдлоуд с ПК</h2>
-          <p>Установите LiveContainer или Sidestore через компьютер без Enterprise-сертификатов</p>
+          <h2 class="display" data-i="pc-title">Сайдлоуд с ПК</h2>
+          <p data-i="pc-desc">Установите LiveContainer или Sidestore через компьютер без Enterprise-сертификатов</p>
         </div>
       </div>
       <!-- Мобильная заглушка -->
       <div class="mobile-wall">
         <div class="mobile-wall-icon">🖥️</div>
-        <h3>Только с компьютера</h3>
-        <p>Эта функция работает только на десктопной версии сайта. Зайдите с ПК или Mac.</p>
+        <h3 data-i="pc-mobile-wall-title">Только с компьютера</h3>
+        <p data-i="pc-mobile-wall-desc">Эта функция работает только на десктопной версии сайта. Зайдите с ПК или Mac.</p>
       </div>
       <!-- Карточки методов -->
       <div class="method-grid">
         <div class="method-card" onclick="openPcSideloadModal('livecontainer')">
           <img class="method-icon" src="icons/lc-icon.png" alt="LiveContainer">
           <span class="method-name">LiveContainer</span>
-          <span class="method-desc">Запуск IPA без лимита</span>
+          <span class="method-desc" data-i="pc-lc-desc">Запуск IPA без лимита</span>
         </div>
         <div class="method-card" onclick="openPcSideloadModal('sidestore')">
           <img class="method-icon" src="icons/ss-icon.png" alt="Sidestore">
           <span class="method-name">Sidestore</span>
-          <span class="method-desc">Магазин с автообновлением</span>
+          <span class="method-desc" data-i="pc-ss-desc">Магазин с автообновлением</span>
         </div>
         <div class="method-card" onclick="openPcSideloadModal('combo')">
           <span class="method-icon">⚡</span>
-          <span class="method-name">Всё в одном</span>
-          <span class="method-desc">LC + Sidestore + репозиторий</span>
+          <span class="method-name" data-i="pc-combo-title">Всё в одном</span>
+          <span class="method-desc" data-i="pc-combo-desc">LC + Sidestore + репозиторий</span>
         </div>
       </div>
       <!-- Кнопки -->
       <div class="pc-sideload-cta">
-        <button class="btn btn-ghost" onclick="window.location.href='./tutorial/'">
-          Инструкция
+        <button class="btn btn-ghost" onclick="window.location.href='./tutorial/'" data-i-text="btn-instructions">
+          <span data-i="btn-instructions">Инструкция</span>
         </button>
       </div>
     </section>
@@ -479,148 +479,52 @@
       </div>
     </div>
 
-    <!-- PC SIDELOAD WIZARD MODAL -->
+    <!-- PC SIDELOAD MODAL (iLoader) -->
     <div id="pc-sideload-modal" class="modal-overlay-new" role="dialog" aria-modal="true" aria-labelledby="pc-modal-heading">
-      <div class="modal-box-new">
+      <div class="modal-box-new" style="max-width: 540px; padding: 32px; text-align: left;">
         <button class="modal-close-new" onclick="closePcSideloadModal()" aria-label="Закрыть">&times;</button>
-        <div class="pc-modal-header">
-          <div class="pc-modal-logo">
-            <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+        
+        <div class="pc-modal-header" style="margin-bottom: 24px; display: flex; align-items: center;">
+          <div class="pc-modal-logo" style="background: var(--accent-lo); color: var(--accent); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <rect x="2" y="3" width="20" height="13" rx="2"/>
               <path d="M8 21h8M12 17v4" stroke-linecap="round"/>
             </svg>
           </div>
-          <div class="pc-modal-title">
-            <h2 id="pc-modal-heading">Сайдлоуд с ПК</h2>
-            <p>Мастер установки · 3 шага · Нужен USB-кабель</p>
+          <div class="pc-modal-title" style="margin-left: 16px;">
+            <h2 id="pc-modal-heading" style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px; margin: 0;" data-i="pc-modal-title">Сайдлоуд через iLoader</h2>
+            <p style="font-size: 13px; color: var(--muted); margin: 4px 0 0 0;" data-i="pc-modal-subtitle">Официальный установщик для Windows, macOS и Linux</p>
           </div>
         </div>
-        <!-- Прогресс-шаги -->
-        <div class="pc-steps-bar">
-          <div class="pc-step-indicator active" id="psi-1">
-            <div class="step-dot">1</div>
-            <span class="step-dot-label">Apple ID</span>
-          </div>
-          <div class="pc-step-indicator" id="psi-2">
-            <div class="step-dot">2</div>
-            <span class="step-dot-label">Устройство</span>
-          </div>
-          <div class="pc-step-indicator" id="psi-3">
-            <div class="step-dot">3</div>
-            <span class="step-dot-label">Метод</span>
-          </div>
+
+        <div style="font-size: 14px; line-height: 1.6; color: var(--text); margin-bottom: 20px;">
+          <p style="margin: 0 0 12px 0;" data-i="iloader-desc-1">
+            Установите <strong>LiveContainer</strong> или <strong>SideStore</strong> на свое устройство в один клик с помощью утилиты <strong>iLoader</strong>.
+          </p>
+          <p style="color: var(--muted); font-size: 13px; margin: 0;" data-i="iloader-desc-2">
+            Больше не нужно вводить Apple ID на сторонних сайтах. iLoader работает локально на вашем компьютере, поэтому ваши учетные данные защищены и отправляются напрямую в Apple для создания бесплатной подписи разработчика.
+          </p>
         </div>
-        <!-- Шаг 1 -->
-        <div class="pc-step-content active" id="pc-step-1">
-          <div class="pc-dev-overlay"><strong>Пока в разработке</strong><span>Установка с ПК скоро будет доступна.</span></div>
-          <div class="form-group-new">
-            <label>Apple ID (e-mail)</label>
-            <div class="apple-id-wrap">
-              <svg class="apple-id-icon" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.68 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <input type="email" class="inp-text-new" id="pc-apple-id" placeholder="example@icloud.com" autocomplete="email" />
-            </div>
-          </div>
-          <div class="form-group-new">
-            <label>Пароль Apple ID</label>
-            <input type="password" class="inp-text-new" id="pc-apple-pwd" placeholder="Пароль учётной записи" autocomplete="current-password"/>
-          </div>
-          <div class="info-block">
-            🔒 <strong>Данные не передаются на сервер.</strong> Apple ID используется локально для генерации сертификата и профиля прямо в твоём браузере.
-          </div>
-          <div class="or-divider">или войди через AltStore Credentials</div>
-          <div class="form-group-new">
-            <label>Anisette-сервер</label>
-            <select class="sel" id="pc-anisette-server">
-              <option value="https://ani.sidestore.io">ani.sidestore.io (по умолчанию)</option>
-              <option value="https://anisette.io">anisette.io</option>
-              <option value="https://ani.altstore.io">ani.altstore.io</option>
-              <option value="custom">Свой сервер...</option>
-            </select>
-          </div>
-          <div class="form-group-new" id="custom-anisette-wrap" style="display:none;">
-            <label>URL своего Anisette-сервера</label>
-            <input type="url" class="inp-text-new" id="pc-anisette-custom" placeholder="https://your-anisette.example.com" />
-          </div>
-          <div class="info-block">
-            ℹ️ Anisette-сервер генерирует одноразовые токены Apple. Если этого недостаточно, попробуйте другой сервер.
-          </div>
+
+        <!-- Download Buttons -->
+        <h4 style="font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; margin: 0 0 12px 0;" data-i="iloader-download-title">Скачать iLoader:</h4>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px;">
+          <a href="https://iloader.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13.5px; height: 42px; text-decoration: none;">
+            <span>🖥️ Windows / macOS</span>
+          </a>
+          <a href="https://github.com/nab138/iloader/releases" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13.5px; height: 42px; border: 1px solid var(--border); text-decoration: none;">
+            <span>📦 GitHub Releases</span>
+          </a>
         </div>
-        <!-- Шаг 2 -->
-        <div class="pc-step-content" id="pc-step-2">
-          <div class="info-block">
-            📱 Подключите устройство к компьютеру через USB и разблокируйте экран. Нажмите <strong>«Доверять»</strong> при запросе.
-          </div>
-          <div class="connection-status" id="device-status">
-            <span class="ping-dot checking" id="device-ping-dot"></span>
-            <div class="connection-status-text">
-              <strong id="device-status-title">Поиск устройства...</strong>
-              <span id="device-status-sub">Подключите iPhone или iPad по USB</span>
-            </div>
-            <button class="btn btn-ghost" style="padding:8px 14px; font-size:13px;" onclick="simulateDeviceSearch()" id="btn-refresh-device">
-              Обновить
-            </button>
-          </div>
-          <div class="form-group-new" id="device-list-wrap" style="display:none;">
-            <label>Выбрать устройство</label>
-            <select class="sel" id="pc-device-select"></select>
-          </div>
-          <div class="info-block" style="display:none;" id="device-trust-hint">
-            ⚠️ Разблокируйте экран iPhone и нажмите <strong>«Доверять этому компьютеру»</strong>.
-          </div>
-        </div>
-        <!-- Шаг 3 -->
-        <div class="pc-step-content" id="pc-step-3">
-          <p class="section-label">Выберите метод установки</p>
-          <div class="install-method-grid">
-            <div class="install-method-card" id="imc-livecontainer" onclick="selectInstallMethod('livecontainer')">
-              <div class="imc-radio"></div>
-              <div class="imc-icon"><img src="icons/lc-icon.png" alt="LiveContainer"></div>
-              <div class="imc-body">
-                <h4>LiveContainer</h4>
-                <p>Запуск IPA-файлов внутри контейнера без ограничений по количеству установленных приложений.</p>
-              </div>
-              <span class="imc-badge badge-recommended">Рекомен.</span>
-            </div>
-            <div class="install-method-card" id="imc-sidestore" onclick="selectInstallMethod('sidestore')">
-              <div class="imc-radio"></div>
-              <div class="imc-icon"><img src="icons/ss-icon.png" alt="Sidestore"></div>
-              <div class="imc-body">
-                <h4>Sidestore</h4>
-                <p>Магазин приложений с автоматическим перезапуском сертификата каждые 7 дней.</p>
-              </div>
-              <span class="imc-badge badge-advanced">Продвинутый</span>
-            </div>
-            <div class="install-method-card" id="imc-combo" onclick="selectInstallMethod('combo')">
-              <div class="imc-radio"></div>
-              <div class="imc-icon">⚡</div>
-              <div class="imc-body">
-                <h4>LiveContainer + Sidestore</h4>
-                <p>Полный пакет: LC, Sidestore и репозиторий со всеми подписанными приложениями.</p>
-              </div>
-              <span class="imc-badge badge-combo">Всё в одном</span>
-            </div>
-          </div>
-          <div class="install-log-wrap" id="pc-install-log-wrap">
-            <div class="install-log" id="pc-install-log"></div>
-            <div class="progress-bar-container">
-              <div class="progress-bar" id="pc-progress-bar"></div>
-            </div>
-          </div>
-          <div class="success-state" id="pc-success">
-            <div class="success-emoji">🎉</div>
-            <h3>Успешно установлено!</h3>
-            <p>Приложение установлено на ваше устройство. Разблокируйте экран устройства и найдите его на рабочем столе.<br><br>
-            Если при открытии возникает ошибка «Ненадёжный корпоративный разработчик», перейдите в <strong>Настройки → Основные → VPN и управление устройством</strong> и нажмите «Доверять».</p>
-            <button class="btn btn-primary" style="margin-top:8px;" onclick="resetPcModal()">Установить еще</button>
-            <button class="btn btn-ghost" onclick="closePcSideloadModal()">Готово</button>
-          </div>
-        </div>
-        <!-- Навигация -->
-        <div class="pc-modal-nav" id="pc-modal-nav">
-          <button class="btn btn-ghost" id="btn-pc-back" onclick="pcStepBack()" style="display:none;">← Назад</button>
-          <button class="btn btn-primary btn-full" id="btn-pc-next" onclick="pcStepNext()">Далее →</button>
+
+        <!-- Simple steps -->
+        <div style="background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 20px;">
+          <h4 style="font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; margin: 0 0 12px 0;" data-i="iloader-steps-title">Простая инструкция:</h4>
+          <ol style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--muted); display: flex; flex-direction: column; gap: 8px;">
+            <li><strong style="color: var(--text);" data-i="iloader-step-1-title">Запуск:</strong> <span data-i="iloader-step-1-desc">Скачайте и запустите программу iLoader на своем ПК или Mac.</span></li>
+            <li><strong style="color: var(--text);" data-i="iloader-step-2-title">Подключение:</strong> <span data-i="iloader-step-2-desc">Подключите iPhone или iPad по кабелю USB и разблокируйте экран.</span></li>
+            <li><strong style="color: var(--text);" data-i="iloader-step-3-title">Установка:</strong> <span data-i="iloader-step-3-desc">Выберите в приложении LiveContainer или SideStore и нажмите кнопку Install.</span></li>
+          </ol>
         </div>
       </div>
     </div>

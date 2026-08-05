@@ -90,6 +90,28 @@ const i18n = {
     "title-404": "Страница не найдена!",
     "desc-404": "Ой! Запрашиваемый адрес не существует, но мы перенесли вас на главную страницу.",
     "btn-404-ok": "Понятно",
+    "sec-pc-label": "Сайдлоуд с ПК",
+    "pc-title": "Сайдлоуд с ПК",
+    "pc-desc": "Установите LiveContainer или Sidestore через компьютер без Enterprise-сертификатов",
+    "pc-mobile-wall-title": "Только с компьютера",
+    "pc-mobile-wall-desc": "Эта функция работает только на десктопной версии сайта. Зайдите с ПК или Mac.",
+    "pc-lc-desc": "Запуск IPA без лимита",
+    "pc-ss-desc": "Магазин с автообновлением",
+    "pc-combo-title": "Всё в одном",
+    "pc-combo-desc": "LC + Sidestore + репозиторий",
+    "btn-instructions": "Инструкция",
+    "pc-modal-title": "Сайдлоуд через iLoader",
+    "pc-modal-subtitle": "Официальный установщик для Windows, macOS и Linux",
+    "iloader-desc-1": "Установите <strong>LiveContainer</strong> или <strong>SideStore</strong> на свое устройство в один клик с помощью утилиты <strong>iLoader</strong>.",
+    "iloader-desc-2": "Больше не нужно вводить Apple ID на сторонних сайтах. iLoader работает локально на вашем компьютере, поэтому ваши учетные данные защищены и отправляются напрямую в Apple для создания бесплатной подписи разработчика.",
+    "iloader-download-title": "Скачать iLoader:",
+    "iloader-steps-title": "Простая инструкция:",
+    "iloader-step-1-title": "Запуск:",
+    "iloader-step-1-desc": "Скачайте и запустите программу iLoader на своем ПК или Mac.",
+    "iloader-step-2-title": "Подключение:",
+    "iloader-step-2-desc": "Подключите iPhone или iPad по кабелю USB и разблокируйте экран.",
+    "iloader-step-3-title": "Установка:",
+    "iloader-step-3-desc": "Выберите в приложении LiveContainer или SideStore и нажмите кнопку Install.",
   },
   en: {
     "hero-title-1": "iOS",
@@ -179,6 +201,28 @@ const i18n = {
     "title-404": "Page not found!",
     "desc-404": "Oops! The requested address doesn't exist, but we moved you to the home page.",
     "btn-404-ok": "Got it",
+    "sec-pc-label": "PC Sideload",
+    "pc-title": "PC Sideload",
+    "pc-desc": "Install LiveContainer or SideStore via computer without Enterprise certificates",
+    "pc-mobile-wall-title": "Desktop Only",
+    "pc-mobile-wall-desc": "This feature is only available on the desktop version of the site. Access it from a PC or Mac.",
+    "pc-lc-desc": "Run IPAs without limits",
+    "pc-ss-desc": "App store with auto-refresh",
+    "pc-combo-title": "All-in-One",
+    "pc-combo-desc": "LC + SideStore + Repository",
+    "btn-instructions": "Instructions",
+    "pc-modal-title": "Sideload via iLoader",
+    "pc-modal-subtitle": "Official installer for Windows, macOS, and Linux",
+    "iloader-desc-1": "Install <strong>LiveContainer</strong> or <strong>SideStore</strong> to your device in one click using the <strong>iLoader</strong> utility.",
+    "iloader-desc-2": "No need to enter your Apple ID on third-party websites. iLoader runs locally on your computer, so your credentials remain secure and are sent directly to Apple to generate a free developer signature.",
+    "iloader-download-title": "Download iLoader:",
+    "iloader-steps-title": "Quick Guide:",
+    "iloader-step-1-title": "Launch:",
+    "iloader-step-1-desc": "Download and run the iLoader application on your PC or Mac.",
+    "iloader-step-2-title": "Connect:",
+    "iloader-step-2-desc": "Connect your iPhone or iPad via USB cable and unlock the screen.",
+    "iloader-step-3-title": "Install:",
+    "iloader-step-3-desc": "Select LiveContainer or SideStore in the application and click Install.",
   }
 };
 
@@ -188,10 +232,17 @@ function t(key) { return (i18n[currentLang] && i18n[currentLang][key]) || key; }
 
 function applyLang() {
   document.querySelectorAll('[data-i]').forEach(el => {
-    if (el.children.length > 0) return;
     const key = el.dataset.i;
     const val = t(key);
-    if (val) el.textContent = val;
+    if (val) {
+      if (val.includes('<') && val.includes('>')) {
+        el.innerHTML = val;
+      } else {
+        if (el.children.length === 0) {
+          el.textContent = val;
+        }
+      }
+    }
   });
 }
 
@@ -678,12 +729,7 @@ function resetNSignForm() {
 
 document.getElementById('btn-nsign-reset').addEventListener('click', resetNSignForm);
 
-/* ─── PC Sideload Wizard JS ─── */
-let currentStep = 1;
-const TOTAL_STEPS = 3;
-let selectedMethod = null;
-let deviceFound = false;
-
+/* ─── PC Sideload JS (iLoader Modal) ─── */
 function openPcSideloadModal(preselect) {
   if (preselect === 'combo') {
     document.getElementById('nsign-promo-modal').classList.add('active');
@@ -693,13 +739,6 @@ function openPcSideloadModal(preselect) {
   const modal = document.getElementById('pc-sideload-modal');
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
-  if (preselect && ['livecontainer','sidestore'].includes(preselect)) {
-    if (currentStep === 3) {
-      selectInstallMethod(preselect);
-    } else {
-      selectedMethod = preselect;
-    }
-  }
 }
 
 function closePcSideloadModal() {
@@ -711,214 +750,6 @@ function closePcSideloadModal() {
 document.getElementById('pc-sideload-modal').addEventListener('click', function(e) {
   if (e.target === this) closePcSideloadModal();
 });
-
-function resetPcModal() {
-  currentStep = 1;
-  selectedMethod = null;
-  deviceFound = false;
-  document.getElementById('pc-apple-id').value = '';
-  document.getElementById('pc-apple-pwd').value = '';
-  document.getElementById('pc-success').classList.remove('active');
-  document.getElementById('pc-install-log-wrap').classList.remove('active');
-  document.getElementById('pc-install-log').innerHTML = '';
-  document.getElementById('pc-progress-bar').style.width = '0%';
-  document.querySelectorAll('.install-method-card').forEach(c => c.classList.remove('selected'));
-  resetDeviceStatus();
-  updateStepUI();
-}
-
-function updateStepUI() {
-  document.querySelectorAll('.pc-step-content').forEach((el, i) => {
-    el.classList.toggle('active', i + 1 === currentStep);
-  });
-  document.querySelectorAll('.pc-step-indicator').forEach((el, i) => {
-    el.classList.remove('active', 'done');
-    if (i + 1 === currentStep) el.classList.add('active');
-    if (i + 1 < currentStep) el.classList.add('done', 'active');
-  });
-  const backBtn = document.getElementById('btn-pc-back');
-  backBtn.style.display = currentStep > 1 ? 'inline-flex' : 'none';
-  const nextBtn = document.getElementById('btn-pc-next');
-  if (currentStep === 1) {
-    nextBtn.innerHTML = 'Пока в разработке';
-    nextBtn.disabled = true;
-  } else if (currentStep === TOTAL_STEPS) {
-    nextBtn.innerHTML = '⚡ Установить';
-    nextBtn.disabled = false;
-  } else {
-    nextBtn.innerHTML = 'Далее →';
-    nextBtn.disabled = false;
-  }
-  const navEl = document.getElementById('pc-modal-nav');
-  const successVisible = document.getElementById('pc-success').classList.contains('active');
-  const logVisible = document.getElementById('pc-install-log-wrap').classList.contains('active');
-  navEl.style.display = (successVisible || logVisible) ? 'none' : 'flex';
-}
-
-function pcStepNext() {
-  if (currentStep === 1) {
-    if (!validateStep1()) return;
-  }
-  if (currentStep === 2) {
-    if (!validateStep2()) return;
-  }
-  if (currentStep === TOTAL_STEPS) {
-    startInstall();
-    return;
-  }
-  currentStep++;
-  updateStepUI();
-  if (currentStep === 2) simulateDeviceSearch();
-  if (currentStep === 3 && selectedMethod) {
-    selectInstallMethod(selectedMethod);
-  }
-}
-
-function pcStepBack() {
-  if (currentStep > 1) { currentStep--; updateStepUI(); }
-}
-
-function validateStep1() {
-  const appleId = document.getElementById('pc-apple-id').value.trim();
-  const pwd = document.getElementById('pc-apple-pwd').value.trim();
-  if (!appleId || !appleId.includes('@')) {
-    highlightField('pc-apple-id', 'Введи корректный Apple ID');
-    return false;
-  }
-  if (!pwd) {
-    highlightField('pc-apple-pwd', 'Введи пароль');
-    return false;
-  }
-  return true;
-}
-
-function validateStep2() {
-  if (!deviceFound) {
-    const hint = document.getElementById('device-trust-hint');
-    hint.style.display = 'block';
-    return false;
-  }
-  return true;
-}
-
-function highlightField(id, msg) {
-  const el = document.getElementById(id);
-  el.style.borderColor = 'var(--err)';
-  el.focus();
-  setTimeout(() => el.style.borderColor = '', 2000);
-}
-
-document.getElementById('pc-anisette-server').addEventListener('change', function() {
-  document.getElementById('custom-anisette-wrap').style.display =
-    this.value === 'custom' ? 'flex' : 'none';
-});
-
-function resetDeviceStatus() {
-  deviceFound = false;
-  const dot = document.getElementById('device-ping-dot');
-  const title = document.getElementById('device-status-title');
-  const sub = document.getElementById('device-status-sub');
-  const listWrap = document.getElementById('device-list-wrap');
-  const hint = document.getElementById('device-trust-hint');
-  dot.className = 'ping-dot checking';
-  title.textContent = 'Нет устройства';
-  sub.textContent = 'Подключи iPhone или iPad по USB';
-  listWrap.style.display = 'none';
-  hint.style.display = 'none';
-}
-
-function simulateDeviceSearch() {
-  const dot = document.getElementById('device-ping-dot');
-  const title = document.getElementById('device-status-title');
-  const sub = document.getElementById('device-status-sub');
-  const listWrap = document.getElementById('device-list-wrap');
-  const refreshBtn = document.getElementById('btn-refresh-device');
-  const select = document.getElementById('pc-device-select');
-
-  dot.className = 'ping-dot checking';
-  title.textContent = 'Поиск устройства...';
-  sub.textContent = 'Обнаружение подключённых iOS-устройств';
-  refreshBtn.disabled = true;
-  listWrap.style.display = 'none';
-
-  setTimeout(() => {
-    deviceFound = true;
-    dot.className = 'ping-dot ok';
-    title.textContent = 'iPhone обнаружен';
-    sub.textContent = 'iOS 17.5 · Модель A2896';
-    refreshBtn.disabled = false;
-    listWrap.style.display = 'flex';
-    select.innerHTML = `
-      <option value="iphone-demo">iPhone 15 Pro (iOS 17.5)</option>
-      <option value="ipad-demo">iPad Air M2 (iOS 17.4)</option>
-    `;
-  }, 1800);
-}
-
-function selectInstallMethod(method) {
-  if (method === 'combo') {
-    closePcSideloadModal();
-    document.getElementById('nsign-promo-modal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-    return;
-  }
-  selectedMethod = method;
-  document.querySelectorAll('.install-method-card').forEach(el => el.classList.remove('selected'));
-  const map = {
-    livecontainer: 'imc-livecontainer',
-    sidestore:     'imc-sidestore'
-  };
-  const card = document.getElementById(map[method]);
-  if (card) card.classList.add('selected');
-}
-
-function startInstall() {
-  if (!selectedMethod) {
-    alert('Выбери метод установки');
-    return;
-  }
-  const logWrap = document.getElementById('pc-install-log-wrap');
-  const log = document.getElementById('pc-install-log');
-  const bar = document.getElementById('pc-progress-bar');
-  const nav = document.getElementById('pc-modal-nav');
-  logWrap.classList.add('active');
-  nav.style.display = 'none';
-  log.innerHTML = '';
-  bar.style.width = '0%';
-  const methodNames = {
-    livecontainer: 'LiveContainer',
-    sidestore: 'Sidestore',
-    combo: 'LiveContainer + Sidestore + Репозиторий'
-  };
-  const appleId = document.getElementById('pc-apple-id').value.trim();
-  const aniServer = document.getElementById('pc-anisette-server').value;
-  const steps = [
-    { text: `[*] Инициализация установщика...`, t: 400,   p: 5 },
-    { text: `[+] Подключение к Anisette: ${aniServer}`, t: 900,   p: 12 },
-    { text: `[+] Anisette токен получен`, t: 1500,  p: 20 },
-    { text: `[+] Авторизация Apple ID: ${appleId}...`, t: 2100,  p: 28 },
-    { text: `[+] 2FA / сессия открыта`, t: 2700,  p: 35 },
-    { text: `[+] Генерация сертификата разработчика...`, t: 3300,  p: 45 },
-    { text: `[+] Provisioning Profile создан`, t: 3900,  p: 55 },
-    { text: `[+] Загрузка IPA: ${methodNames[selectedMethod]}`, t: 4500,  p: 65 },
-    { text: `[+] Подпись пакета...`, t: 5100,  p: 75 },
-    { text: `[+] Установка на устройство...`, t: 5700,  p: 88 },
-    { text: `[✓] Установка завершена! Проверь рабочий стол.`, t: 6300,  p: 100 },
-  ];
-  steps.forEach(s => {
-    setTimeout(() => {
-      const line = document.createElement('div');
-      line.textContent = s.text;
-      log.appendChild(line);
-      log.scrollTop = log.scrollHeight;
-      bar.style.width = `${s.p}%`;
-    }, s.t);
-  });
-  setTimeout(() => {
-    logWrap.classList.remove('active');
-    document.getElementById('pc-success').classList.add('active');
-  }, 7000);
-}
 
 /* ════════════════════════════════════
    STARFIELD
