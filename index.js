@@ -218,7 +218,7 @@ const i18n = {
     "pc-modal-title": "Sideload via iLoader",
     "pc-modal-subtitle": "Official installer for Windows, macOS, and Linux",
     "iloader-desc-1": "Install <strong>LiveContainer</strong> or <strong>SideStore</strong> to your device in one click using the <strong>iLoader</strong> utility.",
-    "iloader-desc-2": "No need to enter your Apple ID on third-party websites. iLoader runs locally on your computer, so your credentials remain secure and are sent directly to Apple to generate a free developer signature.",
+    "iloader-desc-2": "Never enter your Apple ID or password on this website. Download iLoader only from the official website or GitHub, and enter credentials only inside iLoader.",
     "iloader-download-title": "Download iLoader:",
     "iloader-steps-title": "Quick Guide:",
     "iloader-step-1-title": "Launch:",
