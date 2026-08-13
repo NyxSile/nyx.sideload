@@ -6,4 +6,4 @@ Disallow: /config.env
 Disallow: /sign_apps.py
 Disallow: /build_manifest.py
 
-Sitemap: https://ota.nyxsile.lol/sitemap.xml
+Sitemap: https://nyx.sideload.space/sitemap.xml

@@ -520,7 +520,7 @@ document.getElementById('btn-modal-install').addEventListener('click', () => {
   const cert = document.getElementById('modal-cert-select').value;
   if (!cert) { showToast(t('toast-cert-empty')); return; }
   
-  const finalBaseUrl = appMetadata.base_url || 'https://sideload.nyxsile.lol';
+  const finalBaseUrl = appMetadata.base_url || 'https://nyx.sideload.space';
   const ipaKey = `${activeTool}-${cert}`;
   let ipaPath = `ipas/${activeTool}/${activeTool}-${cert}.ipa`; // fallback
   if (appMetadata[ipaKey] && appMetadata[ipaKey].ipa) {
@@ -678,7 +678,7 @@ document.getElementById('btn-nsign-submit').addEventListener('click', () => {
 // Install custom signed app from N.Sign
 document.getElementById('btn-nsign-install').addEventListener('click', () => {
   showToast(t('toast-installing'));
-  const finalBaseUrl = appMetadata.base_url || 'https://sideload.nyxsile.lol';
+  const finalBaseUrl = appMetadata.base_url || 'https://nyx.sideload.space';
   setTimeout(() => {
     if (isIOS) {
       const manifest = `${finalBaseUrl}/plists/manifest-ksign-jiangsu-simcere.plist?v=${Date.now()}`;
@@ -691,7 +691,7 @@ document.getElementById('btn-nsign-install').addEventListener('click', () => {
 
 document.getElementById('btn-nsign-download').addEventListener('click', () => {
   showToast(t('toast-installing'));
-  const finalBaseUrl = appMetadata.base_url || 'https://sideload.nyxsile.lol';
+  const finalBaseUrl = appMetadata.base_url || 'https://nyx.sideload.space';
   setTimeout(() => {
     window.location.href = `${finalBaseUrl}/ipas/ksign/ksign-jiangsu-simcere.ipa`;
   }, 1000);
