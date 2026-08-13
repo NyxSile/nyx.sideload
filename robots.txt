@@ -1,0 +1,9 @@
+﻿User-agent: *
+Allow: /
+Disallow: /certificates/
+Disallow: /apple-codesign-extracted/
+Disallow: /config.env
+Disallow: /sign_apps.py
+Disallow: /build_manifest.py
+
+Sitemap: https://ota.nyxsile.lol/sitemap.xml
