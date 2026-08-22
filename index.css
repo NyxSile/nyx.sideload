@@ -158,6 +158,28 @@
     .ping-dot.checking { background: var(--warn); animation: pulse-warn 1s infinite; }
     @keyframes pulse-warn { 0%,100% { opacity:1; } 50% { opacity:.3; } }
 
+    .new-cert-banner {
+      background: rgba(74, 222, 128, 0.12);
+      border-bottom: 1px solid rgba(74, 222, 128, 0.25);
+      color: var(--ok);
+      text-align: center;
+      padding: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: -12px -20px 10px -20px;
+      line-height: 1.4;
+    }
+    .new-cert-banner .ping-dot {
+      background: var(--ok);
+      box-shadow: 0 0 8px var(--ok);
+      width: 6px;
+      height: 6px;
+    }
+
     .dns-actions { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
 
     /* Tools */
@@ -185,6 +207,7 @@
     .tool-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
     .tool-name { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 16px; }
     .tool-tag  { font-size: 11px; color: var(--muted); background: var(--border); padding: 2px 8px; border-radius: 4px; }
+    .tool-tag--new { background: var(--accent-lo); color: var(--accent); }
     .tool-controls { display: flex; gap: 8px; flex-wrap: wrap; }
     .sel {
       flex: 1; min-width: 140px;

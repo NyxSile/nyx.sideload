@@ -46,10 +46,10 @@
      GLOBAL HEADER (always visible)
 ════════════════════════════════════ -->
 <header id="header">
-  <!-- REVOKED BANNER -->
-  <div class="revoked-banner" style="background: rgba(255, 107, 107, 0.12); border-bottom: 1px solid rgba(255, 107, 107, 0.25); color: #FF6B6B; text-align: center; padding: 10px; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; margin: -12px -20px 10px -20px; line-height: 1.4;">
-    <span class="ping-dot" style="background: #FF6B6B; box-shadow: 0 0 8px #FF6B6B; width: 6px; height: 6px; border-radius: 50%; display: inline-block;"></span>
-    <span data-i="status-revoked">Все общие сертификаты отозваны Apple! Установите DNS-профиль или используйте личную подпись в N.Sign.</span>
+  <!-- CERTIFICATE STATUS BANNER -->
+  <div class="new-cert-banner">
+    <span class="ping-dot"></span>
+    <span data-i="status-new-cert">Новый сертификат импортирован!</span>
   </div>
   <div class="header-inner">
     <span class="header-logo display">nyx<span>·</span>sideload</span>
@@ -153,7 +153,7 @@
           <div class="tool-info-new">
             <span class="tool-title-new">N.Sign</span>
             <div class="tool-meta-new">
-              <span class="tool-tag" style="background:rgba(236, 72, 153, 0.1); color:#EC4899;" data-i="tag-new">Новый</span>
+              <span class="tool-tag tool-tag--new" data-i="tag-new">Новый</span>
               <span>v1.0.0</span>
             </div>
           </div>
