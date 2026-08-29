@@ -304,27 +304,59 @@
         stars = Array.from({ length: COUNT }, mkStar);
       }
 
-      function draw() {
+      let raf;
+      let isWindowFocused = !document.hidden;
+
+      function draw(shouldAnimate = true) {
         ctx.fillStyle = '#06060c';
         ctx.fillRect(0, 0, W, H);
 
+        const animateNow = shouldAnimate && isWindowFocused;
+
         for (const s of stars) {
-          s.x += s.speedX;
-          s.y += s.speedY;
-          if (s.x < 0) s.x = W;
-          if (s.x > W) s.x = 0;
-          if (s.y < 0) s.y = H;
-          if (s.y > H) s.y = 0;
+          if (animateNow) {
+            s.x += s.speedX;
+            s.y += s.speedY;
+            if (s.x < 0) s.x = W;
+            if (s.x > W) s.x = 0;
+            if (s.y < 0) s.y = H;
+            if (s.y > H) s.y = 0;
+          }
 
           ctx.fillStyle = s.color;
           ctx.fillRect(s.x, s.y, s.r * 2, s.r * 2);
         }
-        requestAnimationFrame(draw);
+
+        if (animateNow) {
+          raf = requestAnimationFrame(() => draw(true));
+        }
       }
+
+      function startAnimation() {
+        isWindowFocused = true;
+        cancelAnimationFrame(raf);
+        draw(true);
+      }
+
+      function stopAnimation() {
+        isWindowFocused = false;
+        cancelAnimationFrame(raf);
+        draw(false);
+      }
+
+      window.addEventListener('focus', startAnimation);
+      window.addEventListener('blur', stopAnimation);
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          stopAnimation();
+        } else {
+          startAnimation();
+        }
+      });
 
       window.addEventListener('resize', resize);
       init();
-      requestAnimationFrame(draw);
+      draw(true);
     })();
   </script>
 

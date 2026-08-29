@@ -752,10 +752,14 @@ document.getElementById('pc-sideload-modal').addEventListener('click', function(
   }
 
   let raf;
+  let isWindowFocused = !document.hidden;
+
   function draw(shouldAnimate = true) {
     ctx.clearRect(0, 0, W, H);
+    const animateNow = shouldAnimate && isWindowFocused && !isStatic;
+
     for (const s of stars) {
-      if (shouldAnimate) {
+      if (animateNow) {
         s.phase += s.speed;
         s.x += s.vx;
         s.y += s.vy;
@@ -771,10 +775,32 @@ document.getElementById('pc-sideload-modal').addEventListener('click', function(
     }
     ctx.globalAlpha = 1.0;
 
-    if (shouldAnimate) {
+    if (animateNow) {
       raf = requestAnimationFrame(() => draw(true));
     }
   }
+
+  function startAnimation() {
+    isWindowFocused = true;
+    cancelAnimationFrame(raf);
+    draw(true);
+  }
+
+  function stopAnimation() {
+    isWindowFocused = false;
+    cancelAnimationFrame(raf);
+    draw(false); // Draw current static frame
+  }
+
+  window.addEventListener('focus', startAnimation);
+  window.addEventListener('blur', stopAnimation);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      stopAnimation();
+    } else {
+      startAnimation();
+    }
+  });
 
   window.addEventListener('resize', () => {
     if (window.innerWidth === lastW && window.innerHeight === lastH) return;
@@ -785,11 +811,11 @@ document.getElementById('pc-sideload-modal').addEventListener('click', function(
       lastH = window.innerHeight;
       resize();
       stars = Array.from({ length: COUNT }, mkStar);
-      if (isStatic) draw(false);
+      draw(isWindowFocused && !isStatic);
     } else {
       lastH = window.innerHeight;
       resize();
-      if (isStatic) draw(false);
+      draw(isWindowFocused && !isStatic);
     }
   });
 
