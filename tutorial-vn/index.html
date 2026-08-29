@@ -237,6 +237,67 @@
     @keyframes pulse {
       0%, 100% { opacity: 0.3; transform: translateY(0); }
       50% { opacity: 1; transform: translateY(3px); }
+    .vn-top-bar {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .vn-top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-top-vn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      background: rgba(18, 18, 29, 0.7);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      backdrop-filter: blur(12px);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-top-vn:hover {
+      border-color: var(--accent);
+      background: var(--accent-lo);
+      transform: translateY(-1px);
+    }
+
+    .lang-toggle-vn {
+      display: flex;
+      background: rgba(18, 18, 29, 0.7);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+    }
+    .lang-btn-vn {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      padding: 7px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .lang-btn-vn.active {
+      background: var(--accent);
+      color: white;
     }
   </style>
 </head>
@@ -245,12 +306,27 @@
   <canvas id="stars"></canvas>
 
   <div class="vn-container">
-    <a href="../" class="btn-back-vn">
-      <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round"/>
-      </svg>
-      На главную
-    </a>
+    <div class="vn-top-bar">
+      <a href="../" class="btn-top-vn" id="btn-back">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round"/>
+        </svg>
+        <span id="txt-back">На главную</span>
+      </a>
+
+      <div class="vn-top-actions">
+        <button class="btn-top-vn" id="btn-sound" title="Звук" aria-label="Toggle sound">
+          <span id="sound-icon">🔊</span>
+        </button>
+        <button class="btn-top-vn" id="btn-menu" title="Выбор темы">
+          <span id="txt-topics">Темы</span>
+        </button>
+        <div class="lang-toggle-vn">
+          <button class="lang-btn-vn active" id="vn-lang-ru" data-lang="ru">RU</button>
+          <button class="lang-btn-vn" id="vn-lang-en" data-lang="en">EN</button>
+        </div>
+      </div>
+    </div>
 
 
     <div class="sprite-container">
@@ -362,97 +438,340 @@
 
 
   <script>
-    const story = {
-      start: {
-        text: "*Смотрит назад, а потом оборачивается*\n— А, ты уже здесь. Я Бриз, наверное тебя сюда направили чтобы я тебе помогла. Окей.",
-        choices: [
-          { text: "Начать туториал", next: "dns_intro" }
-        ]
-      },
-      dns_intro: {
-        text: "— Начнём с DNS профиля. Он обязателен.",
-        choices: [
-          { text: "Я готов(-а) к установке", next: "dns_install" },
-          { text: "Что это такое?", next: "dns_explain" }
-        ]
-      },
-      dns_explain: {
-        text: "— DNS профиль блокирует *oscp.apple.com* и прочие домены проверки сертификатов, чтобы ваши подписанные приложения не слетели через пару часов после установки. Любые другие не связанные с ними домены будут пускаться по Cloudflare, так что всё безопасно. Если тебе хватает опыта, открой на компьютере и проверь содержимое.",
-        choices: [
-          { text: "Я готов(-а) к установке", next: "dns_install" }
-        ]
-      },
-      dns_install: {
-        text: "— Отлично, я отправила тебе запрос на установку. *установка начнётся через 5 секунд после завершения фразы.*",
-        action: () => {
-          setTimeout(() => {
-            window.location.href = '../dns.mobileconfig';
-          }, 5000);
+    let currentVnLang = localStorage.getItem('nyx-lang') || 'ru';
+    let isSoundEnabled = localStorage.getItem('nyx-vn-sound') !== 'false';
+
+    // Sound generator using Web Audio API (crisp VN typewriter click)
+    let audioCtx = null;
+    function playBeep() {
+      if (!isSoundEnabled) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(600 + Math.random() * 200, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.015, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.04);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.04);
+      } catch (e) {}
+    }
+
+    const storyData = {
+      ru: {
+        start: {
+          text: "*Смотрит назад, а потом оборачивается*\n— А, ты уже здесь! Я Бриз. Рада видеть тебя в Nyx Sideload! Чем могу помочь?",
+          choices: [
+            { text: "🛡️ Установить DNS-профиль (Анти-ревок)", next: "dns_intro" },
+            { text: "📲 Как установить ESign / KSign?", next: "esign_intro" },
+            { text: "🔑 Сертификаты: как импортировать .p12?", next: "cert_import" },
+            { text: "💻 Сайдлоуд с ПК (LiveContainer / SideStore)", next: "iloader_intro" },
+            { text: "❓ Ошибки и проблемы", next: "troubleshooting" }
+          ]
         },
-        choices: [
-          { text: "У меня всё установилось", next: "dns_done" },
-          { text: "У меня почему-то скачался .mobileconfig", next: "dns_safari" }
-        ]
+        topics_menu: {
+          text: "— Выбери тему, о которой хочешь узнать подробнее:",
+          choices: [
+            { text: "🛡️ DNS-профиль (Защита от отзыва)", next: "dns_intro" },
+            { text: "📲 Установка ESign / KSign", next: "esign_intro" },
+            { text: "🔑 Импорт сертификата HSBC Bank plc", next: "cert_import" },
+            { text: "💻 Сайдлоуд с ПК (LiveContainer & SideStore)", next: "iloader_intro" },
+            { text: "❓ Ошибки и решение проблем", next: "troubleshooting" }
+          ]
+        },
+        // DNS
+        dns_intro: {
+          text: "— Начнём с DNS профиля. Он критически важен, чтобы приложения не перестали открываться через пару дней.",
+          choices: [
+            { text: "Я готов(-а) к установке", next: "dns_install" },
+            { text: "Как именно он работает?", next: "dns_explain" },
+            { text: "В главное меню", next: "topics_menu" }
+          ]
+        },
+        dns_explain: {
+          text: "— DNS-профиль блокирует домены проверки сертификатов Apple (*ocsp.apple.com* и др.). Твои приложения не смогут получить сигнал об отзыве. Все остальные сайты идут без изменений через Cloudflare.",
+          choices: [
+            { text: "Отлично, устанавливаем!", next: "dns_install" },
+            { text: "Назад", next: "dns_intro" }
+          ]
+        },
+        dns_install: {
+          text: "— Отправила запрос на загрузку профиля. Нажми «Разрешить» во всплывающем окне Safari.",
+          action: () => {
+            setTimeout(() => {
+              window.location.href = '../dns.mobileconfig';
+            }, 1000);
+          },
+          choices: [
+            { text: "Профиль загружен, что дальше?", next: "dns_activate" },
+            { text: "Скачался просто файл .mobileconfig", next: "dns_safari" }
+          ]
+        },
+        dns_safari: {
+          text: "*Вздыхает*\n— Похоже, ты открыл(-а) сайт во встроенном браузере (Telegram или VK). Открой *nyx.sideload.space* в **Safari**, тогда iOS сразу предложит установить профиль.",
+          choices: [
+            { text: "Попробовать снова", next: "dns_intro" },
+            { text: "В меню тем", next: "topics_menu" }
+          ]
+        },
+        dns_activate: {
+          text: "— Теперь открой **Настройки iPhone → Основные → VPN и управление устройством → DNS** и выбери **«nyx-sideload»**. Готово, защита включена!",
+          choices: [
+            { text: "Супер! А как установить ESign?", next: "esign_intro" },
+            { text: "В меню тем", next: "topics_menu" }
+          ]
+        },
+        // ESign / KSign
+        esign_intro: {
+          text: "— На нашем сайте ты можешь установить **ESign** или **KSign** прямо с телефона в один клик. Они уже подписаны актуальным сертификатом **HSBC Bank plc**!",
+          choices: [
+            { text: "Как установить с сайта?", next: "esign_steps" },
+            { text: "Пишет «Ненадежный корпоративный разработчик»", next: "trust_cert" },
+            { text: "В меню тем", next: "topics_menu" }
+          ]
+        },
+        esign_steps: {
+          text: "— Шаг 1: На главной странице нажми «Скачать» под ESign.\n— Шаг 2: Выбери активный сертификат **HSBC Bank plc** и нажми «Установить».\n— Шаг 3: Подтверди установку в системном окне iOS.",
+          choices: [
+            { text: "Приложение установилось, но не открывается!", next: "trust_cert" },
+            { text: "Всё открылось! Как подписывать свои IPA?", next: "cert_import" }
+          ]
+        },
+        trust_cert: {
+          text: "— Не пугайся, это стандартная защита iOS! Зайди в **Настройки → Основные → VPN и управление устройством → КОРПОРАТИВНЫЕ ПРИЛОЖЕНИЯ (HSBC Bank plc)** и нажми **«Доверять»**.",
+          choices: [
+            { text: "Заработало, спасибо!", next: "cert_import" },
+            { text: "В меню тем", next: "topics_menu" }
+          ]
+        },
+        // Cert import
+        cert_import: {
+          text: "— Чтобы подписывать любые скачанные IPA файлы прямо внутри ESign или KSign, тебе нужен файл сертификата (.p12) и профиль (.mobileprovision). У нас на сайте есть готовый архив!",
+          choices: [
+            { text: "Где скачать архив сертификата?", next: "cert_download_help" },
+            { text: "Какой пароль к .p12 сертификату?", next: "cert_pwd_help" },
+            { text: "В меню тем", next: "topics_menu" }
+          ]
+        },
+        cert_download_help: {
+          text: "— На главной странице есть карточка «Сертификат». Нажми кнопку **«Скачать сертификат (.zip)»** и открой его в ESign через кнопку «Импорт». Внутри уже вшит мобильный профиль!",
+          choices: [
+            { text: "А какой пароль указывать?", next: "cert_pwd_help" },
+            { text: "В меню тем", next: "topics_menu" }
+          ]
+        },
+        cert_pwd_help: {
+          text: "— Пароль к сертификату HSBC: **AppleP12.com**\nНа главной странице есть кнопка «Скопировать пароль», чтобы не вводить вручную.",
+          choices: [
+            { text: "Понятно!", next: "topics_menu" }
+          ]
+        },
+        // PC Sideload
+        iloader_intro: {
+          text: "— Сайдлоуд с ПК через **iLoader** позволяет ставить LiveContainer или SideStore бесплатно, используя личный Apple ID без риска отзывов!",
+          choices: [
+            { text: "Что такое LiveContainer?", next: "lc_explain" },
+            { text: "Что такое SideStore?", next: "ss_explain" },
+            { text: "В меню тем", next: "topics_menu" }
+          ]
+        },
+        lc_explain: {
+          text: "— **LiveContainer** запускает сколько угодно приложений внутри одной песочницы. Ты не тратишь лимит в 3 бесплатных слота Apple!",
+          choices: [
+            { text: "Как его установить?", next: "lc_steps" },
+            { text: "Назад", next: "iloader_intro" }
+          ]
+        },
+        lc_steps: {
+          text: "— Подключи iPhone к Mac или Windows через USB, открой утилиту iLoader, выбери LiveContainer и нажми Install. На телефоне включи «Режим разработчика» в Настройках.",
+          choices: [
+            { text: "Супер!", next: "topics_menu" }
+          ]
+        },
+        ss_explain: {
+          text: "— **SideStore** — это альтернативный App Store прямо на твоем iPhone, который сам переподписывает приложения по воздуху через локальный VPN.",
+          choices: [
+            { text: "Круто, в меню тем!", next: "topics_menu" }
+          ]
+        },
+        // Troubleshooting
+        troubleshooting: {
+          text: "— Что именно пошло не так?",
+          choices: [
+            { text: "«Не удалось проверить целостность ПО»", next: "err_integrity" },
+            { text: "Иконка приложения серая и не качается", next: "err_grey_icon" },
+            { text: "Приложение сразу вылетает при запуске", next: "err_crash" },
+            { text: "В меню тем", next: "topics_menu" }
+          ]
+        },
+        err_integrity: {
+          text: "— Это значит, что либо сертификат заблокирован Apple без DNS, либо на устройстве остался кэш старой проверки. Включи наш DNS-профиль, очисти кэш Safari в Настройках и перезагрузи устройство.",
+          choices: [
+            { text: "Попробовать решение", next: "dns_intro" },
+            { text: "В меню тем", next: "topics_menu" }
+          ]
+        },
+        err_grey_icon: {
+          text: "— Проверь интернет-соединение. Если загрузка зависла, удали серую иконку с экрана, включи DNS профиль и повтори установку с сайта в Safari.",
+          choices: [
+            { text: "В меню тем", next: "topics_menu" }
+          ]
+        },
+        err_crash: {
+          text: "— Если вылетает само подписанное приложение, возможно в нем не включен правильный Bundle ID или в iOS 16+ отключен «Режим разработчика» (*Настройки → Конфиденциальность → Режим разработчика*).",
+          choices: [
+            { text: "В меню тем", next: "topics_menu" }
+          ]
+        }
       },
-      dns_safari: {
-        text: "*Вздыхает*\n— Странно. Попробуй начать заново, но уже в браузере Safari. Другое не подойдёт.",
-        choices: [
-          { text: "Попробовать снова", next: "dns_intro" }
-        ]
-      },
-      dns_done: {
-        text: "— Прекрасно. Теперь зайди в настройки, DNS и VPN, нажми на ‘nyx-sideload’ и нажми ‘Применить’.",
-        choices: [
-          { text: "А это безопасно вообще?", next: "dns_explain_done" },
-          { text: "Окей, сделано!", next: "next_chapter" }
-        ]
-      },
-      dns_explain_done: {
-        text: "— DNS профиль блокирует *oscp.apple.com* и прочие домены проверки сертификатов, чтобы ваши подписанные приложения не слетели через пару часов после установки. Любые другие не связанные с ними домены будут пускаться по Cloudflare, так что всё безопасно. Если тебе хватает опыта, открой на компьютере и проверь содержимое.",
-        choices: [
-          { text: "Окей, сделано!", next: "next_chapter" }
-        ]
-      },
-      next_chapter: {
-        text: "— Умница! С DNS профилем мы разобрались. Теперь ты под защитой от отзывов серверов Apple.\n\nКакая у тебя цель дальше? Хочешь узнать про установку приложений через компьютер?",
-        choices: [
-          { text: "Да, расскажи про iLoader", next: "iloader_intro" },
-          { text: "Вернуться на главную", action: () => window.location.href = '../' }
-        ]
-      },
-      iloader_intro: {
-        text: "— Для установки SideStore или LiveContainer тебе понадобится компьютер и наша утилита iLoader. Это намного проще и безопаснее, чем вводить Apple ID на сайтах.",
-        choices: [
-          { text: "Что такое LiveContainer?", next: "lc_explain" },
-          { text: "Что такое SideStore?", next: "ss_explain" },
-          { text: "Назад", next: "next_chapter" }
-        ]
-      },
-      lc_explain: {
-        text: "— LiveContainer позволяет запускать сколько угодно IPA файлов внутри одного контейнера! Они не тратят лимит бесплатных слотов Apple ID (у обычного аккаунта лимит — 3 приложения).",
-        choices: [
-          { text: "Как установить LiveContainer?", next: "lc_steps" },
-          { text: "Назад", next: "iloader_intro" }
-        ]
-      },
-      lc_steps: {
-        text: "— Шаг 1: Подключи устройство по USB.\n— Шаг 2: Скачай iLoader на компьютер и нажми Install LiveContainer.\n— Шаг 3: На устройстве зайди в Настройки -> Управление устройством и нажми Доверять.\n\nПроще простого!",
-        choices: [
-          { text: "Понятно!", next: "iloader_intro" }
-        ]
-      },
-      ss_explain: {
-        text: "— SideStore — это полноценный магазин приложений прямо на твоем телефоне. Он умеет автоматически перезапускать 7-дневный срок действия сертификата по Wi-Fi через VPN-тунлель LocalDevVpn.",
-        choices: [
-          { text: "Как установить SideStore?", next: "ss_steps" },
-          { text: "Назад", next: "iloader_intro" }
-        ]
-      },
-      ss_steps: {
-        text: "— Шаг 1: Установи SideStore через iLoader на компьютере.\n— Шаг 2: Скачай LocalDevVpn из App Store.\n— Шаг 3: Импортируй файл конфигурации VPN и включи туннель.\n— Шаг 4: Открывай SideStore и устанавливай любые IPA прямо на ходу!",
-        choices: [
-          { text: "Отлично, понятно!", next: "iloader_intro" }
-        ]
+      en: {
+        start: {
+          text: "*Looks back, then turns around*\n— Ah, you're here! I'm Breeze. Welcome to Nyx Sideload! How can I help you today?",
+          choices: [
+            { text: "🛡️ Install DNS Profile (Anti-Revoke)", next: "dns_intro" },
+            { text: "📲 How to install ESign / KSign?", next: "esign_intro" },
+            { text: "🔑 Certificates: How to import .p12?", next: "cert_import" },
+            { text: "💻 PC Sideload (LiveContainer / SideStore)", next: "iloader_intro" },
+            { text: "❓ Troubleshooting & Common Errors", next: "troubleshooting" }
+          ]
+        },
+        topics_menu: {
+          text: "— Choose a topic you want to learn more about:",
+          choices: [
+            { text: "🛡️ DNS Profile (Anti-Revoke Protection)", next: "dns_intro" },
+            { text: "📲 Installing ESign / KSign", next: "esign_intro" },
+            { text: "🔑 Importing HSBC Bank plc Certificate", next: "cert_import" },
+            { text: "💻 PC Sideload (LiveContainer & SideStore)", next: "iloader_intro" },
+            { text: "❓ Common Errors & Fixes", next: "troubleshooting" }
+          ]
+        },
+        dns_intro: {
+          text: "— Let's start with the DNS profile. It is essential to protect your apps from getting revoked.",
+          choices: [
+            { text: "I'm ready to install", next: "dns_install" },
+            { text: "How does it work?", next: "dns_explain" },
+            { text: "Back to Topics", next: "topics_menu" }
+          ]
+        },
+        dns_explain: {
+          text: "— The DNS profile blocks Apple revocation servers (*ocsp.apple.com*). All your other web traffic securely resolves through Cloudflare.",
+          choices: [
+            { text: "Got it, let's install!", next: "dns_install" },
+            { text: "Back", next: "dns_intro" }
+          ]
+        },
+        dns_install: {
+          text: "— Profile download initiated. Tap 'Allow' in the Safari prompt.",
+          action: () => {
+            setTimeout(() => {
+              window.location.href = '../dns.mobileconfig';
+            }, 1000);
+          },
+          choices: [
+            { text: "Downloaded! What next?", next: "dns_activate" },
+            { text: "It downloaded a raw file instead", next: "dns_safari" }
+          ]
+        },
+        dns_safari: {
+          text: "*Sighs*\n— Make sure you open *nyx.sideload.space* in **Safari**. In-app browsers like Telegram or TikTok block profile installations.",
+          choices: [
+            { text: "Try again", next: "dns_intro" },
+            { text: "Back to Topics", next: "topics_menu" }
+          ]
+        },
+        dns_activate: {
+          text: "— Now open **Settings → General → VPN & Device Management → DNS** and select **nyx-sideload**. You're now protected!",
+          choices: [
+            { text: "Great! How to install ESign?", next: "esign_intro" },
+            { text: "Back to Topics", next: "topics_menu" }
+          ]
+        },
+        esign_intro: {
+          text: "— You can install **ESign** or **KSign** directly from our site. Both are pre-signed with the active **HSBC Bank plc** certificate!",
+          choices: [
+            { text: "How to install?", next: "esign_steps" },
+            { text: "It says 'Untrusted Enterprise Developer'", next: "trust_cert" },
+            { text: "Back to Topics", next: "topics_menu" }
+          ]
+        },
+        esign_steps: {
+          text: "— Step 1: On the homepage, tap 'Download' under ESign.\n— Step 2: Choose **HSBC Bank plc** certificate and click 'Install'.\n— Step 3: Confirm iOS installation prompt.",
+          choices: [
+            { text: "Installed, but won't open!", next: "trust_cert" },
+            { text: "Opened! How to sign other IPAs?", next: "cert_import" }
+          ]
+        },
+        trust_cert: {
+          text: "— Go to **Settings → General → VPN & Device Management → Enterprise Apps (HSBC Bank plc)** and tap **Trust**.",
+          choices: [
+            { text: "Worked! Thanks!", next: "cert_import" },
+            { text: "Back to Topics", next: "topics_menu" }
+          ]
+        },
+        cert_import: {
+          text: "— To sign custom IPAs inside ESign, you need the certificate (.p12) and profile (.mobileprovision). You can download our ready-to-use zip bundle from the main page!",
+          choices: [
+            { text: "What is the .p12 password?", next: "cert_pwd_help" },
+            { text: "Back to Topics", next: "topics_menu" }
+          ]
+        },
+        cert_pwd_help: {
+          text: "— The password for the HSBC Bank plc certificate is: **AppleP12.com**\nYou can copy it in 1-click on the main website.",
+          choices: [
+            { text: "Awesome, back to topics!", next: "topics_menu" }
+          ]
+        },
+        iloader_intro: {
+          text: "— PC Sideloading via **iLoader** lets you install LiveContainer or SideStore using your personal Apple ID without any revoke risk!",
+          choices: [
+            { text: "What is LiveContainer?", next: "lc_explain" },
+            { text: "What is SideStore?", next: "ss_explain" },
+            { text: "Back to Topics", next: "topics_menu" }
+          ]
+        },
+        lc_explain: {
+          text: "— **LiveContainer** lets you run unlimited apps inside a single container, bypassing Apple's 3-app free account limit.",
+          choices: [
+            { text: "Back to Topics", next: "topics_menu" }
+          ]
+        },
+        ss_explain: {
+          text: "— **SideStore** is an on-device app store that automatically refreshes your apps wirelessly over Wi-Fi VPN.",
+          choices: [
+            { text: "Back to Topics", next: "topics_menu" }
+          ]
+        },
+        troubleshooting: {
+          text: "— What issue are you experiencing?",
+          choices: [
+            { text: "Unable to Verify App Integrity", next: "err_integrity" },
+            { text: "App icon is greyed out", next: "err_grey_icon" },
+            { text: "App crashes immediately on launch", next: "err_crash" },
+            { text: "Back to Topics", next: "topics_menu" }
+          ]
+        },
+        err_integrity: {
+          text: "— Make sure our DNS profile is active in Settings, clear Safari cache and restart your device.",
+          choices: [
+            { text: "Back to Topics", next: "topics_menu" }
+          ]
+        },
+        err_grey_icon: {
+          text: "— Delete the grey icon, make sure DNS is enabled, and try installing again using Safari.",
+          choices: [
+            { text: "Back to Topics", next: "topics_menu" }
+          ]
+        },
+        err_crash: {
+          text: "— On iOS 16+, ensure Developer Mode is enabled under Settings → Privacy & Security → Developer Mode.",
+          choices: [
+            { text: "Back to Topics", next: "topics_menu" }
+          ]
+        }
       }
     };
 
@@ -467,6 +786,25 @@
     const choicesEl = document.getElementById('choices-container');
     const arrowEl = document.getElementById('dialogue-arrow');
     const boxEl = document.getElementById('dialogue-box');
+    const soundBtn = document.getElementById('btn-sound');
+    const soundIcon = document.getElementById('sound-icon');
+    const menuBtn = document.getElementById('btn-menu');
+    const txtBack = document.getElementById('txt-back');
+    const txtTopics = document.getElementById('txt-topics');
+
+    function updateUiLang() {
+      if (currentVnLang === 'ru') {
+        txtBack.textContent = 'На главную';
+        txtTopics.textContent = 'Темы';
+      } else {
+        txtBack.textContent = 'Home';
+        txtTopics.textContent = 'Topics';
+      }
+      document.querySelectorAll('.lang-btn-vn').forEach(b => {
+        b.classList.toggle('active', b.dataset.lang === currentVnLang);
+      });
+    }
+
     function formatDialogueText(rawText) {
       return rawText.replace(/\*([^*]+)\*/g, '<span class="action-text">*$1*</span>');
     }
@@ -483,6 +821,9 @@
         if (index < targetText.length) {
           displayedText += targetText[index];
           textEl.innerHTML = formatDialogueText(displayedText);
+          if (index % 2 === 0 && targetText[index] !== ' ' && targetText[index] !== '\n') {
+            playBeep();
+          }
           index++;
         } else {
           clearInterval(textInterval);
@@ -490,12 +831,14 @@
           arrowEl.classList.add('show');
           if (callback) callback();
         }
-      }, 25);
+      }, 22);
     }
 
     function showState(stateKey) {
       currentState = stateKey;
-      const stateObj = story[stateKey];
+      const langStory = storyData[currentVnLang] || storyData['ru'];
+      const stateObj = langStory[stateKey] || langStory['start'];
+
       spriteEl.classList.add('bounce');
       setTimeout(() => spriteEl.classList.remove('bounce'), 500);
 
@@ -519,6 +862,7 @@
         btn.textContent = c.text;
         btn.addEventListener('click', (e) => {
           e.stopPropagation();
+          playBeep();
           if (c.action) c.action();
           if (c.next) showState(c.next);
         });
@@ -527,16 +871,47 @@
 
       choicesEl.classList.add('show');
     }
+
     boxEl.addEventListener('click', () => {
       if (isTyping) {
         clearInterval(textInterval);
         isTyping = false;
         textEl.innerHTML = formatDialogueText(fullText);
         arrowEl.classList.add('show');
-        renderChoices(story[currentState].choices);
+        const langStory = storyData[currentVnLang] || storyData['ru'];
+        renderChoices((langStory[currentState] || langStory['start']).choices);
       }
     });
+
+    // Language switcher
+    document.querySelectorAll('.lang-btn-vn').forEach(b => {
+      b.addEventListener('click', () => {
+        currentVnLang = b.dataset.lang;
+        localStorage.setItem('nyx-lang', currentVnLang);
+        updateUiLang();
+        showState(currentState);
+      });
+    });
+
+    // Sound toggle
+    function updateSoundUi() {
+      soundIcon.textContent = isSoundEnabled ? '🔊' : '🔇';
+    }
+    soundBtn.addEventListener('click', () => {
+      isSoundEnabled = !isSoundEnabled;
+      localStorage.setItem('nyx-vn-sound', isSoundEnabled);
+      updateSoundUi();
+      if (isSoundEnabled) playBeep();
+    });
+
+    // Topics menu button
+    menuBtn.addEventListener('click', () => {
+      showState('topics_menu');
+    });
+
     window.addEventListener('load', () => {
+      updateUiLang();
+      updateSoundUi();
       setTimeout(() => {
         spriteEl.classList.add('active');
         showState('start');
