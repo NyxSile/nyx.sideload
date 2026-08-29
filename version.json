@@ -1,4 +1,20 @@
 {
+  "esign-hsbc-bank": {
+    "version": "5.0.2",
+    "app": "ESign",
+    "bundle": "khoin.esign.dvn",
+    "ipa": "ipas/esign/esign-hsbc-bank.ipa",
+    "size": "18.0 MB",
+    "updated": "2026-08-29T11:55:00+05:00"
+  },
+  "ksign-hsbc-bank": {
+    "version": "1.6",
+    "app": "KSign",
+    "bundle": "nya.asami.ksign",
+    "ipa": "ipas/ksign/ksign-hsbc-bank.ipa",
+    "size": "30.9 MB",
+    "updated": "2026-08-29T11:55:00+05:00"
+  },
   "ksign-moving-increasingly": {
     "version": "1.6",
     "app": "KSign",

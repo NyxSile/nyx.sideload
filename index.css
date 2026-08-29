@@ -1,4 +1,4 @@
-/* ── TOKENS ────────────────────────────────── */
+
     :root {
       --bg:        #0A0A0F;
       --surface:   #12121A;
@@ -16,7 +16,7 @@
       --r-sm:      8px;
     }
 
-    /* ── RESET ─────────────────────────────────── */
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -31,7 +31,7 @@
     select { font-family: inherit; }
     a { color: inherit; text-decoration: none; }
 
-    /* ── STARFIELD ──────────────────────────────── */
+
     #stars {
       position: fixed; inset: 0; z-index: 0;
       pointer-events: none;
@@ -39,17 +39,17 @@
       will-change: transform;
       transform: translate3d(0, 0, 0);
     }
-    /* Everything sits above the canvas */
+
     #header, #app, #toast, #report-modal { position: relative; z-index: 1; }
     #header { z-index: 150; }
     #toast      { z-index: 300; }
     #report-modal { z-index: 500; }
 
-    /* ── TYPOGRAPHY ─────────────────────────────── */
+
     .display  { font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
     .mono     { font-family: 'Space Grotesk', sans-serif; font-weight: 500; letter-spacing: -.02em; }
 
-    /* ── LAYOUT HELPERS ─────────────────────────── */
+
     .container { max-width: 640px; margin: 0 auto; padding: 0 20px; }
     .card {
       background: var(--surface);
@@ -69,7 +69,7 @@
       margin-bottom: 12px;
     }
 
-    /* ── BUTTONS ────────────────────────────────── */
+
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
       border: none; border-radius: var(--r-sm);
@@ -86,10 +86,10 @@
     .btn-ghost:hover { background: var(--surface2); }
     .btn-full { width: 100%; }
 
-    /* ── MAIN APP ─────── */
+
     #app { display: flex; min-height: 100dvh; flex-direction: column; padding-top: 110px; }
 
-    /* ── HEADER ─────────────────────────────────── */
+
     #header {
       position: fixed; top: 0; left: 0; right: 0; z-index: 150;
       background: rgba(10,10,15,.85);
@@ -122,7 +122,7 @@
     }
     .lang-btn.active { background: var(--accent); color: #fff; }
 
-    /* ── HERO ───────────────────────────────────── */    #hero { padding: 48px 20px 32px; }
+        #hero { padding: 48px 20px 32px; }
     .hero-inner { max-width: 640px; margin: 0 auto; }
     .hero-inner h1 {
       font-family: 'Space Grotesk', sans-serif;
@@ -133,10 +133,10 @@
     .hero-inner h1 em { color: var(--accent); font-style: normal; }
     .hero-inner p { color: var(--muted); font-size: 15px; max-width: 480px; }
 
-    /* ── SECTIONS ───────────────────────────────── */
+
     #main { flex: 1; padding: 0 20px 64px; display: flex; flex-direction: column; gap: 16px; }
 
-    /* Anti-Revoke */
+
     .dns-row {
       display: flex; align-items: center; justify-content: space-between;
       gap: 12px; flex-wrap: wrap;
@@ -182,7 +182,7 @@
 
     .dns-actions { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
 
-    /* Tools */
+
     .tools-grid { display: flex; flex-direction: column; gap: 12px; }
     .tool-item { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 16px; }
     .tool-item--locked {
@@ -220,7 +220,7 @@
     }
     .sel:focus { outline: 1.5px solid var(--accent); }
 
-    /* Support */
+
     .support-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
     .support-link {
       background: var(--surface2); border: 1px solid var(--border);
@@ -234,7 +234,7 @@
     }
     .support-link span { font-size: 13px; font-weight: 500; text-align: center; }
 
-    /* ── FOOTER ─────────────────────────────────── */
+
     #footer {
       border-top: 1px solid var(--border);
       padding: 24px 20px;
@@ -256,7 +256,7 @@
     }
     .mode-switch-btn:hover { color: var(--text); border-color: var(--accent); }
 
-    /* ── TOAST ──────────────────────────────────── */
+
     #toast {
       position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%);
       background: var(--surface2); border: 1px solid var(--border);
@@ -267,7 +267,7 @@
     }
     #toast.show { opacity: 1; }
 
-    /* ── REPORT MODAL ────────────────────────────── */
+
     #report-modal {
       position: fixed; inset: 0; z-index: 500;
       background: rgba(0,0,0,.7); backdrop-filter: blur(8px);
@@ -292,11 +292,11 @@
     .modal-inner textarea:focus { outline: 1.5px solid var(--accent); }
     .modal-actions { display: flex; gap: 8px; }
 
-    /* ── ANIMATIONS ─────────────────────────────── */
+
     @keyframes fade-up { from { opacity:0; transform: translateY(12px); } to { opacity:1; transform: translateY(0); } }
     .fade-up { animation: fade-up .3s ease both; }
 
-    /* ── RESPONSIVE ─────────────────────────────── */
+
     @media (max-width: 400px) {
       .ob-cards { grid-template-columns: 1fr; }
       .support-grid { grid-template-columns: repeat(2, 1fr); }
@@ -305,7 +305,7 @@
       *, *::before, *::after { animation: none !important; transition: none !important; }
     }
 
-    /* ── REDESIGNED TOOLS ────────────────────────── */
+
     .tools-grid-new {
       display: grid;
       grid-template-columns: 1fr;
@@ -380,8 +380,8 @@
       justify-content: center;
       gap: 6px;
     }
-    
-    /* ── DYNAMIC MODALS ──────────────────────────── */
+
+
     .modal-overlay-new {
       position: fixed;
       inset: 0;
@@ -502,8 +502,8 @@
     .modal-app-meta span strong {
       color: var(--text);
     }
-    
-    /* Tabs */
+
+
     .tabs-header-new {
       display: flex;
       border-bottom: 1px solid var(--border);
@@ -541,8 +541,8 @@
       flex-direction: column;
       gap: 16px;
     }
-    
-    /* customization lock overlay */
+
+
     .customization-lock-new {
       position: relative;
       border: 1px dashed var(--border);
@@ -583,10 +583,10 @@
     .custom-lock-action-text:hover {
       text-decoration: underline;
     }
-    
 
 
-    /* ── N.SIGN BROWSER SIGNER MODAL ─────────────── */
+
+
     .signer-form-new {
       display: flex;
       flex-direction: column;
@@ -667,7 +667,7 @@
       font-size: 11px;
       color: var(--muted);
     }
-    /* Simple switch */
+
     .switch-new {
       position: relative;
       display: inline-block;
@@ -704,8 +704,8 @@
     input:checked + .slider-new:before {
       transform: translateX(20px);
     }
-    
-    /* Signing console */
+
+
     .signing-console-new {
       background: #050508;
       border: 1px solid var(--border);
@@ -737,7 +737,7 @@
       transition: width 0.1s linear;
     }
 
-    /* ── СЕКЦИЯ "САЙДЛОУД С ПК" ── */
+
     .pc-sideload-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -829,7 +829,7 @@
       .pc-sideload-title-block p { display: none; }
     }
 
-    /* МОДАЛЬНОЕ ОКНО ПК УСТАНОВЩИКА */
+
     .pc-steps-bar {
       display: flex;
       gap: 0;

@@ -37,7 +37,7 @@
       position: relative;
     }
 
-    /* Background canvas */
+
     #stars {
       position: absolute;
       inset: 0;
@@ -45,7 +45,7 @@
       pointer-events: none;
     }
 
-    /* VN Interface Container */
+
     .vn-container {
       width: 100%;
       max-width: 720px;
@@ -59,7 +59,7 @@
       z-index: 2;
     }
 
-    /* Back Home Button */
+
     .btn-back-vn {
       position: absolute;
       top: 24px;
@@ -84,7 +84,7 @@
       transform: translateX(-3px);
     }
 
-    /* Character Sprite Container */
+
     .sprite-container {
       flex: 1;
       display: flex;
@@ -126,7 +126,7 @@
       50% { transform: translateY(-24px); }
     }
 
-    /* Choices list */
+
     .choices-container {
       display: flex;
       flex-direction: column;
@@ -177,7 +177,7 @@
       transform: translateX(0);
     }
 
-    /* Dialogue box */
+
     .dialogue-box {
       width: 100%;
       background: var(--surface);
@@ -191,7 +191,7 @@
       cursor: pointer;
     }
 
-    /* Name tag */
+
     .name-tag {
       position: absolute;
       top: -16px;
@@ -207,20 +207,20 @@
       box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
     }
 
-    /* Dialogue text styling */
+
     .dialogue-text {
       font-size: 14.5px;
       line-height: 1.6;
       color: var(--text);
     }
 
-    /* Action highlighted */
+
     .action-text {
       color: #c084fc;
       font-style: italic;
     }
 
-    /* Text cursor indicator */
+
     .dialogue-arrow {
       position: absolute;
       bottom: 16px;
@@ -252,15 +252,15 @@
       На главную
     </a>
 
-    <!-- Character Sprite -->
+
     <div class="sprite-container">
       <img id="breeze-sprite" class="character-sprite" src="../icons/breeze_avatar.jpg" alt="Бриз">
     </div>
 
-    <!-- Choices -->
+
     <div class="choices-container" id="choices-container"></div>
 
-    <!-- Dialogue Box -->
+
     <div class="dialogue-box" id="dialogue-box">
       <div class="name-tag">БРИЗ</div>
       <div class="dialogue-text" id="dialogue-text"></div>
@@ -268,7 +268,7 @@
     </div>
   </div>
 
-  <!-- Stars background canvas script -->
+
   <script>
     (function initStars() {
       const canvas = document.getElementById('stars');
@@ -307,12 +307,10 @@
       function draw() {
         ctx.fillStyle = '#06060c';
         ctx.fillRect(0, 0, W, H);
-        
+
         for (const s of stars) {
           s.x += s.speedX;
           s.y += s.speedY;
-
-          // Wrap bounds
           if (s.x < 0) s.x = W;
           if (s.x > W) s.x = 0;
           if (s.y < 0) s.y = H;
@@ -330,7 +328,7 @@
     })();
   </script>
 
-  <!-- VN Logic script -->
+
   <script>
     const story = {
       start: {
@@ -437,8 +435,6 @@
     const choicesEl = document.getElementById('choices-container');
     const arrowEl = document.getElementById('dialogue-arrow');
     const boxEl = document.getElementById('dialogue-box');
-
-    // Helper to format text with actions *italic*
     function formatDialogueText(rawText) {
       return rawText.replace(/\*([^*]+)\*/g, '<span class="action-text">*$1*</span>');
     }
@@ -448,12 +444,9 @@
       isTyping = true;
       arrowEl.classList.remove('show');
       choicesEl.classList.remove('show');
-      
+
       let index = 0;
       displayedText = '';
-      
-      // Remove HTML tags for counting characters but render them dynamically
-      // Since formatDialogueText handles bold/italic/links, we type raw characters and update innerHTML
       textInterval = setInterval(() => {
         if (index < targetText.length) {
           displayedText += targetText[index];
@@ -471,14 +464,10 @@
     function showState(stateKey) {
       currentState = stateKey;
       const stateObj = story[stateKey];
-      
-      // Trigger character bob bounce
       spriteEl.classList.add('bounce');
       setTimeout(() => spriteEl.classList.remove('bounce'), 500);
 
       fullText = stateObj.text;
-      
-      // Trigger action if present
       if (stateObj.action) {
         stateObj.action();
       }
@@ -491,7 +480,7 @@
     function renderChoices(choices) {
       choicesEl.innerHTML = '';
       if (!choices || choices.length === 0) return;
-      
+
       choices.forEach(c => {
         const btn = document.createElement('button');
         btn.className = 'choice-btn';
@@ -503,11 +492,9 @@
         });
         choicesEl.appendChild(btn);
       });
-      
+
       choicesEl.classList.add('show');
     }
-
-    // Skip typing
     boxEl.addEventListener('click', () => {
       if (isTyping) {
         clearInterval(textInterval);
@@ -517,8 +504,6 @@
         renderChoices(story[currentState].choices);
       }
     });
-
-    // Start Game
     window.addEventListener('load', () => {
       setTimeout(() => {
         spriteEl.classList.add('active');

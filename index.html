@@ -37,16 +37,12 @@
 </head>
 <body>
 
-<!-- ════════════════════════════════════
-     STARFIELD
-════════════════════════════════════ -->
+
 <canvas id="stars" aria-hidden="true"></canvas>
 
-<!-- ════════════════════════════════════
-     GLOBAL HEADER (always visible)
-════════════════════════════════════ -->
+
 <header id="header">
-  <!-- CERTIFICATE STATUS BANNER -->
+
   <div class="new-cert-banner">
     <span class="ping-dot"></span>
     <span data-i="status-new-cert">Новый сертификат импортирован!</span>
@@ -67,12 +63,10 @@
   </div>
 </header>
 
-<!-- ════════════════════════════════════
-     MAIN APP
-════════════════════════════════════ -->
+
 <div id="app">
 
-  <!-- HERO -->
+
   <section id="hero">
     <div class="hero-inner fade-up">
       <h1 class="display">
@@ -83,10 +77,10 @@
     </div>
   </section>
 
-  <!-- MAIN CONTENT -->
+
   <main id="main" class="container">
 
-    <!-- ── ANTI-REVOKE ── -->
+
     <section class="card fade-up" id="sec-dns" data-breeze-step="1" data-breeze-text="Первым делом установи DNS-профиль. Это защитит твои приложения от отзыва Apple. Жми кнопку ниже!">
       <p class="section-label" data-i="sec-dns-label">Анти-ревок</p>
       <div class="dns-row">
@@ -106,12 +100,12 @@
       </div>
     </section>
 
-    <!-- ── TOOLS ── -->
+
     <section class="card fade-up" id="sec-tools" data-breeze-step="2" data-breeze-text="Теперь выбери инструмент и версию сертификата. Я рекомендую ESign — он стабильнее!">
       <p class="section-label" data-i="sec-tools-label">Инструменты</p>
       <div class="tools-grid-new">
 
-        <!-- ESign -->
+
         <div class="tool-card-new" id="card-esign">
           <div class="tool-icon-container">
             <img src="https://iosvizor.ru/wp-content/uploads/2024/02/esign.jpg" alt="ESign Icon">
@@ -128,7 +122,7 @@
           </button>
         </div>
 
-        <!-- KSign -->
+
         <div class="tool-card-new" id="card-ksign">
           <div class="tool-icon-container">
             <img src="https://upload.zeejb.com/uploads/68958b00dddee_pasted_image.png" alt="KSign Icon">
@@ -145,7 +139,7 @@
           </button>
         </div>
 
-        <!-- N.Sign -->
+
         <div class="tool-card-new" id="card-nsign">
           <div class="tool-icon-container">
             <span class="ns-logo" aria-label="N.Sign">n<span>.</span>s</span>
@@ -165,7 +159,7 @@
       </div>
     </section>
 
-    <!-- ── PC SIDELOAD ── -->
+
     <section class="pc-sideload-card fade-up" id="sec-pc-sideload">
       <p class="section-label" data-i="sec-pc-label">Сайдлоуд с ПК</p>
       <div class="pc-sideload-header">
@@ -180,13 +174,13 @@
           <p data-i="pc-desc">Установите LiveContainer или Sidestore через компьютер без Enterprise-сертификатов</p>
         </div>
       </div>
-      <!-- Мобильная заглушка -->
+
       <div class="mobile-wall">
         <div class="mobile-wall-icon">🖥️</div>
         <h3 data-i="pc-mobile-wall-title">Только с компьютера</h3>
         <p data-i="pc-mobile-wall-desc">Эта функция работает только на десктопной версии сайта. Зайдите с ПК или Mac.</p>
       </div>
-      <!-- Карточки методов -->
+
       <div class="method-grid">
         <div class="method-card" onclick="openPcSideloadModal('livecontainer')">
           <img class="method-icon" src="icons/lc-icon.png" alt="LiveContainer">
@@ -204,7 +198,7 @@
           <span class="method-desc" data-i="pc-combo-desc">LC + Sidestore + репозиторий</span>
         </div>
       </div>
-      <!-- Кнопки -->
+
       <div class="pc-sideload-cta">
         <button class="btn btn-ghost" onclick="window.location.href='./tutorial/'" data-i-text="btn-instructions">
           <span data-i="btn-instructions">Инструкция</span>
@@ -212,7 +206,7 @@
       </div>
     </section>
 
-    <!-- ── SUPPORT ── -->
+
     <section class="card fade-up" id="sec-support" data-breeze-step="3" data-breeze-text="Если что-то пошло не так — не переживай! Вот чаты поддержки, там помогут.">
       <p class="section-label" data-i="sec-support-label">Поддержка</p>
       <div class="support-grid">
@@ -227,7 +221,7 @@
       </div>
     </section>
 
-    <!-- REPORT MODAL -->
+
     <div id="report-modal" class="hidden" role="dialog" aria-modal="true" aria-labelledby="report-title">
       <div class="modal-inner">
         <h2 id="report-title" data-i="report-title">Пожаловаться на ссылку</h2>
@@ -244,13 +238,13 @@
       </div>
     </div>
 
-    <!-- DYNAMIC INSTALLER MODAL -->
+
     <div id="installer-modal" class="modal-overlay-new" role="dialog" aria-modal="true" aria-labelledby="inst-modal-title">
       <div class="modal-box-new">
         <button class="modal-close-new" id="btn-close-installer">&times;</button>
         <div class="modal-body-columns">
-          
-          <!-- Left Panel: App Info -->
+
+
           <div class="modal-left-panel">
             <div class="large-modal-icon" id="modal-app-icon"></div>
             <h2 class="modal-app-name" id="inst-modal-title">ESign</h2>
@@ -260,20 +254,21 @@
               <span>Size: <strong id="modal-app-size">14.9 MB</strong></span>
             </div>
           </div>
-          
-          <!-- Right Panel: Tabs & Action -->
+
+
           <div class="modal-right-panel">
             <div class="tabs-header-new">
               <button class="tab-btn-new active" id="tab-btn-standard" data-i="tab-standard">Стандартная подпись</button>
               <button class="tab-btn-new" id="tab-btn-custom" data-i="tab-custom">Кастомизация</button>
             </div>
-            
-             <!-- Tab Content: Standard -->
+
+
              <div class="tab-content-new active" id="tab-content-standard">
                <div id="standard-install-fields">
                  <div class="form-group-new">
                    <label for="modal-cert-select" data-i="label-select-cert">Выбрать сертификат</label>
                    <select class="sel" id="modal-cert-select" style="width:100%;">
+                     <option value="hsbc-bank" selected>HSBC Bank plc</option>
                      <option value="jiangsu-simcere">Jiangsu Simcere Pharmaceutical</option>
                      <option value="moving-increasingly">Moving Increasingly Interconnected</option>
                      <option value="vietnam-airlines">VIETNAM AIRLINES JSC</option>
@@ -287,8 +282,8 @@
                    <span id="btn-modal-install-text" data-i="install">Установить</span>
                  </button>
                </div>
-               
-               <!-- State for Unavailable / Coming Soon -->
+
+
                <div id="standard-install-unavailable" style="display:none; flex-direction:column; align-items:center; gap:12px; text-align:center; padding:16px 10px;">
                   <img src="icons/on-station.png" alt="N.Sign is getting ready" style="width:72px; height:72px; border-radius:50%; object-fit:cover;">
                   <h3 style="font-family:'Space Grotesk', sans-serif; font-size:16px;" data-i="nsign-app-unavailable-title">Приложение N.Sign временно недоступно</h3>
@@ -298,10 +293,10 @@
                 </div>
               </div>
 
-            
-            <!-- Tab Content: Customization (Locked / Unlocked) -->
+
+
             <div class="tab-content-new" id="tab-content-custom">
-              <!-- State 1: Locked (ESign/KSign) -->
+
               <div id="custom-locked-view" class="customization-lock-new">
                 <div class="custom-lock-icon">
                   <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8 11V7a4 4 0 0 1 8 0v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
@@ -311,18 +306,18 @@
                 </span>
                 <span class="custom-lock-action-text" id="btn-go-nsign" data-i="go-to-nsign">Открыть N.Sign</span>
               </div>
-              
-              <!-- State 2: Unlocked (N.Sign) -->
+
+
               <div id="custom-unlocked-view" style="display:none; flex-direction:column; gap:12px; text-align:left; padding:6px 0;">
                 <div style="position: relative; overflow: hidden; border-radius: var(--r); border: 1px dashed var(--border); padding: 16px 12px; margin-bottom: 8px;">
-                  <!-- Development Lock Overlay -->
+
                   <div style="position: absolute; inset: 0; background: rgba(10, 10, 15, 0.88); backdrop-filter: blur(4px); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; text-align: center; padding: 12px;">
                     <span style="font-size: 20px; margin-bottom: 6px;">⚙️</span>
                     <h4 style="font-family:'Space Grotesk', sans-serif; font-size: 13px; margin: 0 0 4px 0;" data-i="nsign-web-unavailable-title">N.Sign Web в разработке</h4>
                     <p style="font-size: 11px; color: var(--muted); margin: 0; line-height: 1.4;" data-i="nsign-web-unavailable-desc">Онлайн-подпись через браузер скоро будет доступна.</p>
                   </div>
-                  
-                  <!-- Blurrable content -->
+
+
                   <div style="text-align:center; opacity: 0.15; pointer-events: none;">
                     <span style="font-size:24px;">⚡</span>
                     <h3 style="font-family:'Space Grotesk', sans-serif; margin:4px 0;" data-i="nsign-custom-title">N.Sign Web</h3>
@@ -334,7 +329,7 @@
                     </button>
                   </div>
                 </div>
-                
+
                 <div style="border-top: 1px solid var(--border); padding-top:12px; margin-top:6px;">
                   <h4 style="font-family:'Space Grotesk', sans-serif; font-size:13px; margin-bottom:8px; color:var(--text);" data-i="custom-site-theme-label">Кастомизация сайта (N.Sign Theme)</h4>
                   <div class="form-group-new">
@@ -351,14 +346,14 @@
                 </div>
               </div>
             </div>
-            
+
           </div>
-          
+
         </div>
       </div>
     </div>
 
-    <!-- N.SIGN DEVELOPER SIGNER MODAL -->
+
     <div id="nsign-modal" class="modal-overlay-new" role="dialog" aria-modal="true" aria-labelledby="nsign-modal-title">
       <div class="modal-box-new" style="max-width: 600px;">
         <button class="modal-close-new" id="btn-close-nsign">&times;</button>
@@ -366,9 +361,9 @@
           <h2 id="nsign-modal-title" style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent);">N.Sign Pro</h2>
           <p style="font-size: 13px; color: var(--muted);" data-i="nsign-desc">Локальный подписыватель приложений прямо в браузере</p>
         </div>
-        
+
         <div class="signer-form-new" id="nsign-form-fields">
-          <!-- File upload -->
+
           <div class="form-group-new">
             <label data-i="nsign-label-ipa">Выберите IPA файл</label>
             <div class="file-drop-new" id="nsign-drop-ipa">
@@ -378,8 +373,8 @@
               <input type="file" id="inp-ipa-file" accept=".ipa" style="display:none;" />
             </div>
           </div>
-          
-          <!-- Certificate and Provisioning Grid -->
+
+
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
             <div class="form-group-new">
               <label data-i="nsign-label-p12">Сертификат (.p12)</label>
@@ -396,16 +391,16 @@
               </div>
             </div>
           </div>
-          
+
           <div class="form-group-new">
             <label data-i="nsign-label-pwd">Пароль сертификата</label>
             <input type="password" class="inp-text-new" id="nsign-cert-pwd" placeholder="Password (e.g. 1)" />
           </div>
 
-          <!-- Customization Toggles -->
+
           <p class="section-label" style="margin-top: 8px;" data-i="label-customization">Кастомизация</p>
-          
-          <!-- Toggle: Bundle ID -->
+
+
           <div class="toggle-row-new">
             <div class="toggle-info-new">
               <span class="toggle-label-new" data-i="opt-bundle">Смена Bundle ID</span>
@@ -417,8 +412,8 @@
             </label>
           </div>
           <input type="text" class="inp-text-new" id="inp-custom-bundle" placeholder="com.custom.identifier" style="display:none; margin-top: -6px;" />
-          
-          <!-- Toggle: Display Name -->
+
+
           <div class="toggle-row-new">
             <div class="toggle-info-new">
               <span class="toggle-label-new" data-i="opt-name">Смена названия</span>
@@ -430,8 +425,8 @@
             </label>
           </div>
           <input type="text" class="inp-text-new" id="inp-custom-name" placeholder="Custom Display Name" style="display:none; margin-top: -6px;" />
-          
-          <!-- Toggle: Inject Dylib -->
+
+
           <div class="toggle-row-new">
             <div class="toggle-info-new">
               <span class="toggle-label-new" data-i="opt-inject">Инъекция dylib</span>
@@ -453,15 +448,15 @@
           </button>
         </div>
 
-        <!-- Signing Status Area -->
+
         <div style="display: flex; flex-direction: column; gap: 8px;">
           <div class="signing-console-new" id="nsign-console"></div>
           <div class="progress-bar-container-new" id="nsign-progress-container">
             <div class="progress-bar-new" id="nsign-progress"></div>
           </div>
         </div>
-        
-        <!-- Success Area -->
+
+
         <div id="nsign-success-area" style="display:none; flex-direction:column; gap:12px; margin-top:16px; text-align:center;">
           <span style="font-size:40px;">🎉</span>
           <h3 style="font-family:'Space Grotesk', sans-serif;" data-i="nsign-success">Приложение подписано!</h3>
@@ -479,8 +474,8 @@
 
       </div>
     </div>
- 
-    <!-- THEME CUSTOMIZER MODAL -->
+
+
     <div id="theme-modal" class="modal-overlay-new" role="dialog" aria-modal="true" aria-labelledby="theme-modal-title">
       <div class="modal-box-new" style="max-width: 340px; padding: 24px;">
         <button class="modal-close-new" id="btn-close-theme" style="top: 15px; right: 15px;">&times;</button>
@@ -499,11 +494,11 @@
       </div>
     </div>
 
-    <!-- PC SIDELOAD MODAL (iLoader) -->
+
     <div id="pc-sideload-modal" class="modal-overlay-new" role="dialog" aria-modal="true" aria-labelledby="pc-modal-heading">
       <div class="modal-box-new" style="max-width: 540px; padding: 32px; text-align: left;">
         <button class="modal-close-new" onclick="closePcSideloadModal()" aria-label="Закрыть">&times;</button>
-        
+
         <div class="pc-modal-header" style="margin-bottom: 24px; display: flex; align-items: center;">
           <div class="pc-modal-logo" style="background: var(--accent-lo); color: var(--accent); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
             <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -526,7 +521,7 @@
           </p>
         </div>
 
-        <!-- Download Buttons -->
+
         <h4 style="font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; margin: 0 0 12px 0;" data-i="iloader-download-title">Скачать iLoader:</h4>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px;">
           <a href="https://iloader.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13.5px; height: 42px; text-decoration: none;">
@@ -537,7 +532,7 @@
           </a>
         </div>
 
-        <!-- Simple steps -->
+
         <div style="background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 20px;">
           <h4 style="font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; margin: 0 0 12px 0;" data-i="iloader-steps-title">Простая инструкция:</h4>
           <ol style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--muted); display: flex; flex-direction: column; gap: 8px;">
@@ -549,7 +544,7 @@
       </div>
     </div>
 
-    <!-- N.SIGN PROMO MODAL -->
+
     <div id="nsign-promo-modal" class="modal-overlay-new" role="dialog" aria-modal="true" aria-labelledby="promo-modal-title">
       <div class="modal-box-new" style="max-width: 380px; padding: 32px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px;">
         <button class="modal-close-new" id="btn-close-promo" style="top: 15px; right: 15px;">&times;</button>
@@ -566,7 +561,7 @@
 
   </main>
 
-  <!-- FOOTER -->
+
   <footer id="footer">
     <div class="footer-inner">
       <div>
@@ -605,12 +600,12 @@
     </div>
   </footer>
 
-</div><!-- /#app -->
+</div>
 
-<!-- TOAST -->
+
 <div id="toast" role="status" aria-live="polite"></div>
 
-<!-- REPORT MODAL -->
+
 <div id="report-modal" class="hidden" role="dialog" aria-modal="true" aria-labelledby="report-title">
   <div class="modal-inner">
     <h2 id="report-title" data-i="report-title">Пожаловаться на ссылку</h2>
@@ -627,7 +622,7 @@
   </div>
 </div>
 
-<!-- 404 MODAL -->
+
 <div id="modal-404" class="modal-overlay-new" role="dialog" aria-modal="true" aria-labelledby="modal-404-title">
   <div class="modal-box-new" style="max-width: 420px; padding: 32px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px;">
     <button class="modal-close-new" id="btn-close-404" style="top: 15px; right: 15px;">&times;</button>

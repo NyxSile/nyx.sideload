@@ -1,6 +1,4 @@
-/* ════════════════════════════════════
-   i18n
-════════════════════════════════════ */
+
 const i18n = {
   ru: {
     "hero-title-1": "iOS",
@@ -253,9 +251,7 @@ function applyLang() {
   });
 }
 
-/* ════════════════════════════════════
-   TOAST
-════════════════════════════════════ */
+
 let toastTimer;
 function showToast(msg) {
   const el = document.getElementById('toast');
@@ -264,11 +260,6 @@ function showToast(msg) {
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => el.classList.remove('show'), 2200);
 }
-
-/* ════════════════════════════════════
-   ACTIONS
-════════════════════════════════════ */
-// DNS
 document.getElementById('btn-install-dns').addEventListener('click', () => {
   showToast(t('toast-dns'));
   setTimeout(() => {
@@ -279,8 +270,6 @@ document.getElementById('btn-install-dns').addEventListener('click', () => {
 document.getElementById('btn-dns-info').addEventListener('click', () => {
   showToast(t('dns-info-text'));
 });
-
-// Lang toggle
 document.querySelectorAll('.lang-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     currentLang = btn.dataset.lang;
@@ -290,8 +279,6 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
     applyLang();
   });
 });
-
-// Report modal
 document.getElementById('btn-report').addEventListener('click', () => {
   document.getElementById('report-modal').classList.remove('hidden');
 });
@@ -317,11 +304,9 @@ document.getElementById('report-modal').addEventListener('click', (e) => {
   }
 });
 
-/* ════════════════════════════════════
-   MODALS AND BINDINGS
-════════════════════════════════════ */
+
 let activeTool = '';
-const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
               (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 let appMetadata = {};
 
@@ -329,8 +314,6 @@ async function loadMetadata() {
   try {
     const res = await fetch('version.json?v=' + Date.now());
     appMetadata = await res.json();
-    
-    // Update versions in the main UI cards dynamically
     if (appMetadata['esign']) {
       const el = document.querySelector('#card-esign .tool-meta-new span:nth-child(2)');
       if (el) el.textContent = 'v' + appMetadata['esign'].version;
@@ -353,11 +336,11 @@ function updateModalMetadata() {
   const cert = certSelect ? certSelect.value : '';
   const key = `${activeTool}-${cert}`;
   const meta = appMetadata[key] || appMetadata[activeTool] || {};
-  
+
   const version = document.getElementById('modal-app-version');
   const size = document.getElementById('modal-app-size');
   const bundle = document.getElementById('modal-app-bundle');
-  
+
   if (version) version.textContent = meta.version || (activeTool === 'nsign' ? '1.0.0' : '1.5.1');
   if (size) size.textContent = meta.size || '14.9 MB';
   if (bundle) bundle.textContent = meta.bundle || (activeTool === 'esign' ? 'p3.xyz.yyyue.esign' : (activeTool === 'ksign' ? 'nya.asami.ksign' : 'nyx.sideload.nsign'));
@@ -369,11 +352,7 @@ function openInstaller(tool) {
   const title = document.getElementById('inst-modal-title');
   const iconContainer = document.getElementById('modal-app-icon');
   const installText = document.getElementById('btn-modal-install-text');
-  
-  // Set tab back to standard
   document.getElementById('tab-btn-standard').click();
-  
-  // Toggle standard tab fields/unavailable state
   if (tool === 'nsign') {
     document.getElementById('standard-install-fields').style.display = 'none';
     document.getElementById('standard-install-unavailable').style.display = 'flex';
@@ -381,21 +360,13 @@ function openInstaller(tool) {
     document.getElementById('standard-install-fields').style.display = 'block';
     document.getElementById('standard-install-unavailable').style.display = 'none';
   }
-  
-  // Update version, bundle, size dynamically
   updateModalMetadata();
-  
-  // Default name fallback
   let nameVal = tool === 'esign' ? 'ESign' : (tool === 'ksign' ? 'KSign' : 'N.Sign');
   if (appMetadata[tool]) {
     nameVal = appMetadata[tool].app || nameVal;
   }
   title.textContent = nameVal;
-  
-  // Custom check: openInstaller copies the innerHTML containing the new <img> elements
   iconContainer.innerHTML = document.querySelector(`#card-${tool} .tool-icon-container`).innerHTML;
-  
-  // Toggle customization tab locked state
   if (tool === 'nsign') {
     document.getElementById('custom-locked-view').style.display = 'none';
     document.getElementById('custom-unlocked-view').style.display = 'flex';
@@ -403,8 +374,6 @@ function openInstaller(tool) {
     document.getElementById('custom-locked-view').style.display = 'flex';
     document.getElementById('custom-unlocked-view').style.display = 'none';
   }
-  
-  // Update button text based on platform
   if (isIOS) {
     installText.setAttribute('data-i', 'install');
     installText.textContent = t('install');
@@ -412,7 +381,7 @@ function openInstaller(tool) {
     installText.setAttribute('data-i', 'download-ipa');
     installText.textContent = t('download-ipa');
   }
-  
+
   modal.classList.add('active');
 }
 
@@ -429,8 +398,6 @@ function openNSign() {
 function closeNSign() {
   document.getElementById('nsign-modal').classList.remove('active');
 }
-
-// Tabs switching in Installer
 document.getElementById('tab-btn-standard').addEventListener('click', () => {
   document.getElementById('tab-btn-standard').classList.add('active');
   document.getElementById('tab-btn-custom').classList.remove('active');
@@ -444,14 +411,8 @@ document.getElementById('tab-btn-custom').addEventListener('click', () => {
   document.getElementById('tab-content-custom').classList.add('active');
   document.getElementById('tab-content-standard').classList.remove('active');
 });
-
-// Go to N.Sign button inside Installer modal (lock overlay)
 document.getElementById('btn-go-nsign').addEventListener('click', () => openInstaller('nsign'));
-
-// Launch N.Sign Web from customization tab
 document.getElementById('btn-launch-web-signer').addEventListener('click', openNSign);
-
-// Synchronize and apply theme
 function applyTheme(theme, showNotification = true) {
   const root = document.documentElement;
   if (theme === 'violet') {
@@ -467,15 +428,13 @@ function applyTheme(theme, showNotification = true) {
     root.style.setProperty('--accent', '#10B981');
     root.style.setProperty('--accent-lo', 'rgba(16, 185, 129, 0.1)');
   }
-  
+
   localStorage.setItem('nyx-theme', theme);
-  
-  // Synchronize values of both theme selectors
   const siteSel = document.getElementById('site-theme-select');
   const headerSel = document.getElementById('header-theme-select');
   if (siteSel) siteSel.value = theme;
   if (headerSel) headerSel.value = theme;
-  
+
   if (showNotification) {
     showToast(t('theme-applied-toast') || 'Тема успешно применена!');
   }
@@ -483,8 +442,6 @@ function applyTheme(theme, showNotification = true) {
 
 document.getElementById('site-theme-select').addEventListener('change', (e) => applyTheme(e.target.value, true));
 document.getElementById('header-theme-select').addEventListener('change', (e) => applyTheme(e.target.value, true));
-
-// Theme customizer modal bindings
 document.getElementById('btn-header-theme').addEventListener('click', () => {
   document.getElementById('theme-modal').classList.add('active');
 });
@@ -496,54 +453,41 @@ document.getElementById('theme-modal').addEventListener('click', (e) => {
     document.getElementById('theme-modal').classList.remove('active');
   }
 });
-
-// Open triggers
 document.getElementById('btn-open-esign').addEventListener('click', () => openInstaller('esign'));
 document.getElementById('btn-open-ksign').addEventListener('click', () => openInstaller('ksign'));
 document.getElementById('btn-open-nsign').addEventListener('click', () => openInstaller('nsign'));
 document.getElementById('modal-cert-select').addEventListener('change', updateModalMetadata);
-
-// Close triggers
 document.getElementById('btn-close-installer').addEventListener('click', closeInstaller);
 document.getElementById('btn-close-nsign').addEventListener('click', closeNSign);
-
-// Close modals when clicking backdrop
 document.getElementById('installer-modal').addEventListener('click', (e) => {
   if (e.target === document.getElementById('installer-modal')) closeInstaller();
 });
 document.getElementById('nsign-modal').addEventListener('click', (e) => {
   if (e.target === document.getElementById('nsign-modal')) closeNSign();
 });
-
-// Install Button click in modal
 document.getElementById('btn-modal-install').addEventListener('click', () => {
   const cert = document.getElementById('modal-cert-select').value;
   if (!cert) { showToast(t('toast-cert-empty')); return; }
-  
+
   const finalBaseUrl = appMetadata.base_url || 'https://nyx.sideload.space';
   const ipaKey = `${activeTool}-${cert}`;
-  let ipaPath = `ipas/${activeTool}/${activeTool}-${cert}.ipa`; // fallback
-  if (appMetadata[ipaKey] && appMetadata[ipaKey].ipa) {
+  let ipaPath = `ipas/${activeTool}/${activeTool}-${cert}.ipa`;  if (appMetadata[ipaKey] && appMetadata[ipaKey].ipa) {
     ipaPath = appMetadata[ipaKey].ipa;
   }
-  
+
   if (isIOS) {
     showToast(t('toast-installing'));
     setTimeout(() => {
-      // Point to our generated manifest plists inside plists/ folder
       const manifest = `${finalBaseUrl}/plists/manifest-${activeTool}-${cert}.plist?v=${Date.now()}`;
       window.location.href = `itms-services://?action=download-manifest&url=${encodeURIComponent(manifest)}`;
     }, 1000);
   } else {
     showToast(t('toast-installing'));
     setTimeout(() => {
-      // Directly download the IPA dynamically using the exact path from version.json
       window.location.href = `${finalBaseUrl}/${ipaPath}`;
     }, 1000);
   }
 });
-
-// N.Sign mock files setup
 const fileInputs = {
   ipa: { drop: 'nsign-drop-ipa', inp: 'inp-ipa-file', txt: 'txt-ipa-file', def: 'nsign-select-ipa' },
   p12: { drop: 'nsign-drop-p12', inp: 'inp-p12-file', txt: 'txt-p12-file', def: 'nsign-select-p12' },
@@ -554,7 +498,7 @@ Object.entries(fileInputs).forEach(([key, val]) => {
   const dropZone = document.getElementById(val.drop);
   const fileInput = document.getElementById(val.inp);
   const textEl = document.getElementById(val.txt);
-  
+
   dropZone.addEventListener('click', () => fileInput.click());
   fileInput.addEventListener('change', (e) => {
     if (e.target.files.length > 0) {
@@ -562,8 +506,6 @@ Object.entries(fileInputs).forEach(([key, val]) => {
       textEl.style.color = 'var(--ok)';
     }
   });
-  
-  // Drag & drop handlers
   dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.style.borderColor = 'var(--accent)'; });
   dropZone.addEventListener('dragleave', () => { dropZone.style.borderColor = ''; });
   dropZone.addEventListener('drop', (e) => {
@@ -576,8 +518,6 @@ Object.entries(fileInputs).forEach(([key, val]) => {
     }
   });
 });
-
-// Toggles in N.Sign
 const setupToggle = (chkId, inpId) => {
   const chk = document.getElementById(chkId);
   const inp = document.getElementById(inpId);
@@ -588,8 +528,6 @@ const setupToggle = (chkId, inpId) => {
 setupToggle('chk-custom-bundle', 'inp-custom-bundle');
 setupToggle('chk-custom-name', 'inp-custom-name');
 setupToggle('chk-custom-inject', 'box-custom-inject');
-
-// Dylib select
 const dylibBtn = document.getElementById('btn-select-dylib');
 const dylibInp = document.getElementById('inp-dylib-file');
 const dylibTxt = document.getElementById('txt-dylib-file');
@@ -600,35 +538,33 @@ dylibInp.addEventListener('change', (e) => {
     dylibTxt.style.color = 'var(--ok)';
   }
 });
-
-// Sign simulation logic
 document.getElementById('btn-nsign-submit').addEventListener('click', () => {
   const ipa = document.getElementById('inp-ipa-file').files[0];
   const p12 = document.getElementById('inp-p12-file').files[0];
   const prov = document.getElementById('inp-prov-file').files[0];
-  
+
   if (!ipa || !p12 || !prov) {
     showToast(t('toast-nsign-missing'));
     return;
   }
-  
+
   const formFields = document.getElementById('nsign-form-fields');
   const consoleEl = document.getElementById('nsign-console');
   const progressContainer = document.getElementById('nsign-progress-container');
   const progressBar = document.getElementById('nsign-progress');
-  
+
   formFields.style.display = 'none';
   consoleEl.style.display = 'flex';
   progressContainer.style.display = 'block';
   consoleEl.innerHTML = '';
   progressBar.style.width = '0%';
-  
+
   const logs = [
     { text: '[+] Анализ IPA пакета...', time: 600, prog: 10 },
     { text: `[+] Найдено Payload/${ipa.name.replace('.ipa', '')}.app`, time: 1200, prog: 20 },
     { text: '[+] Извлечение бинарных файлов...', time: 1800, prog: 30 }
   ];
-  
+
   if (document.getElementById('chk-custom-bundle').checked) {
     const customBundle = document.getElementById('inp-custom-bundle').value || 'com.custom.sideload';
     logs.push({ text: `[+] Изменение Bundle ID на: ${customBundle}`, time: 2400, prog: 40 });
@@ -640,14 +576,14 @@ document.getElementById('btn-nsign-submit').addEventListener('click', () => {
   if (document.getElementById('chk-custom-inject').checked && dylibInp.files[0]) {
     logs.push({ text: `[+] Инъекция динамической библиотеки: ${dylibInp.files[0].name}`, time: 3600, prog: 65 });
   }
-  
+
   logs.push(
     { text: `[+] Проверка сертификата: ${p12.name}...`, time: 4200, prog: 75 },
     { text: `[+] Подпись исполняемого файла с профилем ${prov.name}...`, time: 4800, prog: 85 },
     { text: '[+] Компрессия подписанного IPA пакета...', time: 5400, prog: 95 },
     { text: '[+] Подписание завершено успешно! Генерация OTA манифеста...', time: 6000, prog: 100 }
   );
-  
+
   logs.forEach(log => {
     setTimeout(() => {
       const line = document.createElement('div');
@@ -657,13 +593,11 @@ document.getElementById('btn-nsign-submit').addEventListener('click', () => {
       progressBar.style.width = `${log.prog}%`;
     }, log.time);
   });
-  
+
   setTimeout(() => {
     consoleEl.style.display = 'none';
     progressContainer.style.display = 'none';
     document.getElementById('nsign-success-area').style.display = 'flex';
-    
-    // Customize N.Sign install buttons
     const installBtnText = document.getElementById('txt-nsign-install-btn');
     if (isIOS) {
       installBtnText.setAttribute('data-i', 'install');
@@ -674,8 +608,6 @@ document.getElementById('btn-nsign-submit').addEventListener('click', () => {
     }
   }, 6800);
 });
-
-// Install custom signed app from N.Sign
 document.getElementById('btn-nsign-install').addEventListener('click', () => {
   showToast(t('toast-installing'));
   const finalBaseUrl = appMetadata.base_url || 'https://nyx.sideload.space';
@@ -696,37 +628,29 @@ document.getElementById('btn-nsign-download').addEventListener('click', () => {
     window.location.href = `${finalBaseUrl}/ipas/ksign/ksign-jiangsu-simcere.ipa`;
   }, 1000);
 });
-
-// Reset N.Sign form
 function resetNSignForm() {
   document.getElementById('nsign-form-fields').style.display = 'flex';
   document.getElementById('nsign-success-area').style.display = 'none';
   document.getElementById('nsign-console').style.display = 'none';
   document.getElementById('nsign-progress-container').style.display = 'none';
-  
-  // Clear inputs
   document.getElementById('inp-ipa-file').value = '';
   document.getElementById('inp-p12-file').value = '';
   document.getElementById('inp-prov-file').value = '';
   document.getElementById('inp-dylib-file').value = '';
   document.getElementById('nsign-cert-pwd').value = '';
-  
-  // Reset texts
   document.getElementById('txt-ipa-file').textContent = t('nsign-select-ipa');
   document.getElementById('txt-p12-file').textContent = t('nsign-select-p12');
   document.getElementById('txt-prov-file').textContent = t('nsign-select-prov');
   document.getElementById('txt-dylib-file').textContent = 'Ничего не выбрано';
-  
+
   document.getElementById('txt-ipa-file').style.color = '';
   document.getElementById('txt-p12-file').style.color = '';
   document.getElementById('txt-prov-file').style.color = '';
   document.getElementById('txt-dylib-file').style.color = '';
-  
-  // Reset toggles
   document.getElementById('chk-custom-bundle').checked = false;
   document.getElementById('chk-custom-name').checked = false;
   document.getElementById('chk-custom-inject').checked = false;
-  
+
   document.getElementById('inp-custom-bundle').style.display = 'none';
   document.getElementById('inp-custom-name').style.display = 'none';
   document.getElementById('box-custom-inject').style.display = 'none';
@@ -734,7 +658,7 @@ function resetNSignForm() {
 
 document.getElementById('btn-nsign-reset').addEventListener('click', resetNSignForm);
 
-/* ─── PC Sideload JS (iLoader Modal) ─── */
+
 function openPcSideloadModal(preselect) {
   if (preselect === 'combo') {
     document.getElementById('nsign-promo-modal').classList.add('active');
@@ -756,23 +680,14 @@ document.getElementById('pc-sideload-modal').addEventListener('click', function(
   if (e.target === this) closePcSideloadModal();
 });
 
-/* ════════════════════════════════════
-   STARFIELD
-════════════════════════════════════ */
+
 (function initStars() {
   const canvas = document.getElementById('stars');
   const ctx = canvas.getContext('2d');
   const COUNT = 140;
   let W, H, stars = [];
-
-  // Deep purple palette for stars (solid values)
   const COLORS = [
-    'rgb(120, 80, 220)',   // violet
-    'rgb(90, 60, 180)',    // indigo
-    'rgb(160, 100, 255)',  // lavender
-    'rgb(70, 40, 140)',    // deep purple
-    'rgb(200, 170, 255)',  // pale lilac
-  ];
+    'rgb(120, 80, 220)',    'rgb(90, 60, 180)',    'rgb(160, 100, 255)',    'rgb(70, 40, 140)',    'rgb(200, 170, 255)',  ];
 
   function resize() {
     W = canvas.width  = window.innerWidth;
@@ -785,11 +700,8 @@ document.getElementById('pc-sideload-modal').addEventListener('click', function(
       y: Math.random() * H,
       r: Math.random() * 1.4 + 0.3,
       color: COLORS[Math.floor(Math.random() * COLORS.length)],
-      // slow movement drift
       vx: (Math.random() - 0.5) * 0.08,
-      vy: -0.05 - Math.random() * 0.08, // Slow upward drift
-      // twinkle params
-      phase:  Math.random() * Math.PI * 2,
+      vy: -0.05 - Math.random() * 0.08,      phase:  Math.random() * Math.PI * 2,
       speed:  0.004 + Math.random() * 0.012,
       minA:   0.08 + Math.random() * 0.12,
       maxA:   0.55 + Math.random() * 0.45,
@@ -813,8 +725,6 @@ document.getElementById('pc-sideload-modal').addEventListener('click', function(
         s.phase += s.speed;
         s.x += s.vx;
         s.y += s.vy;
-        
-        // Wrap around boundaries
         if (s.x < -10) s.x = W + 10;
         if (s.x > W + 10) s.x = -10;
         if (s.y < -10) s.y = H + 10;
@@ -823,11 +733,10 @@ document.getElementById('pc-sideload-modal').addEventListener('click', function(
       const alpha = s.minA + (s.maxA - s.minA) * (0.5 + 0.5 * Math.sin(s.phase));
       ctx.globalAlpha = alpha;
       ctx.fillStyle = s.color;
-      // Drawing tiny squares is 100x faster than circles due to hardware acceleration
       ctx.fillRect(s.x - s.r, s.y - s.r, s.r * 2, s.r * 2);
     }
     ctx.globalAlpha = 1.0;
-    
+
     if (shouldAnimate) {
       raf = requestAnimationFrame(() => draw(true));
     }
@@ -835,10 +744,8 @@ document.getElementById('pc-sideload-modal').addEventListener('click', function(
 
   window.addEventListener('resize', () => {
     if (window.innerWidth === lastW && window.innerHeight === lastH) return;
-    
-    // Force redistribution if stars were initialized while viewport W or H was 0 (laggy load)
     const forceRegen = (W < 100 || H < 100);
-    
+
     if (window.innerWidth !== lastW || forceRegen) {
       lastW = window.innerWidth;
       lastH = window.innerHeight;
@@ -856,21 +763,18 @@ document.getElementById('pc-sideload-modal').addEventListener('click', function(
   draw(!isStatic);
 })();
 
-/* ════════════════════════════════════
-   SCROLL-HIDE HEADER
-════════════════════════════════════ */
+
 (function initScrollHeader() {
   const hdr = document.getElementById('header');
   let lastY = 0;
   let ticking = false;
 
   window.addEventListener('scroll', () => {
-    // Disable scroll animations on desktop (screens >= 768px wide)
     if (window.innerWidth >= 768) {
       hdr.classList.remove('hidden-up');
       return;
     }
-    
+
     if (!ticking) {
       requestAnimationFrame(() => {
         const y = window.scrollY;
@@ -886,13 +790,6 @@ document.getElementById('pc-sideload-modal').addEventListener('click', function(
     }
   }, { passive: true });
 })();
-
-
-
-/* ════════════════════════════════════
-   INIT
-════════════════════════════════════ */
-// N.Sign Promo Modal bindings
 document.getElementById('btn-close-promo').addEventListener('click', () => {
   document.getElementById('nsign-promo-modal').classList.remove('active');
   document.body.style.overflow = '';
@@ -908,8 +805,6 @@ document.getElementById('btn-promo-go-nsign').addEventListener('click', () => {
   document.body.style.overflow = '';
   openInstaller('nsign');
 });
-
-// 404 Modal bindings
 document.getElementById('btn-close-404').addEventListener('click', () => {
   document.getElementById('modal-404').classList.remove('active');
   document.body.style.overflow = '';
@@ -926,20 +821,13 @@ document.getElementById('modal-404').addEventListener('click', (e) => {
 });
 
 (function init() {
-  // Set correct lang btn state
   document.querySelectorAll('.lang-btn').forEach(b => {
     b.classList.toggle('active', b.dataset.lang === currentLang);
   });
   applyLang();
-  
-  // Load and apply saved theme
   const savedTheme = localStorage.getItem('nyx-theme') || 'violet';
   applyTheme(savedTheme, false);
-  
-  // Fetch and update version and size metadata dynamically
   loadMetadata();
-  
-  // Handle 404 redirect check
   if (window.location.search.includes('404') || window.location.hash.includes('404')) {
     window.history.replaceState(null, '', window.location.pathname);
     setTimeout(() => {
