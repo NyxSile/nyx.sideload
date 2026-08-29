@@ -362,10 +362,22 @@ function updateModalMetadata() {
   const version = document.getElementById('modal-app-version');
   const size = document.getElementById('modal-app-size');
   const bundle = document.getElementById('modal-app-bundle');
+  const statusDot = document.querySelector('#modal-app-status .status-dot');
+  const statusText = document.getElementById('modal-app-status-text');
 
   if (version) version.textContent = meta.version || (activeTool === 'nsign' ? '1.0.0' : '1.5.1');
   if (size) size.textContent = meta.size || '14.9 MB';
   if (bundle) bundle.textContent = meta.bundle || (activeTool === 'esign' ? 'p3.xyz.yyyue.esign' : (activeTool === 'ksign' ? 'nya.asami.ksign' : 'nyx.sideload.nsign'));
+
+  if (statusDot && statusText) {
+    if (cert === 'hsbc-bank') {
+      statusDot.className = 'status-dot ok';
+      statusText.textContent = t('cert-active') || 'Активен';
+    } else {
+      statusDot.className = 'status-dot warn';
+      statusText.textContent = t('cert-revoked') || 'Только с DNS';
+    }
+  }
 }
 
 function openInstaller(tool) {

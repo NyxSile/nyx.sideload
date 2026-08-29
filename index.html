@@ -88,7 +88,10 @@
     <section class="card fade-up" id="sec-cert-files">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
         <p class="section-label" style="margin:0;" data-i="sec-cert-download-label">Сертификат</p>
-        <span class="tool-tag" style="background: rgba(74, 222, 128, 0.12); color: var(--ok); border: 1px solid rgba(74, 222, 128, 0.3); padding: 2px 8px; border-radius: 99px; font-size: 11px; font-weight: 600;" data-i="cert-active">Активен</span>
+        <span class="tool-tag" style="background: rgba(74, 222, 128, 0.08); color: var(--ok); border: 1px solid rgba(74, 222, 128, 0.25); padding: 3px 10px; border-radius: 99px; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">
+          <span class="status-dot ok"></span>
+          <span data-i="cert-active">Активен</span>
+        </span>
       </div>
       <div class="dns-row">
         <div class="dns-info">
@@ -276,6 +279,7 @@
             <div class="large-modal-icon" id="modal-app-icon"></div>
             <h2 class="modal-app-name" id="inst-modal-title">ESign</h2>
             <div class="modal-app-meta">
+              <span>Status: <strong id="modal-app-status" style="display:inline-flex; align-items:center; gap:6px;"><span class="status-dot ok"></span><span id="modal-app-status-text">Активен</span></strong></span>
               <span>Bundle ID: <strong id="modal-app-bundle">com.esign.sideload</strong></span>
               <span>Version: <strong id="modal-app-version">1.5.1</strong></span>
               <span>Size: <strong id="modal-app-size">14.9 MB</strong></span>
@@ -295,11 +299,11 @@
                  <div class="form-group-new">
                    <label for="modal-cert-select" data-i="label-select-cert">Выбрать сертификат</label>
                    <select class="sel" id="modal-cert-select" style="width:100%;">
-                     <option value="hsbc-bank" selected>🟢 HSBC Bank plc (Активен)</option>
-                     <option value="jiangsu-simcere">🟡 Jiangsu Simcere (Только DNS)</option>
-                     <option value="moving-increasingly">🟡 Moving Increasingly (Только DNS)</option>
-                     <option value="vietnam-airlines">🟡 Vietnam Airlines (Только DNS)</option>
-                     <option value="vietnam-rubber">🟡 Viet Nam Rubber (Только DNS)</option>
+                     <option value="hsbc-bank" selected>HSBC Bank plc [Активен]</option>
+                     <option value="jiangsu-simcere">Jiangsu Simcere [DNS only]</option>
+                     <option value="moving-increasingly">Moving Increasingly [DNS only]</option>
+                     <option value="vietnam-airlines">Vietnam Airlines [DNS only]</option>
+                     <option value="vietnam-rubber">Viet Nam Rubber [DNS only]</option>
                    </select>
                  </div>
                  <p style="font-size:12px; color:var(--muted); line-height:1.4;" data-i="cert-disclaimer">

@@ -158,6 +158,26 @@
     .ping-dot.checking { background: var(--warn); animation: pulse-warn 1s infinite; }
     @keyframes pulse-warn { 0%,100% { opacity:1; } 50% { opacity:.3; } }
 
+    .status-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .status-dot.ok {
+      background: #4ade80;
+      box-shadow: 0 0 6px rgba(74, 222, 128, 0.6), 0 0 10px rgba(74, 222, 128, 0.3);
+    }
+    .status-dot.warn {
+      background: #facc15;
+      box-shadow: 0 0 6px rgba(250, 204, 21, 0.6), 0 0 10px rgba(250, 204, 21, 0.3);
+    }
+    .status-dot.err {
+      background: #f87171;
+      box-shadow: 0 0 6px rgba(248, 113, 113, 0.6), 0 0 10px rgba(248, 113, 113, 0.3);
+    }
+
     .new-cert-banner {
       background: rgba(74, 222, 128, 0.12);
       border-bottom: 1px solid rgba(74, 222, 128, 0.25);
