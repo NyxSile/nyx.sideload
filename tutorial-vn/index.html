@@ -466,17 +466,17 @@
     const storyData = {
       ru: {
         start: {
-          text: "*Смотрит назад, а потом оборачивается*\n— А, ты уже здесь! Я Бриз. Рада видеть тебя в Nyx Sideload! Чем могу помочь?",
+          text: "*Медленно переводит спокойный взгляд на экран*\n— ...Ты уже здесь. Я Бриз. Меня попросили ввести тебя в курс дела. Слушай внимательно и не делай глупостей.",
           choices: [
             { text: "🛡️ Установить DNS-профиль (Анти-ревок)", next: "dns_intro" },
             { text: "📲 Как установить ESign / KSign?", next: "esign_intro" },
             { text: "🔑 Сертификаты: как импортировать .p12?", next: "cert_import" },
             { text: "💻 Сайдлоуд с ПК (LiveContainer / SideStore)", next: "iloader_intro" },
-            { text: "❓ Ошибки и проблемы", next: "troubleshooting" }
+            { text: "❓ Что-то пошло не так (Ошибки)", next: "troubleshooting" }
           ]
         },
         topics_menu: {
-          text: "— Выбери тему, о которой хочешь узнать подробнее:",
+          text: "— ...Выбирай, что именно тебе непонятно.",
           choices: [
             { text: "🛡️ DNS-профиль (Защита от отзыва)", next: "dns_intro" },
             { text: "📲 Установка ESign / KSign", next: "esign_intro" },
@@ -487,7 +487,7 @@
         },
         // DNS
         dns_intro: {
-          text: "— Начнём с DNS профиля. Он критически важен, чтобы приложения не перестали открываться через пару дней.",
+          text: "— DNS-профиль. Это база. Без него сертификат заблокируют, и твои приложения просто перестанут запускаться через пару дней.",
           choices: [
             { text: "Я готов(-а) к установке", next: "dns_install" },
             { text: "Как именно он работает?", next: "dns_explain" },
@@ -495,41 +495,41 @@
           ]
         },
         dns_explain: {
-          text: "— DNS-профиль блокирует домены проверки сертификатов Apple (*ocsp.apple.com* и др.). Твои приложения не смогут получить сигнал об отзыве. Все остальные сайты идут без изменений через Cloudflare.",
+          text: "— Он фильтрует запросы к серверам проверки Apple вроде *ocsp.apple.com*. Запросы на блокировку просто не доходят. Остальной трафик идёт без изменений через Cloudflare. Никакой магии, чистая сетевая гигиена.",
           choices: [
-            { text: "Отлично, устанавливаем!", next: "dns_install" },
+            { text: "Понятно. Давай установим.", next: "dns_install" },
             { text: "Назад", next: "dns_intro" }
           ]
         },
         dns_install: {
-          text: "— Отправила запрос на загрузку профиля. Нажми «Разрешить» во всплывающем окне Safari.",
+          text: "— Отправила запрос. Нажми «Разрешить» в диалоге Safari. Только не перепутай браузер.",
           action: () => {
             setTimeout(() => {
               window.location.href = '../dns.mobileconfig';
             }, 1000);
           },
           choices: [
-            { text: "Профиль загружен, что дальше?", next: "dns_activate" },
-            { text: "Скачался просто файл .mobileconfig", next: "dns_safari" }
+            { text: "Профиль загружен. Что дальше?", next: "dns_activate" },
+            { text: "Скачался просто файл .mobileconfig...", next: "dns_safari" }
           ]
         },
         dns_safari: {
-          text: "*Вздыхает*\n— Похоже, ты открыл(-а) сайт во встроенном браузере (Telegram или VK). Открой *nyx.sideload.space* в **Safari**, тогда iOS сразу предложит установить профиль.",
+          text: "*Холодный вздох*\n— Я же предупреждала. Ты открыл(-а) ссылку во встроенном браузере Telegram или VK. Они ломают установку профилей. Открой *nyx.sideload.space* через **Safari**.",
           choices: [
-            { text: "Попробовать снова", next: "dns_intro" },
+            { text: "Понял(-а), пробую в Safari", next: "dns_intro" },
             { text: "В меню тем", next: "topics_menu" }
           ]
         },
         dns_activate: {
-          text: "— Теперь открой **Настройки iPhone → Основные → VPN и управление устройством → DNS** и выбери **«nyx-sideload»**. Готово, защита включена!",
+          text: "— Профиль скачан, но сам он не включится. Иди в **Настройки → Основные → VPN и управление устройством → DNS** и выбери **«nyx-sideload»**. Теперь ты под защитой.",
           choices: [
-            { text: "Супер! А как установить ESign?", next: "esign_intro" },
-            { text: "В меню тем", next: "topics_menu" }
+            { text: "Сделано. А как поставить ESign?", next: "esign_intro" },
+            { text: "Вернуться к темам", next: "topics_menu" }
           ]
         },
         // ESign / KSign
         esign_intro: {
-          text: "— На нашем сайте ты можешь установить **ESign** или **KSign** прямо с телефона в один клик. Они уже подписаны актуальным сертификатом **HSBC Bank plc**!",
+          text: "— **ESign** и **KSign**. На главной странице они уже подписаны рабочим корпоративным сертификатом **HSBC Bank plc**.",
           choices: [
             { text: "Как установить с сайта?", next: "esign_steps" },
             { text: "Пишет «Ненадежный корпоративный разработчик»", next: "trust_cert" },
@@ -537,44 +537,44 @@
           ]
         },
         esign_steps: {
-          text: "— Шаг 1: На главной странице нажми «Скачать» под ESign.\n— Шаг 2: Выбери активный сертификат **HSBC Bank plc** и нажми «Установить».\n— Шаг 3: Подтверди установку в системном окне iOS.",
+          text: "— Всё тривиально.\n1. Жми «Скачать» под ESign на главной.\n2. Выбирай сертификат **HSBC Bank plc** и жми «Установить».\n3. Подтверди во всплывающем окне iOS.",
           choices: [
-            { text: "Приложение установилось, но не открывается!", next: "trust_cert" },
-            { text: "Всё открылось! Как подписывать свои IPA?", next: "cert_import" }
+            { text: "Установилось, но система не даёт открыть!", next: "trust_cert" },
+            { text: "Работает. Как подписывать свои IPA?", next: "cert_import" }
           ]
         },
         trust_cert: {
-          text: "— Не пугайся, это стандартная защита iOS! Зайди в **Настройки → Основные → VPN и управление устройством → КОРПОРАТИВНЫЕ ПРИЛОЖЕНИЯ (HSBC Bank plc)** и нажми **«Доверять»**.",
+          text: "— Спокойно. Это штатное поведение iOS для корпоративных подписей. Иди в **Настройки → Основные → VPN и управление устройством → КОРПОРАТИВНЫЕ ПРИЛОЖЕНИЯ (HSBC Bank plc)** и нажми **«Доверять»**.",
           choices: [
-            { text: "Заработало, спасибо!", next: "cert_import" },
+            { text: "Открылось. Спасибо, Бриз.", next: "cert_import" },
             { text: "В меню тем", next: "topics_menu" }
           ]
         },
         // Cert import
         cert_import: {
-          text: "— Чтобы подписывать любые скачанные IPA файлы прямо внутри ESign или KSign, тебе нужен файл сертификата (.p12) и профиль (.mobileprovision). У нас на сайте есть готовый архив!",
+          text: "— Чтобы подписывать любые IPA внутри ESign/KSign, нужен ключ (.p12) и профиль (.mobileprovision). Мы уже упаковали всё в один zip-архив на главной.",
           choices: [
             { text: "Где скачать архив сертификата?", next: "cert_download_help" },
-            { text: "Какой пароль к .p12 сертификату?", next: "cert_pwd_help" },
+            { text: "Какой пароль к файлу сертификата?", next: "cert_pwd_help" },
             { text: "В меню тем", next: "topics_menu" }
           ]
         },
         cert_download_help: {
-          text: "— На главной странице есть карточка «Сертификат». Нажми кнопку **«Скачать сертификат (.zip)»** и открой его в ESign через кнопку «Импорт». Внутри уже вшит мобильный профиль!",
+          text: "— На главной странице в блоке «Сертификат» нажми **«Скачать сертификат (.zip)»**. Затем открой его в ESign через «Импорт». Он сам распакует и подхватит профиль.",
           choices: [
-            { text: "А какой пароль указывать?", next: "cert_pwd_help" },
+            { text: "А пароль какой?", next: "cert_pwd_help" },
             { text: "В меню тем", next: "topics_menu" }
           ]
         },
         cert_pwd_help: {
-          text: "— Пароль к сертификату HSBC: **AppleP12.com**\nНа главной странице есть кнопка «Скопировать пароль», чтобы не вводить вручную.",
+          text: "— Пароль: **AppleP12.com**\nНа сайте есть кнопка копирования в один клик. Не пытайся вводить руками, если лень.",
           choices: [
-            { text: "Понятно!", next: "topics_menu" }
+            { text: "Запомнил(-а).", next: "topics_menu" }
           ]
         },
         // PC Sideload
         iloader_intro: {
-          text: "— Сайдлоуд с ПК через **iLoader** позволяет ставить LiveContainer или SideStore бесплатно, используя личный Apple ID без риска отзывов!",
+          text: "— Сайдлоуд через ПК и утилиту **iLoader**. Для тех, кому надоели отзывы и хочется стабильности через свой личный Apple ID.",
           choices: [
             { text: "Что такое LiveContainer?", next: "lc_explain" },
             { text: "Что такое SideStore?", next: "ss_explain" },
@@ -582,49 +582,49 @@
           ]
         },
         lc_explain: {
-          text: "— **LiveContainer** запускает сколько угодно приложений внутри одной песочницы. Ты не тратишь лимит в 3 бесплатных слота Apple!",
+          text: "— **LiveContainer** — среда запуска. Позволяет держать десятки IPA внутри одного контейнера. Лимит Apple в 3 бесплатных слота больше не помеха.",
           choices: [
             { text: "Как его установить?", next: "lc_steps" },
             { text: "Назад", next: "iloader_intro" }
           ]
         },
         lc_steps: {
-          text: "— Подключи iPhone к Mac или Windows через USB, открой утилиту iLoader, выбери LiveContainer и нажми Install. На телефоне включи «Режим разработчика» в Настройках.",
+          text: "— Подключи провод к ПК, запусти iLoader, выбери LiveContainer и жми Install. На телефоне не забудь включить «Режим разработчика».",
           choices: [
-            { text: "Супер!", next: "topics_menu" }
+            { text: "Понятно.", next: "topics_menu" }
           ]
         },
         ss_explain: {
-          text: "— **SideStore** — это альтернативный App Store прямо на твоем iPhone, который сам переподписывает приложения по воздуху через локальный VPN.",
+          text: "— **SideStore** — автономный стор. Сам переподписывает твои приложения по локальному Wi-Fi VPN, без необходимости подключать кабель к ПК каждые 7 дней.",
           choices: [
-            { text: "Круто, в меню тем!", next: "topics_menu" }
+            { text: "Ясно.", next: "topics_menu" }
           ]
         },
         // Troubleshooting
         troubleshooting: {
-          text: "— Что именно пошло не так?",
+          text: "— ...Что у тебя сломалось на этот раз?",
           choices: [
             { text: "«Не удалось проверить целостность ПО»", next: "err_integrity" },
-            { text: "Иконка приложения серая и не качается", next: "err_grey_icon" },
-            { text: "Приложение сразу вылетает при запуске", next: "err_crash" },
+            { text: "Иконка приложения серая и загрузка зависла", next: "err_grey_icon" },
+            { text: "Приложение вылетает при запуске", next: "err_crash" },
             { text: "В меню тем", next: "topics_menu" }
           ]
         },
         err_integrity: {
-          text: "— Это значит, что либо сертификат заблокирован Apple без DNS, либо на устройстве остался кэш старой проверки. Включи наш DNS-профиль, очисти кэш Safari в Настройках и перезагрузи устройство.",
+          text: "— Либо сертификат отозван и ты забыл(-а) включить DNS, либо iOS сохранила старый кэш отзыва. Включи наш DNS-профиль, очисти историю Safari в Настройках и перезагрузи телефон.",
           choices: [
-            { text: "Попробовать решение", next: "dns_intro" },
+            { text: "Попробую починить", next: "dns_intro" },
             { text: "В меню тем", next: "topics_menu" }
           ]
         },
         err_grey_icon: {
-          text: "— Проверь интернет-соединение. Если загрузка зависла, удали серую иконку с экрана, включи DNS профиль и повтори установку с сайта в Safari.",
+          text: "— Сбой загрузки OTA. Удали серую иконку, проверь что DNS активен и повтори попытку установки строго через Safari.",
           choices: [
             { text: "В меню тем", next: "topics_menu" }
           ]
         },
         err_crash: {
-          text: "— Если вылетает само подписанное приложение, возможно в нем не включен правильный Bundle ID или в iOS 16+ отключен «Режим разработчика» (*Настройки → Конфиденциальность → Режим разработчика*).",
+          text: "— Если вылетает само приложение — проверь, включен ли **«Режим разработчика»** (*Настройки → Конфиденциальность → Режим разработчика*). Начиная с iOS 16 без него ничего работать не будет.",
           choices: [
             { text: "В меню тем", next: "topics_menu" }
           ]
@@ -632,17 +632,17 @@
       },
       en: {
         start: {
-          text: "*Looks back, then turns around*\n— Ah, you're here! I'm Breeze. Welcome to Nyx Sideload! How can I help you today?",
+          text: "*Quietly turns her calm gaze toward you*\n— ...You're here. I'm Breeze. I was asked to brief you on sideloading. Listen carefully and follow instructions.",
           choices: [
             { text: "🛡️ Install DNS Profile (Anti-Revoke)", next: "dns_intro" },
-            { text: "📲 How to install ESign / KSign?", next: "esign_intro" },
+            { text: "📲 Installing ESign / KSign", next: "esign_intro" },
             { text: "🔑 Certificates: How to import .p12?", next: "cert_import" },
             { text: "💻 PC Sideload (LiveContainer / SideStore)", next: "iloader_intro" },
-            { text: "❓ Troubleshooting & Common Errors", next: "troubleshooting" }
+            { text: "❓ Troubleshooting & Errors", next: "troubleshooting" }
           ]
         },
         topics_menu: {
-          text: "— Choose a topic you want to learn more about:",
+          text: "— ...Select a topic you need assistance with.",
           choices: [
             { text: "🛡️ DNS Profile (Anti-Revoke Protection)", next: "dns_intro" },
             { text: "📲 Installing ESign / KSign", next: "esign_intro" },
@@ -652,48 +652,48 @@
           ]
         },
         dns_intro: {
-          text: "— Let's start with the DNS profile. It is essential to protect your apps from getting revoked.",
+          text: "— DNS profile. It's the baseline. Without it, Apple will revoke the certificate and your apps will cease to launch within days.",
           choices: [
             { text: "I'm ready to install", next: "dns_install" },
-            { text: "How does it work?", next: "dns_explain" },
+            { text: "How does it work exactly?", next: "dns_explain" },
             { text: "Back to Topics", next: "topics_menu" }
           ]
         },
         dns_explain: {
-          text: "— The DNS profile blocks Apple revocation servers (*ocsp.apple.com*). All your other web traffic securely resolves through Cloudflare.",
+          text: "— It drops traffic to Apple revocation endpoints like *ocsp.apple.com*. Revocation signals never reach your device. Everything else resolves normally via Cloudflare. Pure network hygiene.",
           choices: [
-            { text: "Got it, let's install!", next: "dns_install" },
+            { text: "Understood. Let's install.", next: "dns_install" },
             { text: "Back", next: "dns_intro" }
           ]
         },
         dns_install: {
-          text: "— Profile download initiated. Tap 'Allow' in the Safari prompt.",
+          text: "— Download initiated. Tap 'Allow' in Safari prompt. Do not use random browsers.",
           action: () => {
             setTimeout(() => {
               window.location.href = '../dns.mobileconfig';
             }, 1000);
           },
           choices: [
-            { text: "Downloaded! What next?", next: "dns_activate" },
-            { text: "It downloaded a raw file instead", next: "dns_safari" }
+            { text: "Downloaded. What's next?", next: "dns_activate" },
+            { text: "It downloaded a raw .mobileconfig file...", next: "dns_safari" }
           ]
         },
         dns_safari: {
-          text: "*Sighs*\n— Make sure you open *nyx.sideload.space* in **Safari**. In-app browsers like Telegram or TikTok block profile installations.",
+          text: "*Cold sigh*\n— I told you. You opened this in an in-app browser like Telegram. Use native **Safari**.",
           choices: [
-            { text: "Try again", next: "dns_intro" },
+            { text: "Understood, opening Safari", next: "dns_intro" },
             { text: "Back to Topics", next: "topics_menu" }
           ]
         },
         dns_activate: {
-          text: "— Now open **Settings → General → VPN & Device Management → DNS** and select **nyx-sideload**. You're now protected!",
+          text: "— Go to **Settings → General → VPN & Device Management → DNS** and toggle **nyx-sideload**. You are now protected.",
           choices: [
-            { text: "Great! How to install ESign?", next: "esign_intro" },
+            { text: "Done. How do I install ESign?", next: "esign_intro" },
             { text: "Back to Topics", next: "topics_menu" }
           ]
         },
         esign_intro: {
-          text: "— You can install **ESign** or **KSign** directly from our site. Both are pre-signed with the active **HSBC Bank plc** certificate!",
+          text: "— **ESign** & **KSign**. Available directly on the home page, pre-signed with the active **HSBC Bank plc** enterprise certificate.",
           choices: [
             { text: "How to install?", next: "esign_steps" },
             { text: "It says 'Untrusted Enterprise Developer'", next: "trust_cert" },
@@ -701,34 +701,34 @@
           ]
         },
         esign_steps: {
-          text: "— Step 1: On the homepage, tap 'Download' under ESign.\n— Step 2: Choose **HSBC Bank plc** certificate and click 'Install'.\n— Step 3: Confirm iOS installation prompt.",
+          text: "— 1. Tap Download under ESign.\n2. Choose **HSBC Bank plc** and tap Install.\n3. Confirm iOS prompt.",
           choices: [
-            { text: "Installed, but won't open!", next: "trust_cert" },
-            { text: "Opened! How to sign other IPAs?", next: "cert_import" }
+            { text: "Installed, but iOS won't open it!", next: "trust_cert" },
+            { text: "Works. How to sign custom IPAs?", next: "cert_import" }
           ]
         },
         trust_cert: {
-          text: "— Go to **Settings → General → VPN & Device Management → Enterprise Apps (HSBC Bank plc)** and tap **Trust**.",
+          text: "— Calm down. This is standard iOS enterprise security. Head to **Settings → General → VPN & Device Management → Enterprise Apps (HSBC Bank plc)** and tap **Trust**.",
           choices: [
-            { text: "Worked! Thanks!", next: "cert_import" },
+            { text: "Opened cleanly. Thanks.", next: "cert_import" },
             { text: "Back to Topics", next: "topics_menu" }
           ]
         },
         cert_import: {
-          text: "— To sign custom IPAs inside ESign, you need the certificate (.p12) and profile (.mobileprovision). You can download our ready-to-use zip bundle from the main page!",
+          text: "— To sign arbitrary IPAs inside ESign, grab the pre-packaged .p12 and mobileprovision archive from the homepage.",
           choices: [
-            { text: "What is the .p12 password?", next: "cert_pwd_help" },
+            { text: "What is the certificate password?", next: "cert_pwd_help" },
             { text: "Back to Topics", next: "topics_menu" }
           ]
         },
         cert_pwd_help: {
-          text: "— The password for the HSBC Bank plc certificate is: **AppleP12.com**\nYou can copy it in 1-click on the main website.",
+          text: "— Password: **AppleP12.com**\nThere is a one-click copy button on the main page. Don't bother typing it manually.",
           choices: [
-            { text: "Awesome, back to topics!", next: "topics_menu" }
+            { text: "Noted.", next: "topics_menu" }
           ]
         },
         iloader_intro: {
-          text: "— PC Sideloading via **iLoader** lets you install LiveContainer or SideStore using your personal Apple ID without any revoke risk!",
+          text: "— PC Sideloading with **iLoader**. For those who want reliable personal signing without relying on enterprise certs.",
           choices: [
             { text: "What is LiveContainer?", next: "lc_explain" },
             { text: "What is SideStore?", next: "ss_explain" },
@@ -736,40 +736,40 @@
           ]
         },
         lc_explain: {
-          text: "— **LiveContainer** lets you run unlimited apps inside a single container, bypassing Apple's 3-app free account limit.",
+          text: "— **LiveContainer** runs multiple IPAs inside one shared container sandbox, overcoming Apple's 3-app free limit.",
           choices: [
-            { text: "Back to Topics", next: "topics_menu" }
+            { text: "Understood.", next: "topics_menu" }
           ]
         },
         ss_explain: {
-          text: "— **SideStore** is an on-device app store that automatically refreshes your apps wirelessly over Wi-Fi VPN.",
+          text: "— **SideStore** auto-refreshes your apps over local Wi-Fi VPN on your iPhone, removing weekly computer cable re-signs.",
           choices: [
-            { text: "Back to Topics", next: "topics_menu" }
+            { text: "Got it.", next: "topics_menu" }
           ]
         },
         troubleshooting: {
-          text: "— What issue are you experiencing?",
+          text: "— ...What broke this time?",
           choices: [
             { text: "Unable to Verify App Integrity", next: "err_integrity" },
-            { text: "App icon is greyed out", next: "err_grey_icon" },
-            { text: "App crashes immediately on launch", next: "err_crash" },
+            { text: "App icon is grey and stuck", next: "err_grey_icon" },
+            { text: "App crashes on launch", next: "err_crash" },
             { text: "Back to Topics", next: "topics_menu" }
           ]
         },
         err_integrity: {
-          text: "— Make sure our DNS profile is active in Settings, clear Safari cache and restart your device.",
+          text: "— The cert got revoked because DNS wasn't active, or iOS cached the revocation. Enable DNS profile, clear Safari website data in Settings, and restart.",
           choices: [
             { text: "Back to Topics", next: "topics_menu" }
           ]
         },
         err_grey_icon: {
-          text: "— Delete the grey icon, make sure DNS is enabled, and try installing again using Safari.",
+          text: "— Delete the grey placeholder, ensure DNS is active, and reinstall strictly in native Safari.",
           choices: [
             { text: "Back to Topics", next: "topics_menu" }
           ]
         },
         err_crash: {
-          text: "— On iOS 16+, ensure Developer Mode is enabled under Settings → Privacy & Security → Developer Mode.",
+          text: "— On iOS 16+, make sure **Developer Mode** is turned on under *Settings → Privacy & Security → Developer Mode*.",
           choices: [
             { text: "Back to Topics", next: "topics_menu" }
           ]
