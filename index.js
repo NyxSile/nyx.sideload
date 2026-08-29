@@ -77,6 +77,17 @@ const i18n = {
     "nsign-web-unavailable-title": "N.Sign Web в разработке",
     "nsign-web-unavailable-desc": "Онлайн-подпись через браузер скоро будет доступна.",
     "status-new-cert": "Новый сертификат импортирован!",
+    "cert-active": "Активен",
+    "cert-revoked": "Отозван (только с DNS)",
+    "sec-cert-download-label": "Сертификат",
+    "cert-card-title": "Сертификат HSBC Bank plc",
+    "cert-card-sub": "Годен до 4 мая 2027 г. Пароль к .p12: AppleP12.com",
+    "btn-download-cert-zip": "Скачать сертификат (.zip)",
+    "btn-copy-pwd": "Скопировать пароль",
+    "pwd-copied": "Пароль AppleP12.com скопирован!",
+    "btn-copy-install-link": "Скопировать ссылку на установку",
+    "toast-link-copied": "Ссылка на установку скопирована в буфер!",
+    "inapp-browser-warn": "⚠️ Вы открыли сайт во встроенном браузере. Для успешной установки приложений откройте сайт в <strong>Safari</strong>.",
     "nsign-app-unavailable-title": "Приложение N.Sign пока заправляется!",
     "nsign-app-unavailable-desc": "Приложение N.Sign находится в разработке. Подождите, либо воспользуйтесь веб-версией во вкладке «Кастомизация».",
     "custom-site-theme-label": "Кастомизация сайта (N.Sign Theme)",
@@ -190,6 +201,17 @@ const i18n = {
     "nsign-web-unavailable-title": "N.Sign Web in development",
     "nsign-web-unavailable-desc": "Online signing through the browser will be available soon.",
     "status-new-cert": "New certificate imported!",
+    "cert-active": "Active",
+    "cert-revoked": "Revoked (DNS only)",
+    "sec-cert-download-label": "Certificate",
+    "cert-card-title": "HSBC Bank plc Certificate",
+    "cert-card-sub": "Valid until May 4, 2027. Password for .p12: AppleP12.com",
+    "btn-download-cert-zip": "Download Cert Archive (.zip)",
+    "btn-copy-pwd": "Copy Password",
+    "pwd-copied": "Password AppleP12.com copied!",
+    "btn-copy-install-link": "Copy Install Link",
+    "toast-link-copied": "Direct install link copied to clipboard!",
+    "inapp-browser-warn": "⚠️ You are using an in-app browser. For seamless installation, please open this site in <strong>Safari</strong>.",
     "nsign-app-unavailable-title": "N.Sign app is temporarily unavailable",
     "nsign-app-unavailable-desc": "The N.Sign app is under development. Please use the web version in the 'Customization' tab.",
     "custom-site-theme-label": "Website Customization (N.Sign Theme)",
@@ -835,4 +857,41 @@ document.getElementById('modal-404').addEventListener('click', (e) => {
       document.body.style.overflow = 'hidden';
     }, 600);
   }
+
+  // In-app browser detection (Telegram, VK, Instagram, TikTok, etc.)
+  const ua = navigator.userAgent || navigator.vendor || window.opera;
+  const isInApp = /Telegram|FBAN|FBAV|Instagram|VKClient|Bytedance|TikTok|MicroMessenger/i.test(ua);
+  const inAppBanner = document.getElementById('inapp-browser-banner');
+  if (isInApp && inAppBanner) {
+    inAppBanner.style.display = 'block';
+  }
 })();
+
+// Copy certificate password button
+const btnCopyPwd = document.getElementById('btn-copy-pwd');
+if (btnCopyPwd) {
+  btnCopyPwd.addEventListener('click', () => {
+    navigator.clipboard.writeText('AppleP12.com').then(() => {
+      showToast(t('pwd-copied'));
+    }).catch(() => {
+      showToast('AppleP12.com');
+    });
+  });
+}
+
+// Copy direct install link button
+const btnCopyLink = document.getElementById('btn-modal-copy-link');
+if (btnCopyLink) {
+  btnCopyLink.addEventListener('click', () => {
+    const cert = document.getElementById('modal-cert-select').value;
+    if (!cert) { showToast(t('toast-cert-empty')); return; }
+    const finalBaseUrl = appMetadata.base_url || 'https://nyx.sideload.space';
+    const manifest = `${finalBaseUrl}/plists/manifest-${activeTool}-${cert}.plist`;
+    const otaLink = `itms-services://?action=download-manifest&url=${encodeURIComponent(manifest)}`;
+    navigator.clipboard.writeText(otaLink).then(() => {
+      showToast(t('toast-link-copied'));
+    }).catch(() => {
+      showToast(otaLink);
+    });
+  });
+}
