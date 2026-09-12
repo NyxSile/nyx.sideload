@@ -4,6 +4,7 @@ Allow: /index.html
 Allow: /index.css
 Allow: /index.js
 Allow: /manifest.json
+Allow: /favicon.ico
 Allow: /icons/
 Allow: /tutorial/
 Allow: /tutorial-vn/
