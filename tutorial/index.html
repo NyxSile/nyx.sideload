@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Инструкция: Сайдлоуд с ПК — LiveContainer & SideStore | nyx.sideload</title>
+  <meta name="description" content="Подробная инструкция по сайдлоуду iOS с ПК: установка LiveContainer, SideStore и All-in-One без лимита в 3 приложения и без риска отзыва сертификата." />
+  <meta name="keywords" content="сайдлоуд с пк, livecontainer инструкция, sidestore установка, ios sideload pc, установка ipa без джейлбрейка, nyx sideload" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="author" content="nyx.sideload" />
+  <link rel="canonical" href="https://nyx.sideload.space/tutorial/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="nyx.sideload" />
+  <meta property="og:title" content="Инструкция: Сайдлоуд iOS с ПК — nyx.sideload" />
+  <meta property="og:description" content="Как устанавливать любые IPA без лимитов и Enterprise-сертификатов с помощью персонального Apple ID." />
+  <meta property="og:url" content="https://nyx.sideload.space/tutorial/" />
+  <meta property="og:image" content="https://nyx.sideload.space/icons/og-image.png" />
+  <meta property="og:image:alt" content="nyx.sideload PC Tutorial" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Инструкция: Сайдлоуд iOS с ПК — nyx.sideload" />
+  <meta name="twitter:description" content="Установка сторонних IPA на iPhone/iPad без лимитов через LiveContainer и SideStore." />
+  <meta name="twitter:image" content="https://nyx.sideload.space/icons/og-image.png" />
+  <link rel="apple-touch-icon" href="../icons/favicon.png" />
+  <link rel="icon" type="image/png" href="../icons/favicon.png" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Инструкция по установке сторонних приложений iOS с ПК",
+    "description": "Пошаговое руководство по установке приложений на iOS без джейлбрейка с использованием LiveContainer и SideStore.",
+    "url": "https://nyx.sideload.space/tutorial/",
+    "inLanguage": ["ru", "en"],
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "LiveContainer",
+        "text": "Запуск неограниченного числа IPA внутри единого изолированного контейнера без расхода лимита 3 приложений."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "SideStore",
+        "text": "Автономный магазин приложений на устройстве с авто-обновлением по локальному Wi-Fi VPN."
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:        #0A0A0F;
+      --surface:   #12121A;
+      --surface2:  #1A1A26;
+      --border:    rgba(255, 255, 255, 0.08);
+      --accent:    #7B61FF;
+      --accent-lo: rgba(123, 97, 255, 0.12);
+      --accent-hi: rgba(123, 97, 255, 0.28);
+      --text:      #E8E6F0;
+      --muted:     #7A7890;
+      --ok:        #4ADE80;
+      --warn:      #FACC15;
+      --r:         16px;
+      --r-sm:      10px;
+    }
+
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 40px 20px 80px;
+    }
+
+    .container { max-width: 680px; margin: 0 auto; }
+    .display { font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
+
+
+    .nav-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--text);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-back:hover {
+      background: var(--surface2);
+      border-color: var(--accent);
+    }
+
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+    .lang-btn.active {
+      background: var(--accent-lo);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+
+    .title-block {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .title-block h1 {
+      font-size: 32px;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #fff, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .title-block p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+
+    .alert-box {
+      background: var(--accent-lo);
+      border: 1px solid var(--accent-hi);
+      border-radius: var(--r);
+      padding: 20px;
+      margin-bottom: 32px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .alert-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .alert-text h3 {
+      font-size: 16px;
+      margin-bottom: 4px;
+      color: #fff;
+    }
+    .alert-text p {
+      font-size: 13px;
+      color: var(--text);
+      opacity: 0.85;
+      line-height: 1.5;
+    }
+
+
+    .anchor-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 520px) {
+      .anchor-grid { grid-template-columns: 1fr; }
+    }
+    .anchor-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 14px 16px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .anchor-card svg {
+      color: var(--accent);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .anchor-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      background: var(--accent-lo);
+    }
+    .anchor-card:hover svg {
+      transform: scale(1.1);
+    }
+
+
+    .section-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 32px;
+      margin-bottom: 32px;
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+    }
+    .sec-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--accent-lo);
+      border: 1px solid var(--accent-hi);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .sec-name h2 {
+      font-size: 22px;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .sec-name p {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .step-item {
+      display: flex;
+      gap: 18px;
+    }
+    .step-num {
+      width: 28px; height: 28px;
+      background: var(--surface2);
+      border: 1.5px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step-body h4 {
+      font-size: 15px;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .step-body p {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .step-body ul {
+      margin-top: 8px;
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+
+    .footer-credits {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+
+    <header class="nav-header">
+      <a href="../" class="btn-back">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round"/>
+        </svg>
+        <span data-i="nav-back">На главную</span>
+      </a>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button class="lang-btn" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+    </header>
+
+
+    <div class="title-block">
+      <h1 class="display" data-i="page-title">Инструкция по установке с ПК</h1>
+      <p data-i="page-sub">Как установить сторонние приложения без лимитов и Enterprise-сертификатов</p>
+    </div>
+
+
+    <div class="alert-box">
+      <span class="alert-icon">
+        <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+      </span>
+      <div class="alert-text">
+        <h3 data-i="alert-title">Почему ПК-сайдлоуд надежнее?</h3>
+        <p data-i="alert-desc">Использование компьютера позволяет вам создать свой собственный личный сертификат разработчика (используя ваш личный Apple ID). В отличие от бесплатных общих сертификатов на сайте, этот сертификат невозможно отозвать со стороны Apple, и он работает на 100% стабильно.</p>
+      </div>
+    </div>
+
+
+    <div class="anchor-grid">
+      <a href="#livecontainer" class="anchor-card display">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+        <span>LiveContainer</span>
+      </a>
+      <a href="#sidestore" class="anchor-card display">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        <span>SideStore</span>
+      </a>
+      <a href="#combo" class="anchor-card display">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        <span>All-in-One</span>
+      </a>
+    </div>
+
+
+    <section class="section-card" id="livecontainer">
+      <div class="section-title">
+        <span class="sec-icon">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+        </span>
+        <div class="sec-name">
+          <h2 class="display" data-i="lc-title">Метод 1: LiveContainer</h2>
+          <p data-i="lc-sub">Запуск неограниченного числа IPA без реальной установки</p>
+        </div>
+      </div>
+      <div class="steps-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4 data-i="lc-step-1-title">Подключите устройство</h4>
+            <p data-i="lc-step-1-desc">Подсоедините ваш iPhone или iPad к компьютеру через USB-кабель. Разблокируйте экран и нажмите «Доверять этому компьютеру», если появится запрос.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4 data-i="lc-step-2-title">Запустите мастер установки</h4>
+            <p data-i="lc-step-2-desc">Откройте модальное окно «Сайдлоуд с ПК» на главной странице нашего сайта. Введите ваш Apple ID и пароль (они используются локально в браузере для генерации профиля) и выберите LiveContainer.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4 data-i="lc-step-3-title">Доверьте сертификат</h4>
+            <p data-i="lc-step-3-desc">После завершения установки откройте Настройки → Основные → VPN и управление устройством на телефоне, найдите ваш Apple ID в списке и нажмите кнопку «Доверять».</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h4 data-i="lc-step-4-title">Пользуйтесь приложениями</h4>
+            <p data-i="lc-step-4-desc">Запустите LiveContainer на телефоне. Теперь вы можете добавлять любые скачанные IPA файлы внутрь контейнера. Они будут работать мгновенно и без ограничений на 3 установленных приложения.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section-card" id="sidestore">
+      <div class="section-title">
+        <span class="sec-icon">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        </span>
+        <div class="sec-name">
+          <h2 class="display" data-i="ss-title">Метод 2: SideStore</h2>
+          <p data-i="ss-sub">Полноценный магазин приложений с обновлением по Wi-Fi</p>
+        </div>
+      </div>
+      <div class="steps-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4 data-i="ss-step-1-title">Установите SideStore</h4>
+            <p data-i="ss-step-1-desc">Используйте мастер установки на главной странице, выбрав в качестве цели SideStore. Процедура установки аналогична первому методу.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4 data-i="ss-step-2-title">Установите LocalDevVpn</h4>
+            <p data-i="ss-step-2-desc">Скачайте официальное приложение LocalDevVpn из App Store. Оно необходимо для фоновой подписи программ прямо на вашем устройстве.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4 data-i="ss-step-3-title">Импортируйте конфигурацию</h4>
+            <p data-i="ss-step-3-desc">Скачайте файл конфигурации LocalDevVpn (доступен при установке) и импортируйте его в приложение LocalDevVpn. Включите этот VPN-туннель.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h4 data-i="ss-step-4-title">Подписывайте приложения на ходу</h4>
+            <p data-i="ss-step-4-desc">С включенным LocalDevVpn откройте SideStore. Теперь вы можете устанавливать сторонние IPA прямо со своего телефона без использования компьютера!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section-card" id="combo">
+      <div class="section-title">
+        <span class="sec-icon">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </span>
+        <div class="sec-name">
+          <h2 class="display" data-i="combo-title">Метод 3: All-in-One (Рекомендуемый)</h2>
+          <p data-i="combo-sub">Комбинация лучших решений для максимального удобства</p>
+        </div>
+      </div>
+      <div class="steps-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4 data-i="combo-step-1-title">Идеальное комбо</h4>
+            <p data-i="combo-step-1-desc">Установка метода All-in-One загружает на ваше устройство и SideStore, и LiveContainer одновременно, автоматически привязывая наш встроенный репозиторий приложений nyx.apps.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4 data-i="combo-step-2-title">Как это работает?</h4>
+            <ul>
+              <li data-i="combo-li-1">SideStore используется для управления фоновой подписью самого себя и критических системных утилит.</li>
+              <li data-i="combo-li-2">LiveContainer берет на себя все остальные игры и тяжелые приложения, чтобы не тратить лимиты свободных слотов Apple ID (у обычного Apple ID лимит равен 3 приложениям).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <footer class="footer-credits">
+      <p>nyx-sideload © 2025 · All rights reserved</p>
+    </footer>
+
+  </div>
+
+  <script>
+    const i18n = {
+      ru: {
+        "nav-back": "На главную",
+        "page-title": "Инструкция по установке с ПК",
+        "page-sub": "Как установить сторонние приложения без лимитов и Enterprise-сертификатов",
+        "alert-title": "Почему ПК-сайдлоуд надежнее?",
+        "alert-desc": "Использование компьютера позволяет вам создать свой собственный личный сертификат разработчика (используя ваш личный Apple ID). В отличие от бесплатных общих сертификатов на сайте, этот сертификат невозможно отозвать со стороны Apple, и он работает на 100% стабильно.",
+        "lc-title": "Метод 1: LiveContainer",
+        "lc-sub": "Запуск неограниченного числа IPA без реальной установки",
+        "lc-step-1-title": "Подключите устройство",
+        "lc-step-1-desc": "Подсоедините ваш iPhone или iPad к компьютеру через USB-кабель. Разблокируйте экран и нажмите «Доверять этому компьютеру», если появится запрос.",
+        "lc-step-2-title": "Запустите мастер установки",
+        "lc-step-2-desc": "Откройте модальное окно «Сайдлоуд с ПК» на главной странице нашего сайта. Введите ваш Apple ID и пароль (они используются локально в браузере для генерации профиля) и выберите LiveContainer.",
+        "lc-step-3-title": "Доверьте сертификат",
+        "lc-step-3-desc": "После завершения установки откройте Настройки → Основные → VPN и управление устройством на телефоне, найдите ваш Apple ID в списке и нажмите кнопку «Доверять».",
+        "lc-step-4-title": "Пользуйтесь приложениями",
+        "lc-step-4-desc": "Запустите LiveContainer на телефоне. Теперь вы можете добавлять любые скачанные IPA файлы внутрь контейнера. Они будут работать мгновенно и без ограничений на 3 установленных приложения.",
+        "ss-title": "Метод 2: SideStore",
+        "ss-sub": "Полноценный магазин приложений с обновлением по Wi-Fi",
+        "ss-step-1-title": "Установите SideStore",
+        "ss-step-1-desc": "Используйте мастер установки на главной странице, выбрав в качестве цели SideStore. Процедура установки аналогична первому методу.",
+        "ss-step-2-title": "Установите LocalDevVpn",
+        "ss-step-2-desc": "Скачайте официальное приложение LocalDevVpn из App Store. Оно необходимо для фоновой подписи программ прямо на вашем устройстве.",
+        "ss-step-3-title": "Импортируйте конфигурацию",
+        "ss-step-3-desc": "Скачайте файл конфигурации LocalDevVpn (доступен при установке) и импортируйте его в приложение LocalDevVpn. Включите этот VPN-туннель.",
+        "ss-step-4-title": "Подписывайте приложения на ходу",
+        "ss-step-4-desc": "С включенным LocalDevVpn откройте SideStore. Теперь вы можете устанавливать сторонние IPA прямо со своего телефона без использования компьютера!",
+        "combo-title": "Метод 3: All-in-One (Рекомендуемый)",
+        "combo-sub": "Комбинация лучших решений для максимального удобства",
+        "combo-step-1-title": "Идеальное комбо",
+        "combo-step-1-desc": "Установка метода All-in-One загружает на ваше устройство и SideStore, и LiveContainer одновременно, автоматически привязывая наш встроенный репозиторий приложений nyx.apps.",
+        "combo-step-2-title": "Как это работает?",
+        "combo-li-1": "SideStore используется для управления фоновой подписью самого себя и критических системных утилит.",
+        "combo-li-2": "LiveContainer берет на себя все остальные игры и тяжелые приложения, чтобы не тратить лимиты свободных слотов Apple ID (у обычного Apple ID лимит равен 3 приложениям)."
+      },
+      en: {
+        "nav-back": "Back to Home",
+        "page-title": "PC Sideload Guide",
+        "page-sub": "How to install third-party apps without limits or Enterprise certificates",
+        "alert-title": "Why is PC sideloading more reliable?",
+        "alert-desc": "Using a computer allows you to create your own personal developer certificate (using your personal Apple ID). Unlike free public certificates on the web, this certificate cannot be revoked by Apple and works with 100% stability.",
+        "lc-title": "Method 1: LiveContainer",
+        "lc-sub": "Run unlimited IPAs without real installation",
+        "lc-step-1-title": "Connect your device",
+        "lc-step-1-desc": "Connect your iPhone or iPad to your computer via USB cable. Unlock the screen and tap 'Trust This Computer' if prompted.",
+        "lc-step-2-title": "Launch installation wizard",
+        "lc-step-2-desc": "Open the 'PC Sideload' wizard on our main page. Enter your Apple ID and password (used locally in the browser to generate profiles) and choose LiveContainer.",
+        "lc-step-3-title": "Trust the certificate",
+        "lc-step-3-desc": "After installation, open Settings → General → VPN & Device Management on your phone, find your Apple ID in the list, and tap 'Trust'.",
+        "lc-step-4-title": "Enjoy your apps",
+        "lc-step-4-desc": "Open LiveContainer on your phone. You can now load any downloaded IPA files inside the container. They will launch instantly and won't count towards the 3-app limit.",
+        "ss-title": "Method 2: SideStore",
+        "ss-sub": "A full-fledged app store with Wi-Fi refresh capability",
+        "ss-step-1-title": "Install SideStore",
+        "ss-step-1-desc": "Use the installation wizard on the main page, selecting SideStore as your target. The installation steps are similar to the first method.",
+        "ss-step-2-title": "Install LocalDevVpn",
+        "ss-step-2-desc": "Download the official LocalDevVpn app from the App Store. It is required for background app signing directly on your device.",
+        "ss-step-3-title": "Import configuration",
+        "ss-step-3-desc": "Download the LocalDevVpn config file (provided during installation) and import it into LocalDevVpn. Turn this VPN tunnel on.",
+        "ss-step-4-title": "Sign apps on the go",
+        "ss-step-4-desc": "With LocalDevVpn active, open SideStore. Now you can install third-party IPAs directly from your phone without needing a computer!",
+        "combo-title": "Method 3: All-in-One (Recommended)",
+        "combo-sub": "Combining the best solutions for maximum convenience",
+        "combo-step-1-title": "The Perfect Combo",
+        "combo-step-1-desc": "Installing the All-in-One method loads both SideStore and LiveContainer onto your device simultaneously and automatically connects our built-in app repository nyx.apps.",
+        "combo-step-2-title": "How does it work?",
+        "combo-li-1": "SideStore is used to handle background refreshes for itself and critical system utilities.",
+        "combo-li-2": "LiveContainer handles the rest of your games and heavy apps so they don't count towards the free Apple ID slot limits (normal Apple IDs are limited to 3 apps)."
+      }
+    };
+
+    let currentLang = localStorage.getItem('nyx-lang') || 'en';
+    if (!i18n[currentLang]) {
+      currentLang = 'en';
+    }
+
+    function t(key) {
+      return (i18n[currentLang] && i18n[currentLang][key]) || key;
+    }
+
+    function applyLang() {
+      document.querySelectorAll('[data-i]').forEach(el => {
+        const key = el.dataset.i;
+        el.textContent = t(key);
+      });
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === currentLang);
+      });
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentLang = btn.dataset.lang;
+        localStorage.setItem('nyx-lang', currentLang);
+        applyLang();
+      });
+    });
+    applyLang();
+  </script>
+
+</body>
+</html>

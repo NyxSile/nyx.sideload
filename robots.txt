@@ -1,0 +1,32 @@
+User-agent: *
+Allow: /$
+Allow: /index.html
+Allow: /index.css
+Allow: /index.js
+Allow: /manifest.json
+Allow: /icons/
+Allow: /tutorial/
+Allow: /tutorial-vn/
+
+# Internal scripts & tools
+Disallow: /scripts/
+Disallow: /*.py$
+Disallow: /*.sh$
+Disallow: /config.env
+
+# Raw binaries, certs & OTA metadata
+Disallow: /certs/
+Disallow: /certificates/
+Disallow: /apple-codesign-extracted/
+Disallow: /ipas/
+Disallow: /plists/
+Disallow: /version.json
+Disallow: /*.p12$
+Disallow: /*.mobileprovision$
+Disallow: /*.mobileconfig$
+Disallow: /*.ipa$
+Disallow: /*.plist$
+Disallow: /*.zip$
+
+Sitemap: https://nyx.sideload.space/sitemap.xml
+

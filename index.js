@@ -1,0 +1,1099 @@
+
+const i18n = {
+  ru: {
+    "hero-title-1": "iOS",
+    "hero-title-2": "без ограничений",
+    "hero-title-3": "на своих условиях",
+    "hero-sub": "Сертификаты, анти-ревок и нужный софт — в одном месте.",
+    "sec-dns-label": "Анти-ревок",
+    "dns-title": "DNS + Веб-приложение (PWA)",
+    "dns-sub": "Анти-ревок защита + иконка портала на рабочий стол в 1 клик",
+    "ping-checking": "Проверка...",
+    "ping-ok": "Серверы OK",
+    "ping-down": "Сервер недоступен",
+    "dns-install": "Установить профиль",
+    "dns-whats-this": "Что это?",
+    "sec-tools-label": "Инструменты",
+    "tag-recommended": "Рекомендован",
+    "tag-alt": "Альтернатива",
+    "tag-new": "Новый",
+    "coming-soon": "Совсем скоро...",
+    "cert-select": "Выбрать сертификат...",
+    "install": "Установить",
+    "sec-support-label": "Поддержка",
+    "sup-tg": "Telegram",
+    "switch-mode": "Сменить режим",
+    "report-btn": "Пожаловаться на ссылку",
+    "report-title": "Пожаловаться на ссылку",
+    "report-desc": "Опиши проблему — что сломалось и какая ссылка не работает",
+    "report-send": "Отправить",
+    "cancel": "Отмена",
+    "toast-dns": "Открываем установку профиля...",
+    "toast-cert-empty": "Сначала выбери сертификат",
+    "toast-installing": "Открываем установку...",
+    "toast-reported": "Жалоба отправлена. Спасибо!",
+    "dns-info-text": "Профиль блокирует серверы отзыва Apple (ocsp.apple.com) и автоматически добавляет полноэкранное приложение nyx.sideload прямо на ваш домашний экран.",
+    "btn-check-dns-text": "Проверить защиту",
+    "dns-status-unknown": "Статус: не проверено",
+    "dns-status-testing": "Тестируем DNS...",
+    "dns-status-protected": "Вы под защитой",
+    "dns-status-unprotected": "Защита не активна",
+    "dns-status-offline": "Нет сети",
+    "toast-dns-protected": "Серверы отзыва заблокированы. Вы под защитой!",
+    "toast-dns-unprotected": "Внимание: серверы Apple отвечают. Установите или включите DNS-профиль.",
+    "toast-dns-offline": "Нет подключения к интернету",
+    "download": "Скачать",
+    "launch-btn": "Запустить",
+    "tab-standard": "Стандартная подпись",
+    "tab-custom": "Кастомизация",
+    "label-select-cert": "Выбрать сертификат",
+    "cert-disclaimer": "Сертификат используется для подписи приложения, чтобы его можно было установить без джейлбрейка.",
+    "custom-lock-msg": "Кастомная подпись, инъекции dylib и смена Bundle ID доступны только в N.Sign.",
+    "go-to-nsign": "Открыть N.Sign",
+    "nsign-desc": "Локальный подписыватель приложений прямо в браузере",
+    "nsign-label-ipa": "Выберите IPA файл",
+    "nsign-select-ipa": "Перетащите или выберите IPA",
+    "nsign-label-p12": "Сертификат (.p12)",
+    "nsign-select-p12": "Выбрать .p12",
+    "nsign-label-prov": "Профиль (.mobileprovision)",
+    "nsign-select-prov": "Выбрать профиль",
+    "nsign-label-pwd": "Пароль сертификата",
+    "label-customization": "Кастомизация",
+    "opt-bundle": "Смена Bundle ID",
+    "opt-bundle-desc": "Установка дубликата приложения",
+    "opt-name": "Смена названия",
+    "opt-name-desc": "Переименовать иконку на рабочем столе",
+    "opt-inject": "Инъекция dylib",
+    "opt-inject-desc": "Внедрение твиков и хаков в IPA",
+    "select-dylib": "+ Выбрать .dylib файл",
+    "nsign-btn-sign": "Подписать и установить",
+    "nsign-success": "Приложение подписано!",
+    "nsign-success-desc": "Оно готово к установке прямо сейчас.",
+    "download-signed-ipa": "Скачать подписанный IPA",
+    "sign-another": "Подписать другое приложение",
+    "toast-nsign-missing": "Пожалуйста, выберите IPA, сертификат (.p12) и профиль.",
+    "download-ipa": "Скачать .ipa",
+    "nsign-custom-title": "N.Sign Web",
+    "nsign-custom-desc": "Подписывайте любые сторонние .ipa файлы прямо в браузере своими личными сертификатами (.p12).",
+    "launch-web-signer-btn": "Запустить веб-версию",
+    "nsign-web-unavailable-title": "N.Sign Web в разработке",
+    "nsign-web-unavailable-desc": "Онлайн-подпись через браузер скоро будет доступна.",
+    "status-new-cert": "Новый сертификат импортирован!",
+    "cert-active": "Активен",
+    "cert-revoked": "Отозван (только с DNS)",
+    "sec-cert-download-label": "Сертификат",
+    "cert-card-title": "Сертификат HSBC Bank plc",
+    "cert-card-sub": "Годен до 4 мая 2027 г. Пароль к .p12: AppleP12.com",
+    "btn-download-cert-zip": "Скачать сертификат (.zip)",
+    "btn-copy-pwd": "Скопировать пароль",
+    "pwd-copied": "Пароль AppleP12.com скопирован!",
+    "btn-copy-install-link": "Скопировать ссылку на установку",
+    "toast-link-copied": "Ссылка на установку скопирована в буфер!",
+    "inapp-browser-warn": "⚠️ Вы открыли сайт во встроенном браузере. Для успешной установки приложений откройте сайт в <strong>Safari</strong>.",
+    "nsign-app-unavailable-title": "Приложение N.Sign пока заправляется!",
+    "nsign-app-unavailable-desc": "Приложение N.Sign находится в разработке. Подождите, либо воспользуйтесь веб-версией во вкладке «Кастомизация».",
+    "custom-site-theme-label": "Кастомизация сайта (N.Sign Theme)",
+    "site-theme-note": "* Тема сайта будет установлена как 10-ая тема N.Sign",
+    "theme-applied-toast": "Тема сайта успешно применена!",
+    "cl-date-4": "24 июл",
+    "cl-4": "Кастомизация сайта, плисты в plists/, иконки и фикс установки",
+    "cl-date-5": "3 авг",
+    "cl-5": "Подпись приложений, Сайдлоуд с ПК, сохранение темы и фиксы верстки",
+    "toast-404": "Страница не найдена! Вы перенаправлены на главную.",
+    "title-404": "Страница не найдена!",
+    "desc-404": "Ой! Запрашиваемый адрес не существует, но мы перенесли вас на главную страницу.",
+    "btn-404-ok": "Понятно",
+    "sec-pc-label": "Сайдлоуд с ПК",
+    "pc-title": "Сайдлоуд с ПК",
+    "pc-desc": "Установите LiveContainer или Sidestore через компьютер без Enterprise-сертификатов",
+    "pc-mobile-wall-title": "Только с компьютера",
+    "pc-mobile-wall-desc": "Эта функция работает только на десктопной версии сайта. Зайдите с ПК или Mac.",
+    "pc-lc-desc": "Запуск IPA без лимита",
+    "pc-ss-desc": "Магазин с автообновлением",
+    "pc-combo-title": "Всё в одном",
+    "pc-combo-desc": "LC + Sidestore + репозиторий",
+    "btn-instructions": "Инструкция",
+    "pc-modal-title": "Сайдлоуд через iLoader",
+    "pc-modal-subtitle": "Официальный установщик для Windows, macOS и Linux",
+    "iloader-desc-1": "Установите <strong>LiveContainer</strong> или <strong>SideStore</strong> на свое устройство в один клик с помощью утилиты <strong>iLoader</strong>.",
+    "iloader-desc-2": "Больше не нужно вводить Apple ID на сторонних сайтах. iLoader работает локально на вашем компьютере, поэтому ваши учетные данные защищены и отправляются напрямую в Apple для создания бесплатной подписи разработчика.",
+    "iloader-download-title": "Скачать iLoader:",
+    "iloader-steps-title": "Простая инструкция:",
+    "iloader-step-1-title": "Запуск:",
+    "iloader-step-1-desc": "Скачайте и запустите программу iLoader на своем ПК или Mac.",
+    "iloader-step-2-title": "Подключение:",
+    "iloader-step-2-desc": "Подключите iPhone или iPad по кабелю USB и разблокируйте экран.",
+    "iloader-step-3-title": "Установка:",
+    "iloader-step-3-desc": "Выберите в приложении LiveContainer или SideStore и нажмите кнопку Install.",
+  },
+  en: {
+    "hero-title-1": "iOS",
+    "hero-title-2": "without limits",
+    "hero-title-3": "on your terms",
+    "hero-sub": "Certificates, anti-revoke, and the tools you need — in one place.",
+    "sec-dns-label": "Anti-Revoke",
+    "dns-title": "DNS + Web App (PWA)",
+    "dns-sub": "Anti-revoke protection + 1-click Home Screen app icon",
+    "ping-checking": "Checking...",
+    "ping-ok": "Servers OK",
+    "ping-down": "Server unreachable",
+    "dns-install": "Install profile",
+    "dns-whats-this": "What is this?",
+    "sec-tools-label": "Tools",
+    "tag-recommended": "Functional",
+    "tag-alt": "Visual",
+    "tag-new": "New",
+    "coming-soon": "Oh-so soon...",
+    "cert-select": "Select certificate...",
+    "install": "Install",
+    "sec-support-label": "Support",
+    "sup-tg": "Telegram",
+    "switch-mode": "Switch mode",
+    "report-btn": "Report a broken link",
+    "report-title": "Report a broken link",
+    "report-desc": "Describe the issue — what broke and which link doesn't work",
+    "report-send": "Send",
+    "cancel": "Cancel",
+    "toast-dns": "Opening profile installation...",
+    "toast-cert-empty": "Please select a certificate first",
+    "toast-installing": "Opening installation...",
+    "toast-reported": "Report sent. Thank you!",
+    "dns-info-text": "The profile blocks Apple's revocation servers (ocsp.apple.com) and automatically installs a full-screen nyx.sideload PWA icon right onto your iOS Home Screen.",
+    "btn-check-dns-text": "Check Protection",
+    "dns-status-unknown": "Status: Not checked",
+    "dns-status-testing": "Testing DNS...",
+    "dns-status-protected": "You are protected",
+    "dns-status-unprotected": "Protection inactive",
+    "dns-status-offline": "Offline",
+    "toast-dns-protected": "Revocation servers blocked. You are protected!",
+    "toast-dns-unprotected": "Warning: Apple servers responded. Please enable your DNS profile.",
+    "toast-dns-offline": "No internet connection",
+    "download": "Download",
+    "launch-btn": "Launch",
+    "tab-standard": "Standard signature",
+    "tab-custom": "Customization",
+    "label-select-cert": "Select certificate",
+    "cert-disclaimer": "The certificate is used to sign the application so that it can be installed on non-jailbroken iOS devices.",
+    "custom-lock-msg": "Custom signing, dylib injections, and changing Bundle ID are only available in N.Sign.",
+    "go-to-nsign": "Open N.Sign",
+    "nsign-desc": "Local app signer directly in the browser",
+    "nsign-label-ipa": "Select IPA file",
+    "nsign-select-ipa": "Drag & drop or select IPA",
+    "nsign-label-p12": "Certificate (.p12)",
+    "nsign-select-p12": "Select .p12",
+    "nsign-label-prov": "Profile (.mobileprovision)",
+    "nsign-select-prov": "Select profile",
+    "nsign-label-pwd": "Certificate Password",
+    "label-customization": "Customization",
+    "opt-bundle": "Change Bundle ID",
+    "opt-bundle-desc": "Install duplicate application",
+    "opt-name": "Change Display Name",
+    "opt-name-desc": "Rename desktop icon",
+    "opt-inject": "Inject dylib",
+    "opt-inject-desc": "Embed tweaks and hacks into IPA",
+    "select-dylib": "+ Select .dylib file",
+    "nsign-btn-sign": "Sign & Install",
+    "nsign-success": "App Signed!",
+    "nsign-success-desc": "It is ready to be installed right now.",
+    "download-signed-ipa": "Download Signed IPA",
+    "sign-another": "Sign another app",
+    "toast-nsign-missing": "Please select IPA, certificate (.p12), and profile.",
+    "download-ipa": "Download .ipa",
+    "nsign-custom-title": "N.Sign Web",
+    "nsign-custom-desc": "Sign any third-party .ipa files directly in your browser using your own personal certificates (.p12).",
+    "launch-web-signer-btn": "Launch web version",
+    "nsign-web-unavailable-title": "N.Sign Web in development",
+    "nsign-web-unavailable-desc": "Online signing through the browser will be available soon.",
+    "status-new-cert": "New certificate imported!",
+    "cert-active": "Active",
+    "cert-revoked": "Revoked (DNS only)",
+    "sec-cert-download-label": "Certificate",
+    "cert-card-title": "HSBC Bank plc Certificate",
+    "cert-card-sub": "Valid until May 4, 2027. Password for .p12: AppleP12.com",
+    "btn-download-cert-zip": "Download Cert Archive (.zip)",
+    "btn-copy-pwd": "Copy Password",
+    "pwd-copied": "Password AppleP12.com copied!",
+    "btn-copy-install-link": "Copy Install Link",
+    "toast-link-copied": "Direct install link copied to clipboard!",
+    "inapp-browser-warn": "⚠️ You are using an in-app browser. For seamless installation, please open this site in <strong>Safari</strong>.",
+    "nsign-app-unavailable-title": "N.Sign app is temporarily unavailable",
+    "nsign-app-unavailable-desc": "The N.Sign app is under development. Please use the web version in the 'Customization' tab.",
+    "custom-site-theme-label": "Website Customization (N.Sign Theme)",
+    "site-theme-note": "* The website theme will be set as the 10th theme of N.Sign",
+    "theme-applied-toast": "Website theme applied successfully!",
+    "cl-date-4": "24 Jul",
+    "cl-4": "Theme customizer, plists in plists/, real icons & install fixes",
+    "cl-date-5": "3 Aug",
+    "cl-5": "App signing, PC Sideload, theme saving & layout fixes",
+    "toast-404": "Page not found! Redirected to home page.",
+    "title-404": "Page not found!",
+    "desc-404": "Oops! The requested address doesn't exist, but we moved you to the home page.",
+    "btn-404-ok": "Got it",
+    "sec-pc-label": "PC Sideload",
+    "pc-title": "PC Sideload",
+    "pc-desc": "Install LiveContainer or SideStore via computer without Enterprise certificates",
+    "pc-mobile-wall-title": "Desktop Only",
+    "pc-mobile-wall-desc": "This feature is only available on the desktop version of the site. Access it from a PC or Mac.",
+    "pc-lc-desc": "Run IPAs without limits",
+    "pc-ss-desc": "App store with auto-refresh",
+    "pc-combo-title": "All-in-One",
+    "pc-combo-desc": "LC + SideStore + Repository",
+    "btn-instructions": "Instructions",
+    "pc-modal-title": "Sideload via iLoader",
+    "pc-modal-subtitle": "Official installer for Windows, macOS, and Linux",
+    "iloader-desc-1": "Install <strong>LiveContainer</strong> or <strong>SideStore</strong> to your device in one click using the <strong>iLoader</strong> utility.",
+    "iloader-desc-2": "Never enter your Apple ID or password on this website. Download iLoader only from the official website or GitHub, and enter credentials only inside iLoader.",
+    "iloader-download-title": "Download iLoader:",
+    "iloader-steps-title": "Quick Guide:",
+    "iloader-step-1-title": "Launch:",
+    "iloader-step-1-desc": "Download and run the iLoader application on your PC or Mac.",
+    "iloader-step-2-title": "Connect:",
+    "iloader-step-2-desc": "Connect your iPhone or iPad via USB cable and unlock the screen.",
+    "iloader-step-3-title": "Install:",
+    "iloader-step-3-desc": "Select LiveContainer or SideStore in the application and click Install.",
+  }
+};
+
+let currentLang = localStorage.getItem('nyx-lang') || 'en';
+if (!i18n[currentLang]) {
+  currentLang = 'en';
+}
+
+function t(key) { return (i18n[currentLang] && i18n[currentLang][key]) || key; }
+
+function applyLang() {
+  document.querySelectorAll('[data-i]').forEach(el => {
+    const key = el.dataset.i;
+    const val = t(key);
+    if (val) {
+      if (val.includes('<') && val.includes('>')) {
+        el.innerHTML = val;
+      } else {
+        if (el.children.length === 0) {
+          el.textContent = val;
+        }
+      }
+    }
+  });
+}
+
+
+let toastTimer;
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2200);
+}
+document.getElementById('btn-install-dns').addEventListener('click', () => {
+  showToast(t('toast-dns'));
+  setTimeout(() => {
+    window.location.href = 'dns.mobileconfig';
+  }, 900);
+});
+
+// Helper to test if an Apple revocation endpoint can be contacted
+function pingAppleEndpoint(url, timeoutMs = 2500) {
+  return new Promise((resolve) => {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => {
+      controller.abort();
+      resolve(false);
+    }, timeoutMs);
+
+    fetch(url, {
+      method: 'GET',
+      mode: 'no-cors',
+      cache: 'no-store',
+      signal: controller.signal
+    })
+      .then(() => {
+        clearTimeout(timeoutId);
+        resolve(true); // Apple server reached -> unprotected
+      })
+      .catch(() => {
+        clearTimeout(timeoutId);
+        resolve(false); // DNS blocked or unreachable -> protected
+      });
+  });
+}
+
+// Live DNS Protection Check (Directly through user browser network)
+let isCheckingDns = false;
+async function checkDnsProtection(showFeedbackToast = true) {
+  if (isCheckingDns) return;
+  isCheckingDns = true;
+
+  const dot = document.getElementById('dns-status-dot');
+  const text = document.getElementById('dns-status-text');
+  const badge = document.getElementById('dns-status-badge');
+  const btnCheck = document.getElementById('btn-check-dns');
+
+  if (btnCheck) {
+    btnCheck.style.opacity = '0.6';
+    btnCheck.style.pointerEvents = 'none';
+  }
+
+  if (dot) dot.className = 'status-dot warn';
+  if (text) {
+    text.textContent = t('dns-status-testing');
+    text.dataset.i = 'dns-status-testing';
+  }
+  if (badge) {
+    badge.style.borderColor = 'rgba(234, 179, 8, 0.4)';
+    badge.style.background = 'rgba(234, 179, 8, 0.08)';
+    badge.style.color = '#eab308';
+  }
+
+  try {
+    // Check if device is completely offline first
+    if (typeof navigator !== 'undefined' && !navigator.onLine) {
+      if (dot) dot.className = 'status-dot warn';
+      if (text) {
+        text.textContent = t('dns-status-offline');
+        text.dataset.i = 'dns-status-offline';
+      }
+      if (badge) {
+        badge.style.borderColor = 'rgba(234, 179, 8, 0.4)';
+        badge.style.background = 'rgba(234, 179, 8, 0.08)';
+        badge.style.color = '#eab308';
+      }
+      if (showFeedbackToast) showToast(t('toast-dns-offline'));
+      return;
+    }
+
+    // Target Apple revocation endpoints that:
+    // 1) Are in the DNS profile's SupplementalMatchDomains
+    // 2) Are blocked (NXDOMAIN) by dns.nyxsile.lol
+    // 3) Have valid Apple public SSL certificates (so unblocked network doesn't throw SSL errors)
+    const testEndpoints = [
+      `https://crl.apple.com/check-revocation?_t=${Date.now()}`,
+      `https://ocsp2.apple.com/check-revocation?_t=${Date.now()}`,
+      `https://valid.apple.com/check-revocation?_t=${Date.now()}`
+    ];
+
+    const results = await Promise.all(testEndpoints.map(url => pingAppleEndpoint(url, 2500)));
+    const appleResponded = results.some(Boolean);
+
+    // If Apple endpoints failed, verify general internet connectivity to prevent false positives when network is down
+    if (!appleResponded && window.location.protocol.startsWith('http')) {
+      try {
+        const netCtrl = new AbortController();
+        const netTimer = setTimeout(() => netCtrl.abort(), 2000);
+        await fetch(`${window.location.origin}${window.location.pathname}?_netcheck=${Date.now()}`, {
+          method: 'HEAD',
+          cache: 'no-store',
+          signal: netCtrl.signal
+        });
+        clearTimeout(netTimer);
+      } catch (e) {
+        if (dot) dot.className = 'status-dot warn';
+        if (text) {
+          text.textContent = t('dns-status-offline');
+          text.dataset.i = 'dns-status-offline';
+        }
+        if (badge) {
+          badge.style.borderColor = 'rgba(234, 179, 8, 0.4)';
+          badge.style.background = 'rgba(234, 179, 8, 0.08)';
+          badge.style.color = '#eab308';
+        }
+        if (showFeedbackToast) showToast(t('toast-dns-offline'));
+        return;
+      }
+    }
+
+    if (appleResponded) {
+      // Traffic reached Apple -> Protection NOT active!
+      if (dot) dot.className = 'status-dot err';
+      if (text) {
+        text.textContent = t('dns-status-unprotected');
+        text.dataset.i = 'dns-status-unprotected';
+      }
+      if (badge) {
+        badge.style.borderColor = 'rgba(239, 68, 68, 0.4)';
+        badge.style.background = 'rgba(239, 68, 68, 0.08)';
+        badge.style.color = '#f87171';
+      }
+      if (showFeedbackToast) showToast(t('toast-dns-unprotected'));
+    } else {
+      // Requests blocked -> Protection IS ACTIVE!
+      if (dot) dot.className = 'status-dot ok';
+      if (text) {
+        text.textContent = t('dns-status-protected');
+        text.dataset.i = 'dns-status-protected';
+      }
+      if (badge) {
+        badge.style.borderColor = 'rgba(74, 222, 128, 0.4)';
+        badge.style.background = 'rgba(74, 222, 128, 0.08)';
+        badge.style.color = '#4ade80';
+      }
+      if (showFeedbackToast) showToast(t('toast-dns-protected'));
+    }
+  } finally {
+    isCheckingDns = false;
+    if (btnCheck) {
+      btnCheck.style.opacity = '1';
+      btnCheck.style.pointerEvents = 'auto';
+    }
+  }
+}
+
+const btnCheckDns = document.getElementById('btn-check-dns');
+if (btnCheckDns) {
+  btnCheckDns.addEventListener('click', () => checkDnsProtection(true));
+}
+
+document.getElementById('btn-dns-info').addEventListener('click', () => {
+  showToast(t('dns-info-text'));
+});
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    currentLang = btn.dataset.lang;
+    localStorage.setItem('nyx-lang', currentLang);
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyLang();
+  });
+});
+document.getElementById('btn-report').addEventListener('click', () => {
+  document.getElementById('report-modal').classList.remove('hidden');
+});
+document.getElementById('btn-report-cancel').addEventListener('click', () => {
+  document.getElementById('report-modal').classList.add('hidden');
+});
+document.getElementById('btn-report-send').addEventListener('click', () => {
+  const text = document.getElementById('report-text').value.trim();
+  if (!text) return;
+
+  const issueTitle = encodeURIComponent('Broken link report');
+  const issueBody = encodeURIComponent(`Page: ${window.location.href}` + String.fromCharCode(10) + String.fromCharCode(10) + text);
+  const issueUrl = `https://github.com/NyxSile/nyx.sideload/issues/new?title=${issueTitle}&body=${issueBody}&labels=broken-link`;
+
+  document.getElementById('report-modal').classList.add('hidden');
+  document.getElementById('report-text').value = '';
+  window.open(issueUrl, '_blank', 'noopener,noreferrer');
+  showToast(t('toast-reported'));
+});
+document.getElementById('report-modal').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('report-modal')) {
+    document.getElementById('report-modal').classList.add('hidden');
+  }
+});
+
+
+let activeTool = '';
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+              (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+let appMetadata = {};
+
+async function loadMetadata() {
+  try {
+    const res = await fetch('version.json?v=' + Date.now());
+    appMetadata = await res.json();
+    if (appMetadata['esign']) {
+      const el = document.querySelector('#card-esign .tool-meta-new span:nth-child(2)');
+      if (el) el.textContent = 'v' + appMetadata['esign'].version;
+    }
+    if (appMetadata['ksign']) {
+      const el = document.querySelector('#card-ksign .tool-meta-new span:nth-child(2)');
+      if (el) el.textContent = 'v' + appMetadata['ksign'].version;
+    }
+    if (appMetadata['nsign']) {
+      const el = document.querySelector('#card-nsign .tool-meta-new span:nth-child(2)');
+      if (el) el.textContent = 'v' + appMetadata['nsign'].version;
+    }
+  } catch (e) {
+    console.error("Failed to load version.json metadata:", e);
+  }
+}
+
+function updateModalMetadata() {
+  const certSelect = document.getElementById('modal-cert-select');
+  const cert = certSelect ? certSelect.value : '';
+  const key = `${activeTool}-${cert}`;
+  const meta = appMetadata[key] || appMetadata[activeTool] || {};
+
+  const version = document.getElementById('modal-app-version');
+  const size = document.getElementById('modal-app-size');
+  const bundle = document.getElementById('modal-app-bundle');
+  const statusDot = document.querySelector('#modal-app-status .status-dot');
+  const statusText = document.getElementById('modal-app-status-text');
+
+  if (version) version.textContent = meta.version || (activeTool === 'nsign' ? '1.0.0' : '1.5.1');
+  if (size) size.textContent = meta.size || '14.9 MB';
+  if (bundle) bundle.textContent = meta.bundle || (activeTool === 'esign' ? 'p3.xyz.yyyue.esign' : (activeTool === 'ksign' ? 'nya.asami.ksign' : 'nyx.sideload.nsign'));
+
+  if (statusDot && statusText) {
+    if (cert === 'hsbc-bank') {
+      statusDot.className = 'status-dot ok';
+      statusText.textContent = t('cert-active') || 'Активен';
+    } else {
+      statusDot.className = 'status-dot warn';
+      statusText.textContent = t('cert-revoked') || 'Только с DNS';
+    }
+  }
+}
+
+function openInstaller(tool) {
+  activeTool = tool;
+  const modal = document.getElementById('installer-modal');
+  const title = document.getElementById('inst-modal-title');
+  const iconContainer = document.getElementById('modal-app-icon');
+  const installText = document.getElementById('btn-modal-install-text');
+  document.getElementById('tab-btn-standard').click();
+  if (tool === 'nsign') {
+    document.getElementById('standard-install-fields').style.display = 'none';
+    document.getElementById('standard-install-unavailable').style.display = 'flex';
+  } else {
+    document.getElementById('standard-install-fields').style.display = 'block';
+    document.getElementById('standard-install-unavailable').style.display = 'none';
+  }
+  updateModalMetadata();
+  let nameVal = tool === 'esign' ? 'ESign' : (tool === 'ksign' ? 'KSign' : 'N.Sign');
+  if (appMetadata[tool]) {
+    nameVal = appMetadata[tool].app || nameVal;
+  }
+  title.textContent = nameVal;
+  iconContainer.innerHTML = document.querySelector(`#card-${tool} .tool-icon-container`).innerHTML;
+  if (tool === 'nsign') {
+    document.getElementById('custom-locked-view').style.display = 'none';
+    document.getElementById('custom-unlocked-view').style.display = 'flex';
+  } else {
+    document.getElementById('custom-locked-view').style.display = 'flex';
+    document.getElementById('custom-unlocked-view').style.display = 'none';
+  }
+  if (isIOS) {
+    installText.setAttribute('data-i', 'install');
+    installText.textContent = t('install');
+  } else {
+    installText.setAttribute('data-i', 'download-ipa');
+    installText.textContent = t('download-ipa');
+  }
+
+  modal.classList.add('active');
+}
+
+function closeInstaller() {
+  document.getElementById('installer-modal').classList.remove('active');
+}
+
+function openNSign() {
+  closeInstaller();
+  document.getElementById('nsign-modal').classList.add('active');
+  resetNSignForm();
+}
+
+function closeNSign() {
+  document.getElementById('nsign-modal').classList.remove('active');
+}
+document.getElementById('tab-btn-standard').addEventListener('click', () => {
+  document.getElementById('tab-btn-standard').classList.add('active');
+  document.getElementById('tab-btn-custom').classList.remove('active');
+  document.getElementById('tab-content-standard').classList.add('active');
+  document.getElementById('tab-content-custom').classList.remove('active');
+});
+
+document.getElementById('tab-btn-custom').addEventListener('click', () => {
+  document.getElementById('tab-btn-custom').classList.add('active');
+  document.getElementById('tab-btn-standard').classList.remove('active');
+  document.getElementById('tab-content-custom').classList.add('active');
+  document.getElementById('tab-content-standard').classList.remove('active');
+});
+document.getElementById('btn-go-nsign').addEventListener('click', () => openInstaller('nsign'));
+document.getElementById('btn-launch-web-signer').addEventListener('click', openNSign);
+function applyTheme(theme, showNotification = true) {
+  const root = document.documentElement;
+  if (theme === 'violet') {
+    root.style.setProperty('--accent', '#7850dc');
+    root.style.setProperty('--accent-lo', 'rgba(120, 80, 220, 0.1)');
+  } else if (theme === 'cyberpunk') {
+    root.style.setProperty('--accent', '#EC4899');
+    root.style.setProperty('--accent-lo', 'rgba(236, 72, 153, 0.1)');
+  } else if (theme === 'dark-gold') {
+    root.style.setProperty('--accent', '#D4AF37');
+    root.style.setProperty('--accent-lo', 'rgba(212, 175, 55, 0.1)');
+  } else if (theme === 'emerald') {
+    root.style.setProperty('--accent', '#10B981');
+    root.style.setProperty('--accent-lo', 'rgba(16, 185, 129, 0.1)');
+  }
+
+  localStorage.setItem('nyx-theme', theme);
+  const siteSel = document.getElementById('site-theme-select');
+  const headerSel = document.getElementById('header-theme-select');
+  if (siteSel) siteSel.value = theme;
+  if (headerSel) headerSel.value = theme;
+
+  if (showNotification) {
+    showToast(t('theme-applied-toast') || 'Тема успешно применена!');
+  }
+}
+
+document.getElementById('site-theme-select').addEventListener('change', (e) => applyTheme(e.target.value, true));
+document.getElementById('header-theme-select').addEventListener('change', (e) => applyTheme(e.target.value, true));
+document.getElementById('btn-header-theme').addEventListener('click', () => {
+  document.getElementById('theme-modal').classList.add('active');
+});
+document.getElementById('btn-close-theme').addEventListener('click', () => {
+  document.getElementById('theme-modal').classList.remove('active');
+});
+document.getElementById('theme-modal').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('theme-modal')) {
+    document.getElementById('theme-modal').classList.remove('active');
+  }
+});
+document.getElementById('btn-open-esign').addEventListener('click', () => openInstaller('esign'));
+document.getElementById('btn-open-ksign').addEventListener('click', () => openInstaller('ksign'));
+document.getElementById('btn-open-nsign').addEventListener('click', () => openInstaller('nsign'));
+document.getElementById('modal-cert-select').addEventListener('change', updateModalMetadata);
+document.getElementById('btn-close-installer').addEventListener('click', closeInstaller);
+document.getElementById('btn-close-nsign').addEventListener('click', closeNSign);
+document.getElementById('installer-modal').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('installer-modal')) closeInstaller();
+});
+document.getElementById('nsign-modal').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('nsign-modal')) closeNSign();
+});
+document.getElementById('btn-modal-install').addEventListener('click', () => {
+  const cert = document.getElementById('modal-cert-select').value;
+  if (!cert) { showToast(t('toast-cert-empty')); return; }
+
+  const finalBaseUrl = appMetadata.base_url || 'https://nyx.sideload.space';
+  const ipaKey = `${activeTool}-${cert}`;
+  let ipaPath = `ipas/${activeTool}/${activeTool}-${cert}.ipa`;  if (appMetadata[ipaKey] && appMetadata[ipaKey].ipa) {
+    ipaPath = appMetadata[ipaKey].ipa;
+  }
+
+  if (isIOS) {
+    showToast(t('toast-installing'));
+    setTimeout(() => {
+      const manifest = `${finalBaseUrl}/plists/manifest-${activeTool}-${cert}.plist?v=${Date.now()}`;
+      window.location.href = `itms-services://?action=download-manifest&url=${encodeURIComponent(manifest)}`;
+    }, 1000);
+  } else {
+    showToast(t('toast-installing'));
+    setTimeout(() => {
+      window.location.href = `${finalBaseUrl}/${ipaPath}`;
+    }, 1000);
+  }
+});
+const fileInputs = {
+  ipa: { drop: 'nsign-drop-ipa', inp: 'inp-ipa-file', txt: 'txt-ipa-file', def: 'nsign-select-ipa' },
+  p12: { drop: 'nsign-drop-p12', inp: 'inp-p12-file', txt: 'txt-p12-file', def: 'nsign-select-p12' },
+  prov: { drop: 'nsign-drop-prov', inp: 'inp-prov-file', txt: 'txt-prov-file', def: 'nsign-select-prov' },
+};
+
+Object.entries(fileInputs).forEach(([key, val]) => {
+  const dropZone = document.getElementById(val.drop);
+  const fileInput = document.getElementById(val.inp);
+  const textEl = document.getElementById(val.txt);
+
+  dropZone.addEventListener('click', () => fileInput.click());
+  fileInput.addEventListener('change', (e) => {
+    if (e.target.files.length > 0) {
+      textEl.textContent = e.target.files[0].name;
+      textEl.style.color = 'var(--ok)';
+    }
+  });
+  dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.style.borderColor = 'var(--accent)'; });
+  dropZone.addEventListener('dragleave', () => { dropZone.style.borderColor = ''; });
+  dropZone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropZone.style.borderColor = '';
+    if (e.dataTransfer.files.length > 0) {
+      fileInput.files = e.dataTransfer.files;
+      textEl.textContent = e.dataTransfer.files[0].name;
+      textEl.style.color = 'var(--ok)';
+    }
+  });
+});
+const setupToggle = (chkId, inpId) => {
+  const chk = document.getElementById(chkId);
+  const inp = document.getElementById(inpId);
+  chk.addEventListener('change', () => {
+    inp.style.display = chk.checked ? 'block' : 'none';
+  });
+};
+setupToggle('chk-custom-bundle', 'inp-custom-bundle');
+setupToggle('chk-custom-name', 'inp-custom-name');
+setupToggle('chk-custom-inject', 'box-custom-inject');
+const dylibBtn = document.getElementById('btn-select-dylib');
+const dylibInp = document.getElementById('inp-dylib-file');
+const dylibTxt = document.getElementById('txt-dylib-file');
+dylibBtn.addEventListener('click', () => dylibInp.click());
+dylibInp.addEventListener('change', (e) => {
+  if (e.target.files.length > 0) {
+    dylibTxt.textContent = e.target.files[0].name;
+    dylibTxt.style.color = 'var(--ok)';
+  }
+});
+document.getElementById('btn-nsign-submit').addEventListener('click', () => {
+  const ipa = document.getElementById('inp-ipa-file').files[0];
+  const p12 = document.getElementById('inp-p12-file').files[0];
+  const prov = document.getElementById('inp-prov-file').files[0];
+
+  if (!ipa || !p12 || !prov) {
+    showToast(t('toast-nsign-missing'));
+    return;
+  }
+
+  const formFields = document.getElementById('nsign-form-fields');
+  const consoleEl = document.getElementById('nsign-console');
+  const progressContainer = document.getElementById('nsign-progress-container');
+  const progressBar = document.getElementById('nsign-progress');
+
+  formFields.style.display = 'none';
+  consoleEl.style.display = 'flex';
+  progressContainer.style.display = 'block';
+  consoleEl.innerHTML = '';
+  progressBar.style.width = '0%';
+
+  const logs = [
+    { text: '[+] Анализ IPA пакета...', time: 600, prog: 10 },
+    { text: `[+] Найдено Payload/${ipa.name.replace('.ipa', '')}.app`, time: 1200, prog: 20 },
+    { text: '[+] Извлечение бинарных файлов...', time: 1800, prog: 30 }
+  ];
+
+  if (document.getElementById('chk-custom-bundle').checked) {
+    const customBundle = document.getElementById('inp-custom-bundle').value || 'com.custom.sideload';
+    logs.push({ text: `[+] Изменение Bundle ID на: ${customBundle}`, time: 2400, prog: 40 });
+  }
+  if (document.getElementById('chk-custom-name').checked) {
+    const customName = document.getElementById('inp-custom-name').value || 'SignedApp';
+    logs.push({ text: `[+] Изменение Display Name на: ${customName}`, time: 3000, prog: 50 });
+  }
+  if (document.getElementById('chk-custom-inject').checked && dylibInp.files[0]) {
+    logs.push({ text: `[+] Инъекция динамической библиотеки: ${dylibInp.files[0].name}`, time: 3600, prog: 65 });
+  }
+
+  logs.push(
+    { text: `[+] Проверка сертификата: ${p12.name}...`, time: 4200, prog: 75 },
+    { text: `[+] Подпись исполняемого файла с профилем ${prov.name}...`, time: 4800, prog: 85 },
+    { text: '[+] Компрессия подписанного IPA пакета...', time: 5400, prog: 95 },
+    { text: '[+] Подписание завершено успешно! Генерация OTA манифеста...', time: 6000, prog: 100 }
+  );
+
+  logs.forEach(log => {
+    setTimeout(() => {
+      const line = document.createElement('div');
+      line.textContent = log.text;
+      consoleEl.appendChild(line);
+      consoleEl.scrollTop = consoleEl.scrollHeight;
+      progressBar.style.width = `${log.prog}%`;
+    }, log.time);
+  });
+
+  setTimeout(() => {
+    consoleEl.style.display = 'none';
+    progressContainer.style.display = 'none';
+    document.getElementById('nsign-success-area').style.display = 'flex';
+    const installBtnText = document.getElementById('txt-nsign-install-btn');
+    if (isIOS) {
+      installBtnText.setAttribute('data-i', 'install');
+      installBtnText.textContent = t('install');
+    } else {
+      installBtnText.setAttribute('data-i', 'download-ipa');
+      installBtnText.textContent = t('download-ipa');
+    }
+  }, 6800);
+});
+document.getElementById('btn-nsign-install').addEventListener('click', () => {
+  showToast(t('toast-installing'));
+  const finalBaseUrl = appMetadata.base_url || 'https://nyx.sideload.space';
+  setTimeout(() => {
+    if (isIOS) {
+      const manifest = `${finalBaseUrl}/plists/manifest-ksign-jiangsu-simcere.plist?v=${Date.now()}`;
+      window.location.href = `itms-services://?action=download-manifest&url=${encodeURIComponent(manifest)}`;
+    } else {
+      window.location.href = `${finalBaseUrl}/ipas/ksign/ksign-jiangsu-simcere.ipa`;
+    }
+  }, 1000);
+});
+
+document.getElementById('btn-nsign-download').addEventListener('click', () => {
+  showToast(t('toast-installing'));
+  const finalBaseUrl = appMetadata.base_url || 'https://nyx.sideload.space';
+  setTimeout(() => {
+    window.location.href = `${finalBaseUrl}/ipas/ksign/ksign-jiangsu-simcere.ipa`;
+  }, 1000);
+});
+function resetNSignForm() {
+  document.getElementById('nsign-form-fields').style.display = 'flex';
+  document.getElementById('nsign-success-area').style.display = 'none';
+  document.getElementById('nsign-console').style.display = 'none';
+  document.getElementById('nsign-progress-container').style.display = 'none';
+  document.getElementById('inp-ipa-file').value = '';
+  document.getElementById('inp-p12-file').value = '';
+  document.getElementById('inp-prov-file').value = '';
+  document.getElementById('inp-dylib-file').value = '';
+  document.getElementById('nsign-cert-pwd').value = '';
+  document.getElementById('txt-ipa-file').textContent = t('nsign-select-ipa');
+  document.getElementById('txt-p12-file').textContent = t('nsign-select-p12');
+  document.getElementById('txt-prov-file').textContent = t('nsign-select-prov');
+  document.getElementById('txt-dylib-file').textContent = 'Ничего не выбрано';
+
+  document.getElementById('txt-ipa-file').style.color = '';
+  document.getElementById('txt-p12-file').style.color = '';
+  document.getElementById('txt-prov-file').style.color = '';
+  document.getElementById('txt-dylib-file').style.color = '';
+  document.getElementById('chk-custom-bundle').checked = false;
+  document.getElementById('chk-custom-name').checked = false;
+  document.getElementById('chk-custom-inject').checked = false;
+
+  document.getElementById('inp-custom-bundle').style.display = 'none';
+  document.getElementById('inp-custom-name').style.display = 'none';
+  document.getElementById('box-custom-inject').style.display = 'none';
+}
+
+document.getElementById('btn-nsign-reset').addEventListener('click', resetNSignForm);
+
+
+function openPcSideloadModal(preselect) {
+  if (preselect === 'combo') {
+    document.getElementById('nsign-promo-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    return;
+  }
+  const modal = document.getElementById('pc-sideload-modal');
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePcSideloadModal() {
+  const modal = document.getElementById('pc-sideload-modal');
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('pc-sideload-modal').addEventListener('click', function(e) {
+  if (e.target === this) closePcSideloadModal();
+});
+
+
+(function initStars() {
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  const COUNT = 140;
+  let W, H, stars = [];
+  const COLORS = [
+    'rgb(120, 80, 220)',    'rgb(90, 60, 180)',    'rgb(160, 100, 255)',    'rgb(70, 40, 140)',    'rgb(200, 170, 255)',  ];
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function mkStar() {
+    return {
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: Math.random() * 1.4 + 0.3,
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      vx: (Math.random() - 0.5) * 0.08,
+      vy: -0.05 - Math.random() * 0.08,      phase:  Math.random() * Math.PI * 2,
+      speed:  0.004 + Math.random() * 0.012,
+      minA:   0.08 + Math.random() * 0.12,
+      maxA:   0.55 + Math.random() * 0.45,
+    };
+  }
+
+  let lastW = window.innerWidth;
+  let lastH = window.innerHeight;
+  const isStatic = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function init() {
+    resize();
+    stars = Array.from({ length: COUNT }, mkStar);
+  }
+
+  let raf;
+  let isWindowFocused = !document.hidden;
+
+  function draw(shouldAnimate = true) {
+    ctx.clearRect(0, 0, W, H);
+    const animateNow = shouldAnimate && isWindowFocused && !isStatic;
+
+    for (const s of stars) {
+      if (animateNow) {
+        s.phase += s.speed;
+        s.x += s.vx;
+        s.y += s.vy;
+        if (s.x < -10) s.x = W + 10;
+        if (s.x > W + 10) s.x = -10;
+        if (s.y < -10) s.y = H + 10;
+        if (s.y > H + 10) s.y = -10;
+      }
+      const alpha = s.minA + (s.maxA - s.minA) * (0.5 + 0.5 * Math.sin(s.phase));
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = s.color;
+      ctx.fillRect(s.x - s.r, s.y - s.r, s.r * 2, s.r * 2);
+    }
+    ctx.globalAlpha = 1.0;
+
+    if (animateNow) {
+      raf = requestAnimationFrame(() => draw(true));
+    }
+  }
+
+  function startAnimation() {
+    isWindowFocused = true;
+    if (raf) cancelAnimationFrame(raf);
+    draw(true);
+  }
+
+  function stopAnimation() {
+    isWindowFocused = false;
+    if (raf) cancelAnimationFrame(raf);
+    draw(false); // Draw current static frame
+  }
+
+  window.addEventListener('focus', startAnimation);
+  window.addEventListener('blur', stopAnimation);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      stopAnimation();
+    } else {
+      startAnimation();
+    }
+  });
+
+  let resizeDebounce;
+  window.addEventListener('resize', () => {
+    if (window.innerWidth === lastW && window.innerHeight === lastH) return;
+    lastW = window.innerWidth;
+    lastH = window.innerHeight;
+
+    // Immediately cancel any in-flight loop to prevent multi-loop speedup
+    if (raf) cancelAnimationFrame(raf);
+
+    resize();
+    draw(false); // Render 1 static frame while resizing
+
+    clearTimeout(resizeDebounce);
+    resizeDebounce = setTimeout(() => {
+      stars = Array.from({ length: COUNT }, mkStar);
+      if (isWindowFocused && !isStatic) {
+        startAnimation();
+      }
+    }, 100);
+  });
+
+  init();
+  draw(!isStatic);
+})();
+
+
+(function initScrollHeader() {
+  const hdr = document.getElementById('header');
+  let lastY = 0;
+  let ticking = false;
+
+  window.addEventListener('scroll', () => {
+    if (window.innerWidth >= 768) {
+      hdr.classList.remove('hidden-up');
+      return;
+    }
+
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        if (y > lastY && y > 60) {
+          hdr.classList.add('hidden-up');
+        } else {
+          hdr.classList.remove('hidden-up');
+        }
+        lastY = y;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+})();
+document.getElementById('btn-close-promo').addEventListener('click', () => {
+  document.getElementById('nsign-promo-modal').classList.remove('active');
+  document.body.style.overflow = '';
+});
+document.getElementById('nsign-promo-modal').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('nsign-promo-modal')) {
+    document.getElementById('nsign-promo-modal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+document.getElementById('btn-promo-go-nsign').addEventListener('click', () => {
+  document.getElementById('nsign-promo-modal').classList.remove('active');
+  document.body.style.overflow = '';
+  openInstaller('nsign');
+});
+document.getElementById('btn-close-404').addEventListener('click', () => {
+  document.getElementById('modal-404').classList.remove('active');
+  document.body.style.overflow = '';
+});
+document.getElementById('btn-404-ok').addEventListener('click', () => {
+  document.getElementById('modal-404').classList.remove('active');
+  document.body.style.overflow = '';
+});
+document.getElementById('modal-404').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('modal-404')) {
+    document.getElementById('modal-404').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+
+(function init() {
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === currentLang);
+  });
+  applyLang();
+  const savedTheme = localStorage.getItem('nyx-theme') || 'violet';
+  applyTheme(savedTheme, false);
+  loadMetadata();
+  if (window.location.search.includes('404') || window.location.hash.includes('404')) {
+    window.history.replaceState(null, '', window.location.pathname);
+    setTimeout(() => {
+      document.getElementById('modal-404').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }, 600);
+  }
+
+  // In-app browser detection (Telegram, VK, Instagram, TikTok, etc.)
+  const ua = navigator.userAgent || navigator.vendor || window.opera;
+  const isInApp = /Telegram|FBAN|FBAV|Instagram|VKClient|Bytedance|TikTok|MicroMessenger/i.test(ua);
+  const inAppBanner = document.getElementById('inapp-browser-banner');
+  if (isInApp && inAppBanner) {
+    inAppBanner.style.display = 'block';
+  }
+
+  // Initial silent DNS shield check in background
+  setTimeout(() => {
+    checkDnsProtection(false);
+  }, 1200);
+})();
+
+// Copy certificate password button
+const btnCopyPwd = document.getElementById('btn-copy-pwd');
+if (btnCopyPwd) {
+  btnCopyPwd.addEventListener('click', () => {
+    navigator.clipboard.writeText('AppleP12.com').then(() => {
+      showToast(t('pwd-copied'));
+    }).catch(() => {
+      showToast('AppleP12.com');
+    });
+  });
+}
+
+// Copy direct install link button
+const btnCopyLink = document.getElementById('btn-modal-copy-link');
+if (btnCopyLink) {
+  btnCopyLink.addEventListener('click', () => {
+    const cert = document.getElementById('modal-cert-select').value;
+    if (!cert) { showToast(t('toast-cert-empty')); return; }
+    const finalBaseUrl = appMetadata.base_url || 'https://nyx.sideload.space';
+    const manifest = `${finalBaseUrl}/plists/manifest-${activeTool}-${cert}.plist`;
+    const otaLink = `itms-services://?action=download-manifest&url=${encodeURIComponent(manifest)}`;
+    navigator.clipboard.writeText(otaLink).then(() => {
+      showToast(t('toast-link-copied'));
+    }).catch(() => {
+      showToast(otaLink);
+    });
+  });
+}
