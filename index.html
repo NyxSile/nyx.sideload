@@ -23,7 +23,7 @@
   <meta name="twitter:description" content="ESign, KSign, N.Sign, LiveContainer and SideStore resources." />
   <meta name="twitter:image" content="https://nyx.sideload.space/icons/og-image.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&family=Unbounded:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="index.css" />
   <link rel="manifest" href="manifest.json" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,19 +56,19 @@
     <span data-i="status-new-cert">Новый сертификат импортирован!</span>
   </div>
   <div class="header-inner">
-    <div style="display: flex; align-items: center; gap: 9px;">
-      <img src="icons/favicon.png" alt="nyx logo" style="width: 26px; height: 26px; border-radius: 6px; box-shadow: 0 0 12px rgba(168, 85, 247, 0.4); flex-shrink: 0;" />
+    <a class="header-brand" href="./" aria-label="nyx.sideload">
+      <img src="icons/favicon.png" alt="" width="26" height="26" />
       <span class="header-logo display">nyx<span>·</span>sideload</span>
-    </div>
-    <div style="display: flex; align-items: center; gap: 10px;">
-      <button id="btn-header-theme" aria-label="Customize Theme" style="background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 6px; border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.15s;">
-        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    </a>
+    <div class="header-actions">
+      <button type="button" id="btn-header-theme" class="icon-btn" aria-label="Customize theme" aria-haspopup="dialog">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
         </svg>
       </button>
       <div class="lang-toggle" role="group" aria-label="Language">
-        <button class="lang-btn active" id="lang-ru" data-lang="ru">RU</button>
-        <button class="lang-btn" id="lang-en" data-lang="en">EN</button>
+        <button type="button" class="lang-btn active" id="lang-ru" data-lang="ru" aria-pressed="true">RU</button>
+        <button type="button" class="lang-btn" id="lang-en" data-lang="en" aria-pressed="false">EN</button>
       </div>
     </div>
   </div>
@@ -79,12 +79,13 @@
 
 
   <section id="hero">
-    <div class="hero-inner fade-up">
-      <h1 class="display">
+    <div class="hero-inner">
+      <div class="moon" aria-hidden="true"></div>
+      <h1>
         <span data-i="hero-title-1">iOS</span> <em data-i="hero-title-2">без ограничений</em><br/>
-        <span data-i="hero-title-3">на своих условиях</span>
+        <span class="hero-tail" data-i="hero-title-3">на своих условиях</span>
       </h1>
-      <p data-i="hero-sub">Сертификаты, анти-ревок и нужный софт — в одном месте.</p>
+      <p data-i="hero-sub">Установка приложений на iPhone и iPad без джейлбрейка.</p>
     </div>
   </section>
 
@@ -215,9 +216,8 @@
 
 
     <section class="pc-sideload-card fade-up" id="sec-pc-sideload">
-      <p class="section-label" data-i="sec-pc-label">Сайдлоуд с ПК</p>
       <div class="pc-sideload-header">
-        <div class="pc-sideload-icon">
+        <div class="pc-sideload-icon" aria-hidden="true">
           <svg width="26" height="26" fill="none" viewBox="0 0 24 24" stroke="var(--accent)" stroke-width="1.8">
             <rect x="2" y="3" width="20" height="13" rx="2"/>
             <path d="M8 21h8M12 17v4" stroke-linecap="round"/>
@@ -230,37 +230,51 @@
       </div>
 
       <div class="mobile-wall">
-        <div class="mobile-wall-icon" style="display:flex; align-items:center; justify-content:center;">
-          <svg width="42" height="42" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" style="color:var(--accent);"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+        <div class="mobile-wall-icon" aria-hidden="true">
+          <svg width="42" height="42" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
         </div>
         <h3 data-i="pc-mobile-wall-title">Только с компьютера</h3>
         <p data-i="pc-mobile-wall-desc">Эта функция работает только на десктопной версии сайта. Зайдите с ПК или Mac.</p>
+        <button type="button" class="btn btn-ghost" id="btn-copy-site">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          <span data-i="pc-copy-link">Скопировать ссылку для ПК</span>
+        </button>
       </div>
 
-      <div class="method-grid">
-        <div class="method-card" onclick="openPcSideloadModal('livecontainer')">
-          <img class="method-icon" src="icons/lc-icon.png" alt="LiveContainer">
-          <span class="method-name">LiveContainer</span>
-          <span class="method-desc" data-i="pc-lc-desc">Запуск IPA без лимита</span>
-        </div>
-        <div class="method-card" onclick="openPcSideloadModal('sidestore')">
-          <img class="method-icon" src="icons/ss-icon.png" alt="Sidestore">
-          <span class="method-name">Sidestore</span>
-          <span class="method-desc" data-i="pc-ss-desc">Магазин с автообновлением</span>
-        </div>
-        <div class="method-card" onclick="openPcSideloadModal('combo')">
-          <span class="method-icon" style="display:flex; align-items:center; justify-content:center; color:var(--accent);">
-            <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      <div class="method-list">
+        <button type="button" class="method-row" data-method="livecontainer" aria-haspopup="dialog">
+          <img class="method-icon" src="icons/lc-icon.png" alt="" width="40" height="40">
+          <span class="method-text">
+            <span class="method-name">LiveContainer</span>
+            <span class="method-desc" data-i="pc-lc-desc">Запуск IPA без лимита</span>
           </span>
-          <span class="method-name" data-i="pc-combo-title">Всё в одном</span>
-          <span class="method-desc" data-i="pc-combo-desc">LC + Sidestore + репозиторий</span>
-        </div>
+          <svg class="method-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button type="button" class="method-row" data-method="sidestore" aria-haspopup="dialog">
+          <img class="method-icon" src="icons/ss-icon.png" alt="" width="40" height="40">
+          <span class="method-text">
+            <span class="method-name">SideStore</span>
+            <span class="method-desc" data-i="pc-ss-desc">Магазин с автообновлением</span>
+          </span>
+          <svg class="method-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button type="button" class="method-row method-row--lead" data-method="combo" aria-haspopup="dialog">
+          <span class="method-icon method-icon--glyph" aria-hidden="true">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </span>
+          <span class="method-text">
+            <span class="method-name" data-i="pc-combo-title">Всё в одном</span>
+            <span class="method-desc" data-i="pc-combo-desc">LC + Sidestore + репозиторий</span>
+          </span>
+          <span class="method-tag" data-i="pc-combo-tag">Рекомендуем</span>
+          <svg class="method-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
       </div>
 
       <div class="pc-sideload-cta">
-        <button class="btn btn-ghost" onclick="window.location.href='./tutorial/'" data-i-text="btn-instructions">
+        <a class="btn btn-ghost" href="./tutorial/">
           <span data-i="btn-instructions">Инструкция</span>
-        </button>
+        </a>
       </div>
     </section>
 
@@ -269,12 +283,20 @@
       <p class="section-label" data-i="sec-support-label">Поддержка</p>
       <div class="support-grid">
         <a href="https://t.me/+BSvPQjneyhU3ODA6" class="support-link" id="sup-tg" target="_blank" rel="noopener noreferrer">
-          <img src="icons/telegram.svg" alt="Telegram" class="support-icon" />
-          <span data-i="sup-tg">Telegram</span>
+          <img src="icons/telegram.svg" alt="" class="support-icon" width="32" height="32" />
+          <span class="support-text">
+            <span class="support-name" data-i="sup-tg">Telegram</span>
+            <span class="support-desc" data-i="sup-chat">Чат поддержки</span>
+          </span>
+          <svg class="support-out" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <a href="https://discord.gg/d5hpCgPFnn" class="support-link" id="sup-discord" target="_blank" rel="noopener noreferrer">
-          <img src="icons/discord.svg" alt="Discord" class="support-icon" />
-          <span>Discord</span>
+          <img src="icons/discord.svg" alt="" class="support-icon" width="32" height="32" />
+          <span class="support-text">
+            <span class="support-name">Discord</span>
+            <span class="support-desc" data-i="sup-chat">Чат поддержки</span>
+          </span>
+          <svg class="support-out" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
     </section>
@@ -284,12 +306,12 @@
       <div class="modal-inner">
         <h2 id="report-title" data-i="report-title">Пожаловаться на ссылку</h2>
         <p data-i="report-desc">Опиши проблему — что сломалось и какая ссылка не работает</p>
-        <textarea id="report-text" placeholder="Ссылка или описание..."></textarea>
+        <textarea id="report-text" placeholder="Ссылка или описание..." aria-label="Ссылка или описание"></textarea>
         <div class="modal-actions">
-          <button class="btn btn-primary" id="btn-report-send" style="flex:1">
+          <button type="button" class="btn btn-primary" id="btn-report-send">
             <span data-i="report-send">Отправить</span>
           </button>
-          <button class="btn btn-ghost" id="btn-report-cancel">
+          <button type="button" class="btn btn-ghost" id="btn-report-cancel">
             <span data-i="cancel">Отмена</span>
           </button>
         </div>
@@ -547,18 +569,16 @@
 
 
     <div id="theme-modal" class="modal-overlay-new" role="dialog" aria-modal="true" aria-labelledby="theme-modal-title">
-      <div class="modal-box-new" style="max-width: 340px; padding: 24px;">
-        <button class="modal-close-new" id="btn-close-theme" style="top: 15px; right: 15px;">&times;</button>
-        <h3 id="theme-modal-title" style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 12px;" data-i="custom-site-theme-label">Кастомизация сайта</h3>
-        <div class="form-group-new">
-          <select class="sel" id="header-theme-select" style="width:100%; padding: 8px 12px; font-size: 13px;">
-            <option value="violet">Breeze Violet (Default)</option>
-            <option value="cyberpunk">Cyberpink</option>
-            <option value="dark-gold">Dark Gold</option>
-            <option value="emerald">Emerald Matrix</option>
-          </select>
+      <div class="modal-box-new modal-box--theme">
+        <button type="button" class="modal-close-new" id="btn-close-theme" aria-label="Close">&times;</button>
+        <h3 id="theme-modal-title" class="theme-title" data-i="custom-site-theme-label">Кастомизация сайта</h3>
+        <div class="theme-swatches" role="radiogroup" aria-labelledby="theme-modal-title">
+          <button type="button" class="theme-swatch" role="radio" aria-checked="true" data-theme="violet"><span class="theme-dot" aria-hidden="true"></span><span>Breeze Violet</span></button>
+          <button type="button" class="theme-swatch" role="radio" aria-checked="false" data-theme="cyberpunk"><span class="theme-dot" aria-hidden="true"></span><span>Cyberpink</span></button>
+          <button type="button" class="theme-swatch" role="radio" aria-checked="false" data-theme="dark-gold"><span class="theme-dot" aria-hidden="true"></span><span>Dark Gold</span></button>
+          <button type="button" class="theme-swatch" role="radio" aria-checked="false" data-theme="emerald"><span class="theme-dot" aria-hidden="true"></span><span>Emerald Matrix</span></button>
         </div>
-        <p style="font-size:11px; color: var(--accent); margin-top:8px; font-style:italic;" data-i="site-theme-note">
+        <p class="theme-note" data-i="site-theme-note">
           * Тема сайта будет установлена как 10-ая тема N.Sign
         </p>
       </div>
@@ -566,66 +586,62 @@
 
 
     <div id="pc-sideload-modal" class="modal-overlay-new" role="dialog" aria-modal="true" aria-labelledby="pc-modal-heading">
-      <div class="modal-box-new" style="max-width: 540px; padding: 32px; text-align: left;">
-        <button class="modal-close-new" onclick="closePcSideloadModal()" aria-label="Закрыть">&times;</button>
+      <div class="modal-box-new modal-box--pc">
+        <button type="button" class="modal-close-new" id="btn-close-pc" aria-label="Close">&times;</button>
 
-        <div class="pc-modal-header" style="margin-bottom: 24px; display: flex; align-items: center;">
-          <div class="pc-modal-logo" style="background: var(--accent-lo); color: var(--accent); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+        <div class="pc-modal-head">
+          <div class="pc-modal-logo" aria-hidden="true">
             <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <rect x="2" y="3" width="20" height="13" rx="2"/>
               <path d="M8 21h8M12 17v4" stroke-linecap="round"/>
             </svg>
           </div>
-          <div class="pc-modal-title" style="margin-left: 16px;">
-            <h2 id="pc-modal-heading" style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px; margin: 0;" data-i="pc-modal-title">Сайдлоуд через iLoader</h2>
-            <p style="font-size: 13px; color: var(--muted); margin: 4px 0 0 0;" data-i="pc-modal-subtitle">Официальный установщик для Windows, macOS и Linux</p>
+          <div>
+            <h2 id="pc-modal-heading" data-i="pc-modal-title">Сайдлоуд через iLoader</h2>
+            <p data-i="pc-modal-subtitle">Официальный установщик для Windows, macOS и Linux</p>
           </div>
         </div>
 
-        <div style="font-size: 14px; line-height: 1.6; color: var(--text); margin-bottom: 20px;">
-          <p style="margin: 0 0 12px 0;" data-i="iloader-desc-1">
-            Установите <strong>LiveContainer</strong> или <strong>SideStore</strong> на свое устройство в один клик с помощью утилиты <strong>iLoader</strong>.
-          </p>
-          <p style="color: var(--muted); font-size: 13px; margin: 0;" data-i="iloader-desc-2">
-            Никогда не вводите Apple ID или пароль на этом сайте. Скачайте iLoader только с официального сайта или GitHub и вводите данные исключительно внутри приложения iLoader.
-          </p>
-        </div>
+        <p class="pc-modal-lead" data-i="iloader-desc-1">
+          Установите <strong>LiveContainer</strong> или <strong>SideStore</strong> на свое устройство в один клик с помощью утилиты <strong>iLoader</strong>.
+        </p>
+        <p class="pc-modal-note" role="note" data-i="iloader-desc-2">
+          Никогда не вводите Apple ID или пароль на этом сайте. Скачайте iLoader только с официального сайта или GitHub и вводите данные исключительно внутри приложения iLoader.
+        </p>
 
-
-        <h4 style="font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; margin: 0 0 12px 0;" data-i="iloader-download-title">Скачать iLoader:</h4>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px;">
-          <a href="https://iloader.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13.5px; height: 42px; text-decoration: none;">
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+        <h3 class="pc-modal-h" data-i="iloader-download-title">Скачать iLoader:</h3>
+        <div class="pc-modal-links">
+          <a href="https://iloader.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
             <span>Windows / macOS</span>
           </a>
-          <a href="https://github.com/nab138/iloader/releases" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13.5px; height: 42px; border: 1px solid var(--border); text-decoration: none;">
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          <a href="https://github.com/nab138/iloader/releases" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
             <span>GitHub Releases</span>
           </a>
         </div>
 
-
-        <div style="background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 20px;">
-          <h4 style="font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; margin: 0 0 12px 0;" data-i="iloader-steps-title">Простая инструкция:</h4>
-          <ol style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--muted); display: flex; flex-direction: column; gap: 8px;">
-            <li><strong style="color: var(--text);" data-i="iloader-step-1-title">Запуск:</strong> <span data-i="iloader-step-1-desc">Скачайте и запустите программу iLoader на своем ПК или Mac.</span></li>
-            <li><strong style="color: var(--text);" data-i="iloader-step-2-title">Подключение:</strong> <span data-i="iloader-step-2-desc">Подключите iPhone или iPad по кабелю USB и разблокируйте экран.</span></li>
-            <li><strong style="color: var(--text);" data-i="iloader-step-3-title">Установка:</strong> <span data-i="iloader-step-3-desc">Выберите в приложении LiveContainer или SideStore и нажмите кнопку Install.</span></li>
+        <div class="pc-modal-steps">
+          <h3 class="pc-modal-h" data-i="iloader-steps-title">Простая инструкция:</h3>
+          <ol>
+            <li><div><strong data-i="iloader-step-1-title">Запуск:</strong> <span data-i="iloader-step-1-desc">Скачайте и запустите программу iLoader на своем ПК или Mac.</span></div></li>
+            <li><div><strong data-i="iloader-step-2-title">Подключение:</strong> <span data-i="iloader-step-2-desc">Подключите iPhone или iPad по кабелю USB и разблокируйте экран.</span></div></li>
+            <li><div><strong data-i="iloader-step-3-title">Установка:</strong> <span data-i="iloader-step-3-desc">Выберите в приложении LiveContainer или SideStore и нажмите кнопку Install.</span></div></li>
           </ol>
         </div>
       </div>
     </div>
     <div id="nsign-promo-modal" class="modal-overlay-new" role="dialog" aria-modal="true" aria-labelledby="promo-modal-title">
-      <div class="modal-box-new" style="max-width: 380px; padding: 32px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px;">
-        <button class="modal-close-new" id="btn-close-promo" style="top: 15px; right: 15px;">&times;</button>
-        <span style="display:inline-flex; align-items:center; justify-content:center; width:64px; height:64px; border-radius:50%; background:var(--accent-lo); color:var(--accent);">
+      <div class="modal-box-new modal-box--sm modal-center">
+        <button type="button" class="modal-close-new" id="btn-close-promo" aria-label="Close">&times;</button>
+        <span class="modal-badge" aria-hidden="true">
           <svg width="36" height="36" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
         </span>
-        <h3 id="promo-modal-title" style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px;">Заинтересованы?</h3>
-        <p style="font-size: 13.5px; color: var(--muted); line-height: 1.5;">
+        <h3 id="promo-modal-title">Заинтересованы?</h3>
+        <p>
           Тогда добро пожаловать в <strong>N.Sign</strong>! Полная свобода подписи и кастомизации прямо на вашем устройстве.
         </p>
-        <button class="btn btn-primary btn-full" id="btn-promo-go-nsign" style="margin-top: 8px;">
+        <button type="button" class="btn btn-primary btn-full" id="btn-promo-go-nsign">
           Перейти к N.Sign
         </button>
       </div>
@@ -636,14 +652,12 @@
 
   <footer id="footer">
     <div class="footer-inner">
-      <div class="footer-actions" style="margin:0;">
+      <div class="footer-actions">
         <span class="footer-copy">nyx.sideload © 2026</span>
-        <div style="display:flex; gap:8px; flex-wrap:wrap;">
-          <button class="mode-switch-btn" id="btn-report" style="color: var(--err); border-color: var(--err)20; display:inline-flex; align-items:center; gap:6px;">
-            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/></svg>
-            <span data-i="report-btn">Пожаловаться на ссылку</span>
-          </button>
-        </div>
+        <button type="button" class="mode-switch-btn mode-switch-btn--report" id="btn-report" aria-haspopup="dialog">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/></svg>
+          <span data-i="report-btn">Пожаловаться на ссылку</span>
+        </button>
       </div>
     </div>
   </footer>
@@ -654,32 +668,15 @@
 <div id="toast" role="status" aria-live="polite"></div>
 
 
-<div id="report-modal" class="hidden" role="dialog" aria-modal="true" aria-labelledby="report-title">
-  <div class="modal-inner">
-    <h2 id="report-title" data-i="report-title">Пожаловаться на ссылку</h2>
-    <p data-i="report-desc">Опиши проблему — что сломалось и какая ссылка не работает</p>
-    <textarea id="report-text" placeholder="Ссылка или описание..."></textarea>
-    <div class="modal-actions">
-      <button class="btn btn-primary" id="btn-report-send" style="flex:1">
-        <span data-i="report-send">Отправить</span>
-      </button>
-      <button class="btn btn-ghost" id="btn-report-cancel">
-        <span data-i="cancel">Отмена</span>
-      </button>
-    </div>
-  </div>
-</div>
-
-
 <div id="modal-404" class="modal-overlay-new" role="dialog" aria-modal="true" aria-labelledby="modal-404-title">
-  <div class="modal-box-new" style="max-width: 420px; padding: 32px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px;">
-    <button class="modal-close-new" id="btn-close-404" style="top: 15px; right: 15px;">&times;</button>
-    <img src="icons/404-art.PNG" alt="404 Art" style="width: 100%; max-height: 200px; object-fit: contain; border-radius: 12px; margin-bottom: 8px;">
-    <h3 id="modal-404-title" style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px;" data-i="title-404">Страница не найдена!</h3>
-    <p style="font-size: 13.5px; color: var(--muted); line-height: 1.5;" data-i="desc-404">
+  <div class="modal-box-new modal-box--md modal-center">
+    <button type="button" class="modal-close-new" id="btn-close-404" aria-label="Close">&times;</button>
+    <img class="modal-art" src="icons/404-art.PNG" alt="">
+    <h3 id="modal-404-title" data-i="title-404">Страница не найдена!</h3>
+    <p data-i="desc-404">
       Ой! Запрашиваемый адрес не существует, но мы перенесли вас на главную страницу.
     </p>
-    <button class="btn btn-primary btn-full" id="btn-404-ok" style="margin-top: 8px;" data-i="btn-404-ok">
+    <button type="button" class="btn btn-primary btn-full" id="btn-404-ok" data-i="btn-404-ok">
       Понятно
     </button>
   </div>

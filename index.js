@@ -4,7 +4,7 @@ const i18n = {
     "hero-title-1": "iOS",
     "hero-title-2": "без ограничений",
     "hero-title-3": "на своих условиях",
-    "hero-sub": "Сертификаты, анти-ревок и нужный софт — в одном месте.",
+    "hero-sub": "Установка приложений на iPhone и iPad без джейлбрейка.",
     "sec-dns-label": "Анти-ревок",
     "dns-title": "DNS + Веб-приложение (PWA)",
     "dns-sub": "Анти-ревок защита + иконка портала на рабочий стол в 1 клик",
@@ -108,6 +108,10 @@ const i18n = {
     "pc-desc": "Установите LiveContainer или Sidestore через компьютер без Enterprise-сертификатов",
     "pc-mobile-wall-title": "Только с компьютера",
     "pc-mobile-wall-desc": "Эта функция работает только на десктопной версии сайта. Зайдите с ПК или Mac.",
+    "pc-copy-link": "Скопировать ссылку для ПК",
+    "toast-site-link-copied": "Ссылка скопирована. Откройте её на компьютере.",
+    "pc-combo-tag": "Рекомендуем",
+    "sup-chat": "Чат поддержки",
     "pc-lc-desc": "Запуск IPA без лимита",
     "pc-ss-desc": "Магазин с автообновлением",
     "pc-combo-title": "Всё в одном",
@@ -130,7 +134,7 @@ const i18n = {
     "hero-title-1": "iOS",
     "hero-title-2": "without limits",
     "hero-title-3": "on your terms",
-    "hero-sub": "Certificates, anti-revoke, and the tools you need — in one place.",
+    "hero-sub": "Install apps on iPhone and iPad without a jailbreak.",
     "sec-dns-label": "Anti-Revoke",
     "dns-title": "DNS + Web App (PWA)",
     "dns-sub": "Anti-revoke protection + 1-click Home Screen app icon",
@@ -234,6 +238,10 @@ const i18n = {
     "pc-desc": "Install LiveContainer or SideStore via computer without Enterprise certificates",
     "pc-mobile-wall-title": "Desktop Only",
     "pc-mobile-wall-desc": "This feature is only available on the desktop version of the site. Access it from a PC or Mac.",
+    "pc-copy-link": "Copy link for your PC",
+    "toast-site-link-copied": "Link copied. Open it on your computer.",
+    "pc-combo-tag": "Recommended",
+    "sup-chat": "Support chat",
     "pc-lc-desc": "Run IPAs without limits",
     "pc-ss-desc": "App store with auto-refresh",
     "pc-combo-title": "All-in-One",
@@ -262,6 +270,9 @@ if (!i18n[currentLang]) {
 function t(key) { return (i18n[currentLang] && i18n[currentLang][key]) || key; }
 
 function applyLang() {
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.setAttribute('aria-pressed', String(b.dataset.lang === currentLang));
+  });
   document.querySelectorAll('[data-i]').forEach(el => {
     const key = el.dataset.i;
     const val = t(key);
@@ -277,6 +288,20 @@ function applyLang() {
   });
 }
 
+
+// Overlay helpers: remember what had focus, move focus into the dialog, give it back on close
+let lastFocusEl = null;
+function openOverlay(id, focusId) {
+  lastFocusEl = document.activeElement;
+  document.getElementById(id).classList.add('active');
+  const target = focusId && document.getElementById(focusId);
+  if (target) setTimeout(() => target.focus(), 50);
+}
+function closeOverlay(id) {
+  document.getElementById(id).classList.remove('active');
+  if (lastFocusEl && typeof lastFocusEl.focus === 'function') lastFocusEl.focus();
+  lastFocusEl = null;
+}
 
 let toastTimer;
 function showToast(msg) {
@@ -620,9 +645,10 @@ function applyTheme(theme, showNotification = true) {
 
   localStorage.setItem('nyx-theme', theme);
   const siteSel = document.getElementById('site-theme-select');
-  const headerSel = document.getElementById('header-theme-select');
   if (siteSel) siteSel.value = theme;
-  if (headerSel) headerSel.value = theme;
+  document.querySelectorAll('.theme-swatch').forEach(b => {
+    b.setAttribute('aria-checked', String(b.dataset.theme === theme));
+  });
 
   if (showNotification) {
     showToast(t('theme-applied-toast') || 'Тема успешно применена!');
@@ -630,17 +656,15 @@ function applyTheme(theme, showNotification = true) {
 }
 
 document.getElementById('site-theme-select').addEventListener('change', (e) => applyTheme(e.target.value, true));
-document.getElementById('header-theme-select').addEventListener('change', (e) => applyTheme(e.target.value, true));
+document.querySelectorAll('.theme-swatch').forEach(b => {
+  b.addEventListener('click', () => applyTheme(b.dataset.theme, true));
+});
 document.getElementById('btn-header-theme').addEventListener('click', () => {
-  document.getElementById('theme-modal').classList.add('active');
+  openOverlay('theme-modal', 'btn-close-theme');
 });
-document.getElementById('btn-close-theme').addEventListener('click', () => {
-  document.getElementById('theme-modal').classList.remove('active');
-});
+document.getElementById('btn-close-theme').addEventListener('click', () => closeOverlay('theme-modal'));
 document.getElementById('theme-modal').addEventListener('click', (e) => {
-  if (e.target === document.getElementById('theme-modal')) {
-    document.getElementById('theme-modal').classList.remove('active');
-  }
+  if (e.target === document.getElementById('theme-modal')) closeOverlay('theme-modal');
 });
 document.getElementById('btn-open-esign').addEventListener('click', () => openInstaller('esign'));
 document.getElementById('btn-open-ksign').addEventListener('click', () => openInstaller('ksign'));
@@ -850,23 +874,51 @@ document.getElementById('btn-nsign-reset').addEventListener('click', resetNSignF
 
 function openPcSideloadModal(preselect) {
   if (preselect === 'combo') {
-    document.getElementById('nsign-promo-modal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-    return;
+    openOverlay('nsign-promo-modal', 'btn-promo-go-nsign');
+  } else {
+    openOverlay('pc-sideload-modal', 'btn-close-pc');
   }
-  const modal = document.getElementById('pc-sideload-modal');
-  modal.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
 
 function closePcSideloadModal() {
-  const modal = document.getElementById('pc-sideload-modal');
-  modal.classList.remove('active');
+  closeOverlay('pc-sideload-modal');
   document.body.style.overflow = '';
 }
 
 document.getElementById('pc-sideload-modal').addEventListener('click', function(e) {
   if (e.target === this) closePcSideloadModal();
+});
+document.getElementById('btn-close-pc').addEventListener('click', closePcSideloadModal);
+
+document.querySelectorAll('.method-row').forEach(row => {
+  row.addEventListener('click', () => openPcSideloadModal(row.dataset.method));
+});
+
+// Phones can't run iLoader: let people send themselves the link instead of hitting a dead end
+const btnCopySite = document.getElementById('btn-copy-site');
+if (btnCopySite) {
+  btnCopySite.addEventListener('click', () => {
+    const url = window.location.origin + window.location.pathname;
+    navigator.clipboard.writeText(url).then(() => {
+      showToast(t('toast-site-link-copied'));
+    }).catch(() => {
+      showToast(url);
+    });
+  });
+}
+
+// Escape closes the dialogs of this section
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return;
+  let closed = false;
+  ['theme-modal', 'pc-sideload-modal', 'nsign-promo-modal', 'modal-404'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.classList.contains('active')) { closeOverlay(id); closed = true; }
+  });
+  const report = document.getElementById('report-modal');
+  if (report && !report.classList.contains('hidden')) { report.classList.add('hidden'); closed = true; }
+  if (closed) document.body.style.overflow = '';
 });
 
 
