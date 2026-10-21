@@ -84,6 +84,8 @@ const i18n = {
     "sec-cert-download-label": "Сертификат",
     "cert-card-title": "Сертификат HSBC Bank plc",
     "cert-card-sub": "Годен до 4 мая 2027 г. Пароль к .p12: AppleP12.com",
+    "cert-valid-until": "Годен до: 4 мая 2027 г.",
+    "cert-pwd-label": "Пароль:",
     "btn-download-cert-zip": "Скачать сертификат (.zip)",
     "btn-copy-pwd": "Скопировать пароль",
     "pwd-copied": "Пароль AppleP12.com скопирован!",
@@ -214,6 +216,8 @@ const i18n = {
     "sec-cert-download-label": "Certificate",
     "cert-card-title": "HSBC Bank plc Certificate",
     "cert-card-sub": "Valid until May 4, 2027. Password for .p12: AppleP12.com",
+    "cert-valid-until": "Valid until: May 4, 2027",
+    "cert-pwd-label": "Password:",
     "btn-download-cert-zip": "Download Cert Archive (.zip)",
     "btn-copy-pwd": "Copy Password",
     "pwd-copied": "Password AppleP12.com copied!",
@@ -1121,17 +1125,18 @@ document.getElementById('modal-404').addEventListener('click', (e) => {
   }, 1200);
 })();
 
-// Copy certificate password button
-const btnCopyPwd = document.getElementById('btn-copy-pwd');
-if (btnCopyPwd) {
-  btnCopyPwd.addEventListener('click', () => {
-    navigator.clipboard.writeText('AppleP12.com').then(() => {
-      showToast(t('pwd-copied'));
-    }).catch(() => {
-      showToast('AppleP12.com');
-    });
+// Copy certificate password
+function copyCertPassword() {
+  navigator.clipboard.writeText('AppleP12.com').then(() => {
+    showToast(t('pwd-copied'));
+  }).catch(() => {
+    showToast('AppleP12.com');
   });
 }
+const btnCopyPwd = document.getElementById('btn-copy-pwd');
+if (btnCopyPwd) btnCopyPwd.addEventListener('click', copyCertPassword);
+const chipCopyPwd = document.getElementById('chip-copy-pwd');
+if (chipCopyPwd) chipCopyPwd.addEventListener('click', copyCertPassword);
 
 // Copy direct install link button
 const btnCopyLink = document.getElementById('btn-modal-copy-link');
