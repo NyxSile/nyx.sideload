@@ -6,7 +6,7 @@ A sleek, static web portal for OTA (Over-the-Air) iOS sideloading. Instantly ins
 
 [![Deploy](https://github.com/NyxSile/nyx.sideload/actions/workflows/build.yml/badge.svg)](https://github.com/NyxSile/nyx.sideload/actions/workflows/build.yml)
 
-## 🚀 Features
+## Features
 
 - **OTA Sideloading** – Install ESign, KSign, and N.Sign directly to your iOS device.
 - **Anti-Revoke DNS** – Features an optimized DNS profile configuration (`dns.mobileconfig`) to block Apple's revocation servers.
@@ -14,7 +14,7 @@ A sleek, static web portal for OTA (Over-the-Air) iOS sideloading. Instantly ins
 - **N.Sign Promo** – Promotion overlay encouraging sideloading exploration.
 - **Buttery-Smooth UI** – Responsive glassmorphic layout, customizable themes, and GPU-accelerated backdrop animations.
 
-## 📂 Repository Layout
+## Repository Layout
 
 ```text
 .
