@@ -2,8 +2,11 @@ name: build-manifest
 
 on:
   push:
+    branches:
+      - main
     paths:
       - "ipas/**/*.ipa"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -12,19 +15,30 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
 
       - name: Собрать manifest.plist и version.json из метаданных IPA
         id: build_manifest
         run: |
-          python build_manifest.py
+          python3 build_manifest.py
 
-      - name: закоммитить
+      - name: Закоммитить и отправить изменения
         run: |
-          git config user.name "ota-bot"
-          git config user.email "ota-bot@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add manifest.plist plists/*.plist version.json
-          git commit -m "auto: rebuild manifest for ${{ steps.build_manifest.outputs.app_name }} v${{ steps.build_manifest.outputs.version }}" || echo "нечего коммитить"
-          git push
+          if git diff --staged --quiet; then
+            echo "Изменений нет, коммит не требуется."
+          else
+            git commit -m "auto: rebuild manifest for ${{ steps.build_manifest.outputs.app_name || 'apps' }} v${{ steps.build_manifest.outputs.version || 'latest' }}"
+            git pull --rebase origin main || true
+            git push
+          fi
