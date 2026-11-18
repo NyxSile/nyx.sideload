@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#0b0d14" />
   <meta property="og:title" content="nyx•sideload — Интерактивный гид с Бриз" />
   <meta property="og:description" content="Пошаговый интерактивный гайд по iOS сайдлоаду без лишней воды." />
-  <meta property="og:image" content="https://nyx.sideload.space/tutorial-vn/assets/breeze_neutral.jpg" />
+  <meta property="og:image" content="https://nyx.sideload.space/tutorial-vn/assets/breeze_neutral.png" />
   <link rel="icon" type="image/png" href="../icons/favicon.png" />
   <style>
     :root {
@@ -472,7 +472,7 @@
   <!-- ================= MOBILE VN STAGE ================= -->
   <main class="vn-stage">
     <div class="sprite-wrapper">
-      <img id="vn-sprite" class="sprite-img" src="assets/breeze_neutral.jpg" alt="Бриз" />
+      <img id="vn-sprite" class="sprite-img" src="assets/breeze_neutral.png" alt="Бриз" />
       <a id="palms-action-btn" class="palms-btn" href="#" target="_self">Скачать</a>
     </div>
 
@@ -614,7 +614,7 @@
         start: () => {
           if (isInAppBrowser) {
             return {
-              sprite: 'assets/breeze_peek.jpg',
+              sprite: 'assets/breeze_peek.png',
               text: '*Холодный вздох*\n— Стоп. Ты открыл ссылку во **встроенном браузере** (Telegram / TikTok / Instagram). Там `.mobileconfig` скачается как битый документ и не установится.\nНажми **⋯ → Открыть в Safari**, иначе дальше не пойдём.',
               choices: [
                 { label: 'Скопировать ссылку для Safari', primary: true, action: () => copySiteLink() },
@@ -623,7 +623,7 @@
             };
           }
           return {
-            sprite: 'assets/breeze_neutral.jpg',
+            sprite: 'assets/breeze_neutral.png',
             text: '*Медленно переводит взгляд на экран*\n— Привет. Я **Бриз**. Проведу тебя через установку приложений на iOS без душных стен текста и рекламы.\nДля начала проверю, стоит ли у тебя уже анти-отзывная защита...',
             next: 'dns_check'
           };
@@ -631,7 +631,7 @@
         dns_check: () => {
           if (isDnsActive) {
             return {
-              sprite: 'assets/breeze_shrug.jpg',
+              sprite: 'assets/breeze_shrug.png',
               text: '— Хм. Серверы проверки Apple (`ocsp.apple.com`) у тебя уже режутся. Значит, **DNS-защита активна**.\nСтавить наш профиль не обязательно — можем сразу перейти к установке ESign / KSign.',
               choices: [
                 { label: 'Перейти сразу к ESign / KSign →', primary: true, next: 'install_signer' },
@@ -641,13 +641,13 @@
             };
           }
           return {
-            sprite: 'assets/breeze_neutral.jpg',
+            sprite: 'assets/breeze_neutral.png',
             text: '— Анти-отзывная защита пока не обнаружена. Без неё Apple рано или поздно отзовёт корпоративный сертификат, и все приложения вылетят.\nСтавится она за 15 секунд.',
             next: 'dns_palms'
           };
         },
         dns_explain: () => ({
-          sprite: 'assets/breeze_neutral.jpg',
+          sprite: 'assets/breeze_neutral.png',
           text: '— Всё просто: профиль перенаправляет запросы к серверам проверки подписей Apple (`ocsp.apple.com`, `ocsp2.apple.com`, `crl.apple.com`) в пустоту. Остальной трафик идёт штатно через Cloudflare, без VPN и потери скорости.',
           choices: [
             { label: 'Понятно, к установке профиля', next: 'dns_palms' },
@@ -655,7 +655,7 @@
           ]
         }),
         dns_palms: () => ({
-          sprite: 'assets/breeze_palms.jpg',
+          sprite: 'assets/breeze_palms.png',
           palms: { label: 'Скачать DNS-профиль', href: '../dns.mobileconfig', download: true },
           text: '— Вот `.mobileconfig`. Забирай прямо из рук, нажимай **«Разрешить»**, затем зайди в:\n**Настройки → Основные → VPN и управление устройством → Загруженный профиль** и включи **nyx-sideload**.',
           choices: [
@@ -664,7 +664,7 @@
           ]
         }),
         safari_fix: () => ({
-          sprite: 'assets/breeze_peek.jpg',
+          sprite: 'assets/breeze_peek.png',
           text: '— Это классика встроенных браузеров или блокировщиков. Скопируй ссылку, открой чистый **Safari**, и скачай профиль заново.',
           choices: [
             { label: 'Скопировать ссылку', action: () => copySiteLink() },
@@ -672,7 +672,7 @@
           ]
         }),
         install_signer: () => ({
-          sprite: 'assets/breeze_palms.jpg',
+          sprite: 'assets/breeze_palms.png',
           palms: { label: 'Установить ESign (Chengdu Rail)', href: 'itms-services://?action=download-manifest&url=https://nyx.sideload.space/plists/manifest-esign-chengdu-railway-bureau.plist' },
           text: '— Теперь сам сайдлоадер. Нажимай на кнопку — iOS спросит разрешение на установку **ESign** (подписан свежим сертификатом **Chengdu Railway Bureau**).\nДождись иконки на рабочем столе.',
           choices: [
@@ -682,7 +682,7 @@
           ]
         }),
         install_ksign: () => ({
-          sprite: 'assets/breeze_palms.jpg',
+          sprite: 'assets/breeze_palms.png',
           palms: { label: 'Установить KSign (Chengdu Rail)', href: 'itms-services://?action=download-manifest&url=https://nyx.sideload.space/plists/manifest-ksign-chengdu-railway-bureau.plist' },
           text: '— Вот **KSign** на том же сертификате **Chengdu Railway Bureau**. Лёгкий и минималистичный.',
           choices: [
@@ -691,7 +691,7 @@
           ]
         }),
         trust_cert: () => ({
-          sprite: 'assets/breeze_neutral.jpg',
+          sprite: 'assets/breeze_neutral.png',
           text: '— Штатная реакция iOS. Зайди в:\n**Настройки → Основные → VPN и управление устройством → Корпоративные приложения (Chengdu Railway Bureau)** и нажми **«Доверять»**.\nНа iOS 16+ также включи **Режим разработчика** в разделе *Конфиденциальность*.',
           choices: [
             { label: 'Доверила, теперь нужен сертификат внутрь ESign', primary: true, next: 'cert_import' },
@@ -699,7 +699,7 @@
           ]
         }),
         cert_import: () => ({
-          sprite: 'assets/breeze_palms.jpg',
+          sprite: 'assets/breeze_palms.png',
           palms: { label: 'Скачать Cert (.zip)', href: '../certs/Chengdu_Railway_Bureau.zip', download: true },
           text: '— Забирай архив сертификата и импортируй его внутри ESign/KSign. Пароль от `.p12`: **AppleP12.com**.\nПосле этого подписывай любые `.ipa` прямо на iPhone.',
           choices: [
@@ -709,14 +709,14 @@
           ]
         }),
         done: () => ({
-          sprite: 'assets/breeze_shrug.jpg',
+          sprite: 'assets/breeze_shrug.png',
           text: '— Отлично. Наслаждайся чистым iOS без ограничений. Если прилетит новый сертификат — заглядывай в Telegram-канал **@nyxsideload**.',
           choices: [
             { label: 'Пройти гайд с начала', next: 'start' }
           ]
         }),
         escalation: () => ({
-          sprite: 'assets/breeze_confused.jpg',
+          sprite: 'assets/breeze_confused.png',
           text: '*Смотрит в телефон и растерянно моргает*\n— ...Ладно, признаю: мои полномочия на этом всё. Похоже, тут какой-то нестандартный баг на стороне устройства или iOS.\nНапиши напрямую Арипхану — он разберётся вручную.',
           choices: [
             { label: 'Написать в Telegram (@NyxSile)', primary: true, action: () => window.open('https://t.me/NyxSile', '_blank') },
@@ -728,7 +728,7 @@
         start: () => {
           if (isInAppBrowser) {
             return {
-              sprite: 'assets/breeze_peek.jpg',
+              sprite: 'assets/breeze_peek.png',
               text: '*Cold sigh*\n— Stop. You opened this in an **in-app browser** (Telegram / TikTok / Instagram). `.mobileconfig` profiles break here.\nTap **⋯ → Open in Safari** before continuing.',
               choices: [
                 { label: 'Copy Link for Safari', primary: true, action: () => copySiteLink() },
@@ -737,7 +737,7 @@
             };
           }
           return {
-            sprite: 'assets/breeze_neutral.jpg',
+            sprite: 'assets/breeze_neutral.png',
             text: '*Quietly glances at the screen*\n— Hi. I’m **Breeze**. I’ll walk you through iOS sideloading without walls of text.\nLet me check if your anti-revoke DNS shield is already active...',
             next: 'dns_check'
           };
@@ -745,7 +745,7 @@
         dns_check: () => {
           if (isDnsActive) {
             return {
-              sprite: 'assets/breeze_shrug.jpg',
+              sprite: 'assets/breeze_shrug.png',
               text: '— Apple revocation checks (`ocsp.apple.com`) are already blocked on your connection. **DNS protection is active.**\nYou don’t need to install ours — we can jump straight to ESign / KSign.',
               choices: [
                 { label: 'Jump to ESign / KSign →', primary: true, next: 'install_signer' },
@@ -754,13 +754,13 @@
             };
           }
           return {
-            sprite: 'assets/breeze_neutral.jpg',
+            sprite: 'assets/breeze_neutral.png',
             text: '— Anti-revoke DNS isn’t active yet. Without it, Apple will eventually revoke enterprise certificates.\nSetup takes 15 seconds.',
             next: 'dns_palms'
           };
         },
         dns_palms: () => ({
-          sprite: 'assets/breeze_palms.jpg',
+          sprite: 'assets/breeze_palms.png',
           palms: { label: 'Download DNS Profile', href: '../dns.mobileconfig', download: true },
           text: '— Grab the `.mobileconfig` right from my hands, tap **Allow**, then enable **nyx-sideload** in:\n**Settings → General → VPN & Device Management → DNS**.',
           choices: [
@@ -769,7 +769,7 @@
           ]
         }),
         safari_fix: () => ({
-          sprite: 'assets/breeze_peek.jpg',
+          sprite: 'assets/breeze_peek.png',
           text: '— Open this page in native **Safari** and download again.',
           choices: [
             { label: 'Copy Link', action: () => copySiteLink() },
@@ -777,7 +777,7 @@
           ]
         }),
         install_signer: () => ({
-          sprite: 'assets/breeze_palms.jpg',
+          sprite: 'assets/breeze_palms.png',
           palms: { label: 'Install ESign (Chengdu Rail)', href: 'itms-services://?action=download-manifest&url=https://nyx.sideload.space/plists/manifest-esign-chengdu-railway-bureau.plist' },
           text: '— Tap to install **ESign**, pre-signed with **Chengdu Railway Bureau**.',
           choices: [
@@ -787,7 +787,7 @@
           ]
         }),
         install_ksign: () => ({
-          sprite: 'assets/breeze_palms.jpg',
+          sprite: 'assets/breeze_palms.png',
           palms: { label: 'Install KSign (Chengdu Rail)', href: 'itms-services://?action=download-manifest&url=https://nyx.sideload.space/plists/manifest-ksign-chengdu-railway-bureau.plist' },
           text: '— Here is **KSign** signed with **Chengdu Railway Bureau**.',
           choices: [
@@ -796,7 +796,7 @@
           ]
         }),
         trust_cert: () => ({
-          sprite: 'assets/breeze_neutral.jpg',
+          sprite: 'assets/breeze_neutral.png',
           text: '— Go to **Settings → General → VPN & Device Management → Enterprise Apps (Chengdu Railway Bureau)** and tap **Trust**.\nOn iOS 16+, also enable **Developer Mode** under Privacy & Security.',
           choices: [
             { label: 'Trusted! Now import cert into ESign', primary: true, next: 'cert_import' },
@@ -804,7 +804,7 @@
           ]
         }),
         cert_import: () => ({
-          sprite: 'assets/breeze_palms.jpg',
+          sprite: 'assets/breeze_palms.png',
           palms: { label: 'Download Cert (.zip)', href: '../certs/Chengdu_Railway_Bureau.zip', download: true },
           text: '— Download the cert archive and import into ESign/KSign. Password: **AppleP12.com**.',
           choices: [
@@ -814,12 +814,12 @@
           ]
         }),
         done: () => ({
-          sprite: 'assets/breeze_shrug.jpg',
+          sprite: 'assets/breeze_shrug.png',
           text: '— All set. Enjoy iOS without limits. Follow **@nyxsideload** on Telegram for fresh certs.',
           choices: [{ label: 'Restart Guide', next: 'start' }]
         }),
         escalation: () => ({
-          sprite: 'assets/breeze_confused.jpg',
+          sprite: 'assets/breeze_confused.png',
           text: '*Stares at her phone*\n— Okay, my powers end here. Looks like an edge-case issue on your device.\nReach out directly to Aripkhan on Telegram.',
           choices: [
             { label: 'Message @NyxSile on Telegram', primary: true, action: () => window.open('https://t.me/NyxSile', '_blank') },
