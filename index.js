@@ -623,7 +623,8 @@ function pingAppleEndpoint(url, timeoutMs = 2500) {
     fetch(url, {
       method: 'GET',
       mode: 'no-cors',
-      cache: 'no-store',
+      cache: 'reload',
+      credentials: 'omit',
       signal: controller.signal
     })
       .then(() => {
@@ -718,17 +719,20 @@ async function checkDnsProtection(showFeedbackToast = true) {
     // 1) Are in the DNS profile's SupplementalMatchDomains
     // 2) Are blocked (NXDOMAIN) by dns.nyxsile.lol
     // 3) Have valid Apple public SSL certificates (so unblocked network doesn't throw SSL errors)
+    const nonce = `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
     const testEndpoints = [
-      `https://crl.apple.com/check-revocation?_t=${Date.now()}`,
-      `https://ocsp2.apple.com/check-revocation?_t=${Date.now()}`,
-      `https://valid.apple.com/check-revocation?_t=${Date.now()}`
+      `https://ocsp.apple.com/_nyx_check_${nonce}`,
+      `https://ocsp2.apple.com/_nyx_check_${nonce}`,
+      `https://crl.apple.com/_nyx_check_${nonce}`,
+      `https://valid.apple.com/_nyx_check_${nonce}`
     ];
 
     const results = await Promise.all(testEndpoints.map(url => pingAppleEndpoint(url, 2500)));
-    const appleResponded = results.some(Boolean);
+    const blockedCount = results.filter(r => r === false).length;
+    const isProtected = blockedCount >= 1;
 
-    // If Apple endpoints failed, verify general internet connectivity to prevent false positives when network is down
-    if (!appleResponded && window.location.protocol.startsWith('http')) {
+    // If any Apple endpoint failed, verify general internet connectivity to prevent false positives when network is down
+    if (isProtected && window.location.protocol.startsWith('http')) {
       try {
         const netCtrl = new AbortController();
         const netTimer = setTimeout(() => netCtrl.abort(), 2000);
@@ -755,8 +759,8 @@ async function checkDnsProtection(showFeedbackToast = true) {
       }
     }
 
-    if (appleResponded) {
-      // Traffic reached Apple -> Protection NOT active!
+    if (!isProtected) {
+      // Traffic reached all Apple revocation endpoints -> Protection NOT active!
       if (dot) dot.className = 'status-dot err';
       if (text) {
         text.textContent = t('dns-status-unprotected');
