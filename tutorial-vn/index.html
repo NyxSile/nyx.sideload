@@ -1,987 +1,886 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Гайд от Бриз: Интерактивный туториал по сайдлоуду iOS | nyx.sideload</title>
-  <meta name="description" content="Интерактивный визуальный гайд с персонажем Бриз: настройка DNS-профиля против отзыва, установка ESign и KSign, импорт сертификата и решение ошибок." />
-  <meta name="keywords" content="интерактивный гайд ios, сайдлоуд инструкция, бриз гайд, esign установка, ksign сертификат, анти ревок профиль, nyx sideload" />
-  <meta name="robots" content="index, follow, max-image-preview:large" />
-  <meta name="author" content="nyx.sideload" />
-  <link rel="canonical" href="https://nyx.sideload.space/tutorial-vn/" />
-  <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="nyx.sideload" />
-  <meta property="og:title" content="Интерактивный гайд по сайдлоуду с Бриз — nyx.sideload" />
-  <meta property="og:description" content="Пошаговый визуальный туториал: DNS-профиль, ESign, KSign и решение любых ошибок на iOS." />
-  <meta property="og:url" content="https://nyx.sideload.space/tutorial-vn/" />
-  <meta property="og:image" content="https://nyx.sideload.space/icons/breeze_avatar.jpg" />
-  <meta property="og:image:alt" content="Breeze VN Guide" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Интерактивный гайд по сайдлоуду с Бриз — nyx.sideload" />
-  <meta name="twitter:description" content="Пошаговый визуальный туториал: DNS-профиль, ESign, KSign и решение любых ошибок на iOS." />
-  <meta name="twitter:image" content="https://nyx.sideload.space/icons/breeze_avatar.jpg" />
-  <link rel="apple-touch-icon" href="../icons/favicon.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>nyx•sideload — Гид с Бриз</title>
+  <meta name="theme-color" content="#0b0d14" />
+  <meta property="og:title" content="nyx•sideload — Интерактивный гид с Бриз" />
+  <meta property="og:description" content="Пошаговый интерактивный гайд по iOS сайдлоаду без лишней воды." />
+  <meta property="og:image" content="https://nyx.sideload.space/tutorial-vn/assets/breeze_neutral.jpg" />
   <link rel="icon" type="image/png" href="../icons/favicon.png" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "TechArticle",
-    "headline": "Интерактивное руководство по сайдлоуду iOS",
-    "description": "Пошаговый визуальный помощник по настройке DNS анти-ревока, ESign, KSign и установке приложений на iOS.",
-    "url": "https://nyx.sideload.space/tutorial-vn/",
-    "inLanguage": ["ru", "en"]
-  }
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #06060c;
-      --surface: rgba(18, 18, 29, 0.75);
-      --border: rgba(123, 97, 255, 0.15);
-      --border-hover: rgba(123, 97, 255, 0.4);
+      --bg: #0b0d14;
+      --surface: rgba(15, 18, 30, 0.9);
+      --border: rgba(139, 92, 246, 0.28);
       --accent: #8b5cf6;
-      --accent-lo: rgba(139, 92, 246, 0.12);
-      --text: #e2e8f0;
+      --accent-glow: rgba(139, 92, 246, 0.45);
+      --text: #f1f5f9;
       --muted: #94a3b8;
+      --action: #c084fc;
+      --green: #34d399;
     }
 
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    body {
+    html, body {
+      width: 100%;
+      max-width: 100vw;
+      height: 100%;
       background: var(--bg);
       color: var(--text);
-      font-family: 'Inter', sans-serif;
-      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: center;
-      position: relative;
+      user-select: none;
     }
 
-
-    #stars {
-      position: absolute;
+    #starfield {
+      position: fixed;
       inset: 0;
       z-index: 0;
       pointer-events: none;
     }
 
-
-    .vn-container {
-      width: 100%;
-      max-width: 720px;
-      height: 100dvh;
+    /* Top bar */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
       display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: center;
-      padding: 24px 20px;
-      position: relative;
-      z-index: 2;
-    }
-
-
-    .btn-back-vn {
-      position: absolute;
-      top: 24px;
-      left: 20px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      background: rgba(18, 18, 29, 0.6);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      color: var(--text);
-      font-size: 13px;
-      font-weight: 500;
-      text-decoration: none;
-      backdrop-filter: blur(10px);
-      transition: all 0.2s;
-    }
-    .btn-back-vn:hover {
-      border-color: var(--accent);
-      background: var(--accent-lo);
-      transform: translateX(-3px);
-    }
-
-
-    .sprite-container {
-      flex: 1;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      width: 100%;
-      margin-bottom: -10px;
-      pointer-events: none;
-      position: relative;
-    }
-
-    .character-sprite {
-      max-height: 48vh;
-      width: auto;
-      object-fit: contain;
-      animation: idleBob 4s ease-in-out infinite;
-      filter: drop-shadow(0 10px 30px rgba(139, 92, 246, 0.25));
-      border-radius: 24px;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .character-sprite.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @keyframes idleBob {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-
-    .character-sprite.bounce {
-      animation: spriteBounce 0.5s ease;
-    }
-
-    @keyframes spriteBounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-24px); }
-    }
-
-
-    .choices-container {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      width: 100%;
-      margin-bottom: 16px;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.3s ease;
-      pointer-events: none;
-      z-index: 5;
-    }
-    .choices-container.show {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-
-    .choice-btn {
-      background: rgba(18, 18, 29, 0.82);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 14px 20px;
-      border-radius: 16px;
-      font-size: 14.5px;
-      font-weight: 500;
-      cursor: pointer;
-      text-align: left;
-      transition: all 0.2s ease;
-      backdrop-filter: blur(16px);
-      display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-    }
-    .choice-content {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex: 1;
-    }
-    .choice-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      flex-shrink: 0;
-    }
-    .choice-btn:hover {
-      border-color: var(--accent);
-      background: var(--accent-lo);
-      transform: translateX(4px);
-    }
-    .choice-btn::after {
-      content: '→';
-      opacity: 0;
-      transform: translateX(-10px);
-      transition: all 0.2s;
-    }
-    .choice-btn:hover::after {
-      opacity: 1;
-      transform: translateX(0);
+      gap: 6px;
+      padding: 8px 10px;
+      background: linear-gradient(180deg, rgba(11, 13, 20, 0.92), rgba(11, 13, 20, 0));
     }
 
-
-    .dialogue-box {
-      width: 100%;
-      background: var(--surface);
-      border: 1.5px solid var(--border);
-      border-radius: 24px;
-      padding: 24px 28px;
-      min-height: 140px;
-      position: relative;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-      cursor: pointer;
-    }
-
-
-    .name-tag {
-      position: absolute;
-      top: -16px;
-      left: 28px;
-      background: var(--accent);
-      color: white;
-      padding: 4px 18px;
-      border-radius: 10px;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 13px;
-      letter-spacing: 0.05em;
-      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
-    }
-
-
-    .dialogue-text {
-      font-size: 14.5px;
-      line-height: 1.6;
-      color: var(--text);
-    }
-
-    .dialogue-text strong {
-      color: #ffffff;
-      font-weight: 600;
-    }
-
-    .action-text {
-      color: #c084fc;
-      font-style: italic;
-    }
-
-
-    .dialogue-arrow {
-      position: absolute;
-      bottom: 16px;
-      right: 20px;
-      font-size: 12px;
-      color: var(--accent);
-      animation: pulse 1.5s infinite;
-      display: none;
-    }
-    .dialogue-arrow.show {
-      display: block;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.3; transform: translateY(0); }
-      50% { opacity: 1; transform: translateY(3px); }
-    }
-
-    .vn-top-bar {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      right: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      z-index: 10;
-    }
-
-    .vn-top-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .btn-top-vn {
+    .top-left, .top-right {
       display: flex;
       align-items: center;
       gap: 6px;
-      padding: 8px 14px;
-      background: rgba(18, 18, 29, 0.7);
+      flex-wrap: wrap;
+    }
+
+    .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 10px;
+      border-radius: 999px;
       border: 1px solid var(--border);
-      border-radius: 12px;
+      background: rgba(18, 22, 36, 0.85);
+      backdrop-filter: blur(10px);
       color: var(--text);
-      font-size: 13px;
+      font-size: 11.5px;
       font-weight: 500;
       text-decoration: none;
-      backdrop-filter: blur(12px);
       cursor: pointer;
-      transition: all 0.2s;
+      transition: border-color 0.2s, transform 0.15s;
     }
-    .btn-top-vn:hover {
-      border-color: var(--accent);
-      background: var(--accent-lo);
-      transform: translateY(-1px);
+    .pill-btn:hover { border-color: var(--accent); }
+    .pill-btn:active { transform: scale(0.96); }
+    .pill-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+    .dns-badge {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: rgba(15, 18, 30, 0.85);
+      color: var(--muted);
+    }
+    .dns-badge.ok {
+      border-color: rgba(52, 211, 153, 0.45);
+      color: var(--green);
     }
 
-    .lang-toggle-vn {
-      display: flex;
-      background: rgba(18, 18, 29, 0.7);
-      border: 1px solid var(--border);
-      border-radius: 12px;
+    /* ================= DESKTOP ROOM SCENE (>= 1024px) ================= */
+    .desktop-stage {
+      display: none;
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      padding: 52px 24px 20px;
+    }
+
+    .room-frame {
+      position: relative;
+      width: min(1160px, 94vw);
+      aspect-ratio: 16 / 9;
+      border-radius: 18px;
       overflow: hidden;
-      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+      background: #0d101b;
     }
-    .lang-btn-vn {
-      background: transparent;
-      border: none;
-      color: var(--muted);
-      padding: 7px 12px;
-      font-size: 12px;
-      font-weight: 600;
+
+    .room-bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Interactive shelf items locked in % inside 16:9 room_frame */
+    .shelf-item {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 11px;
+      border-radius: 12px;
+      background: rgba(13, 16, 27, 0.86);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(139, 92, 246, 0.4);
+      color: var(--text);
+      text-decoration: none;
       cursor: pointer;
-      transition: all 0.15s;
+      transition: transform 0.18s, border-color 0.18s, box-shadow 0.18s;
+      min-width: 82px;
+      text-align: center;
     }
-    .lang-btn-vn.active {
-      background: var(--accent);
-      color: white;
+    .shelf-item:hover {
+      transform: translate(-50%, -54%) scale(1.05);
+      border-color: #c084fc;
+      box-shadow: 0 0 18px var(--accent-glow);
     }
+    .shelf-item .ico { font-size: 20px; line-height: 1; }
+    .shelf-item .lbl { font-size: 11px; font-weight: 600; white-space: nowrap; }
+    .shelf-item .sub { font-size: 9.5px; color: var(--muted); }
+
+    .desktop-dialogue {
+      position: absolute;
+      left: 3%;
+      bottom: 4%;
+      width: 50%;
+      padding: 16px 20px;
+      border-radius: 14px;
+      background: rgba(11, 13, 22, 0.9);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+    }
+    .desktop-dialogue .speaker {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--action);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .desktop-dialogue p {
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .desktop-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ================= MOBILE VN STAGE ================= */
+    .vn-stage {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 100vw;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 64px 12px 14px;
+      overflow: hidden;
+    }
+
+    /* Locked 2:3 sprite container so "in palms" button never drifts */
+    .sprite-wrapper {
+      position: relative;
+      height: min(62vh, 520px);
+      aspect-ratio: 2 / 3;
+      max-width: 92vw;
+      margin-bottom: -14px;
+      border-radius: 18px;
+      overflow: hidden;
+      mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
+    }
+
+    .sprite-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.25s ease;
+    }
+
+    /* Interactive button positioned directly in Breeze's extended palms */
+    .palms-btn {
+      position: absolute;
+      left: 50%;
+      top: 73%;
+      transform: translate(-50%, -50%);
+      z-index: 25;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: linear-gradient(135deg, #7c3aed, #a855f7);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+      box-shadow: 0 0 24px rgba(168, 85, 247, 0.75);
+      animation: floatPulse 2.2s ease-in-out infinite;
+      cursor: pointer;
+    }
+    .palms-btn.visible { display: inline-flex; }
+
+    @keyframes floatPulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 20px rgba(168, 85, 247, 0.65); }
+      50% { transform: translate(-50%, -54%) scale(1.04); box-shadow: 0 0 32px rgba(192, 132, 252, 0.95); }
+    }
+
+    /* Dialogue Box */
+    .dialogue-box {
+      position: relative;
+      z-index: 30;
+      width: min(680px, 100%);
+      background: var(--surface);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px 18px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65);
+    }
+
+    .dialogue-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .speaker-name {
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--action);
+    }
+
+    .dialogue-text {
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: var(--text);
+      min-height: 54px;
+      white-space: pre-line;
+      cursor: pointer;
+    }
+    .dialogue-text strong { color: #ffffff; font-weight: 650; }
+    .action-text { color: var(--action); font-style: italic; }
+
+    .choices {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .choice-btn {
+      width: 100%;
+      text-align: left;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(139, 92, 246, 0.35);
+      background: rgba(24, 29, 48, 0.88);
+      color: var(--text);
+      font-size: 13.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .choice-btn:hover { background: rgba(139, 92, 246, 0.22); border-color: var(--accent); }
+    .choice-btn.primary {
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.4), rgba(168, 85, 247, 0.32));
+      border-color: #a855f7;
+    }
+
+    .tap-hint {
+      font-size: 11px;
+      color: var(--muted);
+      text-align: right;
+      margin-top: 8px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .tap-hint.show { opacity: 1; }
+
+    /* Responsive Desktop Toggle */
+    @media (min-width: 1024px) {
+      body.desktop-mode .desktop-stage { display: flex; }
+      body.desktop-mode .vn-stage { display: none; }
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      z-index: 100;
+      padding: 9px 16px;
+      border-radius: 999px;
+      background: #1e293b;
+      border: 1px solid var(--accent);
+      color: #fff;
+      font-size: 12.5px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   </style>
 </head>
-<body>
+<body class="desktop-mode">
+  <canvas id="starfield"></canvas>
 
-  <canvas id="stars"></canvas>
+  <header class="topbar">
+    <div class="top-left">
+      <a class="pill-btn" href="../index.html">← На главную</a>
+      <span id="dns-status-pill" class="dns-badge">DNS: проверка...</span>
+    </div>
+    <div class="top-right">
+      <button id="btn-toggle-mode" class="pill-btn" style="display:none;" onclick="toggleDesktopMode()">📱 Новелла</button>
+      <button class="pill-btn" onclick="resetProgress()">↺ Сброс</button>
+      <button class="pill-btn lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button>
+      <button class="pill-btn lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+    </div>
+  </header>
 
-  <div class="vn-container">
-    <div class="vn-top-bar">
-      <a href="../" class="btn-top-vn" id="btn-back">
-        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round"/>
-        </svg>
-        <span id="txt-back">На главную</span>
+  <!-- ================= DESKTOP ROOM SCENE ================= -->
+  <main class="desktop-stage">
+    <div class="room-frame">
+      <img class="room-bg" src="assets/breeze_room_desktop.jpg" alt="Breeze Room" />
+
+      <!-- Shelf 1 (Top Shelf): DNS & Cert -->
+      <a class="shelf-item" style="left: 25%; top: 20%;" href="../dns.mobileconfig" download>
+        <span class="ico">🛡️</span>
+        <span class="lbl">DNS-профиль</span>
+        <span class="sub">.mobileconfig</span>
+      </a>
+      <a class="shelf-item" style="left: 41%; top: 20%;" href="../certs/Chengdu_Railway_Bureau.zip" download>
+        <span class="ico">🔑</span>
+        <span class="lbl">Chengdu Cert</span>
+        <span class="sub">Pass: AppleP12.com</span>
       </a>
 
-      <div class="vn-top-actions">
-        <button class="btn-top-vn" id="btn-sound" title="Звук" aria-label="Toggle sound">
-          <span id="sound-icon" style="display:flex; align-items:center; justify-content:center;"></span>
-        </button>
-        <button class="btn-top-vn" id="btn-menu" title="Выбор темы">
-          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-          <span id="txt-topics">Темы</span>
-        </button>
-        <div class="lang-toggle-vn">
-          <button class="lang-btn-vn active" id="vn-lang-ru" data-lang="ru">RU</button>
-          <button class="lang-btn-vn" id="vn-lang-en" data-lang="en">EN</button>
+      <!-- Shelf 2 (Middle Shelf): IPA Signers -->
+      <a class="shelf-item" style="left: 25%; top: 38%;" href="../ipas/esign/esign-chengdu-railway-bureau.ipa" download>
+        <span class="ico">📦</span>
+        <span class="lbl">ESign .ipa</span>
+        <span class="sub">Chengdu Rail</span>
+      </a>
+      <a class="shelf-item" style="left: 41%; top: 38%;" href="../ipas/ksign/ksign-chengdu-railway-bureau.ipa" download>
+        <span class="ico">⚡</span>
+        <span class="lbl">KSign .ipa</span>
+        <span class="sub">Chengdu Rail</span>
+      </a>
+
+      <!-- Shelf 3 (Lower Shelf): Links -->
+      <a class="shelf-item" style="left: 25%; top: 55%;" href="https://github.com/NyxSile/nyx.sideload" target="_blank" rel="noopener">
+        <span class="ico">🐙</span>
+        <span class="lbl">GitHub</span>
+        <span class="sub">nyx.sideload</span>
+      </a>
+      <a class="shelf-item" style="left: 41%; top: 55%;" href="https://t.me/nyxsideload" target="_blank" rel="noopener">
+        <span class="ico">✈️</span>
+        <span class="lbl">Telegram</span>
+        <span class="sub">@nyxsideload</span>
+      </a>
+
+      <div class="desktop-dialogue">
+        <div class="speaker" id="desk-speaker">Бриз • Комната на ПК</div>
+        <p id="desk-text">Вижу, ты зашёл с компьютера. Не буду мучить тебя заглушкой «открой с телефона» — все файлы разложены прямо на полках слева. Можешь забрать .mobileconfig или IPA отсюда, либо переключиться на мобильный гайд.</p>
+        <div class="desktop-actions">
+          <button class="pill-btn active" onclick="openMobileNovellaFromDesktop()">▶ Запустить пошаговую новеллу</button>
+          <button class="pill-btn" onclick="copySiteLink()">📋 Скопировать ссылку для iPhone</button>
         </div>
       </div>
     </div>
+  </main>
 
-
-    <div class="sprite-container">
-      <img id="breeze-sprite" class="character-sprite" src="../icons/breeze_avatar.jpg" alt="Бриз">
+  <!-- ================= MOBILE VN STAGE ================= -->
+  <main class="vn-stage">
+    <div class="sprite-wrapper">
+      <img id="vn-sprite" class="sprite-img" src="assets/breeze_neutral.jpg" alt="Бриз" />
+      <a id="palms-action-btn" class="palms-btn" href="#" target="_self">⬇ Скачать</a>
     </div>
 
+    <section class="dialogue-box">
+      <div class="dialogue-header">
+        <span id="vn-speaker" class="speaker-name">Бриз</span>
+      </div>
+      <div id="vn-text" class="dialogue-text"></div>
+      <div id="vn-choices" class="choices"></div>
+      <div id="vn-tap-hint" class="tap-hint">Нажми на текст, чтобы продолжить ▾</div>
+    </section>
+  </main>
 
-    <div class="choices-container" id="choices-container"></div>
-
-
-    <div class="dialogue-box" id="dialogue-box">
-      <div class="name-tag">БРИЗ</div>
-      <div class="dialogue-text" id="dialogue-text"></div>
-      <div class="dialogue-arrow" id="dialogue-arrow">▼</div>
-    </div>
-  </div>
-
+  <div id="toast" class="toast">Скопировано</div>
 
   <script>
+    // ===== Starfield =====
     (function initStars() {
-      const canvas = document.getElementById('stars');
+      const canvas = document.getElementById('starfield');
       const ctx = canvas.getContext('2d');
-      const COUNT = 80;
       let W, H, stars = [];
-
-      const COLORS = [
-        'rgb(120, 80, 220)',
-        'rgb(90, 60, 180)',
-        'rgb(160, 100, 255)',
-        'rgb(200, 170, 255)'
-      ];
-
+      const colors = ['#ffffff', '#c084fc', '#8b5cf6', '#94a3b8'];
       function resize() {
         W = canvas.width = window.innerWidth;
         H = canvas.height = window.innerHeight;
+        stars = Array.from({ length: 70 }, () => ({
+          x: Math.random() * W, y: Math.random() * H,
+          r: Math.random() * 1.4 + 0.3,
+          c: colors[Math.floor(Math.random() * colors.length)],
+          vx: (Math.random() - 0.5) * 0.05, vy: (Math.random() - 0.5) * 0.05
+        }));
       }
-
-      function mkStar() {
-        return {
-          x: Math.random() * W,
-          y: Math.random() * H,
-          r: Math.random() * 1.5 + 0.3,
-          color: COLORS[Math.floor(Math.random() * COLORS.length)],
-          speedX: (Math.random() - 0.5) * 0.05,
-          speedY: (Math.random() - 0.5) * 0.05
-        };
-      }
-
-      function init() {
-        resize();
-        stars = Array.from({ length: COUNT }, mkStar);
-      }
-
-      let raf;
-      let isWindowFocused = !document.hidden;
-
-      function draw(shouldAnimate = true) {
-        ctx.fillStyle = '#06060c';
-        ctx.fillRect(0, 0, W, H);
-
-        const animateNow = shouldAnimate && isWindowFocused;
-
+      function tick() {
+        ctx.clearRect(0, 0, W, H);
         for (const s of stars) {
-          if (animateNow) {
-            s.x += s.speedX;
-            s.y += s.speedY;
-            if (s.x < 0) s.x = W;
-            if (s.x > W) s.x = 0;
-            if (s.y < 0) s.y = H;
-            if (s.y > H) s.y = 0;
-          }
-
-          ctx.fillStyle = s.color;
+          s.x = (s.x + s.vx + W) % W;
+          s.y = (s.y + s.vy + H) % H;
+          ctx.fillStyle = s.c;
           ctx.fillRect(s.x, s.y, s.r * 2, s.r * 2);
         }
-
-        if (animateNow) {
-          raf = requestAnimationFrame(() => draw(true));
-        }
+        requestAnimationFrame(tick);
       }
-
-      function startAnimation() {
-        isWindowFocused = true;
-        cancelAnimationFrame(raf);
-        draw(true);
-      }
-
-      function stopAnimation() {
-        isWindowFocused = false;
-        cancelAnimationFrame(raf);
-        draw(false);
-      }
-
-      window.addEventListener('focus', startAnimation);
-      window.addEventListener('blur', stopAnimation);
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-          stopAnimation();
-        } else {
-          startAnimation();
-        }
-      });
-
       window.addEventListener('resize', resize);
-      init();
-      draw(true);
+      resize();
+      tick();
     })();
-  </script>
 
+    // ===== State & Detection =====
+    let lang = localStorage.getItem('nyx-lang') || 'ru';
+    if (!['ru', 'en'].includes(lang)) lang = 'ru';
 
-  <script>
-    let currentVnLang = localStorage.getItem('nyx-lang') || 'ru';
-    let isSoundEnabled = localStorage.getItem('nyx-vn-sound') !== 'false';
-
-    // Sound generator using Web Audio API (crisp VN typewriter click)
-    let audioCtx = null;
-    function playBeep() {
-      if (!isSoundEnabled) return;
-      try {
-        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        if (audioCtx.state === 'suspended') audioCtx.resume();
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(600 + Math.random() * 200, audioCtx.currentTime);
-        gain.gain.setValueAtTime(0.015, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.04);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.04);
-      } catch (e) {}
-    }
-
-    const storyData = {
-      ru: {
-        start: {
-          text: "*Медленно переводит спокойный взгляд на экран*\n— ...Ты уже здесь. Я Бриз. Меня попросили ввести тебя в курс дела. Слушай внимательно и не делай глупостей.",
-          choices: [
-            { icon: "shield", text: "Установить DNS-профиль (Анти-ревок)", next: "dns_intro" },
-            { icon: "phone", text: "Как установить ESign / KSign?", next: "esign_intro" },
-            { icon: "key", text: "Сертификаты: как импортировать .p12?", next: "cert_import" },
-            { icon: "laptop", text: "Сайдлоуд с ПК (LiveContainer / SideStore)", next: "iloader_intro" },
-            { icon: "help", text: "Что-то пошло не так (Ошибки)", next: "troubleshooting" }
-          ]
-        },
-        topics_menu: {
-          text: "— ...Выбирай, что именно тебе непонятно.",
-          choices: [
-            { icon: "shield", text: "DNS-профиль (Защита от отзыва)", next: "dns_intro" },
-            { icon: "phone", text: "Установка ESign / KSign", next: "esign_intro" },
-            { icon: "key", text: "Импорт сертификата Chengdu Railway Bureau", next: "cert_import" },
-            { icon: "laptop", text: "Сайдлоуд с ПК (LiveContainer & SideStore)", next: "iloader_intro" },
-            { icon: "help", text: "Ошибки и решение проблем", next: "troubleshooting" }
-          ]
-        },
-        // DNS
-        dns_intro: {
-          text: "— DNS-профиль. Это база. Без него сертификат заблокируют, и твои приложения просто перестанут запускаться через пару дней.",
-          choices: [
-            { text: "Я готов(-а) к установке", next: "dns_install" },
-            { text: "Как именно он работает?", next: "dns_explain" },
-            { text: "В главное меню", next: "topics_menu" }
-          ]
-        },
-        dns_explain: {
-          text: "— Он фильтрует запросы к серверам проверки Apple вроде *ocsp.apple.com*. Запросы на блокировку просто не доходят. Остальной трафик идёт без изменений через Cloudflare. Никакой магии, чистая сетевая гигиена.",
-          choices: [
-            { text: "Понятно. Давай установим.", next: "dns_install" },
-            { text: "Назад", next: "dns_intro" }
-          ]
-        },
-        dns_install: {
-          text: "— Отправила запрос. Нажми «Разрешить» в диалоге Safari. Только не перепутай браузер.",
-          action: () => {
-            setTimeout(() => {
-              window.location.href = '../dns.mobileconfig';
-            }, 1000);
-          },
-          choices: [
-            { text: "Профиль загружен. Что дальше?", next: "dns_activate" },
-            { text: "Скачался просто файл .mobileconfig...", next: "dns_safari" }
-          ]
-        },
-        dns_safari: {
-          text: "*Холодный вздох*\n— Я же предупреждала. Ты открыл(-а) ссылку во встроенном браузере Telegram или VK. Они ломают установку профилей. Открой *nyx.sideload.space* через **Safari**.",
-          choices: [
-            { text: "Понял(-а), пробую в Safari", next: "dns_intro" },
-            { text: "В меню тем", next: "topics_menu" }
-          ]
-        },
-        dns_activate: {
-          text: "— Профиль скачан, но сам он не включится. Иди в **Настройки → Основные → VPN и управление устройством → DNS** и выбери **«nyx-sideload»**. Теперь ты под защитой.",
-          choices: [
-            { text: "Сделано. А как поставить ESign?", next: "esign_intro" },
-            { text: "Вернуться к темам", next: "topics_menu" }
-          ]
-        },
-        // ESign / KSign
-        esign_intro: {
-          text: "— **ESign** и **KSign**. На главной странице они уже подписаны рабочим корпоративным сертификатом **Chengdu Railway Bureau**.",
-          choices: [
-            { text: "Как установить с сайта?", next: "esign_steps" },
-            { text: "Пишет «Ненадежный корпоративный разработчик»", next: "trust_cert" },
-            { text: "В меню тем", next: "topics_menu" }
-          ]
-        },
-        esign_steps: {
-          text: "— Всё тривиально.\n1. Жми «Скачать» под ESign на главной.\n2. Выбирай сертификат **Chengdu Railway Bureau** и жми «Установить».\n3. Подтверди во всплывающем окне iOS.",
-          choices: [
-            { text: "Установилось, но система не даёт открыть!", next: "trust_cert" },
-            { text: "Работает. Как подписывать свои IPA?", next: "cert_import" }
-          ]
-        },
-        trust_cert: {
-          text: "— Спокойно. Это штатное поведение iOS для корпоративных подписей. Иди в **Настройки → Основные → VPN и управление устройством → КОРПОРАТИВНЫЕ ПРИЛОЖЕНИЯ (Chengdu Railway Bureau)** и нажми **«Доверять»**.",
-          choices: [
-            { text: "Открылось. Спасибо, Бриз.", next: "cert_import" },
-            { text: "В меню тем", next: "topics_menu" }
-          ]
-        },
-        // Cert import
-        cert_import: {
-          text: "— Чтобы подписывать любые IPA внутри ESign/KSign, нужен ключ (.p12) и профиль (.mobileprovision). Мы уже упаковали всё в один zip-архив на главной.",
-          choices: [
-            { text: "Где скачать архив сертификата?", next: "cert_download_help" },
-            { text: "Какой пароль к файлу сертификата?", next: "cert_pwd_help" },
-            { text: "В меню тем", next: "topics_menu" }
-          ]
-        },
-        cert_download_help: {
-          text: "— На главной странице в блоке «Сертификат» нажми **«Скачать сертификат (.zip)»**. Затем открой его в ESign через «Импорт». Он сам распакует и подхватит профиль.",
-          choices: [
-            { text: "А пароль какой?", next: "cert_pwd_help" },
-            { text: "В меню тем", next: "topics_menu" }
-          ]
-        },
-        cert_pwd_help: {
-          text: "— Пароль: **AppleP12.com**\nНа сайте есть кнопка копирования в один клик. Не пытайся вводить руками, если лень.",
-          choices: [
-            { text: "Запомнил(-а).", next: "topics_menu" }
-          ]
-        },
-        // PC Sideload
-        iloader_intro: {
-          text: "— Сайдлоуд через ПК и утилиту **Nyx.Loader**. Для тех, кому надоели отзывы и хочется стабильности через свой личный Apple ID.",
-          choices: [
-            { text: "Что такое LiveContainer?", next: "lc_explain" },
-            { text: "Что такое SideStore?", next: "ss_explain" },
-            { text: "В меню тем", next: "topics_menu" }
-          ]
-        },
-        lc_explain: {
-          text: "— **LiveContainer** — среда запуска. Позволяет держать десятки IPA внутри одного контейнера. Лимит Apple в 3 бесплатных слота больше не помеха.",
-          choices: [
-            { text: "Как его установить?", next: "lc_steps" },
-            { text: "Назад", next: "iloader_intro" }
-          ]
-        },
-        lc_steps: {
-          text: "— Подключи провод к ПК, запусти Nyx.Loader, выбери LiveContainer и жми Install. На телефоне не забудь включить «Режим разработчика».",
-          choices: [
-            { text: "Понятно.", next: "topics_menu" }
-          ]
-        },
-        ss_explain: {
-          text: "— **SideStore** — автономный стор. Сам переподписывает твои приложения по локальному Wi-Fi VPN, без необходимости подключать кабель к ПК каждые 7 дней.",
-          choices: [
-            { text: "Ясно.", next: "topics_menu" }
-          ]
-        },
-        // Troubleshooting
-        troubleshooting: {
-          text: "— ...Что у тебя сломалось на этот раз?",
-          choices: [
-            { text: "«Не удалось проверить целостность ПО»", next: "err_integrity" },
-            { text: "Иконка приложения серая и загрузка зависла", next: "err_grey_icon" },
-            { text: "Приложение вылетает при запуске", next: "err_crash" },
-            { text: "В меню тем", next: "topics_menu" }
-          ]
-        },
-        err_integrity: {
-          text: "— Либо сертификат отозван и ты забыл(-а) включить DNS, либо iOS сохранила старый кэш отзыва. Включи наш DNS-профиль, очисти историю Safari в Настройках и перезагрузи телефон.",
-          choices: [
-            { text: "Попробую починить", next: "dns_intro" },
-            { text: "В меню тем", next: "topics_menu" }
-          ]
-        },
-        err_grey_icon: {
-          text: "— Сбой загрузки OTA. Удали серую иконку, проверь что DNS активен и повтори попытку установки строго через Safari.",
-          choices: [
-            { text: "В меню тем", next: "topics_menu" }
-          ]
-        },
-        err_crash: {
-          text: "— Если вылетает само приложение — проверь, включен ли **«Режим разработчика»** (*Настройки → Конфиденциальность → Режим разработчика*). Начиная с iOS 16 без него ничего работать не будет.",
-          choices: [
-            { text: "В меню тем", next: "topics_menu" }
-          ]
-        }
-      },
-      en: {
-        start: {
-          text: "*Quietly turns her calm gaze toward you*\n— ...You're here. I'm Breeze. I was asked to brief you on sideloading. Listen carefully and follow instructions.",
-          choices: [
-            { icon: "shield", text: "Install DNS Profile (Anti-Revoke)", next: "dns_intro" },
-            { icon: "phone", text: "Installing ESign / KSign", next: "esign_intro" },
-            { icon: "key", text: "Certificates: How to import .p12?", next: "cert_import" },
-            { icon: "laptop", text: "PC Sideload (LiveContainer / SideStore)", next: "iloader_intro" },
-            { icon: "help", text: "Troubleshooting & Errors", next: "troubleshooting" }
-          ]
-        },
-        topics_menu: {
-          text: "— ...Select a topic you need assistance with.",
-          choices: [
-            { icon: "shield", text: "DNS Profile (Anti-Revoke Protection)", next: "dns_intro" },
-            { icon: "phone", text: "Installing ESign / KSign", next: "esign_intro" },
-            { icon: "key", text: "Importing Chengdu Railway Bureau Certificate", next: "cert_import" },
-            { icon: "laptop", text: "PC Sideload (LiveContainer & SideStore)", next: "iloader_intro" },
-            { icon: "help", text: "Common Errors & Fixes", next: "troubleshooting" }
-          ]
-        },
-        dns_intro: {
-          text: "— DNS profile. It's the baseline. Without it, Apple will revoke the certificate and your apps will cease to launch within days.",
-          choices: [
-            { text: "I'm ready to install", next: "dns_install" },
-            { text: "How does it work exactly?", next: "dns_explain" },
-            { text: "Back to Topics", next: "topics_menu" }
-          ]
-        },
-        dns_explain: {
-          text: "— It drops traffic to Apple revocation endpoints like *ocsp.apple.com*. Revocation signals never reach your device. Everything else resolves normally via Cloudflare. Pure network hygiene.",
-          choices: [
-            { text: "Understood. Let's install.", next: "dns_install" },
-            { text: "Back", next: "dns_intro" }
-          ]
-        },
-        dns_install: {
-          text: "— Download initiated. Tap 'Allow' in Safari prompt. Do not use random browsers.",
-          action: () => {
-            setTimeout(() => {
-              window.location.href = '../dns.mobileconfig';
-            }, 1000);
-          },
-          choices: [
-            { text: "Downloaded. What's next?", next: "dns_activate" },
-            { text: "It downloaded a raw .mobileconfig file...", next: "dns_safari" }
-          ]
-        },
-        dns_safari: {
-          text: "*Cold sigh*\n— I told you. You opened this in an in-app browser like Telegram. Use native **Safari**.",
-          choices: [
-            { text: "Understood, opening Safari", next: "dns_intro" },
-            { text: "Back to Topics", next: "topics_menu" }
-          ]
-        },
-        dns_activate: {
-          text: "— Go to **Settings → General → VPN & Device Management → DNS** and toggle **nyx-sideload**. You are now protected.",
-          choices: [
-            { text: "Done. How do I install ESign?", next: "esign_intro" },
-            { text: "Back to Topics", next: "topics_menu" }
-          ]
-        },
-        esign_intro: {
-          text: "— **ESign** & **KSign**. Available directly on the home page, pre-signed with the active **Chengdu Railway Bureau** enterprise certificate.",
-          choices: [
-            { text: "How to install?", next: "esign_steps" },
-            { text: "It says 'Untrusted Enterprise Developer'", next: "trust_cert" },
-            { text: "Back to Topics", next: "topics_menu" }
-          ]
-        },
-        esign_steps: {
-          text: "— 1. Tap Download under ESign.\n2. Choose **Chengdu Railway Bureau** and tap Install.\n3. Confirm iOS prompt.",
-          choices: [
-            { text: "Installed, but iOS won't open it!", next: "trust_cert" },
-            { text: "Works. How to sign custom IPAs?", next: "cert_import" }
-          ]
-        },
-        trust_cert: {
-          text: "— Calm down. This is standard iOS enterprise security. Head to **Settings → General → VPN & Device Management → Enterprise Apps (Chengdu Railway Bureau)** and tap **Trust**.",
-          choices: [
-            { text: "Opened cleanly. Thanks.", next: "cert_import" },
-            { text: "Back to Topics", next: "topics_menu" }
-          ]
-        },
-        cert_import: {
-          text: "— To sign arbitrary IPAs inside ESign, grab the pre-packaged .p12 and mobileprovision archive from the homepage.",
-          choices: [
-            { text: "What is the certificate password?", next: "cert_pwd_help" },
-            { text: "Back to Topics", next: "topics_menu" }
-          ]
-        },
-        cert_pwd_help: {
-          text: "— Password: **AppleP12.com**\nThere is a one-click copy button on the main page. Don't bother typing it manually.",
-          choices: [
-            { text: "Noted.", next: "topics_menu" }
-          ]
-        },
-        iloader_intro: {
-          text: "— PC Sideloading with **Nyx.Loader**. For those who want reliable personal signing without relying on enterprise certs.",
-          choices: [
-            { text: "What is LiveContainer?", next: "lc_explain" },
-            { text: "What is SideStore?", next: "ss_explain" },
-            { text: "Back to Topics", next: "topics_menu" }
-          ]
-        },
-        lc_explain: {
-          text: "— **LiveContainer** runs multiple IPAs inside one shared container sandbox, overcoming Apple's 3-app free limit.",
-          choices: [
-            { text: "Understood.", next: "topics_menu" }
-          ]
-        },
-        ss_explain: {
-          text: "— **SideStore** auto-refreshes your apps over local Wi-Fi VPN on your iPhone, removing weekly computer cable re-signs.",
-          choices: [
-            { text: "Got it.", next: "topics_menu" }
-          ]
-        },
-        troubleshooting: {
-          text: "— ...What broke this time?",
-          choices: [
-            { text: "Unable to Verify App Integrity", next: "err_integrity" },
-            { text: "App icon is grey and stuck", next: "err_grey_icon" },
-            { text: "App crashes on launch", next: "err_crash" },
-            { text: "Back to Topics", next: "topics_menu" }
-          ]
-        },
-        err_integrity: {
-          text: "— The cert got revoked because DNS wasn't active, or iOS cached the revocation. Enable DNS profile, clear Safari website data in Settings, and restart.",
-          choices: [
-            { text: "Back to Topics", next: "topics_menu" }
-          ]
-        },
-        err_grey_icon: {
-          text: "— Delete the grey placeholder, ensure DNS is active, and reinstall strictly in native Safari.",
-          choices: [
-            { text: "Back to Topics", next: "topics_menu" }
-          ]
-        },
-        err_crash: {
-          text: "— On iOS 16+, make sure **Developer Mode** is turned on under *Settings → Privacy & Security → Developer Mode*.",
-          choices: [
-            { text: "Back to Topics", next: "topics_menu" }
-          ]
-        }
-      }
-    };
-
-    let currentState = 'start';
-    let textInterval = null;
+    let isDnsActive = false;
+    let isInAppBrowser = false;
+    let currentSceneId = localStorage.getItem('nyx-vn-scene') || 'start';
+    let typingTimer = null;
     let isTyping = false;
-    let fullText = '';
-    let displayedText = '';
+    let fullTextBuffer = '';
 
-    const textEl = document.getElementById('dialogue-text');
-    const spriteEl = document.getElementById('breeze-sprite');
-    const choicesEl = document.getElementById('choices-container');
-    const arrowEl = document.getElementById('dialogue-arrow');
-    const boxEl = document.getElementById('dialogue-box');
-    const soundBtn = document.getElementById('btn-sound');
-    const soundIcon = document.getElementById('sound-icon');
-    const menuBtn = document.getElementById('btn-menu');
-    const txtBack = document.getElementById('txt-back');
-    const txtTopics = document.getElementById('txt-topics');
+    const ua = navigator.userAgent || '';
+    isInAppBrowser = /Telegram|BytedanceWebview|TikTok|Instagram|FBAN|FBAV|VKAndroidApp|KAKAOTALK/i.test(ua);
 
-    function updateUiLang() {
-      if (currentVnLang === 'ru') {
-        txtBack.textContent = 'На главную';
-        txtTopics.textContent = 'Темы';
-      } else {
-        txtBack.textContent = 'Home';
-        txtTopics.textContent = 'Topics';
-      }
-      document.querySelectorAll('.lang-btn-vn').forEach(b => {
-        b.classList.toggle('active', b.dataset.lang === currentVnLang);
-      });
+    if (window.innerWidth >= 1024) {
+      document.getElementById('btn-toggle-mode').style.display = 'inline-flex';
     }
 
-    function formatDialogueText(rawText) {
-      return rawText
+    function toggleDesktopMode() {
+      document.body.classList.toggle('desktop-mode');
+      const btn = document.getElementById('btn-toggle-mode');
+      btn.textContent = document.body.classList.contains('desktop-mode') ? '📱 Новелла' : '🖥️ Комната ПК';
+    }
+
+    function openMobileNovellaFromDesktop() {
+      document.body.classList.remove('desktop-mode');
+      const btn = document.getElementById('btn-toggle-mode');
+      btn.style.display = 'inline-flex';
+      btn.textContent = '🖥️ Комната ПК';
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    function copyText(str, msg) {
+      navigator.clipboard?.writeText(str).then(() => showToast(msg)).catch(() => showToast(str));
+    }
+
+    function copySiteLink() {
+      copyText(window.location.href, lang === 'ru' ? 'Ссылка скопирована — открой в Safari' : 'Link copied — open in Safari');
+    }
+
+    // Smart DNS pre-check: HTTPS ocsp.apple.com + control ping to ../manifest.json
+    async function checkDnsProtection() {
+      const pill = document.getElementById('dns-status-pill');
+      const t0 = performance.now();
+      let appleBlocked = false;
+      let internetAlive = false;
+
+      const ctrlPromise = fetch('../manifest.json', { cache: 'no-store' })
+        .then(r => { internetAlive = r.ok; })
+        .catch(() => { internetAlive = false; });
+
+      const appleCtrl = new AbortController();
+      const timer = setTimeout(() => appleCtrl.abort(), 1600);
+      const applePromise = fetch('https://ocsp.apple.com/', { mode: 'no-cors', cache: 'no-store', signal: appleCtrl.signal })
+        .then(() => { appleBlocked = false; })
+        .catch(() => {
+          const dt = performance.now() - t0;
+          // Fast failure (< 400ms) indicates local DNS sinkhole
+          if (dt < 400) appleBlocked = true;
+        })
+        .finally(() => clearTimeout(timer));
+
+      await Promise.all([ctrlPromise, applePromise]);
+      isDnsActive = internetAlive && appleBlocked;
+
+      if (isDnsActive) {
+        pill.textContent = lang === 'ru' ? 'DNS: Защита активна' : 'DNS: Shield Active';
+        pill.classList.add('ok');
+      } else {
+        pill.textContent = lang === 'ru' ? 'DNS: Не обнаружен' : 'DNS: Inactive';
+        pill.classList.remove('ok');
+      }
+    }
+
+    // ===== Markdown Formatter (no raw asterisks) =====
+    function formatDialogue(raw) {
+      return raw
         .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
         .replace(/\*([^*]+)\*/g, '<span class="action-text">$1</span>')
         .replace(/\*/g, '');
     }
 
-    function typeText(targetText, callback) {
-      clearInterval(textInterval);
-      isTyping = true;
-      arrowEl.classList.remove('show');
-      choicesEl.classList.remove('show');
-
-      let index = 0;
-      displayedText = '';
-      textInterval = setInterval(() => {
-        if (index < targetText.length) {
-          displayedText += targetText[index];
-          textEl.innerHTML = formatDialogueText(displayedText);
-          if (index % 2 === 0 && targetText[index] !== ' ' && targetText[index] !== '\n') {
-            playBeep();
+    // ===== Scenarios (RU / EN) =====
+    const SCENES = {
+      ru: {
+        start: () => {
+          if (isInAppBrowser) {
+            return {
+              sprite: 'assets/breeze_peek.jpg',
+              text: '*Холодный вздох*\n— Стоп. Ты открыл ссылку во **встроенном браузере** (Telegram / TikTok / Instagram). Там `.mobileconfig` скачается как битый документ и не установится.\nНажми **⋯ → Открыть в Safari**, иначе дальше не пойдём.',
+              choices: [
+                { label: '📋 Скопировать ссылку для Safari', primary: true, action: () => copySiteLink() },
+                { label: 'Я уже в Safari, продолжить', next: 'dns_check' }
+              ]
+            };
           }
-          index++;
-        } else {
-          clearInterval(textInterval);
-          isTyping = false;
-          arrowEl.classList.add('show');
-          if (callback) callback();
-        }
-      }, 22);
-    }
-
-    function showState(stateKey) {
-      currentState = stateKey;
-      const langStory = storyData[currentVnLang] || storyData['ru'];
-      const stateObj = langStory[stateKey] || langStory['start'];
-
-      spriteEl.classList.add('bounce');
-      setTimeout(() => spriteEl.classList.remove('bounce'), 500);
-
-      fullText = stateObj.text;
-      if (stateObj.action) {
-        stateObj.action();
+          return {
+            sprite: 'assets/breeze_neutral.jpg',
+            text: '*Медленно переводит взгляд на экран*\n— Привет. Я **Бриз**. Проведу тебя через установку приложений на iOS без душных стен текста и рекламы.\nДля начала проверю, стоит ли у тебя уже анти-отзывная защита...',
+            next: 'dns_check'
+          };
+        },
+        dns_check: () => {
+          if (isDnsActive) {
+            return {
+              sprite: 'assets/breeze_shrug.jpg',
+              text: '— Хм. Серверы проверки Apple (`ocsp.apple.com`) у тебя уже режутся. Значит, **DNS-защита активна**.\nСтавить наш профиль не обязательно — можем сразу перейти к установке ESign / KSign.',
+              choices: [
+                { label: 'Перейти сразу к ESign / KSign →', primary: true, next: 'install_signer' },
+                { label: 'Всё равно хочу поставить профиль nyx•sideload', next: 'dns_palms' },
+                { label: 'Как вообще работает этот DNS?', next: 'dns_explain' }
+              ]
+            };
+          }
+          return {
+            sprite: 'assets/breeze_neutral.jpg',
+            text: '— Анти-отзывная защита пока не обнаружена. Без неё Apple рано или поздно отзовёт корпоративный сертификат, и все приложения вылетят.\nСтавится она за 15 секунд.',
+            next: 'dns_palms'
+          };
+        },
+        dns_explain: () => ({
+          sprite: 'assets/breeze_neutral.jpg',
+          text: '— Всё просто: профиль перенаправляет запросы к серверам проверки подписей Apple (`ocsp.apple.com`, `ocsp2.apple.com`, `crl.apple.com`) в пустоту. Остальной трафик идёт штатно через Cloudflare, без VPN и потери скорости.',
+          choices: [
+            { label: 'Понятно, к установке профиля', next: 'dns_palms' },
+            { label: 'Дальше к ESign / KSign', next: 'install_signer' }
+          ]
+        }),
+        dns_palms: () => ({
+          sprite: 'assets/breeze_palms.jpg',
+          palms: { label: '⬇ Скачать DNS-профиль', href: '../dns.mobileconfig', download: true },
+          text: '— Вот `.mobileconfig`. Забирай прямо из рук, нажимай **«Разрешить»**, затем зайди в:\n**Настройки → Основные → VPN и управление устройством → Загруженный профиль** и включи **nyx-sideload**.',
+          choices: [
+            { label: 'Профиль включён, идём дальше →', primary: true, next: 'install_signer' },
+            { label: 'Файл открылся текстом / не ставится', next: 'safari_fix' }
+          ]
+        }),
+        safari_fix: () => ({
+          sprite: 'assets/breeze_peek.jpg',
+          text: '— Это классика встроенных браузеров или блокировщиков. Скопируй ссылку, открой чистый **Safari**, и скачай профиль заново.',
+          choices: [
+            { label: '📋 Скопировать ссылку', action: () => copySiteLink() },
+            { label: 'Открыл в Safari, назад к профилю', next: 'dns_palms' }
+          ]
+        }),
+        install_signer: () => ({
+          sprite: 'assets/breeze_palms.jpg',
+          palms: { label: '⚡ Установить ESign (Chengdu Rail)', href: 'itms-services://?action=download-manifest&url=https://nyx.sideload.space/plists/manifest-esign-chengdu-railway-bureau.plist' },
+          text: '— Теперь сам сайдлоадер. Нажимай на кнопку — iOS спросит разрешение на установку **ESign** (подписан свежим сертификатом **Chengdu Railway Bureau**).\nДождись иконки на рабочем столе.',
+          choices: [
+            { label: 'Установилось, но пишет «Ненадёжный разработчик»', primary: true, next: 'trust_cert' },
+            { label: 'Хочу KSign вместо ESign', next: 'install_ksign' },
+            { label: 'Иконка серая / не скачивается', next: 'escalation' }
+          ]
+        }),
+        install_ksign: () => ({
+          sprite: 'assets/breeze_palms.jpg',
+          palms: { label: '⚡ Установить KSign (Chengdu Rail)', href: 'itms-services://?action=download-manifest&url=https://nyx.sideload.space/plists/manifest-ksign-chengdu-railway-bureau.plist' },
+          text: '— Вот **KSign** на том же сертификате **Chengdu Railway Bureau**. Лёгкий и минималистичный.',
+          choices: [
+            { label: 'Установилось, что дальше?', primary: true, next: 'trust_cert' },
+            { label: 'Вернуться к ESign', next: 'install_signer' }
+          ]
+        }),
+        trust_cert: () => ({
+          sprite: 'assets/breeze_neutral.jpg',
+          text: '— Штатная реакция iOS. Зайди в:\n**Настройки → Основные → VPN и управление устройством → Корпоративные приложения (Chengdu Railway Bureau)** и нажми **«Доверять»**.\nНа iOS 16+ также включи **Режим разработчика** в разделе *Конфиденциальность*.',
+          choices: [
+            { label: 'Доверила, теперь нужен сертификат внутрь ESign', primary: true, next: 'cert_import' },
+            { label: 'Вылетает при открытии даже после доверия', next: 'escalation' }
+          ]
+        }),
+        cert_import: () => ({
+          sprite: 'assets/breeze_palms.jpg',
+          palms: { label: '🔑 Скачать Cert (.zip)', href: '../certs/Chengdu_Railway_Bureau.zip', download: true },
+          text: '— Забирай архив сертификата и импортируй его внутри ESign/KSign. Пароль от `.p12`: **AppleP12.com**.\nПосле этого подписывай любые `.ipa` прямо на iPhone.',
+          choices: [
+            { label: '📋 Скопировать пароль AppleP12.com', action: () => copyText('AppleP12.com', 'Пароль AppleP12.com скопирован') },
+            { label: 'Всё работает! Спасибо, Бриз', primary: true, next: 'done' },
+            { label: 'Всё равно что-то пошло не так...', next: 'escalation' }
+          ]
+        }),
+        done: () => ({
+          sprite: 'assets/breeze_shrug.jpg',
+          text: '— Отлично. Наслаждайся чистым iOS без ограничений. Если прилетит новый сертификат — заглядывай в Telegram-канал **@nyxsideload**.',
+          choices: [
+            { label: 'Пройти гайд с начала', next: 'start' }
+          ]
+        }),
+        escalation: () => ({
+          sprite: 'assets/breeze_confused.jpg',
+          text: '*Смотрит в телефон и растерянно моргает*\n— ...Ладно, признаю: мои полномочия на этом всё. Похоже, тут какой-то нестандартный баг на стороне устройства или iOS.\nНапиши напрямую Арипхану — он разберётся вручную.',
+          choices: [
+            { label: '✈️ Написать в Telegram (@NyxSile)', primary: true, action: () => window.open('https://t.me/NyxSile', '_blank') },
+            { label: 'Попробовать шаг заново', next: 'dns_check' }
+          ]
+        })
+      },
+      en: {
+        start: () => {
+          if (isInAppBrowser) {
+            return {
+              sprite: 'assets/breeze_peek.jpg',
+              text: '*Cold sigh*\n— Stop. You opened this in an **in-app browser** (Telegram / TikTok / Instagram). `.mobileconfig` profiles break here.\nTap **⋯ → Open in Safari** before continuing.',
+              choices: [
+                { label: '📋 Copy Link for Safari', primary: true, action: () => copySiteLink() },
+                { label: 'I am in Safari, continue', next: 'dns_check' }
+              ]
+            };
+          }
+          return {
+            sprite: 'assets/breeze_neutral.jpg',
+            text: '*Quietly glances at the screen*\n— Hi. I’m **Breeze**. I’ll walk you through iOS sideloading without walls of text.\nLet me check if your anti-revoke DNS shield is already active...',
+            next: 'dns_check'
+          };
+        },
+        dns_check: () => {
+          if (isDnsActive) {
+            return {
+              sprite: 'assets/breeze_shrug.jpg',
+              text: '— Apple revocation checks (`ocsp.apple.com`) are already blocked on your connection. **DNS protection is active.**\nYou don’t need to install ours — we can jump straight to ESign / KSign.',
+              choices: [
+                { label: 'Jump to ESign / KSign →', primary: true, next: 'install_signer' },
+                { label: 'Install nyx•sideload DNS anyway', next: 'dns_palms' }
+              ]
+            };
+          }
+          return {
+            sprite: 'assets/breeze_neutral.jpg',
+            text: '— Anti-revoke DNS isn’t active yet. Without it, Apple will eventually revoke enterprise certificates.\nSetup takes 15 seconds.',
+            next: 'dns_palms'
+          };
+        },
+        dns_palms: () => ({
+          sprite: 'assets/breeze_palms.jpg',
+          palms: { label: '⬇ Download DNS Profile', href: '../dns.mobileconfig', download: true },
+          text: '— Grab the `.mobileconfig` right from my hands, tap **Allow**, then enable **nyx-sideload** in:\n**Settings → General → VPN & Device Management → DNS**.',
+          choices: [
+            { label: 'Profile enabled, continue →', primary: true, next: 'install_signer' },
+            { label: 'Downloaded as text / won’t install', next: 'safari_fix' }
+          ]
+        }),
+        safari_fix: () => ({
+          sprite: 'assets/breeze_peek.jpg',
+          text: '— Open this page in native **Safari** and download again.',
+          choices: [
+            { label: '📋 Copy Link', action: () => copySiteLink() },
+            { label: 'Back to DNS profile', next: 'dns_palms' }
+          ]
+        }),
+        install_signer: () => ({
+          sprite: 'assets/breeze_palms.jpg',
+          palms: { label: '⚡ Install ESign (Chengdu Rail)', href: 'itms-services://?action=download-manifest&url=https://nyx.sideload.space/plists/manifest-esign-chengdu-railway-bureau.plist' },
+          text: '— Tap to install **ESign**, pre-signed with **Chengdu Railway Bureau**.',
+          choices: [
+            { label: 'Installed, says "Untrusted Developer"', primary: true, next: 'trust_cert' },
+            { label: 'Install KSign instead', next: 'install_ksign' },
+            { label: 'Grey icon / stuck', next: 'escalation' }
+          ]
+        }),
+        install_ksign: () => ({
+          sprite: 'assets/breeze_palms.jpg',
+          palms: { label: '⚡ Install KSign (Chengdu Rail)', href: 'itms-services://?action=download-manifest&url=https://nyx.sideload.space/plists/manifest-ksign-chengdu-railway-bureau.plist' },
+          text: '— Here is **KSign** signed with **Chengdu Railway Bureau**.',
+          choices: [
+            { label: 'Installed, next step →', primary: true, next: 'trust_cert' },
+            { label: 'Back to ESign', next: 'install_signer' }
+          ]
+        }),
+        trust_cert: () => ({
+          sprite: 'assets/breeze_neutral.jpg',
+          text: '— Go to **Settings → General → VPN & Device Management → Enterprise Apps (Chengdu Railway Bureau)** and tap **Trust**.\nOn iOS 16+, also enable **Developer Mode** under Privacy & Security.',
+          choices: [
+            { label: 'Trusted! Now import cert into ESign', primary: true, next: 'cert_import' },
+            { label: 'Still crashing on launch', next: 'escalation' }
+          ]
+        }),
+        cert_import: () => ({
+          sprite: 'assets/breeze_palms.jpg',
+          palms: { label: '🔑 Download Cert (.zip)', href: '../certs/Chengdu_Railway_Bureau.zip', download: true },
+          text: '— Download the cert archive and import into ESign/KSign. Password: **AppleP12.com**.',
+          choices: [
+            { label: '📋 Copy AppleP12.com', action: () => copyText('AppleP12.com', 'Copied AppleP12.com') },
+            { label: 'Everything works!', primary: true, next: 'done' },
+            { label: 'Still stuck...', next: 'escalation' }
+          ]
+        }),
+        done: () => ({
+          sprite: 'assets/breeze_shrug.jpg',
+          text: '— All set. Enjoy iOS without limits. Follow **@nyxsideload** on Telegram for fresh certs.',
+          choices: [{ label: 'Restart Guide', next: 'start' }]
+        }),
+        escalation: () => ({
+          sprite: 'assets/breeze_confused.jpg',
+          text: '*Stares at her phone*\n— Okay, my powers end here. Looks like an edge-case issue on your device.\nReach out directly to Aripkhan on Telegram.',
+          choices: [
+            { label: '✈️ Message @NyxSile on Telegram', primary: true, action: () => window.open('https://t.me/NyxSile', '_blank') },
+            { label: 'Retry from DNS check', next: 'dns_check' }
+          ]
+        })
       }
-
-      typeText(fullText, () => {
-        renderChoices(stateObj.choices);
-      });
-    }
-
-    const CHOICE_ICONS = {
-      shield: `<svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
-      phone: `<svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 18h.01" stroke-linecap="round"/></svg>`,
-      key: `<svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 7a4 4 0 11-8 0 4 4 0 018 0zM7 11v8a2 2 0 002 2h2m0-6h2m-2 3h3"/></svg>`,
-      laptop: `<svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17h20v2a2 2 0 01-2 2H4a2 2 0 01-2-2v-2z" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-      help: `<svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M12 21a9 9 0 100-18 9 9 0 000 18z"/></svg>`
     };
-    const SOUND_ON_SVG = `<svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>`;
-    const SOUND_OFF_SVG = `<svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/><path stroke-linecap="round" stroke-linejoin="round" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"/></svg>`;
 
-    function renderChoices(choices) {
-      choicesEl.innerHTML = '';
-      if (!choices || choices.length === 0) return;
+    // ===== Renderer =====
+    function renderScene(sceneId) {
+      const dict = SCENES[lang];
+      const factory = dict[sceneId] || dict.start;
+      currentSceneId = dict[sceneId] ? sceneId : 'start';
+      localStorage.setItem('nyx-vn-scene', currentSceneId);
 
-      choices.forEach(c => {
-        const btn = document.createElement('button');
-        btn.className = 'choice-btn';
-        const iconHtml = (c.icon && CHOICE_ICONS[c.icon]) ? `<span class="choice-icon">${CHOICE_ICONS[c.icon]}</span>` : '';
-        btn.innerHTML = `<span class="choice-content">${iconHtml}<span>${c.text}</span></span>`;
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          playBeep();
-          if (c.action) c.action();
-          if (c.next) showState(c.next);
-        });
-        choicesEl.appendChild(btn);
-      });
+      const scene = factory();
+      const spriteEl = document.getElementById('vn-sprite');
+      const palmsBtn = document.getElementById('palms-action-btn');
+      const speakerEl = document.getElementById('vn-speaker');
+      const textEl = document.getElementById('vn-text');
+      const choicesEl = document.getElementById('vn-choices');
+      const hintEl = document.getElementById('vn-tap-hint');
 
-      choicesEl.classList.add('show');
-    }
+      speakerEl.textContent = lang === 'ru' ? 'Бриз' : 'Breeze';
+      spriteEl.src = scene.sprite;
 
-    boxEl.addEventListener('click', () => {
-      if (isTyping) {
-        clearInterval(textInterval);
-        isTyping = false;
-        textEl.innerHTML = formatDialogueText(fullText);
-        arrowEl.classList.add('show');
-        const langStory = storyData[currentVnLang] || storyData['ru'];
-        renderChoices((langStory[currentState] || langStory['start']).choices);
+      if (scene.palms) {
+        palmsBtn.textContent = scene.palms.label;
+        palmsBtn.href = scene.palms.href;
+        if (scene.palms.download) palmsBtn.setAttribute('download', '');
+        else palmsBtn.removeAttribute('download');
+        palmsBtn.classList.add('visible');
+      } else {
+        palmsBtn.classList.remove('visible');
       }
-    });
 
-    // Language switcher
-    document.querySelectorAll('.lang-btn-vn').forEach(b => {
-      b.addEventListener('click', () => {
-        currentVnLang = b.dataset.lang;
-        localStorage.setItem('nyx-lang', currentVnLang);
-        updateUiLang();
-        showState(currentState);
-      });
-    });
+      choicesEl.innerHTML = '';
+      hintEl.classList.remove('show');
 
-    // Sound toggle
-    function updateSoundUi() {
-      soundIcon.innerHTML = isSoundEnabled ? SOUND_ON_SVG : SOUND_OFF_SVG;
+      clearInterval(typingTimer);
+      isTyping = true;
+      fullTextBuffer = scene.text;
+      let idx = 0;
+
+      const finishTyping = () => {
+        clearInterval(typingTimer);
+        isTyping = false;
+        textEl.innerHTML = formatDialogue(fullTextBuffer);
+        if (scene.choices && scene.choices.length) {
+          for (const ch of scene.choices) {
+            const btn = document.createElement('button');
+            btn.className = 'choice-btn' + (ch.primary ? ' primary' : '');
+            btn.textContent = ch.label;
+            btn.onclick = () => {
+              if (ch.action) ch.action();
+              if (ch.next) renderScene(ch.next);
+            };
+            choicesEl.appendChild(btn);
+          }
+        } else if (scene.next) {
+          hintEl.classList.add('show');
+        }
+      };
+
+      textEl.onclick = () => {
+        if (isTyping) {
+          finishTyping();
+        } else if (scene.next) {
+          renderScene(scene.next);
+        }
+      };
+
+      typingTimer = setInterval(() => {
+        if (idx < fullTextBuffer.length) {
+          idx += 2;
+          textEl.innerHTML = formatDialogue(fullTextBuffer.slice(0, idx));
+        } else {
+          finishTyping();
+        }
+      }, 18);
     }
-    soundBtn.addEventListener('click', () => {
-      isSoundEnabled = !isSoundEnabled;
-      localStorage.setItem('nyx-vn-sound', isSoundEnabled);
-      updateSoundUi();
-      if (isSoundEnabled) playBeep();
-    });
 
-    // Topics menu button
-    menuBtn.addEventListener('click', () => {
-      showState('topics_menu');
-    });
+    function setLang(newLang) {
+      lang = newLang;
+      localStorage.setItem('nyx-lang', lang);
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+      renderScene(currentSceneId);
+    }
 
-    window.addEventListener('load', () => {
-      updateUiLang();
-      updateSoundUi();
-      setTimeout(() => {
-        spriteEl.classList.add('active');
-        showState('start');
-      }, 400);
-    });
+    function resetProgress() {
+      localStorage.removeItem('nyx-vn-scene');
+      renderScene('start');
+    }
+
+    (async function boot() {
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+      await checkDnsProtection();
+      renderScene(currentSceneId);
+    })();
   </script>
 </body>
 </html>
