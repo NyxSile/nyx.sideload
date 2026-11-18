@@ -410,9 +410,11 @@
     </div>
     <div class="top-right">
       <button id="btn-toggle-mode" class="pill-btn" style="display:none;" onclick="toggleDesktopMode()">Новелла</button>
+      <button id="btn-sfx" class="pill-btn" onclick="toggleSfx()">SFX: On</button>
       <button class="pill-btn" onclick="resetProgress()">Сброс</button>
       <button class="pill-btn lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button>
       <button class="pill-btn lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+      <button class="pill-btn lang-btn" data-lang="ko" onclick="setLang('ko')">KO</button>
     </div>
   </header>
 
@@ -521,7 +523,33 @@
 
     // ===== State & Detection =====
     let lang = localStorage.getItem('nyx-lang') || 'ru';
-    if (!['ru', 'en'].includes(lang)) lang = 'ru';
+    if (!['ru', 'en', 'ko'].includes(lang)) lang = 'ru';
+
+    let sfxEnabled = localStorage.getItem('nyx-vn-sfx') !== 'false';
+    let audioCtx = null;
+    function playTypeTick() {
+      if (!sfxEnabled) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(640 + Math.random() * 140, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.015, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0008, audioCtx.currentTime + 0.025);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.025);
+      } catch (_) {}
+    }
+
+    function toggleSfx() {
+      sfxEnabled = !sfxEnabled;
+      localStorage.setItem('nyx-vn-sfx', String(sfxEnabled));
+      document.getElementById('btn-sfx').textContent = sfxEnabled ? 'SFX: On' : 'SFX: Off';
+    }
 
     let isDnsActive = false;
     let isInAppBrowser = false;
@@ -825,6 +853,109 @@
             { label: 'Retry from DNS check', next: 'dns_check' }
           ]
         })
+      },
+      ko: {
+        start: () => {
+          if (isInAppBrowser) {
+            return {
+              sprite: 'assets/breeze_peek.png',
+              text: '*차가운 한숨*\n— 잠시만요. 지금 **인앱 브라우저**(Telegram / TikTok / Instagram)로 접속했어요. 여기서는 `.mobileconfig` 프로필이 정상 설치되지 않습니다.\n우측 상단 **⋯ → Safari에서 열기**를 눌러주세요.',
+              choices: [
+                { label: 'Safari용 링크 복사', primary: true, action: () => copySiteLink() },
+                { label: 'Safari로 열었어요, 계속하기', next: 'dns_check' }
+              ]
+            };
+          }
+          return {
+            sprite: 'assets/breeze_neutral.png',
+            text: '*조용히 화면을 바라본다*\n— 안녕하세요. **브리즈(Breeze)**예요. 복잡한 설명 없이 iOS 사이드로딩을 차근차근 안내해 드릴게요.\n먼저 안티 리보크 DNS 보호가 켜져 있는지 확인해 볼게요...',
+            next: 'dns_check'
+          };
+        },
+        dns_check: () => {
+          if (isDnsActive) {
+            return {
+              sprite: 'assets/breeze_shrug.png',
+              text: '— Apple 인증서 확인 서버(`ocsp.apple.com`)가 이미 차단되어 있네요. **DNS 보호가 활성화된 상태**예요.\n우리 프로필을 또 설치할 필요 없이 바로 ESign / KSign 설치로 넘어갈 수 있어요.',
+              choices: [
+                { label: '바로 ESign / KSign 설치로 →', primary: true, next: 'install_signer' },
+                { label: '그래도 nyx•sideload DNS 설치하기', next: 'dns_palms' }
+              ]
+            };
+          }
+          return {
+            sprite: 'assets/breeze_neutral.png',
+            text: '— 아직 안티 리보크 DNS가 감지되지 않았어요. DNS 보호 없이 쓰면 Apple이 곧 기업용 인증서를 철회(리보크)할 수 있어요.\n설정은 15초면 끝나요.',
+            next: 'dns_palms'
+          };
+        },
+        dns_palms: () => ({
+          sprite: 'assets/breeze_palms.png',
+          palms: { label: 'DNS 프로필 다운로드', href: '../dns.mobileconfig', download: true },
+          text: '— 내 손 위에 있는 `.mobileconfig`를 눌러 **허용**을 선택한 뒤,\n**설정 → 일반 → VPN 및 기기 관리 → DNS**에서 **nyx-sideload**를 켜주세요.',
+          choices: [
+            { label: '프로필 활성화 완료 →', primary: true, next: 'install_signer' },
+            { label: '텍스트로 열림 / 설치 안 됨', next: 'safari_fix' }
+          ]
+        }),
+        safari_fix: () => ({
+          sprite: 'assets/breeze_peek.png',
+          text: '— 기본 **Safari** 브라우저로 이 페이지를 연 뒤 다시 다운로드해 주세요.',
+          choices: [
+            { label: '링크 복사', action: () => copySiteLink() },
+            { label: '프로필 단계로 돌아가기', next: 'dns_palms' }
+          ]
+        }),
+        install_signer: () => ({
+          sprite: 'assets/breeze_palms.png',
+          palms: { label: 'ESign 설치 (Chengdu Rail)', href: 'itms-services://?action=download-manifest&url=https://nyx.sideload.space/plists/manifest-esign-chengdu-railway-bureau.plist' },
+          text: '— 이제 **Chengdu Railway Bureau** 인증서로 서명된 **ESign**을 설치할 차례예요. 버튼을 눌러 설치를 승인하세요.',
+          choices: [
+            { label: '설치됐는데 "신뢰할 수 없는 개발자"가 뜸', primary: true, next: 'trust_cert' },
+            { label: '대신 KSign 설치하기', next: 'install_ksign' },
+            { label: '회색 아이콘 / 설치 멈춤', next: 'escalation' }
+          ]
+        }),
+        install_ksign: () => ({
+          sprite: 'assets/breeze_palms.png',
+          palms: { label: 'KSign 설치 (Chengdu Rail)', href: 'itms-services://?action=download-manifest&url=https://nyx.sideload.space/plists/manifest-ksign-chengdu-railway-bureau.plist' },
+          text: '— **Chengdu Railway Bureau** 인증서로 서명된 가벼운 **KSign**이에요.',
+          choices: [
+            { label: '설치 완료, 다음 단계 →', primary: true, next: 'trust_cert' },
+            { label: 'ESign으로 돌아가기', next: 'install_signer' }
+          ]
+        }),
+        trust_cert: () => ({
+          sprite: 'assets/breeze_neutral.png',
+          text: '— **설정 → 일반 → VPN 및 기기 관리 → 기업용 앱 (Chengdu Railway Bureau)**으로 이동해 **신뢰**를 눌러주세요.\niOS 16 이상에서는 *개인정보 보호 및 보안*에서 **개발자 모드**도 켜야 해요.',
+          choices: [
+            { label: '신뢰 완료! ESign에 인증서 넣기', primary: true, next: 'cert_import' },
+            { label: '실행하자마자 튕김', next: 'escalation' }
+          ]
+        }),
+        cert_import: () => ({
+          sprite: 'assets/breeze_palms.png',
+          palms: { label: '인증서 (.zip) 다운로드', href: '../certs/Chengdu_Railway_Bureau.zip', download: true },
+          text: '— 인증서 압축 파일을 받아 ESign/KSign에서 가져오기(Import) 하세요. 비밀번호: **AppleP12.com**.',
+          choices: [
+            { label: 'AppleP12.com 복사', action: () => copyText('AppleP12.com', 'AppleP12.com 복사됨') },
+            { label: '모두 정상 작동해요!', primary: true, next: 'done' },
+            { label: '여전히 문제가 있어요...', next: 'escalation' }
+          ]
+        }),
+        done: () => ({
+          sprite: 'assets/breeze_shrug.png',
+          text: '— 완료되었어요. 이제 제한 없이 iOS를 즐기세요. 새 인증서 소식은 Telegram **@nyxsideload**에서 확인할 수 있어요.',
+          choices: [{ label: '처음부터 다시 보기', next: 'start' }]
+        }),
+        escalation: () => ({
+          sprite: 'assets/breeze_confused.png',
+          text: '*스마트폰을 멍하니 바라본다*\n— ...여기까지가 제 권한의 한계네요. 기기나 iOS 환경의 특수한 오류 같아요.\nTelegram으로 아립한(Aripkhan)에게 직접 문의해 주세요.',
+          choices: [
+            { label: 'Telegram (@NyxSile) 문의하기', primary: true, action: () => window.open('https://t.me/NyxSile', '_blank') },
+            { label: 'DNS 확인부터 다시 시도', next: 'dns_check' }
+          ]
+        })
       }
     };
 
@@ -843,7 +974,7 @@
       const choicesEl = document.getElementById('vn-choices');
       const hintEl = document.getElementById('vn-tap-hint');
 
-      speakerEl.textContent = lang === 'ru' ? 'Бриз' : 'Breeze';
+      speakerEl.textContent = lang === 'ru' ? 'Бриз' : (lang === 'ko' ? '브리즈' : 'Breeze');
       spriteEl.src = scene.sprite;
 
       if (scene.palms) {
@@ -896,6 +1027,7 @@
         if (idx < fullTextBuffer.length) {
           idx += 2;
           textEl.innerHTML = formatDialogue(fullTextBuffer.slice(0, idx));
+          if (idx % 4 === 0) playTypeTick();
         } else {
           finishTyping();
         }
@@ -915,6 +1047,7 @@
     }
 
     (async function boot() {
+      document.getElementById('btn-sfx').textContent = sfxEnabled ? 'SFX: On' : 'SFX: Off';
       document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
       await checkDnsProtection();
       renderScene(currentSceneId);
