@@ -525,7 +525,7 @@
           choices: [
             { icon: "shield", text: "DNS-профиль (Защита от отзыва)", next: "dns_intro" },
             { icon: "phone", text: "Установка ESign / KSign", next: "esign_intro" },
-            { icon: "key", text: "Импорт сертификата HSBC Bank plc", next: "cert_import" },
+            { icon: "key", text: "Импорт сертификата Chengdu Railway Bureau", next: "cert_import" },
             { icon: "laptop", text: "Сайдлоуд с ПК (LiveContainer & SideStore)", next: "iloader_intro" },
             { icon: "help", text: "Ошибки и решение проблем", next: "troubleshooting" }
           ]
@@ -574,7 +574,7 @@
         },
         // ESign / KSign
         esign_intro: {
-          text: "— **ESign** и **KSign**. На главной странице они уже подписаны рабочим корпоративным сертификатом **HSBC Bank plc**.",
+          text: "— **ESign** и **KSign**. На главной странице они уже подписаны рабочим корпоративным сертификатом **Chengdu Railway Bureau**.",
           choices: [
             { text: "Как установить с сайта?", next: "esign_steps" },
             { text: "Пишет «Ненадежный корпоративный разработчик»", next: "trust_cert" },
@@ -582,14 +582,14 @@
           ]
         },
         esign_steps: {
-          text: "— Всё тривиально.\n1. Жми «Скачать» под ESign на главной.\n2. Выбирай сертификат **HSBC Bank plc** и жми «Установить».\n3. Подтверди во всплывающем окне iOS.",
+          text: "— Всё тривиально.\n1. Жми «Скачать» под ESign на главной.\n2. Выбирай сертификат **Chengdu Railway Bureau** и жми «Установить».\n3. Подтверди во всплывающем окне iOS.",
           choices: [
             { text: "Установилось, но система не даёт открыть!", next: "trust_cert" },
             { text: "Работает. Как подписывать свои IPA?", next: "cert_import" }
           ]
         },
         trust_cert: {
-          text: "— Спокойно. Это штатное поведение iOS для корпоративных подписей. Иди в **Настройки → Основные → VPN и управление устройством → КОРПОРАТИВНЫЕ ПРИЛОЖЕНИЯ (HSBC Bank plc)** и нажми **«Доверять»**.",
+          text: "— Спокойно. Это штатное поведение iOS для корпоративных подписей. Иди в **Настройки → Основные → VPN и управление устройством → КОРПОРАТИВНЫЕ ПРИЛОЖЕНИЯ (Chengdu Railway Bureau)** и нажми **«Доверять»**.",
           choices: [
             { text: "Открылось. Спасибо, Бриз.", next: "cert_import" },
             { text: "В меню тем", next: "topics_menu" }
@@ -691,7 +691,7 @@
           choices: [
             { icon: "shield", text: "DNS Profile (Anti-Revoke Protection)", next: "dns_intro" },
             { icon: "phone", text: "Installing ESign / KSign", next: "esign_intro" },
-            { icon: "key", text: "Importing HSBC Bank plc Certificate", next: "cert_import" },
+            { icon: "key", text: "Importing Chengdu Railway Bureau Certificate", next: "cert_import" },
             { icon: "laptop", text: "PC Sideload (LiveContainer & SideStore)", next: "iloader_intro" },
             { icon: "help", text: "Common Errors & Fixes", next: "troubleshooting" }
           ]
@@ -738,7 +738,7 @@
           ]
         },
         esign_intro: {
-          text: "— **ESign** & **KSign**. Available directly on the home page, pre-signed with the active **HSBC Bank plc** enterprise certificate.",
+          text: "— **ESign** & **KSign**. Available directly on the home page, pre-signed with the active **Chengdu Railway Bureau** enterprise certificate.",
           choices: [
             { text: "How to install?", next: "esign_steps" },
             { text: "It says 'Untrusted Enterprise Developer'", next: "trust_cert" },
@@ -746,14 +746,14 @@
           ]
         },
         esign_steps: {
-          text: "— 1. Tap Download under ESign.\n2. Choose **HSBC Bank plc** and tap Install.\n3. Confirm iOS prompt.",
+          text: "— 1. Tap Download under ESign.\n2. Choose **Chengdu Railway Bureau** and tap Install.\n3. Confirm iOS prompt.",
           choices: [
             { text: "Installed, but iOS won't open it!", next: "trust_cert" },
             { text: "Works. How to sign custom IPAs?", next: "cert_import" }
           ]
         },
         trust_cert: {
-          text: "— Calm down. This is standard iOS enterprise security. Head to **Settings → General → VPN & Device Management → Enterprise Apps (HSBC Bank plc)** and tap **Trust**.",
+          text: "— Calm down. This is standard iOS enterprise security. Head to **Settings → General → VPN & Device Management → Enterprise Apps (Chengdu Railway Bureau)** and tap **Trust**.",
           choices: [
             { text: "Opened cleanly. Thanks.", next: "cert_import" },
             { text: "Back to Topics", next: "topics_menu" }

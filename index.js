@@ -82,9 +82,9 @@ const i18n = {
     "cert-active": "Активен",
     "cert-revoked": "Отозван (только с DNS)",
     "sec-cert-download-label": "Сертификат",
-    "cert-card-title": "Сертификат HSBC Bank plc",
-    "cert-card-sub": "Годен до 4 мая 2027 г. Пароль к .p12: AppleP12.com",
-    "cert-valid-until": "Годен до: 4 мая 2027 г.",
+    "cert-card-title": "Сертификат Chengdu Railway Bureau",
+    "cert-card-sub": "Годен до 2 октября 2027 г. Пароль к .p12: AppleP12.com",
+    "cert-valid-until": "Годен до: 2 октября 2027 г.",
     "cert-pwd-label": "Пароль:",
     "btn-download-cert-zip": "Скачать сертификат (.zip)",
     "btn-copy-pwd": "Скопировать пароль",
@@ -131,6 +131,48 @@ const i18n = {
     "iloader-step-2-desc": "Подключите iPhone или iPad по кабелю USB и разблокируйте экран.",
     "iloader-step-3-title": "Установка:",
     "iloader-step-3-desc": "Выберите в приложении LiveContainer или SideStore и нажмите кнопку Install.",
+    "nav-tools": "Инструменты iOS",
+    "nav-pc": "Nyx.Loader ПК",
+    "nav-dns": "Анти-ревок DNS",
+    "nav-cert": "Сертификат",
+    "nav-breeze": "Гайд с Бриз",
+    "hero-eyebrow-text": "ЭКОСИСТЕМА САЙДЛОУДА · БЕЗ ДЖЕЙЛБРЕЙКА",
+    "hero-btn-pc": "Сайдлоуд с ПК (Nyx.Loader)",
+    "hero-btn-ios": "Инструменты для iPhone",
+    "hero-btn-guide": "Визуальный гайд с Бриз",
+    "metric-cert-lbl": "Enterprise сертификат",
+    "metric-dns-lbl": "Блокировка OCSP / CRL",
+    "metric-lc-lbl": "Через LiveContainer",
+    "mob-breeze-tag": "ИНТЕРАКТИВНЫЙ ТУТОРИАЛ",
+    "mob-breeze-title": "Впервые здесь? Гайд с Бриз за 1 минуту",
+    "mob-breeze-sub": "Пошаговая установка DNS, ESign и решение ошибок",
+    "step-1-short": "Защита DNS",
+    "step-2-short": "ESign / KSign",
+    "step-3-short": "Сертификат",
+    "showcase-breeze-title": "Интерактивный гайд с Бриз",
+    "showcase-breeze-desc": "Визуальная новелла: разбор ошибок, настройка сертификатов и обход ревоков.",
+    "btn-open-vn": "Запустить новеллу",
+    "btn-open-text-guide": "Гайд для ПК",
+    "qr-badge": "БЫСТРЫЙ ПЕРЕХОД НА IPHONE",
+    "qr-title": "Открыл сайт на компьютере?",
+    "qr-desc": "Наведи камеру iPhone на QR-код, чтобы открыть портал в Safari и установить DNS-профиль и ESign в 1 тап.",
+    "badge-step-1": "ШАГ 1",
+    "badge-step-2": "ШАГ 2",
+    "badge-step-3": "ШАГ 3",
+    "tools-ota-hint": "OTA-установка и .IPA",
+    "tools-intro-desc": "Менеджеры сертификатов и подписи приложений прямо на устройстве. На iPhone устанавливаются по воздуху (OTA), на ПК скачиваются в формате .IPA.",
+    "esign-short-desc": "Подпись любых IPA, репозитории и инъекция твиков без ПК",
+    "ksign-short-desc": "Быстрый и легкий аналог с современным интерфейсом iOS",
+    "nsign-short-desc": "Фирменный подписыватель nyx с кастомными темами и dylib",
+    "pc-no-revoke-badge": "Без отзыва сертификата",
+    "breeze-chip-interactive": "Интерактивный помощник",
+    "breeze-card-heading": "Запутался в установке или вылезла ошибка «Ненадежный разработчик»?",
+    "breeze-card-text": "Бриз проведет тебя по всем шагам в формате интерактивной визуальной новеллы и подскажет, как починить любую ошибку iOS.",
+    "support-community-tag": "24/7 Комьюнити & Релизы",
+    "mob-nav-dns": "Защита",
+    "mob-nav-tools": "Приложения",
+    "mob-nav-cert": "Сертификат",
+    "mob-nav-guide": "Гайд Бриз",
   },
   en: {
     "hero-title-1": "iOS",
@@ -214,9 +256,9 @@ const i18n = {
     "cert-active": "Active",
     "cert-revoked": "Revoked (DNS only)",
     "sec-cert-download-label": "Certificate",
-    "cert-card-title": "HSBC Bank plc Certificate",
-    "cert-card-sub": "Valid until May 4, 2027. Password for .p12: AppleP12.com",
-    "cert-valid-until": "Valid until: May 4, 2027",
+    "cert-card-title": "Chengdu Railway Bureau Certificate",
+    "cert-card-sub": "Valid until October 2, 2027. Password for .p12: AppleP12.com",
+    "cert-valid-until": "Valid until: October 2, 2027",
     "cert-pwd-label": "Password:",
     "btn-download-cert-zip": "Download Cert Archive (.zip)",
     "btn-copy-pwd": "Copy Password",
@@ -263,6 +305,48 @@ const i18n = {
     "iloader-step-2-desc": "Connect your iPhone or iPad via USB cable and unlock the screen.",
     "iloader-step-3-title": "Install:",
     "iloader-step-3-desc": "Select LiveContainer or SideStore in the application and click Install.",
+    "nav-tools": "iOS Tools",
+    "nav-pc": "Nyx.Loader PC",
+    "nav-dns": "Anti-Revoke DNS",
+    "nav-cert": "Certificate",
+    "nav-breeze": "Breeze Guide",
+    "hero-eyebrow-text": "SIDELOAD ECOSYSTEM · NO JAILBREAK",
+    "hero-btn-pc": "PC Sideload (Nyx.Loader)",
+    "hero-btn-ios": "iPhone Tools",
+    "hero-btn-guide": "Breeze Visual Guide",
+    "metric-cert-lbl": "Enterprise Certificate",
+    "metric-dns-lbl": "OCSP / CRL Shield",
+    "metric-lc-lbl": "Via LiveContainer",
+    "mob-breeze-tag": "INTERACTIVE TUTORIAL",
+    "mob-breeze-title": "New here? 1-minute Breeze Guide",
+    "mob-breeze-sub": "Step-by-step DNS, ESign setup & error fixes",
+    "step-1-short": "DNS Shield",
+    "step-2-short": "ESign / KSign",
+    "step-3-short": "Certificate",
+    "showcase-breeze-title": "Interactive Guide with Breeze",
+    "showcase-breeze-desc": "Visual novel walkthrough: certificate setup, anti-revoke shield, and error troubleshooting.",
+    "btn-open-vn": "Launch Visual Novel",
+    "btn-open-text-guide": "PC Guide",
+    "qr-badge": "QUICK IPHONE HANDOFF",
+    "qr-title": "Opened on your computer?",
+    "qr-desc": "Scan the QR code with your iPhone camera to open in Safari and install the DNS profile & ESign in 1 tap.",
+    "badge-step-1": "STEP 1",
+    "badge-step-2": "STEP 2",
+    "badge-step-3": "STEP 3",
+    "tools-ota-hint": "OTA Install & .IPA",
+    "tools-intro-desc": "On-device certificate managers and IPA signers. Installed Over-The-Air (OTA) on iPhone/iPad or downloaded as .IPA on PC.",
+    "esign-short-desc": "Sign any IPA, add repos & inject tweaks without a PC",
+    "ksign-short-desc": "Fast, lightweight alternative with a clean iOS interface",
+    "nsign-short-desc": "Signature nyx tool with custom themes and dylib injection",
+    "pc-no-revoke-badge": "Zero Revokes",
+    "breeze-chip-interactive": "Interactive Assistant",
+    "breeze-card-heading": "Stuck on installation or seeing 'Untrusted Developer'?",
+    "breeze-card-text": "Breeze will walk you through every step in an interactive visual novel and help fix any iOS error.",
+    "support-community-tag": "24/7 Community & Releases",
+    "mob-nav-dns": "Shield",
+    "mob-nav-tools": "Apps",
+    "mob-nav-cert": "Cert",
+    "mob-nav-guide": "Breeze",
   },
   ko: {
     "hero-title-1": "iOS",
@@ -346,9 +430,9 @@ const i18n = {
     "cert-active": "활성",
     "cert-revoked": "만료됨 (DNS 전용)",
     "sec-cert-download-label": "인증서",
-    "cert-card-title": "HSBC Bank plc 인증서",
-    "cert-card-sub": "2027년 5월 4일까지 유효. .p12 비밀번호: AppleP12.com",
-    "cert-valid-until": "유효 기간: 2027년 5월 4일",
+    "cert-card-title": "Chengdu Railway Bureau 인증서",
+    "cert-card-sub": "2027년 10월 2일까지 유효. .p12 비밀번호: AppleP12.com",
+    "cert-valid-until": "유효 기간: 2027년 10월 2일",
     "cert-pwd-label": "비밀번호:",
     "btn-download-cert-zip": "인증서 다운로드 (.zip)",
     "btn-copy-pwd": "비밀번호 복사",
@@ -395,6 +479,48 @@ const i18n = {
     "iloader-step-2-desc": "iPhone 또는 iPad를 USB 케이블로 연결하고 기기 화면을 잠금 해제합니다.",
     "iloader-step-3-title": "설치:",
     "iloader-step-3-desc": "프로그램에서 LiveContainer 또는 SideStore를 선택하고 Install 버튼을 누릅니다.",
+    "nav-tools": "iOS 도구",
+    "nav-pc": "Nyx.Loader PC",
+    "nav-dns": "안티 리보크 DNS",
+    "nav-cert": "인증서",
+    "nav-breeze": "브리즈 가이드",
+    "hero-eyebrow-text": "사이드로딩 생태계 · 탈옥 불필요",
+    "hero-btn-pc": "PC 사이드로딩 (Nyx.Loader)",
+    "hero-btn-ios": "iPhone 도구",
+    "hero-btn-guide": "브리즈 비주얼 가이드",
+    "metric-cert-lbl": "Enterprise 인증서",
+    "metric-dns-lbl": "OCSP / CRL 차단",
+    "metric-lc-lbl": "LiveContainer 지원",
+    "mob-breeze-tag": "인터랙티브 튜토리얼",
+    "mob-breeze-title": "처음이신가요? 1분 브리즈 가이드",
+    "mob-breeze-sub": "단계별 DNS, ESign 설치 및 오류 해결",
+    "step-1-short": "DNS 보호",
+    "step-2-short": "ESign / KSign",
+    "step-3-short": "인증서",
+    "showcase-breeze-title": "브리즈 인터랙티브 가이드",
+    "showcase-breeze-desc": "비주얼 노벨 튜토리얼: 인증서 설정, 리보크 방지 및 오류 해결.",
+    "btn-open-vn": "비주얼 노벨 실행",
+    "btn-open-text-guide": "PC 가이드",
+    "qr-badge": "IPHONE 빠른 이동",
+    "qr-title": "컴퓨터로 접속하셨나요?",
+    "qr-desc": "iPhone 카메라로 QR 코드를 스캔하여 Safari에서 열고 원탭으로 DNS 프로파일과 ESign을 설치하세요.",
+    "badge-step-1": "1단계",
+    "badge-step-2": "2단계",
+    "badge-step-3": "3단계",
+    "tools-ota-hint": "OTA 설치 및 .IPA",
+    "tools-intro-desc": "기기 내 인증서 관리 및 IPA 서명 도구입니다. iPhone에서는 OTA로 바로 설치되고 PC에서는 .IPA로 다운로드됩니다.",
+    "esign-short-desc": "PC 없이 모든 IPA 서명, 저장소 추가 및 트윅 삽입",
+    "ksign-short-desc": "깔끔한 iOS 인터페이스를 갖춘 빠르고 가벼운 대안",
+    "nsign-short-desc": "커스텀 테마와 dylib 인젝션을 지원하는 nyx 전용 서명 도구",
+    "pc-no-revoke-badge": "인증서 만료 없음",
+    "breeze-chip-interactive": "인터랙티브 도우미",
+    "breeze-card-heading": "설치 방법이 헷갈리거나 '신뢰할 수 없는 개발자' 오류가 뜨나요?",
+    "breeze-card-text": "브리즈가 인터랙티브 비주얼 노벨 형식으로 모든 단계를 안내하고 iOS 오류 해결을 도와드립니다.",
+    "support-community-tag": "24/7 커뮤니티 & 릴리즈",
+    "mob-nav-dns": "보호",
+    "mob-nav-tools": "앱 도구",
+    "mob-nav-cert": "인증서",
+    "mob-nav-guide": "가이드",
   }
 };
 
@@ -687,7 +813,7 @@ function updateModalMetadata() {
   if (bundle) bundle.textContent = meta.bundle || (activeTool === 'esign' ? 'p3.xyz.yyyue.esign' : (activeTool === 'ksign' ? 'nya.asami.ksign' : 'nyx.sideload.nsign'));
 
   if (statusDot && statusText) {
-    if (cert === 'hsbc-bank') {
+    if (cert === 'chengdu-railway-bureau') {
       statusDot.className = 'status-dot ok';
       statusText.textContent = t('cert-active') || 'Активен';
     } else {
@@ -768,16 +894,20 @@ function applyTheme(theme, showNotification = true) {
   const root = document.documentElement;
   if (theme === 'violet') {
     root.style.setProperty('--accent', '#7850dc');
-    root.style.setProperty('--accent-lo', 'rgba(120, 80, 220, 0.1)');
+    root.style.setProperty('--accent-lo', 'rgba(120, 80, 220, 0.12)');
+    root.style.setProperty('--accent-hi', 'rgba(120, 80, 220, 0.28)');
   } else if (theme === 'cyberpunk') {
     root.style.setProperty('--accent', '#EC4899');
-    root.style.setProperty('--accent-lo', 'rgba(236, 72, 153, 0.1)');
+    root.style.setProperty('--accent-lo', 'rgba(236, 72, 153, 0.12)');
+    root.style.setProperty('--accent-hi', 'rgba(236, 72, 153, 0.28)');
   } else if (theme === 'dark-gold') {
     root.style.setProperty('--accent', '#D4AF37');
-    root.style.setProperty('--accent-lo', 'rgba(212, 175, 55, 0.1)');
+    root.style.setProperty('--accent-lo', 'rgba(212, 175, 55, 0.12)');
+    root.style.setProperty('--accent-hi', 'rgba(212, 175, 55, 0.28)');
   } else if (theme === 'emerald') {
     root.style.setProperty('--accent', '#10B981');
-    root.style.setProperty('--accent-lo', 'rgba(16, 185, 129, 0.1)');
+    root.style.setProperty('--accent-lo', 'rgba(16, 185, 129, 0.12)');
+    root.style.setProperty('--accent-hi', 'rgba(16, 185, 129, 0.28)');
   }
 
   localStorage.setItem('nyx-theme', theme);
@@ -963,10 +1093,10 @@ document.getElementById('btn-nsign-install').addEventListener('click', () => {
   const finalBaseUrl = appMetadata.base_url || 'https://nyx.sideload.space';
   setTimeout(() => {
     if (isIOS) {
-      const manifest = `${finalBaseUrl}/plists/manifest-ksign-jiangsu-simcere.plist?v=${Date.now()}`;
+      const manifest = `${finalBaseUrl}/plists/manifest-ksign-chengdu-railway-bureau.plist?v=${Date.now()}`;
       window.location.href = `itms-services://?action=download-manifest&url=${encodeURIComponent(manifest)}`;
     } else {
-      window.location.href = `${finalBaseUrl}/ipas/ksign/ksign-jiangsu-simcere.ipa`;
+      window.location.href = `${finalBaseUrl}/ipas/ksign/ksign-chengdu-railway-bureau.ipa`;
     }
   }, 1000);
 });
@@ -975,7 +1105,7 @@ document.getElementById('btn-nsign-download').addEventListener('click', () => {
   showToast(t('toast-installing'));
   const finalBaseUrl = appMetadata.base_url || 'https://nyx.sideload.space';
   setTimeout(() => {
-    window.location.href = `${finalBaseUrl}/ipas/ksign/ksign-jiangsu-simcere.ipa`;
+    window.location.href = `${finalBaseUrl}/ipas/ksign/ksign-chengdu-railway-bureau.ipa`;
   }, 1000);
 });
 function resetNSignForm() {
@@ -1287,3 +1417,51 @@ if (btnCopyLink) {
     });
   });
 }
+
+// Mobile bottom navigation & stepper active state sync
+const mobNavNsign = document.getElementById('mob-nav-nsign');
+if (mobNavNsign) {
+  mobNavNsign.addEventListener('click', () => openInstaller('nsign'));
+}
+
+(function initMobileNavSync() {
+  const navItems = document.querySelectorAll('.mob-nav-item[data-target]');
+  const stepPills = document.querySelectorAll('.mobile-step-pill');
+  const trackedIds = ['sec-dns', 'sec-tools', 'sec-cert-files'];
+
+  function setActiveTarget(targetId) {
+    navItems.forEach(item => {
+      item.classList.toggle('active', item.dataset.target === targetId);
+    });
+    stepPills.forEach(pill => {
+      const href = pill.getAttribute('href') || '';
+      pill.classList.toggle('active', href === `#${targetId}`);
+    });
+  }
+
+  navItems.forEach(item => {
+    item.addEventListener('click', () => setActiveTarget(item.dataset.target));
+  });
+  stepPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      const id = (pill.getAttribute('href') || '').replace('#', '');
+      if (id) setActiveTarget(id);
+    });
+  });
+
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && trackedIds.includes(entry.target.id)) {
+          setActiveTarget(entry.target.id);
+        }
+      });
+    }, { rootMargin: '-25% 0px -55% 0px', threshold: 0.1 });
+
+    trackedIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) obs.observe(el);
+    });
+  }
+})();
+
