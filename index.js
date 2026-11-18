@@ -146,9 +146,19 @@ const i18n = {
     "mob-breeze-tag": "ИНТЕРАКТИВНЫЙ ТУТОРИАЛ",
     "mob-breeze-title": "Впервые здесь? Гайд с Бриз за 1 минуту",
     "mob-breeze-sub": "Пошаговая установка DNS, ESign и решение ошибок",
-    "step-1-short": "Защита DNS",
+    "step-1-short": "Защита",
     "step-2-short": "ESign / KSign",
-    "step-3-short": "Сертификат",
+    "step-3-short": "Серт",
+    "step-4-short": "Бриз",
+    "dns-status-short-wait": "DNS...",
+    "dns-status-short-ok": "DNS: OK",
+    "dns-status-short-off": "DNS: OFF",
+    "prev-step-dns": "Шаг 1: DNS",
+    "next-step-tools": "Далее: Шаг 2 — ESign / KSign",
+    "next-step-cert": "Шаг 3: Сертификат",
+    "prev-step-tools": "Шаг 2: Приложения",
+    "next-step-guide": "Шаг 4: Гайд & Чат",
+    "prev-step-cert": "Шаг 3: Сертификат",
     "showcase-breeze-title": "Интерактивный гайд с Бриз",
     "showcase-breeze-desc": "Визуальная новелла: разбор ошибок, настройка сертификатов и обход ревоков.",
     "btn-open-vn": "Запустить новеллу",
@@ -320,9 +330,19 @@ const i18n = {
     "mob-breeze-tag": "INTERACTIVE TUTORIAL",
     "mob-breeze-title": "New here? 1-minute Breeze Guide",
     "mob-breeze-sub": "Step-by-step DNS, ESign setup & error fixes",
-    "step-1-short": "DNS Shield",
+    "step-1-short": "Shield",
     "step-2-short": "ESign / KSign",
-    "step-3-short": "Certificate",
+    "step-3-short": "Cert",
+    "step-4-short": "Breeze",
+    "dns-status-short-wait": "DNS...",
+    "dns-status-short-ok": "DNS: OK",
+    "dns-status-short-off": "DNS: OFF",
+    "prev-step-dns": "Step 1: DNS",
+    "next-step-tools": "Next: Step 2 — ESign / KSign",
+    "next-step-cert": "Step 3: Cert",
+    "prev-step-tools": "Step 2: Apps",
+    "next-step-guide": "Step 4: Guide",
+    "prev-step-cert": "Step 3: Certificate",
     "showcase-breeze-title": "Interactive Guide with Breeze",
     "showcase-breeze-desc": "Visual novel walkthrough: certificate setup, anti-revoke shield, and error troubleshooting.",
     "btn-open-vn": "Launch Visual Novel",
@@ -494,9 +514,19 @@ const i18n = {
     "mob-breeze-tag": "인터랙티브 튜토리얼",
     "mob-breeze-title": "처음이신가요? 1분 브리즈 가이드",
     "mob-breeze-sub": "단계별 DNS, ESign 설치 및 오류 해결",
-    "step-1-short": "DNS 보호",
+    "step-1-short": "보호",
     "step-2-short": "ESign / KSign",
     "step-3-short": "인증서",
+    "step-4-short": "브리즈",
+    "dns-status-short-wait": "DNS...",
+    "dns-status-short-ok": "DNS: OK",
+    "dns-status-short-off": "DNS: OFF",
+    "prev-step-dns": "1단계: DNS",
+    "next-step-tools": "다음: 2단계 — ESign / KSign",
+    "next-step-cert": "3단계: 인증서",
+    "prev-step-tools": "2단계: 앱 도구",
+    "next-step-guide": "4단계: 가이드",
+    "prev-step-cert": "3단계: 인증서",
     "showcase-breeze-title": "브리즈 인터랙티브 가이드",
     "showcase-breeze-desc": "비주얼 노벨 튜토리얼: 인증서 설정, 리보크 방지 및 오류 해결.",
     "btn-open-vn": "비주얼 노벨 실행",
@@ -607,6 +637,37 @@ function pingAppleEndpoint(url, timeoutMs = 2500) {
   });
 }
 
+function syncDnsMirrors(statusState, statusKey, shortKey) {
+  const sideDot = document.getElementById('sidebar-dns-dot');
+  const sideText = document.getElementById('sidebar-dns-text');
+  const mobDot = document.getElementById('mob-header-dns-dot');
+  const mobText = document.getElementById('mob-header-dns-text');
+  const mobPill = document.getElementById('mob-header-dns-pill');
+
+  if (sideDot) sideDot.className = `status-dot ${statusState}`;
+  if (sideText) {
+    sideText.textContent = t(statusKey);
+    sideText.dataset.i = statusKey;
+  }
+  if (mobDot) mobDot.className = `status-dot ${statusState}`;
+  if (mobText) {
+    mobText.textContent = t(shortKey);
+    mobText.dataset.i = shortKey;
+  }
+  if (mobPill) {
+    if (statusState === 'ok') {
+      mobPill.style.borderColor = 'rgba(74, 222, 128, 0.4)';
+      mobPill.style.color = '#4ade80';
+    } else if (statusState === 'err') {
+      mobPill.style.borderColor = 'rgba(239, 68, 68, 0.4)';
+      mobPill.style.color = '#f87171';
+    } else {
+      mobPill.style.borderColor = 'rgba(234, 179, 8, 0.4)';
+      mobPill.style.color = '#eab308';
+    }
+  }
+}
+
 // Live DNS Protection Check (Directly through user browser network)
 let isCheckingDns = false;
 async function checkDnsProtection(showFeedbackToast = true) {
@@ -633,6 +694,7 @@ async function checkDnsProtection(showFeedbackToast = true) {
     badge.style.background = 'rgba(234, 179, 8, 0.08)';
     badge.style.color = '#eab308';
   }
+  syncDnsMirrors('warn', 'dns-status-testing', 'dns-status-short-wait');
 
   try {
     // Check if device is completely offline first
@@ -647,6 +709,7 @@ async function checkDnsProtection(showFeedbackToast = true) {
         badge.style.background = 'rgba(234, 179, 8, 0.08)';
         badge.style.color = '#eab308';
       }
+      syncDnsMirrors('warn', 'dns-status-offline', 'dns-status-short-off');
       if (showFeedbackToast) showToast(t('toast-dns-offline'));
       return;
     }
@@ -686,6 +749,7 @@ async function checkDnsProtection(showFeedbackToast = true) {
           badge.style.background = 'rgba(234, 179, 8, 0.08)';
           badge.style.color = '#eab308';
         }
+        syncDnsMirrors('warn', 'dns-status-offline', 'dns-status-short-off');
         if (showFeedbackToast) showToast(t('toast-dns-offline'));
         return;
       }
@@ -703,6 +767,7 @@ async function checkDnsProtection(showFeedbackToast = true) {
         badge.style.background = 'rgba(239, 68, 68, 0.08)';
         badge.style.color = '#f87171';
       }
+      syncDnsMirrors('err', 'dns-status-unprotected', 'dns-status-short-off');
       if (showFeedbackToast) showToast(t('toast-dns-unprotected'));
     } else {
       // Requests blocked -> Protection IS ACTIVE!
@@ -716,6 +781,7 @@ async function checkDnsProtection(showFeedbackToast = true) {
         badge.style.background = 'rgba(74, 222, 128, 0.08)';
         badge.style.color = '#4ade80';
       }
+      syncDnsMirrors('ok', 'dns-status-protected', 'dns-status-short-ok');
       if (showFeedbackToast) showToast(t('toast-dns-protected'));
     }
   } finally {
@@ -731,6 +797,10 @@ const btnCheckDns = document.getElementById('btn-check-dns');
 if (btnCheckDns) {
   btnCheckDns.addEventListener('click', () => checkDnsProtection(true));
 }
+const mobHeaderDnsPill = document.getElementById('mob-header-dns-pill');
+if (mobHeaderDnsPill) {
+  mobHeaderDnsPill.addEventListener('click', () => checkDnsProtection(true));
+}
 
 document.getElementById('btn-dns-info').addEventListener('click', () => {
   showToast(t('dns-info-text'));
@@ -739,8 +809,9 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     currentLang = btn.dataset.lang;
     localStorage.setItem('nyx-lang', currentLang);
-    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+    document.querySelectorAll('.lang-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.lang === currentLang);
+    });
     applyLang();
   });
 });
@@ -929,6 +1000,12 @@ document.querySelectorAll('.theme-swatch').forEach(b => {
 document.getElementById('btn-header-theme').addEventListener('click', () => {
   openOverlay('theme-modal', 'btn-close-theme');
 });
+const btnSidebarTheme = document.getElementById('btn-sidebar-theme');
+if (btnSidebarTheme) {
+  btnSidebarTheme.addEventListener('click', () => {
+    openOverlay('theme-modal', 'btn-close-theme');
+  });
+}
 document.getElementById('btn-close-theme').addEventListener('click', () => closeOverlay('theme-modal'));
 document.getElementById('theme-modal').addEventListener('click', (e) => {
   if (e.target === document.getElementById('theme-modal')) closeOverlay('theme-modal');
@@ -1418,7 +1495,7 @@ if (btnCopyLink) {
   });
 }
 
-// Mobile bottom navigation & stepper active state sync
+// Mobile Pocket Terminal Tabs & Desktop Sidebar Sync
 const mobNavNsign = document.getElementById('mob-nav-nsign');
 if (mobNavNsign) {
   mobNavNsign.addEventListener('click', () => openInstaller('nsign'));
@@ -1426,42 +1503,114 @@ if (mobNavNsign) {
 
 (function initMobileNavSync() {
   const navItems = document.querySelectorAll('.mob-nav-item[data-target]');
-  const stepPills = document.querySelectorAll('.mobile-step-pill');
-  const trackedIds = ['sec-dns', 'sec-tools', 'sec-cert-files'];
+  const stepPills = document.querySelectorAll('.mobile-step-pill[data-tab]');
+  const gotoBtns = document.querySelectorAll('[data-goto-tab]');
+  const sidebarLinks = document.querySelectorAll('.sidebar-link[data-section]');
 
-  function setActiveTarget(targetId) {
-    navItems.forEach(item => {
-      item.classList.toggle('active', item.dataset.target === targetId);
-    });
+  const targetToTab = {
+    'sec-dns': 'dns',
+    'sec-tools': 'tools',
+    'sec-cert-files': 'cert',
+    'sec-pc-sideload': 'cert',
+    'sec-breeze-guide': 'guide',
+    'sec-support': 'guide'
+  };
+  const tabToTarget = {
+    dns: 'sec-dns',
+    tools: 'sec-tools',
+    cert: 'sec-cert-files',
+    guide: 'sec-breeze-guide'
+  };
+
+  function setActiveTab(tab, opts = {}) {
+    const validTab = tabToTarget[tab] ? tab : 'dns';
+    const targetId = tabToTarget[validTab];
+    document.body.dataset.mobTab = validTab;
+
     stepPills.forEach(pill => {
-      const href = pill.getAttribute('href') || '';
-      pill.classList.toggle('active', href === `#${targetId}`);
+      const isMatch = pill.dataset.tab === validTab;
+      pill.classList.toggle('active', isMatch);
+      pill.setAttribute('aria-selected', String(isMatch));
     });
+
+    navItems.forEach(item => {
+      const itemTab = targetToTab[item.dataset.target] || '';
+      item.classList.toggle('active', itemTab === validTab);
+    });
+
+    sidebarLinks.forEach(link => {
+      link.classList.toggle('active', link.dataset.section === targetId);
+    });
+
+    if (opts.scroll) {
+      if (window.innerWidth < 960) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        const el = document.getElementById(targetId);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
   }
 
   navItems.forEach(item => {
-    item.addEventListener('click', () => setActiveTarget(item.dataset.target));
-  });
-  stepPills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      const id = (pill.getAttribute('href') || '').replace('#', '');
-      if (id) setActiveTarget(id);
+    item.addEventListener('click', (e) => {
+      const tab = targetToTab[item.dataset.target];
+      if (!tab) return;
+      if (window.innerWidth < 960) e.preventDefault();
+      setActiveTab(tab, { scroll: window.innerWidth < 960 });
     });
   });
 
+  stepPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      setActiveTab(pill.dataset.tab, { scroll: true });
+    });
+  });
+
+  gotoBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      setActiveTab(btn.dataset.gotoTab, { scroll: true });
+    });
+  });
+
+  sidebarLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      sidebarLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+    });
+  });
+
+  const trackedSections = ['sec-tools', 'sec-dns', 'sec-pc-sideload', 'sec-cert-files', 'sec-breeze-guide'];
   if ('IntersectionObserver' in window) {
     const obs = new IntersectionObserver((entries) => {
+      if (window.innerWidth < 960) return;
       entries.forEach(entry => {
-        if (entry.isIntersecting && trackedIds.includes(entry.target.id)) {
-          setActiveTarget(entry.target.id);
+        if (entry.isIntersecting && trackedSections.includes(entry.target.id)) {
+          sidebarLinks.forEach(link => {
+            link.classList.toggle('active', link.dataset.section === entry.target.id);
+          });
         }
       });
-    }, { rootMargin: '-25% 0px -55% 0px', threshold: 0.1 });
+    }, { rootMargin: '-20% 0px -60% 0px', threshold: 0.1 });
 
-    trackedIds.forEach(id => {
+    trackedSections.forEach(id => {
       const el = document.getElementById(id);
       if (el) obs.observe(el);
     });
   }
+
+  function syncFromHash() {
+    const hashId = (window.location.hash || '').replace('#', '');
+    if (targetToTab[hashId]) {
+      setActiveTab(targetToTab[hashId], { scroll: false });
+      return true;
+    }
+    return false;
+  }
+
+  if (!syncFromHash()) {
+    setActiveTab('dns', { scroll: false });
+  }
+  window.addEventListener('hashchange', syncFromHash);
 })();
 
