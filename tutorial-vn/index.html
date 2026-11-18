@@ -158,7 +158,46 @@
       border-color: #c084fc;
       box-shadow: 0 0 18px var(--accent-glow);
     }
-    .shelf-item .ico { font-size: 20px; line-height: 1; }
+    .shelf-item .ico {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .shelf-item .ico svg {
+      width: 22px;
+      height: 22px;
+      stroke: #c084fc;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .shelf-item .ico img {
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      object-fit: cover;
+      display: block;
+    }
+    .btn-ico {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-ico svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
     .shelf-item .lbl { font-size: 11px; font-weight: 600; white-space: nowrap; }
     .shelf-item .sub { font-size: 9.5px; color: var(--muted); }
 
@@ -371,8 +410,8 @@
       <span id="dns-status-pill" class="dns-badge">DNS: проверка...</span>
     </div>
     <div class="top-right">
-      <button id="btn-toggle-mode" class="pill-btn" style="display:none;" onclick="toggleDesktopMode()">📱 Новелла</button>
-      <button class="pill-btn" onclick="resetProgress()">↺ Сброс</button>
+      <button id="btn-toggle-mode" class="pill-btn" style="display:none;" onclick="toggleDesktopMode()">Новелла</button>
+      <button class="pill-btn" onclick="resetProgress()">Сброс</button>
       <button class="pill-btn lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button>
       <button class="pill-btn lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
     </div>
@@ -385,36 +424,36 @@
 
       <!-- Shelf 1 (Top Shelf): DNS & Cert -->
       <a class="shelf-item" style="left: 25%; top: 20%;" href="../dns.mobileconfig" download>
-        <span class="ico">🛡️</span>
+        <span class="ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span>
         <span class="lbl">DNS-профиль</span>
         <span class="sub">.mobileconfig</span>
       </a>
       <a class="shelf-item" style="left: 41%; top: 20%;" href="../certs/Chengdu_Railway_Bureau.zip" download>
-        <span class="ico">🔑</span>
+        <span class="ico"><svg viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="4.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span>
         <span class="lbl">Chengdu Cert</span>
         <span class="sub">Pass: AppleP12.com</span>
       </a>
 
       <!-- Shelf 2 (Middle Shelf): IPA Signers -->
       <a class="shelf-item" style="left: 25%; top: 38%;" href="../ipas/esign/esign-chengdu-railway-bureau.ipa" download>
-        <span class="ico">📦</span>
+        <span class="ico"><img src="../icons/esign.png" alt="ESign" /></span>
         <span class="lbl">ESign .ipa</span>
         <span class="sub">Chengdu Rail</span>
       </a>
       <a class="shelf-item" style="left: 41%; top: 38%;" href="../ipas/ksign/ksign-chengdu-railway-bureau.ipa" download>
-        <span class="ico">⚡</span>
+        <span class="ico"><img src="../icons/ksign.png" alt="KSign" /></span>
         <span class="lbl">KSign .ipa</span>
         <span class="sub">Chengdu Rail</span>
       </a>
 
       <!-- Shelf 3 (Lower Shelf): Links -->
       <a class="shelf-item" style="left: 25%; top: 55%;" href="https://github.com/NyxSile/nyx.sideload" target="_blank" rel="noopener">
-        <span class="ico">🐙</span>
+        <span class="ico"><svg viewBox="0 0 24 24" style="fill:#c084fc;stroke:none;"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg></span>
         <span class="lbl">GitHub</span>
         <span class="sub">nyx.sideload</span>
       </a>
       <a class="shelf-item" style="left: 41%; top: 55%;" href="https://t.me/nyxsideload" target="_blank" rel="noopener">
-        <span class="ico">✈️</span>
+        <span class="ico"><svg viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></span>
         <span class="lbl">Telegram</span>
         <span class="sub">@nyxsideload</span>
       </a>
@@ -423,8 +462,8 @@
         <div class="speaker" id="desk-speaker">Бриз • Комната на ПК</div>
         <p id="desk-text">Вижу, ты зашёл с компьютера. Не буду мучить тебя заглушкой «открой с телефона» — все файлы разложены прямо на полках слева. Можешь забрать .mobileconfig или IPA отсюда, либо переключиться на мобильный гайд.</p>
         <div class="desktop-actions">
-          <button class="pill-btn active" onclick="openMobileNovellaFromDesktop()">▶ Запустить пошаговую новеллу</button>
-          <button class="pill-btn" onclick="copySiteLink()">📋 Скопировать ссылку для iPhone</button>
+          <button class="pill-btn active" onclick="openMobileNovellaFromDesktop()">Запустить пошаговую новеллу</button>
+          <button class="pill-btn" onclick="copySiteLink()">Скопировать ссылку для iPhone</button>
         </div>
       </div>
     </div>
@@ -434,7 +473,7 @@
   <main class="vn-stage">
     <div class="sprite-wrapper">
       <img id="vn-sprite" class="sprite-img" src="assets/breeze_neutral.jpg" alt="Бриз" />
-      <a id="palms-action-btn" class="palms-btn" href="#" target="_self">⬇ Скачать</a>
+      <a id="palms-action-btn" class="palms-btn" href="#" target="_self">Скачать</a>
     </div>
 
     <section class="dialogue-box">
@@ -502,14 +541,14 @@
     function toggleDesktopMode() {
       document.body.classList.toggle('desktop-mode');
       const btn = document.getElementById('btn-toggle-mode');
-      btn.textContent = document.body.classList.contains('desktop-mode') ? '📱 Новелла' : '🖥️ Комната ПК';
+      btn.textContent = document.body.classList.contains('desktop-mode') ? 'Новелла' : 'Комната ПК';
     }
 
     function openMobileNovellaFromDesktop() {
       document.body.classList.remove('desktop-mode');
       const btn = document.getElementById('btn-toggle-mode');
       btn.style.display = 'inline-flex';
-      btn.textContent = '🖥️ Комната ПК';
+      btn.textContent = 'Комната ПК';
     }
 
     function showToast(msg) {
@@ -578,7 +617,7 @@
               sprite: 'assets/breeze_peek.jpg',
               text: '*Холодный вздох*\n— Стоп. Ты открыл ссылку во **встроенном браузере** (Telegram / TikTok / Instagram). Там `.mobileconfig` скачается как битый документ и не установится.\nНажми **⋯ → Открыть в Safari**, иначе дальше не пойдём.',
               choices: [
-                { label: '📋 Скопировать ссылку для Safari', primary: true, action: () => copySiteLink() },
+                { label: 'Скопировать ссылку для Safari', primary: true, action: () => copySiteLink() },
                 { label: 'Я уже в Safari, продолжить', next: 'dns_check' }
               ]
             };
@@ -617,7 +656,7 @@
         }),
         dns_palms: () => ({
           sprite: 'assets/breeze_palms.jpg',
-          palms: { label: '⬇ Скачать DNS-профиль', href: '../dns.mobileconfig', download: true },
+          palms: { label: 'Скачать DNS-профиль', href: '../dns.mobileconfig', download: true },
           text: '— Вот `.mobileconfig`. Забирай прямо из рук, нажимай **«Разрешить»**, затем зайди в:\n**Настройки → Основные → VPN и управление устройством → Загруженный профиль** и включи **nyx-sideload**.',
           choices: [
             { label: 'Профиль включён, идём дальше →', primary: true, next: 'install_signer' },
@@ -628,13 +667,13 @@
           sprite: 'assets/breeze_peek.jpg',
           text: '— Это классика встроенных браузеров или блокировщиков. Скопируй ссылку, открой чистый **Safari**, и скачай профиль заново.',
           choices: [
-            { label: '📋 Скопировать ссылку', action: () => copySiteLink() },
+            { label: 'Скопировать ссылку', action: () => copySiteLink() },
             { label: 'Открыл в Safari, назад к профилю', next: 'dns_palms' }
           ]
         }),
         install_signer: () => ({
           sprite: 'assets/breeze_palms.jpg',
-          palms: { label: '⚡ Установить ESign (Chengdu Rail)', href: 'itms-services://?action=download-manifest&url=https://nyx.sideload.space/plists/manifest-esign-chengdu-railway-bureau.plist' },
+          palms: { label: 'Установить ESign (Chengdu Rail)', href: 'itms-services://?action=download-manifest&url=https://nyx.sideload.space/plists/manifest-esign-chengdu-railway-bureau.plist' },
           text: '— Теперь сам сайдлоадер. Нажимай на кнопку — iOS спросит разрешение на установку **ESign** (подписан свежим сертификатом **Chengdu Railway Bureau**).\nДождись иконки на рабочем столе.',
           choices: [
             { label: 'Установилось, но пишет «Ненадёжный разработчик»', primary: true, next: 'trust_cert' },
@@ -644,7 +683,7 @@
         }),
         install_ksign: () => ({
           sprite: 'assets/breeze_palms.jpg',
-          palms: { label: '⚡ Установить KSign (Chengdu Rail)', href: 'itms-services://?action=download-manifest&url=https://nyx.sideload.space/plists/manifest-ksign-chengdu-railway-bureau.plist' },
+          palms: { label: 'Установить KSign (Chengdu Rail)', href: 'itms-services://?action=download-manifest&url=https://nyx.sideload.space/plists/manifest-ksign-chengdu-railway-bureau.plist' },
           text: '— Вот **KSign** на том же сертификате **Chengdu Railway Bureau**. Лёгкий и минималистичный.',
           choices: [
             { label: 'Установилось, что дальше?', primary: true, next: 'trust_cert' },
@@ -661,10 +700,10 @@
         }),
         cert_import: () => ({
           sprite: 'assets/breeze_palms.jpg',
-          palms: { label: '🔑 Скачать Cert (.zip)', href: '../certs/Chengdu_Railway_Bureau.zip', download: true },
+          palms: { label: 'Скачать Cert (.zip)', href: '../certs/Chengdu_Railway_Bureau.zip', download: true },
           text: '— Забирай архив сертификата и импортируй его внутри ESign/KSign. Пароль от `.p12`: **AppleP12.com**.\nПосле этого подписывай любые `.ipa` прямо на iPhone.',
           choices: [
-            { label: '📋 Скопировать пароль AppleP12.com', action: () => copyText('AppleP12.com', 'Пароль AppleP12.com скопирован') },
+            { label: 'Скопировать пароль AppleP12.com', action: () => copyText('AppleP12.com', 'Пароль AppleP12.com скопирован') },
             { label: 'Всё работает! Спасибо, Бриз', primary: true, next: 'done' },
             { label: 'Всё равно что-то пошло не так...', next: 'escalation' }
           ]
@@ -680,7 +719,7 @@
           sprite: 'assets/breeze_confused.jpg',
           text: '*Смотрит в телефон и растерянно моргает*\n— ...Ладно, признаю: мои полномочия на этом всё. Похоже, тут какой-то нестандартный баг на стороне устройства или iOS.\nНапиши напрямую Арипхану — он разберётся вручную.',
           choices: [
-            { label: '✈️ Написать в Telegram (@NyxSile)', primary: true, action: () => window.open('https://t.me/NyxSile', '_blank') },
+            { label: 'Написать в Telegram (@NyxSile)', primary: true, action: () => window.open('https://t.me/NyxSile', '_blank') },
             { label: 'Попробовать шаг заново', next: 'dns_check' }
           ]
         })
@@ -692,7 +731,7 @@
               sprite: 'assets/breeze_peek.jpg',
               text: '*Cold sigh*\n— Stop. You opened this in an **in-app browser** (Telegram / TikTok / Instagram). `.mobileconfig` profiles break here.\nTap **⋯ → Open in Safari** before continuing.',
               choices: [
-                { label: '📋 Copy Link for Safari', primary: true, action: () => copySiteLink() },
+                { label: 'Copy Link for Safari', primary: true, action: () => copySiteLink() },
                 { label: 'I am in Safari, continue', next: 'dns_check' }
               ]
             };
@@ -722,7 +761,7 @@
         },
         dns_palms: () => ({
           sprite: 'assets/breeze_palms.jpg',
-          palms: { label: '⬇ Download DNS Profile', href: '../dns.mobileconfig', download: true },
+          palms: { label: 'Download DNS Profile', href: '../dns.mobileconfig', download: true },
           text: '— Grab the `.mobileconfig` right from my hands, tap **Allow**, then enable **nyx-sideload** in:\n**Settings → General → VPN & Device Management → DNS**.',
           choices: [
             { label: 'Profile enabled, continue →', primary: true, next: 'install_signer' },
@@ -733,13 +772,13 @@
           sprite: 'assets/breeze_peek.jpg',
           text: '— Open this page in native **Safari** and download again.',
           choices: [
-            { label: '📋 Copy Link', action: () => copySiteLink() },
+            { label: 'Copy Link', action: () => copySiteLink() },
             { label: 'Back to DNS profile', next: 'dns_palms' }
           ]
         }),
         install_signer: () => ({
           sprite: 'assets/breeze_palms.jpg',
-          palms: { label: '⚡ Install ESign (Chengdu Rail)', href: 'itms-services://?action=download-manifest&url=https://nyx.sideload.space/plists/manifest-esign-chengdu-railway-bureau.plist' },
+          palms: { label: 'Install ESign (Chengdu Rail)', href: 'itms-services://?action=download-manifest&url=https://nyx.sideload.space/plists/manifest-esign-chengdu-railway-bureau.plist' },
           text: '— Tap to install **ESign**, pre-signed with **Chengdu Railway Bureau**.',
           choices: [
             { label: 'Installed, says "Untrusted Developer"', primary: true, next: 'trust_cert' },
@@ -749,7 +788,7 @@
         }),
         install_ksign: () => ({
           sprite: 'assets/breeze_palms.jpg',
-          palms: { label: '⚡ Install KSign (Chengdu Rail)', href: 'itms-services://?action=download-manifest&url=https://nyx.sideload.space/plists/manifest-ksign-chengdu-railway-bureau.plist' },
+          palms: { label: 'Install KSign (Chengdu Rail)', href: 'itms-services://?action=download-manifest&url=https://nyx.sideload.space/plists/manifest-ksign-chengdu-railway-bureau.plist' },
           text: '— Here is **KSign** signed with **Chengdu Railway Bureau**.',
           choices: [
             { label: 'Installed, next step →', primary: true, next: 'trust_cert' },
@@ -766,10 +805,10 @@
         }),
         cert_import: () => ({
           sprite: 'assets/breeze_palms.jpg',
-          palms: { label: '🔑 Download Cert (.zip)', href: '../certs/Chengdu_Railway_Bureau.zip', download: true },
+          palms: { label: 'Download Cert (.zip)', href: '../certs/Chengdu_Railway_Bureau.zip', download: true },
           text: '— Download the cert archive and import into ESign/KSign. Password: **AppleP12.com**.',
           choices: [
-            { label: '📋 Copy AppleP12.com', action: () => copyText('AppleP12.com', 'Copied AppleP12.com') },
+            { label: 'Copy AppleP12.com', action: () => copyText('AppleP12.com', 'Copied AppleP12.com') },
             { label: 'Everything works!', primary: true, next: 'done' },
             { label: 'Still stuck...', next: 'escalation' }
           ]
@@ -783,7 +822,7 @@
           sprite: 'assets/breeze_confused.jpg',
           text: '*Stares at her phone*\n— Okay, my powers end here. Looks like an edge-case issue on your device.\nReach out directly to Aripkhan on Telegram.',
           choices: [
-            { label: '✈️ Message @NyxSile on Telegram', primary: true, action: () => window.open('https://t.me/NyxSile', '_blank') },
+            { label: 'Message @NyxSile on Telegram', primary: true, action: () => window.open('https://t.me/NyxSile', '_blank') },
             { label: 'Retry from DNS check', next: 'dns_check' }
           ]
         })
