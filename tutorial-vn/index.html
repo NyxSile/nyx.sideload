@@ -256,6 +256,10 @@
       color: var(--text);
     }
 
+    .dialogue-text strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
 
     .action-text {
       color: #c084fc;
@@ -853,7 +857,10 @@
     }
 
     function formatDialogueText(rawText) {
-      return rawText.replace(/\*([^*]+)\*/g, '<span class="action-text">*$1*</span>');
+      return rawText
+        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*([^*]+)\*/g, '<span class="action-text">$1</span>')
+        .replace(/\*/g, '');
     }
 
     function typeText(targetText, callback) {
