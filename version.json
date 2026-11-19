@@ -1,26 +1,26 @@
 {
   "esign-chengdu-railway-bureau": {
-    "version": "5.0.2",
+    "version": "2.0",
     "app": "ESign",
     "bundle": "khoin.esign.dvn",
     "ipa": "ipas/esign/esign-chengdu-railway-bureau.ipa",
-    "size": "18.0 MB",
+    "size": "22.7 MB",
     "updated": "2026-11-18T10:20:42+05:00"
   },
   "esign": {
-    "version": "5.0.2",
+    "version": "2.0",
     "app": "ESign",
     "bundle": "p3.xyz.yyyue.esign",
     "ipa": "ipas/esign/esign.ipa",
-    "size": "7.2 MB",
+    "size": "9.4 MB",
     "updated": "2026-09-12T15:32:30+05:00"
   },
   "esign_unsigned": {
-    "version": "5.0.2",
+    "version": "2.0",
     "app": "ESign",
     "bundle": "p3.xyz.yyyue.esign",
     "ipa": "ipas/esign/esign_unsigned.ipa",
-    "size": "7.2 MB",
+    "size": "9.4 MB",
     "updated": "2026-09-12T15:32:30+05:00"
   },
   "ksign-chengdu-railway-bureau": {
@@ -28,7 +28,7 @@
     "app": "KSign",
     "bundle": "nya.asami.ksign",
     "ipa": "ipas/ksign/ksign-chengdu-railway-bureau.ipa",
-    "size": "30.9 MB",
+    "size": "31.0 MB",
     "updated": "2026-11-18T10:20:42+05:00"
   },
   "ksign": {
@@ -48,13 +48,13 @@
     "updated": "2026-09-12T15:32:30+05:00"
   },
   "base_url": "https://sideload.nyxsile.lol",
-  "generated_at": "2026-11-18T05:21:07.013412+00:00",
+  "generated_at": "2026-11-19T23:19:54.746907+00:00",
   "latest": {
     "version": "1.6",
     "app": "KSign",
     "bundle": "nya.asami.ksign",
     "ipa": "ipas/ksign/ksign-chengdu-railway-bureau.ipa",
-    "size": "30.9 MB",
+    "size": "31.0 MB",
     "updated": "2026-11-18T10:20:42+05:00"
   }
 }
