@@ -902,8 +902,8 @@ function updateModalMetadata() {
 
   if (statusDot && statusText) {
     if (cert === 'chengdu-railway-bureau') {
-      statusDot.className = 'status-dot ok';
-      statusText.textContent = t('cert-active') || 'Активен';
+      statusDot.className = 'status-dot err';
+      statusText.textContent = t('cert-revoked') || 'Отозван (только с DNS)';
     } else {
       statusDot.className = 'status-dot warn';
       statusText.textContent = t('cert-revoked') || 'Только с DNS';
