@@ -19,7 +19,7 @@
                 <key>bundle-identifier</key>
                 <string>nyx.sideload.nsign</string>
                 <key>bundle-version</key>
-                <string>0.3</string>
+                <string>0.4</string>
                 <key>kind</key>
                 <string>software</string>
                 <key>title</key>

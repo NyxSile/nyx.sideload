@@ -40,7 +40,7 @@
     "updated": "2026-09-12T15:32:30+05:00"
   },
   "nsign-chengdu-railway-bureau": {
-    "version": "0.3",
+    "version": "0.4",
     "app": "N.Sign",
     "bundle": "nyx.sideload.nsign",
     "ipa": "ipas/nsign/nsign-chengdu-railway-bureau.ipa",
@@ -48,7 +48,7 @@
     "updated": "2026-11-20T06:12:18+05:00"
   },
   "nsign": {
-    "version": "0.3",
+    "version": "0.4",
     "app": "N.Sign",
     "bundle": "nyx.sideload.nsign",
     "ipa": "ipas/nsign/nsign.ipa",
@@ -56,9 +56,9 @@
     "updated": "2026-11-20T06:12:18+05:00"
   },
   "base_url": "https://sideload.nyxsile.lol",
-  "generated_at": "2026-11-20T01:12:33.095736+00:00",
+  "generated_at": "2026-11-20T02:11:06.995844+00:00",
   "latest": {
-    "version": "0.3",
+    "version": "0.4",
     "app": "N.Sign",
     "bundle": "nyx.sideload.nsign",
     "ipa": "ipas/nsign/nsign.ipa",
