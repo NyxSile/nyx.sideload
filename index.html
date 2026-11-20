@@ -323,46 +323,26 @@
               <span class="sys-code">OCSP filter</span>
               <span class="dns-telemetry-live">4 hosts blocked</span>
             </div>
-            <div class="dns-telemetry-grid">
-              <div class="dns-telemetry-cell">
-                <div class="dns-telemetry-cell-top">
-                  <span class="dns-telemetry-host">ocsp.apple.com</span>
-                  <span class="dns-telemetry-status dns-telemetry-status--ok">Blocked</span>
-                </div>
-                <div class="dns-telemetry-cell-bottom">
-                  <span class="dns-telemetry-proto">DoH · TLS 1.3</span>
-                  <span class="dns-telemetry-ip">0.0.0.0</span>
-                </div>
+            <div class="dns-telemetry-list">
+              <div class="dns-host-row">
+                <span class="dns-telemetry-host">ocsp.apple.com</span>
+                <span class="dns-host-proto">DoH · 0.0.0.0</span>
+                <span class="dns-telemetry-status--ok">Blocked</span>
               </div>
-              <div class="dns-telemetry-cell">
-                <div class="dns-telemetry-cell-top">
-                  <span class="dns-telemetry-host">ocsp2.apple.com</span>
-                  <span class="dns-telemetry-status dns-telemetry-status--ok">Blocked</span>
-                </div>
-                <div class="dns-telemetry-cell-bottom">
-                  <span class="dns-telemetry-proto">OCSP v2</span>
-                  <span class="dns-telemetry-ip">0.0.0.0</span>
-                </div>
+              <div class="dns-host-row">
+                <span class="dns-telemetry-host">ocsp2.apple.com</span>
+                <span class="dns-host-proto">OCSP v2 · 0.0.0.0</span>
+                <span class="dns-telemetry-status--ok">Blocked</span>
               </div>
-              <div class="dns-telemetry-cell">
-                <div class="dns-telemetry-cell-top">
-                  <span class="dns-telemetry-host">crl.apple.com</span>
-                  <span class="dns-telemetry-status dns-telemetry-status--ok">Blocked</span>
-                </div>
-                <div class="dns-telemetry-cell-bottom">
-                  <span class="dns-telemetry-proto">CRL Sinkhole</span>
-                  <span class="dns-telemetry-ip">0.0.0.0</span>
-                </div>
+              <div class="dns-host-row">
+                <span class="dns-telemetry-host">crl.apple.com</span>
+                <span class="dns-host-proto">CRL · 0.0.0.0</span>
+                <span class="dns-telemetry-status--ok">Blocked</span>
               </div>
-              <div class="dns-telemetry-cell">
-                <div class="dns-telemetry-cell-top">
-                  <span class="dns-telemetry-host">valid.apple.com</span>
-                  <span class="dns-telemetry-status dns-telemetry-status--ok">Blocked</span>
-                </div>
-                <div class="dns-telemetry-cell-bottom">
-                  <span class="dns-telemetry-proto">EV Check</span>
-                  <span class="dns-telemetry-ip">0.0.0.0</span>
-                </div>
+              <div class="dns-host-row">
+                <span class="dns-telemetry-host">valid.apple.com</span>
+                <span class="dns-host-proto">EV · 0.0.0.0</span>
+                <span class="dns-telemetry-status--ok">Blocked</span>
               </div>
             </div>
           </div>
@@ -762,7 +742,7 @@
     <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
       <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
     </svg>
-    <span data-i="mob-nav-guide">Гайд Бриз</span>
+    <span data-i="mob-nav-guide">Поддержка</span>
   </a>
   <button type="button" class="mob-nav-item" id="mob-nav-nsign">
     <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -881,18 +861,15 @@
             </div>
 
             <div style="border-top: 1px solid var(--border); padding-top:12px; margin-top:6px;">
-              <h4 style="font-family:'Space Grotesk', sans-serif; font-size:13px; margin-bottom:8px; color:var(--text);" data-i="custom-site-theme-label">Кастомизация сайта (N.Sign Theme)</h4>
+              <h4 style="font-family:'Space Grotesk', sans-serif; font-size:13px; margin-bottom:8px; color:var(--text);" data-i="custom-site-theme-label">Тема сайта</h4>
               <div class="form-group-new">
                 <select class="sel" id="site-theme-select" style="width:100%; padding: 8px 12px; font-size: 13px;">
-                  <option value="violet">Breeze Violet (Default)</option>
-                  <option value="cyberpunk">Cyberpink</option>
-                  <option value="dark-gold">Dark Gold</option>
-                  <option value="emerald">Emerald Matrix</option>
+                  <option value="violet">Graphite Indigo (Default)</option>
+                  <option value="cyberpunk">Rose Ink</option>
+                  <option value="dark-gold">Warm Brass</option>
+                  <option value="emerald">Sage Slate</option>
                 </select>
               </div>
-              <p style="font-size:11px; color: var(--accent); margin-top:6px; font-style:italic;" data-i="site-theme-note">
-                * Тема сайта будет установлена как 10-ая тема N.Sign
-              </p>
             </div>
           </div>
         </div>
@@ -1022,16 +999,13 @@
 <div id="theme-modal" class="modal-overlay-new" role="dialog" aria-modal="true" aria-labelledby="theme-modal-title">
   <div class="modal-box-new modal-box--theme">
     <button type="button" class="modal-close-new" id="btn-close-theme" aria-label="Close">&times;</button>
-    <h3 id="theme-modal-title" class="theme-title" data-i="custom-site-theme-label">Кастомизация сайта</h3>
+    <h3 id="theme-modal-title" class="theme-title" data-i="custom-site-theme-label">Тема сайта</h3>
     <div class="theme-swatches" role="radiogroup" aria-labelledby="theme-modal-title">
-      <button type="button" class="theme-swatch" role="radio" aria-checked="true" data-theme="violet"><span class="theme-dot" aria-hidden="true"></span><span>Breeze Violet</span></button>
-      <button type="button" class="theme-swatch" role="radio" aria-checked="false" data-theme="cyberpunk"><span class="theme-dot" aria-hidden="true"></span><span>Cyberpink</span></button>
-      <button type="button" class="theme-swatch" role="radio" aria-checked="false" data-theme="dark-gold"><span class="theme-dot" aria-hidden="true"></span><span>Dark Gold</span></button>
-      <button type="button" class="theme-swatch" role="radio" aria-checked="false" data-theme="emerald"><span class="theme-dot" aria-hidden="true"></span><span>Emerald Matrix</span></button>
+      <button type="button" class="theme-swatch" role="radio" aria-checked="true" data-theme="violet"><span class="theme-dot" aria-hidden="true"></span><span>Graphite Indigo</span></button>
+      <button type="button" class="theme-swatch" role="radio" aria-checked="false" data-theme="cyberpunk"><span class="theme-dot" aria-hidden="true"></span><span>Rose Ink</span></button>
+      <button type="button" class="theme-swatch" role="radio" aria-checked="false" data-theme="dark-gold"><span class="theme-dot" aria-hidden="true"></span><span>Warm Brass</span></button>
+      <button type="button" class="theme-swatch" role="radio" aria-checked="false" data-theme="emerald"><span class="theme-dot" aria-hidden="true"></span><span>Sage Slate</span></button>
     </div>
-    <p class="theme-note" data-i="site-theme-note">
-      * Тема сайта будет установлена как 10-ая тема N.Sign
-    </p>
   </div>
 </div>
 

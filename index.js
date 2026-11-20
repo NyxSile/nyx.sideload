@@ -94,7 +94,7 @@ const i18n = {
     "inapp-browser-warn": "Вы открыли сайт во встроенном браузере. Для установки приложений откройте страницу в <strong>Safari</strong>.",
     "nsign-app-unavailable-title": "Приложение N.Sign пока заправляется!",
     "nsign-app-unavailable-desc": "Приложение N.Sign находится в разработке. Подождите, либо воспользуйтесь веб-версией во вкладке «Кастомизация».",
-    "custom-site-theme-label": "Кастомизация сайта (N.Sign Theme)",
+    "custom-site-theme-label": "Тема сайта",
     "site-theme-note": "* Тема сайта будет установлена как 10-ая тема N.Sign",
     "theme-applied-toast": "Тема сайта успешно применена!",
     "cl-date-4": "24 июл",
@@ -182,7 +182,7 @@ const i18n = {
     "mob-nav-dns": "Защита",
     "mob-nav-tools": "Приложения",
     "mob-nav-cert": "Сертификат",
-    "mob-nav-guide": "Гайд Бриз",
+    "mob-nav-guide": "Поддержка",
   },
   en: {
     "hero-title-1": "iOS",
@@ -278,7 +278,7 @@ const i18n = {
     "inapp-browser-warn": "You are using an in-app browser. To install apps, open this page in <strong>Safari</strong>.",
     "nsign-app-unavailable-title": "N.Sign app is temporarily unavailable",
     "nsign-app-unavailable-desc": "The N.Sign app is under development. Please use the web version in the 'Customization' tab.",
-    "custom-site-theme-label": "Website Customization (N.Sign Theme)",
+    "custom-site-theme-label": "Site Theme",
     "site-theme-note": "* The website theme will be set as the 10th theme of N.Sign",
     "theme-applied-toast": "Website theme applied successfully!",
     "cl-date-4": "24 Jul",
@@ -366,7 +366,7 @@ const i18n = {
     "mob-nav-dns": "Shield",
     "mob-nav-tools": "Apps",
     "mob-nav-cert": "Cert",
-    "mob-nav-guide": "Breeze",
+    "mob-nav-guide": "Support",
   },
   ko: {
     "hero-title-1": "iOS",
@@ -462,7 +462,7 @@ const i18n = {
     "inapp-browser-warn": "인앱 브라우저를 사용 중입니다. 앱 설치를 위해 <strong>Safari</strong>에서 열어주세요.",
     "nsign-app-unavailable-title": "N.Sign 앱 준비 중",
     "nsign-app-unavailable-desc": "N.Sign 앱은 현재 개발 중입니다. '커스터마이징' 탭의 웹 버전을 이용해 주세요.",
-    "custom-site-theme-label": "사이트 테마 설정 (N.Sign Theme)",
+    "custom-site-theme-label": "사이트 테마",
     "site-theme-note": "* 사이트 테마는 N.Sign의 10번째 테마로 적용됩니다",
     "theme-applied-toast": "사이트 테마가 성공적으로 적용되었습니다!",
     "cl-date-4": "7월 24일",
@@ -550,7 +550,7 @@ const i18n = {
     "mob-nav-dns": "보호",
     "mob-nav-tools": "앱 도구",
     "mob-nav-cert": "인증서",
-    "mob-nav-guide": "가이드",
+    "mob-nav-guide": "지원",
   }
 };
 

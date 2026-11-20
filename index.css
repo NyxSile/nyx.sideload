@@ -341,8 +341,7 @@
 
     .nyx-viewport {
       position: relative;
-      background-image: radial-gradient(color-mix(in srgb, var(--accent) 16%, transparent) 1px, transparent 1px);
-      background-size: 24px 24px;
+      background: transparent;
     }
 
     @media (min-width: 960px) {
@@ -1866,14 +1865,19 @@ html, body {
   text-rendering: optimizeLegibility;
 }
 
-body,
-#app.nyx-shell {
+body {
   background-color: var(--bg) !important;
   background-image: none !important;
 }
 
+#app.nyx-shell,
+.nyx-viewport {
+  background: transparent !important;
+  background-image: none !important;
+}
+
 #stars {
-  opacity: 0.45 !important;
+  opacity: 0.72 !important;
 }
 
 .sys-code,
@@ -2342,31 +2346,35 @@ body,
   color: var(--ok);
 }
 
-.dns-telemetry-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-  flex: 1 1 auto;
-}
-
-.dns-telemetry-cell {
+.dns-telemetry-list {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 10px 12px;
-  border-radius: 8px;
   background: var(--surface2);
   border: 1px solid var(--border);
-  min-width: 0;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.dns-telemetry-cell-top,
-.dns-telemetry-cell-bottom {
+.dns-host-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border);
   min-width: 0;
+}
+
+.dns-host-row:last-child {
+  border-bottom: none;
+}
+
+.dns-host-proto {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-mute);
+  margin-left: auto;
+  white-space: nowrap;
 }
 
 .dns-telemetry-host {
@@ -2375,8 +2383,6 @@ body,
   font-weight: 500;
   color: var(--text);
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .dns-telemetry-status--ok {
@@ -2384,12 +2390,6 @@ body,
   font-family: var(--font-mono);
   font-size: 11px;
   color: var(--ok);
-}
-
-.dns-telemetry-cell-bottom {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text-mute);
 }
 
 .dns-actions {
@@ -2417,7 +2417,14 @@ body,
    ============================================================ */
 
 @media (max-width: 959px) {
-  #app.nyx-shell { padding-top: 72px; }
+  #app.nyx-shell {
+    padding-top: calc(env(safe-area-inset-top, 0px) + 78px) !important;
+  }
+
+  .mobile-stepper,
+  .mob-step-nav {
+    display: none !important;
+  }
 
   #header {
     position: fixed;
@@ -2425,8 +2432,8 @@ body,
     left: 0;
     right: 0;
     z-index: 150;
-    padding: 8px 16px;
-    background: var(--bg);
+    padding: calc(env(safe-area-inset-top, 0px) + 8px) 16px 8px;
+    background: rgba(11, 13, 20, 0.92);
     border-bottom: 1px solid var(--border);
   }
 
