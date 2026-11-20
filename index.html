@@ -48,11 +48,6 @@
 <canvas id="stars" aria-hidden="true"></canvas>
 
 <header id="header">
-  <div class="new-cert-banner">
-    <span class="ping-dot"></span>
-    <span data-i="status-new-cert">Новый сертификат импортирован!</span>
-    <span class="banner-cert-pill">Chengdu Railway Bureau · 2027</span>
-  </div>
   <div class="header-inner">
     <a class="header-brand" href="./" aria-label="nyx.sideload">
       <img src="icons/logo.png" alt="" width="32" height="32" />
@@ -66,11 +61,6 @@
       <button type="button" id="mob-header-dns-pill" class="mob-dns-pill" aria-label="Check DNS Protection">
         <span class="status-dot warn" id="mob-header-dns-dot"></span>
         <span id="mob-header-dns-text" data-i="dns-status-short-wait">DNS...</span>
-      </button>
-      <button type="button" id="btn-header-theme" class="icon-btn" aria-label="Customize theme" aria-haspopup="dialog" title="Theme">
-        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-        </svg>
       </button>
       <div class="lang-toggle" role="group" aria-label="Language">
         <button type="button" class="lang-btn active" id="lang-ru" data-lang="ru" aria-pressed="true">RU</button>
@@ -154,11 +144,6 @@
       </div>
 
       <div class="sidebar-controls">
-        <button type="button" id="btn-sidebar-theme" class="icon-btn" aria-label="Customize theme" aria-haspopup="dialog" title="Theme">
-          <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-          </svg>
-        </button>
         <div class="lang-toggle" role="group" aria-label="Language">
           <button type="button" class="lang-btn active" data-lang="ru" aria-pressed="true">RU</button>
           <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
@@ -460,9 +445,9 @@
         </section>
 
         <!-- ========================================================
-             [SYS://03] PC SIDELOAD DECK (Desktop Cols 1-7 / Mobile Tab: cert)
+             [SYS://03] PC SIDELOAD DECK (Desktop Cols 1-7 / Mobile Tab: tools)
              ======================================================== -->
-        <section class="pc-sideload-card bento-pc fade-up" id="sec-pc-sideload" data-mob-panel="cert">
+        <section class="pc-sideload-card bento-pc fade-up" id="sec-pc-sideload" data-mob-panel="tools">
           <div class="card-header-row">
             <div class="section-heading-group">
               <span class="sys-code">03</span>
@@ -626,12 +611,18 @@
              ======================================================== -->
         <section class="card breeze-guide-card bento-breeze fade-up" id="sec-breeze-guide" data-mob-panel="guide">
           <div class="breeze-guide-media" aria-hidden="true">
-            <div class="breeze-terminal-visual">
-              <div class="terminal-dots"><span></span><span></span><span></span></div>
-              <div class="terminal-lines">
-                <code>$ nyx doctor --verify-cert</code>
-                <code class="term-ok">✓ DNS Shield: ocsp2.apple.com blocked</code>
-                <code class="term-accent">→ Select troubleshooting flow...</code>
+            <div class="breeze-preview-card">
+              <div class="breeze-preview-row">
+                <span class="breeze-preview-badge">01</span>
+                <span data-i="breeze-prev-1">Ненадежный разработчик</span>
+              </div>
+              <div class="breeze-preview-row">
+                <span class="breeze-preview-badge">02</span>
+                <span data-i="breeze-prev-2">Слёт и проверка сертификата</span>
+              </div>
+              <div class="breeze-preview-row breeze-preview-row--accent">
+                <span class="breeze-preview-badge">VN</span>
+                <span data-i="breeze-prev-3">Пошаговый разбор с Бриз</span>
               </div>
             </div>
             <div class="breeze-guide-media-badges">
@@ -744,12 +735,6 @@
     </svg>
     <span data-i="mob-nav-guide">Поддержка</span>
   </a>
-  <button type="button" class="mob-nav-item" id="mob-nav-nsign">
-    <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-    </svg>
-    <span>N.Sign</span>
-  </button>
 </nav>
 
 
@@ -857,18 +842,6 @@
                 <button class="btn btn-primary btn-full" id="btn-launch-web-signer" style="background: var(--accent); margin-top:8px; padding:8px 14px; font-size:13px;">
                   <span data-i="launch-web-signer-btn">Запустить веб-версию</span>
                 </button>
-              </div>
-            </div>
-
-            <div style="border-top: 1px solid var(--border); padding-top:12px; margin-top:6px;">
-              <h4 style="font-family:'Space Grotesk', sans-serif; font-size:13px; margin-bottom:8px; color:var(--text);" data-i="custom-site-theme-label">Тема сайта</h4>
-              <div class="form-group-new">
-                <select class="sel" id="site-theme-select" style="width:100%; padding: 8px 12px; font-size: 13px;">
-                  <option value="violet">Graphite Indigo (Default)</option>
-                  <option value="cyberpunk">Rose Ink</option>
-                  <option value="dark-gold">Warm Brass</option>
-                  <option value="emerald">Sage Slate</option>
-                </select>
               </div>
             </div>
           </div>
@@ -993,19 +966,6 @@
       <button class="btn btn-ghost btn-full" id="btn-nsign-reset" style="margin-top:12px; font-size:12px;" data-i="sign-another">Подписать другое приложение</button>
     </div>
 
-  </div>
-</div>
-
-<div id="theme-modal" class="modal-overlay-new" role="dialog" aria-modal="true" aria-labelledby="theme-modal-title">
-  <div class="modal-box-new modal-box--theme">
-    <button type="button" class="modal-close-new" id="btn-close-theme" aria-label="Close">&times;</button>
-    <h3 id="theme-modal-title" class="theme-title" data-i="custom-site-theme-label">Тема сайта</h3>
-    <div class="theme-swatches" role="radiogroup" aria-labelledby="theme-modal-title">
-      <button type="button" class="theme-swatch" role="radio" aria-checked="true" data-theme="violet"><span class="theme-dot" aria-hidden="true"></span><span>Graphite Indigo</span></button>
-      <button type="button" class="theme-swatch" role="radio" aria-checked="false" data-theme="cyberpunk"><span class="theme-dot" aria-hidden="true"></span><span>Rose Ink</span></button>
-      <button type="button" class="theme-swatch" role="radio" aria-checked="false" data-theme="dark-gold"><span class="theme-dot" aria-hidden="true"></span><span>Warm Brass</span></button>
-      <button type="button" class="theme-swatch" role="radio" aria-checked="false" data-theme="emerald"><span class="theme-dot" aria-hidden="true"></span><span>Sage Slate</span></button>
-    </div>
   </div>
 </div>
 

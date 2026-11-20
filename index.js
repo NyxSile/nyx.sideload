@@ -176,6 +176,9 @@ const i18n = {
     "nsign-short-desc": "Фирменный подписыватель nyx с кастомными темами и dylib",
     "pc-no-revoke-badge": "Без отзыва сертификата",
     "breeze-chip-interactive": "Интерактивный помощник",
+    "breeze-prev-1": "Ненадежный разработчик",
+    "breeze-prev-2": "Слёт и проверка сертификата",
+    "breeze-prev-3": "Пошаговый разбор с Бриз",
     "breeze-card-heading": "Запутался в установке или вылезла ошибка «Ненадежный разработчик»?",
     "breeze-card-text": "Бриз проведет тебя по всем шагам в формате интерактивной визуальной новеллы и подскажет, как починить любую ошибку iOS.",
     "support-community-tag": "24/7 Комьюнити & Релизы",
@@ -360,6 +363,9 @@ const i18n = {
     "nsign-short-desc": "Signature nyx tool with custom themes and dylib injection",
     "pc-no-revoke-badge": "Zero Revokes",
     "breeze-chip-interactive": "Interactive Assistant",
+    "breeze-prev-1": "Untrusted Enterprise Developer",
+    "breeze-prev-2": "Revoke & Integrity Check",
+    "breeze-prev-3": "Step-by-step Breeze VN",
     "breeze-card-heading": "Stuck on installation or seeing 'Untrusted Developer'?",
     "breeze-card-text": "Breeze will walk you through every step in an interactive visual novel and help fix any iOS error.",
     "support-community-tag": "24/7 Community & Releases",
@@ -544,6 +550,9 @@ const i18n = {
     "nsign-short-desc": "커스텀 테마와 dylib 인젝션을 지원하는 nyx 전용 서명 도구",
     "pc-no-revoke-badge": "인증서 만료 없음",
     "breeze-chip-interactive": "인터랙티브 도우미",
+    "breeze-prev-1": "신뢰할 수 없는 개발자 오류",
+    "breeze-prev-2": "인증서 만료 및 무결성 확인",
+    "breeze-prev-3": "브리즈 단계별 비주얼 가이드",
     "breeze-card-heading": "설치 방법이 헷갈리거나 '신뢰할 수 없는 개발자' 오류가 뜨나요?",
     "breeze-card-text": "브리즈가 인터랙티브 비주얼 노벨 형식으로 모든 단계를 안내하고 iOS 오류 해결을 도와드립니다.",
     "support-community-tag": "24/7 커뮤니티 & 릴리즈",
@@ -964,55 +973,6 @@ document.getElementById('tab-btn-custom').addEventListener('click', () => {
 });
 document.getElementById('btn-go-nsign').addEventListener('click', () => openInstaller('nsign'));
 document.getElementById('btn-launch-web-signer').addEventListener('click', openNSign);
-function applyTheme(theme, showNotification = true) {
-  const root = document.documentElement;
-  if (theme === 'violet') {
-    root.style.setProperty('--accent', '#7850dc');
-    root.style.setProperty('--accent-lo', 'rgba(120, 80, 220, 0.12)');
-    root.style.setProperty('--accent-hi', 'rgba(120, 80, 220, 0.28)');
-  } else if (theme === 'cyberpunk') {
-    root.style.setProperty('--accent', '#EC4899');
-    root.style.setProperty('--accent-lo', 'rgba(236, 72, 153, 0.12)');
-    root.style.setProperty('--accent-hi', 'rgba(236, 72, 153, 0.28)');
-  } else if (theme === 'dark-gold') {
-    root.style.setProperty('--accent', '#D4AF37');
-    root.style.setProperty('--accent-lo', 'rgba(212, 175, 55, 0.12)');
-    root.style.setProperty('--accent-hi', 'rgba(212, 175, 55, 0.28)');
-  } else if (theme === 'emerald') {
-    root.style.setProperty('--accent', '#10B981');
-    root.style.setProperty('--accent-lo', 'rgba(16, 185, 129, 0.12)');
-    root.style.setProperty('--accent-hi', 'rgba(16, 185, 129, 0.28)');
-  }
-
-  localStorage.setItem('nyx-theme', theme);
-  const siteSel = document.getElementById('site-theme-select');
-  if (siteSel) siteSel.value = theme;
-  document.querySelectorAll('.theme-swatch').forEach(b => {
-    b.setAttribute('aria-checked', String(b.dataset.theme === theme));
-  });
-
-  if (showNotification) {
-    showToast(t('theme-applied-toast') || 'Тема успешно применена!');
-  }
-}
-
-document.getElementById('site-theme-select').addEventListener('change', (e) => applyTheme(e.target.value, true));
-document.querySelectorAll('.theme-swatch').forEach(b => {
-  b.addEventListener('click', () => applyTheme(b.dataset.theme, true));
-});
-document.getElementById('btn-header-theme').addEventListener('click', () => {
-  openOverlay('theme-modal', 'btn-close-theme');
-});
-const btnSidebarTheme = document.getElementById('btn-sidebar-theme');
-if (btnSidebarTheme) {
-  btnSidebarTheme.addEventListener('click', () => {
-    openOverlay('theme-modal', 'btn-close-theme');
-  });
-}
-document.getElementById('btn-close-theme').addEventListener('click', () => closeOverlay('theme-modal'));
-document.getElementById('theme-modal').addEventListener('click', (e) => {
-  if (e.target === document.getElementById('theme-modal')) closeOverlay('theme-modal');
-});
 document.getElementById('btn-open-esign').addEventListener('click', () => openInstaller('esign'));
 document.getElementById('btn-open-ksign').addEventListener('click', () => openInstaller('ksign'));
 document.getElementById('btn-open-nsign').addEventListener('click', () => openInstaller('nsign'));
@@ -1259,7 +1219,7 @@ if (btnCopySite) {
 document.addEventListener('keydown', (e) => {
   if (e.key !== 'Escape') return;
   let closed = false;
-  ['theme-modal', 'pc-sideload-modal', 'nsign-promo-modal', 'modal-404'].forEach(id => {
+  ['pc-sideload-modal', 'nsign-promo-modal', 'modal-404'].forEach(id => {
     const el = document.getElementById(id);
     if (el && el.classList.contains('active')) { closeOverlay(id); closed = true; }
   });
@@ -1443,8 +1403,7 @@ document.getElementById('modal-404').addEventListener('click', (e) => {
     b.classList.toggle('active', b.dataset.lang === currentLang);
   });
   applyLang();
-  const savedTheme = localStorage.getItem('nyx-theme') || 'violet';
-  applyTheme(savedTheme, false);
+  localStorage.removeItem('nyx-theme');
   loadMetadata();
   if (window.location.search.includes('404') || window.location.hash.includes('404')) {
     window.history.replaceState(null, '', window.location.pathname);
@@ -1499,11 +1458,6 @@ if (btnCopyLink) {
 }
 
 // Mobile Pocket Terminal Tabs & Desktop Sidebar Sync
-const mobNavNsign = document.getElementById('mob-nav-nsign');
-if (mobNavNsign) {
-  mobNavNsign.addEventListener('click', () => openInstaller('nsign'));
-}
-
 (function initMobileNavSync() {
   const navItems = document.querySelectorAll('.mob-nav-item[data-target]');
   const stepPills = document.querySelectorAll('.mobile-step-pill[data-tab]');
@@ -1514,7 +1468,7 @@ if (mobNavNsign) {
     'sec-dns': 'dns',
     'sec-tools': 'tools',
     'sec-cert-files': 'cert',
-    'sec-pc-sideload': 'cert',
+    'sec-pc-sideload': 'tools',
     'sec-breeze-guide': 'guide',
     'sec-support': 'guide'
   };
