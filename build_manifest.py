@@ -173,8 +173,8 @@ def main():
                 version = raw_version
             elif filename.startswith("nsign"):
                 app_name = config.get("NSIGN_NAME", "N.Sign")
-                bundle_id = config.get("NSIGN_BUNDLE", "nyx.sideload.nsign")
-                version = "1.0.0"
+                bundle_id = raw_bundle or config.get("NSIGN_BUNDLE", "nyx.sideload.nsign")
+                version = raw_version
             else:
                 app_name = raw_name
                 bundle_id = raw_bundle

@@ -39,22 +39,30 @@
     "size": "15.6 MB",
     "updated": "2026-09-12T15:32:30+05:00"
   },
+  "nsign-chengdu-railway-bureau": {
+    "version": "0.3",
+    "app": "N.Sign",
+    "bundle": "nyx.sideload.nsign",
+    "ipa": "ipas/nsign/nsign-chengdu-railway-bureau.ipa",
+    "size": "3.1 MB",
+    "updated": "2026-11-20T01:11:32.888906+00:00"
+  },
   "nsign": {
-    "version": "1.0.0",
+    "version": "0.3",
     "app": "N.Sign",
     "bundle": "nyx.sideload.nsign",
     "ipa": "ipas/nsign/nsign.ipa",
-    "size": "14.3 MB",
+    "size": "3.1 MB",
     "updated": "2026-09-12T15:32:30+05:00"
   },
   "base_url": "https://sideload.nyxsile.lol",
-  "generated_at": "2026-11-19T23:21:27.373002+00:00",
+  "generated_at": "2026-11-20T01:12:18.818007+00:00",
   "latest": {
-    "version": "1.6",
-    "app": "KSign",
-    "bundle": "nya.asami.ksign",
-    "ipa": "ipas/ksign/ksign-chengdu-railway-bureau.ipa",
-    "size": "31.0 MB",
-    "updated": "2026-11-20T04:20:51+05:00"
+    "version": "0.3",
+    "app": "N.Sign",
+    "bundle": "nyx.sideload.nsign",
+    "ipa": "ipas/nsign/nsign-chengdu-railway-bureau.ipa",
+    "size": "3.1 MB",
+    "updated": "2026-11-20T01:11:32.888906+00:00"
   }
 }

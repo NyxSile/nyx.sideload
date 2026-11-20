@@ -16,7 +16,7 @@ const i18n = {
     "sec-tools-label": "Инструменты",
     "tag-recommended": "Рекомендован",
     "tag-alt": "Альтернатива",
-    "tag-new": "Новый",
+    "tag-new": "Нативный",
     "coming-soon": "Совсем скоро...",
     "cert-select": "Выбрать сертификат...",
     "install": "Установить",
@@ -78,7 +78,7 @@ const i18n = {
     "launch-web-signer-btn": "Запустить веб-версию",
     "nsign-web-unavailable-title": "N.Sign Web в разработке",
     "nsign-web-unavailable-desc": "Онлайн-подпись через браузер скоро будет доступна.",
-    "status-new-cert": "Новый сертификат импортирован!",
+    "status-new-cert": "Новый сертификат импортирован",
     "cert-active": "Активен",
     "cert-revoked": "Отозван (только с DNS)",
     "sec-cert-download-label": "Сертификат",
@@ -91,7 +91,7 @@ const i18n = {
     "pwd-copied": "Пароль AppleP12.com скопирован!",
     "btn-copy-install-link": "Скопировать ссылку на установку",
     "toast-link-copied": "Ссылка на установку скопирована в буфер!",
-    "inapp-browser-warn": "⚠️ Вы открыли сайт во встроенном браузере. Для успешной установки приложений откройте сайт в <strong>Safari</strong>.",
+    "inapp-browser-warn": "Вы открыли сайт во встроенном браузере. Для установки приложений откройте страницу в <strong>Safari</strong>.",
     "nsign-app-unavailable-title": "Приложение N.Sign пока заправляется!",
     "nsign-app-unavailable-desc": "Приложение N.Sign находится в разработке. Подождите, либо воспользуйтесь веб-версией во вкладке «Кастомизация».",
     "custom-site-theme-label": "Кастомизация сайта (N.Sign Theme)",
@@ -136,40 +136,40 @@ const i18n = {
     "nav-dns": "Анти-ревок DNS",
     "nav-cert": "Сертификат",
     "nav-breeze": "Гайд с Бриз",
-    "hero-eyebrow-text": "ЭКОСИСТЕМА САЙДЛОУДА · БЕЗ ДЖЕЙЛБРЕЙКА",
+    "hero-eyebrow-text": "Сайдлоуд iOS без джейлбрейка",
     "hero-btn-pc": "Сайдлоуд с ПК (Nyx.Loader)",
     "hero-btn-ios": "Инструменты для iPhone",
     "hero-btn-guide": "Визуальный гайд с Бриз",
     "metric-cert-lbl": "Enterprise сертификат",
     "metric-dns-lbl": "Блокировка OCSP / CRL",
     "metric-lc-lbl": "Через LiveContainer",
-    "mob-breeze-tag": "ИНТЕРАКТИВНЫЙ ТУТОРИАЛ",
-    "mob-breeze-title": "Впервые здесь? Гайд с Бриз за 1 минуту",
+    "mob-breeze-tag": "Интерактивный туториал",
+    "mob-breeze-title": "Гайд с Бриз за 1 минуту",
     "mob-breeze-sub": "Пошаговая установка DNS, ESign и решение ошибок",
     "step-1-short": "Защита",
     "step-2-short": "ESign / KSign",
     "step-3-short": "Серт",
     "step-4-short": "Бриз",
     "dns-status-short-wait": "DNS...",
-    "dns-status-short-ok": "DNS: OK",
-    "dns-status-short-off": "DNS: OFF",
+    "dns-status-short-ok": "DNS OK",
+    "dns-status-short-off": "DNS Off",
     "prev-step-dns": "Шаг 1: DNS",
-    "next-step-tools": "Далее: Шаг 2 — ESign / KSign",
-    "next-step-cert": "Шаг 3: Сертификат",
-    "prev-step-tools": "Шаг 2: Приложения",
-    "next-step-guide": "Шаг 4: Гайд & Чат",
-    "prev-step-cert": "Шаг 3: Сертификат",
+    "next-step-tools": "Далее: ESign / KSign",
+    "next-step-cert": "Далее: Сертификат",
+    "prev-step-tools": "Назад: Приложения",
+    "next-step-guide": "Далее: Гайд",
+    "prev-step-cert": "Назад: Сертификат",
     "showcase-breeze-title": "Интерактивный гайд с Бриз",
     "showcase-breeze-desc": "Визуальная новелла: разбор ошибок, настройка сертификатов и обход ревоков.",
     "btn-open-vn": "Запустить новеллу",
     "btn-open-text-guide": "Гайд для ПК",
-    "qr-badge": "БЫСТРЫЙ ПЕРЕХОД НА IPHONE",
+    "qr-badge": "Перенос на iPhone",
     "qr-title": "Открыл сайт на компьютере?",
-    "qr-desc": "Наведи камеру iPhone на QR-код, чтобы открыть портал в Safari и установить DNS-профиль и ESign в 1 тап.",
-    "badge-step-1": "ШАГ 1",
-    "badge-step-2": "ШАГ 2",
-    "badge-step-3": "ШАГ 3",
-    "tools-ota-hint": "OTA-установка и .IPA",
+    "qr-desc": "Наведи камеру iPhone на QR-код, чтобы открыть страницу в Safari.",
+    "badge-step-1": "Шаг 1",
+    "badge-step-2": "Шаг 2",
+    "badge-step-3": "Шаг 3",
+    "tools-ota-hint": "OTA и .IPA",
     "tools-intro-desc": "Менеджеры сертификатов и подписи приложений прямо на устройстве. На iPhone устанавливаются по воздуху (OTA), на ПК скачиваются в формате .IPA.",
     "esign-short-desc": "Подпись любых IPA, репозитории и инъекция твиков без ПК",
     "ksign-short-desc": "Быстрый и легкий аналог с современным интерфейсом iOS",
@@ -200,7 +200,7 @@ const i18n = {
     "sec-tools-label": "Tools",
     "tag-recommended": "Functional",
     "tag-alt": "Visual",
-    "tag-new": "New",
+    "tag-new": "Native",
     "coming-soon": "Oh-so soon...",
     "cert-select": "Select certificate...",
     "install": "Install",
@@ -262,7 +262,7 @@ const i18n = {
     "launch-web-signer-btn": "Launch web version",
     "nsign-web-unavailable-title": "N.Sign Web in development",
     "nsign-web-unavailable-desc": "Online signing through the browser will be available soon.",
-    "status-new-cert": "New certificate imported!",
+    "status-new-cert": "New certificate imported",
     "cert-active": "Active",
     "cert-revoked": "Revoked (DNS only)",
     "sec-cert-download-label": "Certificate",
@@ -275,7 +275,7 @@ const i18n = {
     "pwd-copied": "Password AppleP12.com copied!",
     "btn-copy-install-link": "Copy Install Link",
     "toast-link-copied": "Direct install link copied to clipboard!",
-    "inapp-browser-warn": "⚠️ You are using an in-app browser. For seamless installation, please open this site in <strong>Safari</strong>.",
+    "inapp-browser-warn": "You are using an in-app browser. To install apps, open this page in <strong>Safari</strong>.",
     "nsign-app-unavailable-title": "N.Sign app is temporarily unavailable",
     "nsign-app-unavailable-desc": "The N.Sign app is under development. Please use the web version in the 'Customization' tab.",
     "custom-site-theme-label": "Website Customization (N.Sign Theme)",
@@ -320,40 +320,40 @@ const i18n = {
     "nav-dns": "Anti-Revoke DNS",
     "nav-cert": "Certificate",
     "nav-breeze": "Breeze Guide",
-    "hero-eyebrow-text": "SIDELOAD ECOSYSTEM · NO JAILBREAK",
+    "hero-eyebrow-text": "iOS sideload without jailbreak",
     "hero-btn-pc": "PC Sideload (Nyx.Loader)",
     "hero-btn-ios": "iPhone Tools",
     "hero-btn-guide": "Breeze Visual Guide",
     "metric-cert-lbl": "Enterprise Certificate",
     "metric-dns-lbl": "OCSP / CRL Shield",
     "metric-lc-lbl": "Via LiveContainer",
-    "mob-breeze-tag": "INTERACTIVE TUTORIAL",
-    "mob-breeze-title": "New here? 1-minute Breeze Guide",
-    "mob-breeze-sub": "Step-by-step DNS, ESign setup & error fixes",
+    "mob-breeze-tag": "Interactive tutorial",
+    "mob-breeze-title": "1-minute Breeze Guide",
+    "mob-breeze-sub": "Step-by-step DNS, ESign setup and error fixes",
     "step-1-short": "Shield",
     "step-2-short": "ESign / KSign",
     "step-3-short": "Cert",
     "step-4-short": "Breeze",
     "dns-status-short-wait": "DNS...",
-    "dns-status-short-ok": "DNS: OK",
-    "dns-status-short-off": "DNS: OFF",
+    "dns-status-short-ok": "DNS OK",
+    "dns-status-short-off": "DNS Off",
     "prev-step-dns": "Step 1: DNS",
-    "next-step-tools": "Next: Step 2 — ESign / KSign",
-    "next-step-cert": "Step 3: Cert",
-    "prev-step-tools": "Step 2: Apps",
-    "next-step-guide": "Step 4: Guide",
-    "prev-step-cert": "Step 3: Certificate",
+    "next-step-tools": "Next: ESign / KSign",
+    "next-step-cert": "Next: Certificate",
+    "prev-step-tools": "Back: Apps",
+    "next-step-guide": "Next: Guide",
+    "prev-step-cert": "Back: Certificate",
     "showcase-breeze-title": "Interactive Guide with Breeze",
-    "showcase-breeze-desc": "Visual novel walkthrough: certificate setup, anti-revoke shield, and error troubleshooting.",
+    "showcase-breeze-desc": "Visual novel walkthrough: certificate setup, anti-revoke shield, and troubleshooting.",
     "btn-open-vn": "Launch Visual Novel",
     "btn-open-text-guide": "PC Guide",
-    "qr-badge": "QUICK IPHONE HANDOFF",
-    "qr-title": "Opened on your computer?",
-    "qr-desc": "Scan the QR code with your iPhone camera to open in Safari and install the DNS profile & ESign in 1 tap.",
-    "badge-step-1": "STEP 1",
-    "badge-step-2": "STEP 2",
-    "badge-step-3": "STEP 3",
-    "tools-ota-hint": "OTA Install & .IPA",
+    "qr-badge": "iPhone Handoff",
+    "qr-title": "Opened on your computer",
+    "qr-desc": "Scan this QR code with iPhone Camera to open in Safari.",
+    "badge-step-1": "Step 1",
+    "badge-step-2": "Step 2",
+    "badge-step-3": "Step 3",
+    "tools-ota-hint": "OTA and .IPA",
     "tools-intro-desc": "On-device certificate managers and IPA signers. Installed Over-The-Air (OTA) on iPhone/iPad or downloaded as .IPA on PC.",
     "esign-short-desc": "Sign any IPA, add repos & inject tweaks without a PC",
     "ksign-short-desc": "Fast, lightweight alternative with a clean iOS interface",
@@ -384,7 +384,7 @@ const i18n = {
     "sec-tools-label": "도구",
     "tag-recommended": "추천",
     "tag-alt": "대체 앱",
-    "tag-new": "신규",
+    "tag-new": "네이티브",
     "coming-soon": "출시 예정...",
     "cert-select": "인증서 선택...",
     "install": "설치",
@@ -459,7 +459,7 @@ const i18n = {
     "pwd-copied": "비밀번호(AppleP12.com)가 복사되었습니다!",
     "btn-copy-install-link": "설치 링크 복사",
     "toast-link-copied": "설치 링크가 클립보드에 복사되었습니다!",
-    "inapp-browser-warn": "⚠️ 인앱 브라우저를 사용 중입니다. 원활한 앱 설치를 위해 <strong>Safari</strong>에서 열어주세요.",
+    "inapp-browser-warn": "인앱 브라우저를 사용 중입니다. 앱 설치를 위해 <strong>Safari</strong>에서 열어주세요.",
     "nsign-app-unavailable-title": "N.Sign 앱 준비 중",
     "nsign-app-unavailable-desc": "N.Sign 앱은 현재 개발 중입니다. '커스터마이징' 탭의 웹 버전을 이용해 주세요.",
     "custom-site-theme-label": "사이트 테마 설정 (N.Sign Theme)",
@@ -862,9 +862,10 @@ async function loadMetadata() {
       const el = document.querySelector('#card-ksign .tool-meta-new span:nth-child(2)');
       if (el) el.textContent = 'v' + appMetadata['ksign'].version;
     }
-    if (appMetadata['nsign']) {
+    const nsignMeta = appMetadata['nsign-chengdu-railway-bureau'] || appMetadata['nsign'];
+    if (nsignMeta) {
       const el = document.querySelector('#card-nsign .tool-meta-new span:nth-child(2)');
-      if (el) el.textContent = 'v' + appMetadata['nsign'].version;
+      if (el) el.textContent = nsignMeta.version.startsWith('n') ? nsignMeta.version : ('n' + nsignMeta.version);
     }
   } catch (e) {
     console.error("Failed to load version.json metadata:", e);
@@ -883,8 +884,11 @@ function updateModalMetadata() {
   const statusDot = document.querySelector('#modal-app-status .status-dot');
   const statusText = document.getElementById('modal-app-status-text');
 
-  if (version) version.textContent = meta.version || (activeTool === 'nsign' ? '1.0.0' : '1.5.1');
-  if (size) size.textContent = meta.size || '14.9 MB';
+  if (version) {
+    const rawVer = meta.version || (activeTool === 'nsign' ? '0.3' : '1.5.1');
+    version.textContent = (activeTool === 'nsign' && !rawVer.startsWith('n')) ? ('n' + rawVer) : rawVer;
+  }
+  if (size) size.textContent = meta.size || (activeTool === 'nsign' ? '3.1 MB' : '14.9 MB');
   if (bundle) bundle.textContent = meta.bundle || (activeTool === 'esign' ? 'p3.xyz.yyyue.esign' : (activeTool === 'ksign' ? 'nya.asami.ksign' : 'nyx.sideload.nsign'));
 
   if (statusDot && statusText) {
@@ -905,13 +909,8 @@ function openInstaller(tool) {
   const iconContainer = document.getElementById('modal-app-icon');
   const installText = document.getElementById('btn-modal-install-text');
   document.getElementById('tab-btn-standard').click();
-  if (tool === 'nsign') {
-    document.getElementById('standard-install-fields').style.display = 'none';
-    document.getElementById('standard-install-unavailable').style.display = 'flex';
-  } else {
-    document.getElementById('standard-install-fields').style.display = 'block';
-    document.getElementById('standard-install-unavailable').style.display = 'none';
-  }
+  document.getElementById('standard-install-fields').style.display = 'block';
+  document.getElementById('standard-install-unavailable').style.display = 'none';
   updateModalMetadata();
   let nameVal = tool === 'esign' ? 'ESign' : (tool === 'ksign' ? 'KSign' : 'N.Sign');
   if (appMetadata[tool]) {
