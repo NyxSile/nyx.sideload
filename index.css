@@ -2354,6 +2354,10 @@ body {
   font-size: 12px;
   color: var(--ok);
 }
+.dns-telemetry-live--warn { color: var(--warn); }
+.dns-telemetry-live--err { color: var(--err); }
+.deck-stat-val--warn { color: var(--warn); }
+.deck-stat-val--err { color: var(--err); }
 
 .dns-telemetry-list {
   display: flex;
@@ -2394,12 +2398,15 @@ body {
   white-space: nowrap;
 }
 
+.dns-telemetry-status,
 .dns-telemetry-status--ok {
   flex-shrink: 0;
   font-family: var(--font-mono);
   font-size: 11px;
   color: var(--ok);
 }
+.dns-telemetry-status--wait { color: var(--warn); }
+.dns-telemetry-status--err { color: var(--err); }
 
 .dns-actions {
   display: flex;

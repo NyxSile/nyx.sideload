@@ -221,7 +221,7 @@
         </div>
         <div class="deck-stat">
           <span class="deck-stat-key">OCSP Shield</span>
-          <span class="deck-stat-val deck-stat-val--ok">4/4 Sinkholed</span>
+          <span class="deck-stat-val deck-stat-val--warn" id="deck-ocsp-stat">Checking...</span>
         </div>
         <div class="deck-stat">
           <span class="deck-stat-key">iOS Target</span>
@@ -306,28 +306,28 @@
           <div class="dns-telemetry-matrix" aria-label="OCSP Filter Hosts">
             <div class="dns-telemetry-head">
               <span class="sys-code">OCSP filter</span>
-              <span class="dns-telemetry-live">4 hosts blocked</span>
+              <span class="dns-telemetry-live dns-telemetry-live--warn" id="dns-telemetry-summary" data-i="dns-hosts-checking">Проверка...</span>
             </div>
             <div class="dns-telemetry-list">
-              <div class="dns-host-row">
+              <div class="dns-host-row" data-dns-host="ocsp.apple.com">
                 <span class="dns-telemetry-host">ocsp.apple.com</span>
-                <span class="dns-host-proto">DoH · 0.0.0.0</span>
-                <span class="dns-telemetry-status--ok">Blocked</span>
+                <span class="dns-host-proto">DoH</span>
+                <span class="dns-telemetry-status dns-telemetry-status--wait" data-i="dns-host-checking">Проверка...</span>
               </div>
-              <div class="dns-host-row">
+              <div class="dns-host-row" data-dns-host="ocsp2.apple.com">
                 <span class="dns-telemetry-host">ocsp2.apple.com</span>
-                <span class="dns-host-proto">OCSP v2 · 0.0.0.0</span>
-                <span class="dns-telemetry-status--ok">Blocked</span>
+                <span class="dns-host-proto">OCSP v2</span>
+                <span class="dns-telemetry-status dns-telemetry-status--wait" data-i="dns-host-checking">Проверка...</span>
               </div>
-              <div class="dns-host-row">
+              <div class="dns-host-row" data-dns-host="crl.apple.com">
                 <span class="dns-telemetry-host">crl.apple.com</span>
-                <span class="dns-host-proto">CRL · 0.0.0.0</span>
-                <span class="dns-telemetry-status--ok">Blocked</span>
+                <span class="dns-host-proto">CRL</span>
+                <span class="dns-telemetry-status dns-telemetry-status--wait" data-i="dns-host-checking">Проверка...</span>
               </div>
-              <div class="dns-host-row">
+              <div class="dns-host-row" data-dns-host="valid.apple.com">
                 <span class="dns-telemetry-host">valid.apple.com</span>
-                <span class="dns-host-proto">EV · 0.0.0.0</span>
-                <span class="dns-telemetry-status--ok">Blocked</span>
+                <span class="dns-host-proto">EV</span>
+                <span class="dns-telemetry-status dns-telemetry-status--wait" data-i="dns-host-checking">Проверка...</span>
               </div>
             </div>
           </div>

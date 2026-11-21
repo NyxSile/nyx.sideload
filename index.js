@@ -153,6 +153,12 @@ const i18n = {
     "dns-status-short-wait": "DNS...",
     "dns-status-short-ok": "DNS OK",
     "dns-status-short-off": "DNS Off",
+    "dns-host-checking": "Проверка...",
+    "dns-host-blocked": "Заблокирован",
+    "dns-host-exposed": "Доступен",
+    "dns-host-offline": "Оффлайн",
+    "dns-hosts-checking": "Проверка 4 хостов...",
+    "dns-hosts-offline": "Нет сети",
     "prev-step-dns": "Шаг 1: DNS",
     "next-step-tools": "Далее: ESign / KSign",
     "next-step-cert": "Далее: Сертификат",
@@ -340,6 +346,12 @@ const i18n = {
     "dns-status-short-wait": "DNS...",
     "dns-status-short-ok": "DNS OK",
     "dns-status-short-off": "DNS Off",
+    "dns-host-checking": "Checking...",
+    "dns-host-blocked": "Blocked",
+    "dns-host-exposed": "Exposed",
+    "dns-host-offline": "Offline",
+    "dns-hosts-checking": "Checking 4 hosts...",
+    "dns-hosts-offline": "Offline",
     "prev-step-dns": "Step 1: DNS",
     "next-step-tools": "Next: ESign / KSign",
     "next-step-cert": "Next: Certificate",
@@ -527,6 +539,12 @@ const i18n = {
     "dns-status-short-wait": "DNS...",
     "dns-status-short-ok": "DNS: OK",
     "dns-status-short-off": "DNS: OFF",
+    "dns-host-checking": "확인 중...",
+    "dns-host-blocked": "차단됨",
+    "dns-host-exposed": "노출됨",
+    "dns-host-offline": "오프라인",
+    "dns-hosts-checking": "호스트 4개 확인 중...",
+    "dns-hosts-offline": "오프라인",
     "prev-step-dns": "1단계: DNS",
     "next-step-tools": "다음: 2단계 — ESign / KSign",
     "next-step-cert": "3단계: 인증서",
@@ -704,7 +722,86 @@ async function checkDnsProtection(showFeedbackToast = true) {
     badge.style.background = 'rgba(234, 179, 8, 0.08)';
     badge.style.color = '#eab308';
   }
+function updateDnsTelemetryMatrix(state, hostResults) {
+  const hosts = ['ocsp.apple.com', 'ocsp2.apple.com', 'crl.apple.com', 'valid.apple.com'];
+  const summaryEl = document.getElementById('dns-telemetry-summary');
+  const deckStatEl = document.getElementById('deck-ocsp-stat');
+
+  if (state === 'testing') {
+    if (summaryEl) {
+      summaryEl.className = 'dns-telemetry-live dns-telemetry-live--warn';
+      summaryEl.dataset.i = 'dns-hosts-checking';
+      summaryEl.textContent = t('dns-hosts-checking');
+    }
+    if (deckStatEl) {
+      deckStatEl.className = 'deck-stat-val deck-stat-val--warn';
+      deckStatEl.textContent = t('dns-host-checking');
+    }
+    hosts.forEach(h => {
+      const el = document.querySelector(`.dns-host-row[data-dns-host="${h}"] .dns-telemetry-status`);
+      if (el) {
+        el.className = 'dns-telemetry-status dns-telemetry-status--wait';
+        el.dataset.i = 'dns-host-checking';
+        el.textContent = t('dns-host-checking');
+      }
+    });
+    return;
+  }
+
+  if (state === 'offline') {
+    if (summaryEl) {
+      summaryEl.className = 'dns-telemetry-live dns-telemetry-live--warn';
+      summaryEl.dataset.i = 'dns-hosts-offline';
+      summaryEl.textContent = t('dns-hosts-offline');
+    }
+    if (deckStatEl) {
+      deckStatEl.className = 'deck-stat-val deck-stat-val--warn';
+      deckStatEl.textContent = t('dns-host-offline');
+    }
+    hosts.forEach(h => {
+      const el = document.querySelector(`.dns-host-row[data-dns-host="${h}"] .dns-telemetry-status`);
+      if (el) {
+        el.className = 'dns-telemetry-status dns-telemetry-status--wait';
+        el.dataset.i = 'dns-host-offline';
+        el.textContent = t('dns-host-offline');
+      }
+    });
+    return;
+  }
+
+  const res = Array.isArray(hostResults) ? hostResults : [];
+  let blocked = 0;
+  hosts.forEach((h, i) => {
+    const isBlocked = res[i] === false;
+    if (isBlocked) blocked++;
+    const el = document.querySelector(`.dns-host-row[data-dns-host="${h}"] .dns-telemetry-status`);
+    if (el) {
+      el.className = isBlocked
+        ? 'dns-telemetry-status dns-telemetry-status--ok'
+        : 'dns-telemetry-status dns-telemetry-status--err';
+      el.dataset.i = isBlocked ? 'dns-host-blocked' : 'dns-host-exposed';
+      el.textContent = t(el.dataset.i);
+    }
+  });
+
+  if (summaryEl) {
+    delete summaryEl.dataset.i;
+    summaryEl.className = blocked === hosts.length
+      ? 'dns-telemetry-live'
+      : (blocked > 0 ? 'dns-telemetry-live dns-telemetry-live--warn' : 'dns-telemetry-live dns-telemetry-live--err');
+    const unit = currentLang === 'ru' ? 'заблокировано' : (currentLang === 'ko' ? '차단됨' : 'blocked');
+    summaryEl.textContent = `${blocked}/${hosts.length} ${unit}`;
+  }
+  if (deckStatEl) {
+    deckStatEl.className = blocked === hosts.length
+      ? 'deck-stat-val deck-stat-val--ok'
+      : (blocked > 0 ? 'deck-stat-val deck-stat-val--warn' : 'deck-stat-val deck-stat-val--err');
+    deckStatEl.textContent = blocked === hosts.length ? `${blocked}/${hosts.length} Blocked` : `${blocked}/${hosts.length} Blocked`;
+  }
+}
+
   syncDnsMirrors('warn', 'dns-status-testing', 'dns-status-short-wait');
+  updateDnsTelemetryMatrix('testing');
 
   try {
     // Check if device is completely offline first
@@ -720,6 +817,7 @@ async function checkDnsProtection(showFeedbackToast = true) {
         badge.style.color = '#eab308';
       }
       syncDnsMirrors('warn', 'dns-status-offline', 'dns-status-short-off');
+      updateDnsTelemetryMatrix('offline');
       if (showFeedbackToast) showToast(t('toast-dns-offline'));
       return;
     }
@@ -763,10 +861,13 @@ async function checkDnsProtection(showFeedbackToast = true) {
           badge.style.color = '#eab308';
         }
         syncDnsMirrors('warn', 'dns-status-offline', 'dns-status-short-off');
+        updateDnsTelemetryMatrix('offline');
         if (showFeedbackToast) showToast(t('toast-dns-offline'));
         return;
       }
     }
+
+    updateDnsTelemetryMatrix('done', results);
 
     if (!isProtected) {
       // Traffic reached all Apple revocation endpoints -> Protection NOT active!
