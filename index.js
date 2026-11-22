@@ -1004,7 +1004,7 @@ function updateModalMetadata() {
   const statusText = document.getElementById('modal-app-status-text');
 
   if (version) {
-    const rawVer = meta.version || (activeTool === 'nsign' ? '0.3' : '1.5.1');
+    const rawVer = meta.version || (activeTool === 'nsign' ? '0.4' : '2.0');
     version.textContent = (activeTool === 'nsign' && !rawVer.startsWith('n')) ? ('n' + rawVer) : rawVer;
   }
   if (size) size.textContent = meta.size || (activeTool === 'nsign' ? '3.1 MB' : '14.9 MB');
