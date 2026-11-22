@@ -588,6 +588,9 @@ if (!i18n[currentLang]) {
 
 function t(key) { return (i18n[currentLang] && i18n[currentLang][key]) || key; }
 
+let lastDnsTelemetryState = null;
+let lastDnsHostResults = null;
+
 function applyLang() {
   document.documentElement.lang = currentLang;
   document.querySelectorAll('.lang-btn').forEach(b => {
@@ -606,6 +609,9 @@ function applyLang() {
       }
     }
   });
+  if (lastDnsTelemetryState && typeof updateDnsTelemetryMatrix === 'function') {
+    updateDnsTelemetryMatrix(lastDnsTelemetryState, lastDnsHostResults);
+  }
 }
 
 
@@ -696,33 +702,9 @@ function syncDnsMirrors(statusState, statusKey, shortKey) {
   }
 }
 
-// Live DNS Protection Check (Directly through user browser network)
-let isCheckingDns = false;
-async function checkDnsProtection(showFeedbackToast = true) {
-  if (isCheckingDns) return;
-  isCheckingDns = true;
-
-  const dot = document.getElementById('dns-status-dot');
-  const text = document.getElementById('dns-status-text');
-  const badge = document.getElementById('dns-status-badge');
-  const btnCheck = document.getElementById('btn-check-dns');
-
-  if (btnCheck) {
-    btnCheck.style.opacity = '0.6';
-    btnCheck.style.pointerEvents = 'none';
-  }
-
-  if (dot) dot.className = 'status-dot warn';
-  if (text) {
-    text.textContent = t('dns-status-testing');
-    text.dataset.i = 'dns-status-testing';
-  }
-  if (badge) {
-    badge.style.borderColor = 'rgba(234, 179, 8, 0.4)';
-    badge.style.background = 'rgba(234, 179, 8, 0.08)';
-    badge.style.color = '#eab308';
-  }
 function updateDnsTelemetryMatrix(state, hostResults) {
+  lastDnsTelemetryState = state;
+  lastDnsHostResults = hostResults;
   const hosts = ['ocsp.apple.com', 'ocsp2.apple.com', 'crl.apple.com', 'valid.apple.com'];
   const summaryEl = document.getElementById('dns-telemetry-summary');
   const deckStatEl = document.getElementById('deck-ocsp-stat');
@@ -796,9 +778,36 @@ function updateDnsTelemetryMatrix(state, hostResults) {
     deckStatEl.className = blocked === hosts.length
       ? 'deck-stat-val deck-stat-val--ok'
       : (blocked > 0 ? 'deck-stat-val deck-stat-val--warn' : 'deck-stat-val deck-stat-val--err');
-    deckStatEl.textContent = blocked === hosts.length ? `${blocked}/${hosts.length} Blocked` : `${blocked}/${hosts.length} Blocked`;
+    deckStatEl.textContent = `${blocked}/${hosts.length} Blocked`;
   }
 }
+
+// Live DNS Protection Check (Directly through user browser network)
+let isCheckingDns = false;
+async function checkDnsProtection(showFeedbackToast = true) {
+  if (isCheckingDns) return;
+  isCheckingDns = true;
+
+  const dot = document.getElementById('dns-status-dot');
+  const text = document.getElementById('dns-status-text');
+  const badge = document.getElementById('dns-status-badge');
+  const btnCheck = document.getElementById('btn-check-dns');
+
+  if (btnCheck) {
+    btnCheck.style.opacity = '0.6';
+    btnCheck.style.pointerEvents = 'none';
+  }
+
+  if (dot) dot.className = 'status-dot warn';
+  if (text) {
+    text.textContent = t('dns-status-testing');
+    text.dataset.i = 'dns-status-testing';
+  }
+  if (badge) {
+    badge.style.borderColor = 'rgba(234, 179, 8, 0.4)';
+    badge.style.background = 'rgba(234, 179, 8, 0.08)';
+    badge.style.color = '#eab308';
+  }
 
   syncDnsMirrors('warn', 'dns-status-testing', 'dns-status-short-wait');
   updateDnsTelemetryMatrix('testing');
